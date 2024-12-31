@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.IO;
+using FontStashSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra;
@@ -10,6 +13,7 @@ public class Game : Microsoft.Xna.Framework.Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private FontSystem _fontSystem;
     
     private Test test;
     private Desktop _desktop;
@@ -34,67 +38,100 @@ public class Game : Microsoft.Xna.Framework.Game
 
     protected override void LoadContent()
     {
+        _fontSystem = new FontSystem();
+        _fontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/orbitron_light.ttf"));
+        
         MyraEnvironment.Game = this;
 
         var grid = new Grid
         {
-            RowSpacing = 8,
-            ColumnSpacing = 8
+            RowSpacing = 10,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
         };
 
+        // COLUMNS
         grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
-        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto));
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto));
+        
+        // ROWS
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TITLE
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // SIMS
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // SETTINGS
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // QUIT
 
-        var helloWorld = new Label
+        var title = new Label
         {
-            Id = "label",
-            Text = "Hello, World!"
+            Id = "title",
+            Text = "2DGS",
+            Font = _fontSystem.GetFont(70),
+            HorizontalAlignment = HorizontalAlignment.Center
         };
-        grid.Widgets.Add(helloWorld);
-
-        // ComboBox
-        var combo = new ComboBox();
-        Grid.SetColumn(combo, 1);
-        Grid.SetRow(combo, 0);
-
-        combo.Items.Add(new ListItem("Red", Color.Red));
-        combo.Items.Add(new ListItem("Green", Color.Green));
-        combo.Items.Add(new ListItem("Blue", Color.Blue));
-        grid.Widgets.Add(combo);
-
-        // Button
-        var button = new Button
+        Grid.SetRow(title, 0);
+        grid.Widgets.Add(title);
+        
+        var simulationMenu = new Button
         {
+            Width=300,
+            Height=75,
             Content = new Label
             {
-                Text = "Show"
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Simulations",
+                Font = _fontSystem.GetFont(20)
             }
         };
-        Grid.SetColumn(button, 0);
-        Grid.SetRow(button, 1);
+        Grid.SetRow(simulationMenu, 1);
 
-        button.Click += (s, a) =>
+        simulationMenu.Click += (s, a) =>
         {
-            var messageBox = Dialog.CreateMessageBox("Message", "Some message!");
-            messageBox.ShowModal(_desktop);
+            Console.WriteLine("This will navigate you to the simulations menu...");
         };
 
-        grid.Widgets.Add(button);
-
-        // Spin button
-        var spinButton = new SpinButton
+        grid.Widgets.Add(simulationMenu);
+        
+        var settingsMenu = new Button
         {
-            Width = 100,
-            Nullable = true
+            Width=300,
+            Height=75,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Settings",
+                Font = _fontSystem.GetFont(20)
+            }
         };
-        Grid.SetColumn(spinButton, 1);
-        Grid.SetRow(spinButton, 1);
+        Grid.SetRow(settingsMenu, 2);
 
-        grid.Widgets.Add(spinButton);
+        settingsMenu.Click += (s, a) =>
+        {
+            Console.WriteLine("This will navigate you to the settings menu...");
+        };
 
-        // Add it to the desktop
+        grid.Widgets.Add(settingsMenu);
+        
+        var quitButton = new Button
+        {
+            Width=300,
+            Height=75,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Quit",
+                Font = _fontSystem.GetFont(20)
+            }
+        };
+        Grid.SetRow(quitButton, 3);
+
+        quitButton.Click += (s, a) =>
+        {
+            Exit();
+        };
+
+        grid.Widgets.Add(quitButton);
+        
         _desktop = new Desktop();
         _desktop.Root = grid;
     }
