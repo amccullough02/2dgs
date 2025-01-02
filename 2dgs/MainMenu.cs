@@ -12,13 +12,16 @@ public class MainMenu : GameState
 {
     private Desktop _desktop;
     private FontSystem _fontSystem;
+    private Game game;
 
     public MainMenu(Game game)
     {
+        this.game = game;
+        
         _fontSystem = new FontSystem();
         _fontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/orbitron_light.ttf"));
 
-        MyraEnvironment.Game = game;
+        MyraEnvironment.Game = this.game;
 
         var grid = new Grid
         {
@@ -83,7 +86,8 @@ public class MainMenu : GameState
 
         settingsMenu.Click += (s, a) =>
         {
-            Console.WriteLine("This will navigate you to the settings menu...");
+            Console.WriteLine("DEBUG: Navigating to settings menu...");
+            this.game.GameStateManager.ChangeState(new SettingsMenu(this.game));
         };
 
         grid.Widgets.Add(settingsMenu);

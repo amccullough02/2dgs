@@ -5,10 +5,11 @@ namespace _2dgs;
 
 public class Game : Microsoft.Xna.Framework.Game
 {
-    private GraphicsDeviceManager _graphics;
+    public GraphicsDeviceManager _graphics { get; }
     private SpriteBatch _spriteBatch;
-    private GameStateManager _gameStateManager;
-    private Test test;
+    private Test _test;
+    
+    public GameStateManager GameStateManager { get; private set; }
 
     public Game()
     {
@@ -17,17 +18,18 @@ public class Game : Microsoft.Xna.Framework.Game
         _graphics.PreferredBackBufferWidth = 1920;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        
-        test = new Test();
+        _graphics.SynchronizeWithVerticalRetrace = true;
+        _graphics.ApplyChanges();
+        _test = new Test();
     }
 
     protected override void Initialize()
     {
         Window.Title = "2DGS - Alpha";
-        test.RunAllTests(_graphics, Window.Title);
+        _test.RunAllTests(_graphics, Window.Title);
         
-        _gameStateManager = new GameStateManager();
-        _gameStateManager.PushState(new MainMenu(this));
+        GameStateManager = new GameStateManager();
+        GameStateManager.PushState(new MainMenu(this));
         base.Initialize();
     }
 
@@ -44,7 +46,7 @@ public class Game : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        _gameStateManager.Draw(gameTime, _spriteBatch);
+        GameStateManager.Draw(gameTime, _spriteBatch);
         base.Draw(gameTime);
     }
 }
