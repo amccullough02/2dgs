@@ -36,6 +36,7 @@ public class SettingsMenu : GameState
         // ROWS
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TITLE
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // V-SYNC
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // SHOW FPS
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // RETURN TO MAIN MENU
 
         var title = new Label
@@ -57,7 +58,7 @@ public class SettingsMenu : GameState
             Content = new Label
             {
                 Id = "vsyncLabel",
-                Text = "Enable V-Sync"
+                Text = "Disable V-Sync"
             }
         };
         Grid.SetRow(vsyncButton, 1);
@@ -70,6 +71,25 @@ public class SettingsMenu : GameState
             Console.WriteLine("DEBUG: V-sync toggled: " + vsyncButton.IsToggled);
             ((Label)vsyncButton.Content).Text = vsyncButton.IsToggled ? "Disable V-Sync" : "Enable V-Sync";
             Console.WriteLine("Actual status of V-sync: " + this.game._graphics.SynchronizeWithVerticalRetrace);
+        };
+
+        var showFpsButton = new ToggleButton
+        {
+            Id = "showFPS",
+            IsToggled = true,
+            Content = new Label
+            {
+                Id = "showFPSLabel",
+                Text = "Hide FPS"
+            }
+        };
+        Grid.SetRow(showFpsButton, 2);
+        grid.Widgets.Add(showFpsButton);
+
+        showFpsButton.Click += (s, e) =>
+        {
+            this.game._fpsCounter.ToggleFps();
+            ((Label)showFpsButton.Content).Text = showFpsButton.IsToggled ? "Hide FPS" : "Show FPS";
         };
         
         var returnButton = new Button
@@ -84,7 +104,7 @@ public class SettingsMenu : GameState
                 Font = _fontSystem.GetFont(20)
             }
         };
-        Grid.SetRow(returnButton, 2);
+        Grid.SetRow(returnButton, 3);
 
         returnButton.Click += (s, a) =>
         {
