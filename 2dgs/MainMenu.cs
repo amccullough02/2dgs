@@ -65,7 +65,8 @@ public class MainMenu : GameState
 
         simulationMenu.Click += (s, a) =>
         {
-            Console.WriteLine("This will navigate you to the simulations menu...");
+            Console.WriteLine("DEBUG: Navigating to simulation menu...");
+            this.game.GameStateManager.ChangeState(new SimulationMenu(this.game));
         };
 
         grid.Widgets.Add(simulationMenu);
