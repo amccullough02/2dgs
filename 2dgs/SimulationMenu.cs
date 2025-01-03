@@ -77,6 +77,16 @@ public class SimulationMenu : GameState
         
         PopulateList(lessonsListView, "../../../sims/lessons");
         PopulateList(userSimulationsListView, "../../../sims/my_simulations");
+
+        if (lessonsListView.Widgets.Count == 
+            Directory.EnumerateFileSystemEntries("../../../sims/lessons").Count())
+        {
+            Console.WriteLine("TEST - Lessons files loaded... PASS!");
+        }
+        else
+        {
+            Console.WriteLine("TEST - Lessons files loaded... FAIL!");
+        }
         
         var returnButton = new Button
         {
