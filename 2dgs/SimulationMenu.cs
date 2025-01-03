@@ -14,6 +14,7 @@ public class SimulationMenu : GameState
 {
     private Desktop _desktop;
     private FontManager _fontManager;
+    private FileManager _fileManager;
     private Game game;
     
     public SimulationMenu(Game game)
@@ -21,6 +22,7 @@ public class SimulationMenu : GameState
         this.game = game;
         
         _fontManager = new FontManager();
+        _fileManager = new FileManager();
 
         MyraEnvironment.Game = this.game;
 
@@ -52,7 +54,11 @@ public class SimulationMenu : GameState
         
         // TABBED LISTS
 
-        var tabControl = new TabControl {};
+        var tabControl = new TabControl
+        {
+            Width = 400,
+            MouseCursor = MouseCursorType.Hand,
+        };
         var lessonsListView = new ListView();
         var userSimulationsListView = new ListView();
 
@@ -121,8 +127,60 @@ public class SimulationMenu : GameState
             foreach (var file in files)
             {
                 var fileName = Path.GetFileNameWithoutExtension(file);
-                var button = new Button { Content = new Label { Text = fileName } };
-                listView.Widgets.Add(button);
+                var fileNameButton = new Button { Content = new Label { Text = fileName } };
+                var editButton = new Button { Content = new Label { Text = "Edit"}};
+                var deleteButton = new Button { Content = new Label { Text = "Delete"}};
+
+                editButton.Click += (s, a) =>
+                {
+                    var textbox = new TextBox { Text = fileName };
+                    var popup = new Dialog
+                    {
+                        Title = "Rename Simulation",
+                        Content = textbox,
+                    };
+                    
+                    popup.ButtonOk.Click += (sender, result) =>
+                    {
+                        Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
+                        var newPath = path + "/" + textbox.Text + ".json";
+                        _fileManager.RenameFile(file, newPath);
+                    };
+
+                    popup.ButtonCancel.Click += (sender, result) =>
+                    {
+                        Console.WriteLine("DEBUG: File rename cancelled");
+                    };
+                    
+                    popup.Show(_desktop);
+                };
+                
+                deleteButton.Click += (s, a) =>
+                {
+                    var popup = new Dialog
+                    {
+                        Title = "Delete Simulation"
+                    };
+
+                    popup.ButtonOk.Click += (sender, result) =>
+                    {
+                        Console.WriteLine($"DEBUG: {fileName} deleted");
+                        _fileManager.DeleteFile(path + "/" + fileName + ".json");
+                    };
+
+                    popup.ButtonCancel.Click += (sender, result) =>
+                    {
+                        Console.WriteLine("DEBUG: Delete operation cancelled");
+                    };
+                    
+                    popup.Show(_desktop);
+                };
+                
+                var fileStackPanel = new HorizontalStackPanel { Spacing = 15, };
+                fileStackPanel.Widgets.Add(fileNameButton);
+                fileStackPanel.Widgets.Add(editButton);
+                fileStackPanel.Widgets.Add(deleteButton);
+                listView.Widgets.Add(fileStackPanel);
             }
         }
         else
