@@ -13,15 +13,14 @@ namespace _2dgs;
 public class SimulationMenu : GameState
 {
     private Desktop _desktop;
-    private FontSystem _fontSystem;
+    private FontManager _fontManager;
     private Game game;
     
     public SimulationMenu(Game game)
     {
         this.game = game;
         
-        _fontSystem = new FontSystem();
-        _fontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/orbitron_light.ttf"));
+        _fontManager = new FontManager();
 
         MyraEnvironment.Game = this.game;
 
@@ -43,7 +42,7 @@ public class SimulationMenu : GameState
         {
             Id = "title",
             Text = "Simulation Menu",
-            Font = _fontSystem.GetFont(80),
+            Font = _fontManager.GetOrbitronLightFont(70),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Top,
             Margin = new Thickness(0, 50, 0, 0),
@@ -97,7 +96,7 @@ public class SimulationMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Return to Main Menu",
-                Font = _fontSystem.GetFont(20)
+                Font = _fontManager.GetOrbitronLightFont(20)
             }
         };
         Grid.SetRow(returnButton, 2);

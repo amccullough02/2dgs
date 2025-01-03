@@ -12,16 +12,12 @@ public class FpsCounter
     private int _frameCount;
     private int _fps;
     private const int FontSize = 32;
-
-    private readonly FontSystem _fontSystem;
-    private SpriteFontBase _font;
+    private FontManager _fontManager;
 
     public FpsCounter()
     {
         _showFps = true;
-        _fontSystem = new FontSystem();
-        _fontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/orbitron_bold.ttf"));
-        _font = _fontSystem.GetFont(FontSize);
+        _fontManager = new FontManager();
     }
 
     public void Update(GameTime gameTime)
@@ -47,7 +43,8 @@ public class FpsCounter
         {
             spriteBatch.Begin();
             string fpsText = $"FPS: {_fps}";
-            _font.DrawText(spriteBatch, fpsText, new Vector2(10, 10), Color.White);
+            _fontManager.GetOrbitronBoldFont(FontSize).
+                DrawText(spriteBatch, fpsText, new Vector2(10, 10), Color.White);
             spriteBatch.End();
         }
     }

@@ -11,15 +11,14 @@ namespace _2dgs;
 public class MainMenu : GameState
 {
     private Desktop _desktop;
-    private FontSystem _fontSystem;
+    private FontManager _fontManager;
     private Game game;
 
     public MainMenu(Game game)
     {
         this.game = game;
         
-        _fontSystem = new FontSystem();
-        _fontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/orbitron_light.ttf"));
+        _fontManager = new FontManager();
 
         MyraEnvironment.Game = this.game;
 
@@ -43,7 +42,7 @@ public class MainMenu : GameState
         {
             Id = "title",
             Text = "2DGS",
-            Font = _fontSystem.GetFont(70),
+            Font = _fontManager.GetOrbitronLightFont(70),
             HorizontalAlignment = HorizontalAlignment.Center
         };
         Grid.SetRow(title, 0);
@@ -58,7 +57,7 @@ public class MainMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Simulations",
-                Font = _fontSystem.GetFont(20)
+                Font = _fontManager.GetOrbitronLightFont(20),
             }
         };
         Grid.SetRow(simulationMenu, 1);
@@ -80,7 +79,7 @@ public class MainMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Settings",
-                Font = _fontSystem.GetFont(20)
+                Font = _fontManager.GetOrbitronLightFont(20),
             }
         };
         Grid.SetRow(settingsMenu, 2);
@@ -102,7 +101,7 @@ public class MainMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Quit",
-                Font = _fontSystem.GetFont(20)
+                Font = _fontManager.GetOrbitronLightFont(20),
             }
         };
         Grid.SetRow(quitButton, 3);
