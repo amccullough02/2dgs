@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Myra;
 using Myra.Graphics2D;
@@ -193,7 +194,17 @@ public class SimulationMenu : GameState
             listView.Widgets.Add(noFilesLabel);
         }
     }
-    
+
+    public override void Initialize()
+    {
+        
+    }
+
+    public override void LoadContent(ContentManager content)
+    {
+        
+    }
+
     public override void Update(GameTime gameTime)
     {
 

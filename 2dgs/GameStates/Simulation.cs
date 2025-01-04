@@ -17,26 +17,38 @@ public class Simulation : GameState
     {
         this.game = game;
         this.filePath = filePath;
-        SaveSystem saveSystem = new SaveSystem();
+        bodies = new List<Body>();
+        saveSystem = new SaveSystem();
         Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
     }
 
-    public void Initialize()
+    public override void Initialize()
     {
         SaveData saveData = saveSystem.Load(filePath);
 
-        foreach (var bodyData in saveData.Bodies)
+        if (saveData?.Bodies != null)
         {
-            bodies.Add(new Body(bodyData.Position, bodyData.Mass, bodyData.DisplayRadius));
+
+            foreach (var bodyData in saveData.Bodies)
+            {
+                bodies.Add(new Body(bodyData.Position, bodyData.Mass, bodyData.DisplayRadius));
+            }
+
+            Console.WriteLine("Simulation initialized");
+        }
+        else
+        {
+            Console.WriteLine("Cannot load bodies from save file");
         }
     }
 
-    public void LoadContent(ContentManager content)
+    public override void LoadContent(ContentManager content)
     {
         foreach (Body body in bodies)
         {
             body.LoadContent(content);
         }
+        Console.WriteLine("Simulation loaded");
     }
     public override void Update(GameTime gameTime)
     {

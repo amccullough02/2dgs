@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
@@ -29,6 +30,22 @@ public class GameStateManager
             _states.Pop();
         }
         _states.Push(state);
+    }
+
+    public void Initialize()
+    {
+        if (_states.Count > 0)
+        {
+            _states.Peek().Initialize();
+        }
+    }
+
+    public void LoadContent(ContentManager contentManager)
+    {
+        if (_states.Count > 0)
+        {
+            _states.Peek().LoadContent(contentManager);
+        }
     }
 
     public void Update(GameTime gameTime)
