@@ -19,11 +19,7 @@ public class Simulation : GameState
         this.filePath = filePath;
         bodies = new List<Body>();
         saveSystem = new SaveSystem();
-        Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
-    }
-
-    public override void Initialize()
-    {
+        
         SaveData saveData = saveSystem.Load(filePath);
 
         if (saveData?.Bodies != null)
@@ -33,14 +29,23 @@ public class Simulation : GameState
                 bodies.Add(new Body(bodyData.Position, bodyData.Mass, bodyData.DisplayRadius));
             }
         }
+        
+        foreach (Body body in bodies)
+        {
+            body.LoadContent(game.Content);
+        }
+        
+        Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
+    }
+
+    public override void Initialize()
+    {
+        
     }
 
     public override void LoadContent(ContentManager content)
     {
-        foreach (Body body in bodies)
-        {
-            body.LoadContent(content);
-        }
+        
     }
     public override void Update(GameTime gameTime)
     {
