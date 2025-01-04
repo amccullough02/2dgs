@@ -5,15 +5,7 @@ namespace _2dgs;
 
 public class SaveSystem
 {
-    private string saveFilePath = "../../../savedata.json";
-
-    public void Save(SaveData data)
-    {
-        string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
-        File.WriteAllText(saveFilePath, jsonData);
-    }
-
-    public SaveData Load()
+    public SaveData Load(string saveFilePath)
     {
         if (File.Exists(saveFilePath))
         {

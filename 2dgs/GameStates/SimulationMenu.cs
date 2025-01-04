@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Myra;
@@ -127,9 +126,14 @@ public class SimulationMenu : GameState
             foreach (var file in files)
             {
                 var fileName = Path.GetFileNameWithoutExtension(file);
-                var fileNameButton = new Button { Content = new Label { Text = fileName } };
+                var loadButton = new Button { Content = new Label { Text = fileName } };
                 var editButton = new Button { Content = new Label { Text = "Edit"}};
                 var deleteButton = new Button { Content = new Label { Text = "Delete"}};
+
+                loadButton.Click += (s, a) =>
+                {
+                    game.GameStateManager.ChangeState(new Simulation(game, file));
+                };
 
                 editButton.Click += (s, a) =>
                 {
@@ -177,7 +181,7 @@ public class SimulationMenu : GameState
                 };
                 
                 var fileStackPanel = new HorizontalStackPanel { Spacing = 15, };
-                fileStackPanel.Widgets.Add(fileNameButton);
+                fileStackPanel.Widgets.Add(loadButton);
                 fileStackPanel.Widgets.Add(editButton);
                 fileStackPanel.Widgets.Add(deleteButton);
                 listView.Widgets.Add(fileStackPanel);
