@@ -32,22 +32,6 @@ public class GameStateManager
         _states.Push(state);
     }
 
-    public void Initialize()
-    {
-        if (_states.Count > 0)
-        {
-            _states.Peek().Initialize();
-        }
-    }
-
-    public void LoadContent(ContentManager contentManager)
-    {
-        if (_states.Count > 0)
-        {
-            _states.Peek().LoadContent(contentManager);
-        }
-    }
-
     public void Update(GameTime gameTime)
     {
         if (_states.Count > 0)

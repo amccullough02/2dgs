@@ -35,7 +35,6 @@ public class Game : Microsoft.Xna.Framework.Game
         
         GameStateManager = new GameStateManager();
         GameStateManager.PushState(new SimulationMenu(this));
-        GameStateManager.Initialize();
         base.Initialize();
     }
 
@@ -43,7 +42,6 @@ public class Game : Microsoft.Xna.Framework.Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _fpsCounter = new FpsCounter();
-        GameStateManager.LoadContent(Content);
     }
 
     protected override void Update(GameTime gameTime)

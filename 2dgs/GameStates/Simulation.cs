@@ -37,16 +37,7 @@ public class Simulation : GameState
         
         Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
     }
-
-    public override void Initialize()
-    {
-        
-    }
-
-    public override void LoadContent(ContentManager content)
-    {
-        
-    }
+    
     public override void Update(GameTime gameTime)
     {
         foreach (Body body in bodies)

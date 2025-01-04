@@ -117,17 +117,7 @@ public class SettingsMenu : GameState
         _desktop = new Desktop();
         _desktop.Root = grid;
     }
-
-    public override void Initialize()
-    {
-        
-    }
-
-    public override void LoadContent(ContentManager content)
-    {
-        
-    }
-
+    
     public override void Update(GameTime gameTime)
     {
         // Left intentionally blank.

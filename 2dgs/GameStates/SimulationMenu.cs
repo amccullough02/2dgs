@@ -196,17 +196,7 @@ public class SimulationMenu : GameState
             listView.Widgets.Add(noFilesLabel);
         }
     }
-
-    public override void Initialize()
-    {
-        
-    }
-
-    public override void LoadContent(ContentManager content)
-    {
-        
-    }
-
+    
     public override void Update(GameTime gameTime)
     {
 
