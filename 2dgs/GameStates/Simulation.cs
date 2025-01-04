@@ -17,6 +17,7 @@ public class Simulation : GameState
     {
         this.game = game;
         this.filePath = filePath;
+        
         bodies = new List<Body>();
         saveSystem = new SaveSystem();
         
@@ -49,10 +50,12 @@ public class Simulation : GameState
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
+        
         foreach (Body body in bodies)
         {
             body.Draw(spriteBatch);
         }
+        
         spriteBatch.End();
     }
 }

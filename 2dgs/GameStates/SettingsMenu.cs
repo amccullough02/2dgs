@@ -29,11 +29,8 @@ public class SettingsMenu : GameState
             RowSpacing = 10,
             HorizontalAlignment = HorizontalAlignment.Center
         };
-
-        // COLUMNS
-        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
         
-        // ROWS
+        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TITLE
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // V-SYNC
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // SHOW FPS
@@ -48,6 +45,7 @@ public class SettingsMenu : GameState
             VerticalAlignment = VerticalAlignment.Top,
             Margin = new Thickness(0, 50, 0, 0),
         };
+        
         Grid.SetRow(title, 0);
         grid.Widgets.Add(title);
 
@@ -61,6 +59,7 @@ public class SettingsMenu : GameState
                 Text = "Disable V-Sync"
             }
         };
+        
         Grid.SetRow(vsyncButton, 1);
         grid.Widgets.Add(vsyncButton);
 
@@ -83,6 +82,7 @@ public class SettingsMenu : GameState
                 Text = "Hide FPS"
             }
         };
+        
         Grid.SetRow(showFpsButton, 2);
         grid.Widgets.Add(showFpsButton);
 

@@ -47,6 +47,7 @@ public class SimulationMenu : GameState
             VerticalAlignment = VerticalAlignment.Top,
             Margin = new Thickness(0, 50, 0, 0),
         };
+        
         grid.Widgets.Add(title);
         Grid.SetRow(title, 0);
 
@@ -55,6 +56,7 @@ public class SimulationMenu : GameState
             Width = 400,
             MouseCursor = MouseCursorType.Hand,
         };
+        
         var lessonsListView = new ListView();
         var userSimulationsListView = new ListView();
 
@@ -109,8 +111,7 @@ public class SimulationMenu : GameState
 
     private void TestFileLoading(ListView listView)
     {
-        if (listView.Widgets.Count == 
-            Directory.EnumerateFileSystemEntries("../../../sims/lessons").Count())
+        if (listView.Widgets.Count == Directory.EnumerateFileSystemEntries("../../../sims/lessons").Count())
         {
             Console.WriteLine("TEST - Lessons files loaded... PASS!");
         }
@@ -123,6 +124,7 @@ public class SimulationMenu : GameState
     private void EditButtonDialog(string fileName, string path, string file)
     {
         var textbox = new TextBox { Text = fileName };
+        
         var popup = new Dialog
         {
             Title = "Rename Simulation",

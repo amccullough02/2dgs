@@ -29,11 +29,8 @@ public class MainMenu : GameState
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
-
-        // COLUMNS
-        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
         
-        // ROWS
+        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TITLE
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // SIMS
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // SETTINGS
@@ -46,6 +43,7 @@ public class MainMenu : GameState
             Font = _fontManager.GetOrbitronLightFont(70),
             HorizontalAlignment = HorizontalAlignment.Center
         };
+        
         Grid.SetRow(title, 0);
         grid.Widgets.Add(title);
         
@@ -61,6 +59,7 @@ public class MainMenu : GameState
                 Font = _fontManager.GetOrbitronLightFont(20),
             }
         };
+        
         Grid.SetRow(simulationMenu, 1);
 
         simulationMenu.Click += (s, a) =>
@@ -83,6 +82,7 @@ public class MainMenu : GameState
                 Font = _fontManager.GetOrbitronLightFont(20),
             }
         };
+        
         Grid.SetRow(settingsMenu, 2);
 
         settingsMenu.Click += (s, a) =>
@@ -105,6 +105,7 @@ public class MainMenu : GameState
                 Font = _fontManager.GetOrbitronLightFont(20),
             }
         };
+        
         Grid.SetRow(quitButton, 3);
 
         quitButton.Click += (s, a) =>

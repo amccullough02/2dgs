@@ -12,7 +12,6 @@ public class Game : Microsoft.Xna.Framework.Game
     private SpriteBatch _spriteBatch;
     private Test _test;
     public FpsCounter _fpsCounter { get; private set; }
-    
     public GameStateManager GameStateManager { get; private set; }
 
     public Game()
@@ -20,11 +19,11 @@ public class Game : Microsoft.Xna.Framework.Game
         _graphics = new GraphicsDeviceManager(this);
         _graphics.PreferredBackBufferHeight = 1080;
         _graphics.PreferredBackBufferWidth = 1920;
-        Content.RootDirectory = "Content";
-        IsMouseVisible = true;
-        IsFixedTimeStep = false;
         _graphics.SynchronizeWithVerticalRetrace = true;
         _graphics.ApplyChanges();
+        IsMouseVisible = true;
+        IsFixedTimeStep = false;
+        Content.RootDirectory = "Content";
         _test = new Test();
     }
 
@@ -32,7 +31,6 @@ public class Game : Microsoft.Xna.Framework.Game
     {
         Window.Title = "2DGS - Alpha";
         _test.RunAllTests(_graphics, Window.Title);
-        
         GameStateManager = new GameStateManager();
         GameStateManager.PushState(new SimulationMenu(this));
         base.Initialize();

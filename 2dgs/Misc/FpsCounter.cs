@@ -22,7 +22,6 @@ public class FpsCounter
 
     public void Update(GameTime gameTime)
     {
-
         if (_showFps)
         {
             _elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
