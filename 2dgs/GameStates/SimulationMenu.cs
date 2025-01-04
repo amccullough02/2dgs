@@ -32,10 +32,8 @@ public class SimulationMenu : GameState
             HorizontalAlignment = HorizontalAlignment.Center,
         };
         
-        // COLUMNS
+
         grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
-        
-        // ROWS
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TITLE
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TABBED LIST
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // RETURN BUTTON
@@ -51,8 +49,6 @@ public class SimulationMenu : GameState
         };
         grid.Widgets.Add(title);
         Grid.SetRow(title, 0);
-        
-        // TABBED LISTS
 
         var tabControl = new TabControl
         {
@@ -83,15 +79,7 @@ public class SimulationMenu : GameState
         PopulateList(lessonsListView, "../../../sims/lessons");
         PopulateList(userSimulationsListView, "../../../sims/my_simulations");
 
-        if (lessonsListView.Widgets.Count == 
-            Directory.EnumerateFileSystemEntries("../../../sims/lessons").Count())
-        {
-            Console.WriteLine("TEST - Lessons files loaded... PASS!");
-        }
-        else
-        {
-            Console.WriteLine("TEST - Lessons files loaded... FAIL!");
-        }
+        TestFileLoading(lessonsListView);
         
         var returnButton = new Button
         {
@@ -119,6 +107,95 @@ public class SimulationMenu : GameState
         _desktop.Root = grid;
     }
 
+    private void TestFileLoading(ListView listView)
+    {
+        if (listView.Widgets.Count == 
+            Directory.EnumerateFileSystemEntries("../../../sims/lessons").Count())
+        {
+            Console.WriteLine("TEST - Lessons files loaded... PASS!");
+        }
+        else
+        {
+            Console.WriteLine("TEST - Lessons files loaded... FAIL!");
+        }
+    }
+
+    private void EditButtonDialog(string fileName, string path, string file)
+    {
+        var textbox = new TextBox { Text = fileName };
+        var popup = new Dialog
+        {
+            Title = "Rename Simulation",
+            Content = textbox,
+        };
+                    
+        popup.ButtonOk.Click += (sender, result) =>
+        {
+            Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
+            var newPath = path + "/" + textbox.Text + ".json";
+            _fileManager.RenameFile(file, newPath);
+        };
+
+        popup.ButtonCancel.Click += (sender, result) =>
+        {
+            Console.WriteLine("DEBUG: File rename cancelled");
+        };
+                    
+        popup.Show(_desktop);
+    }
+
+    private void DeleteButtonDialog(string fileName, string path)
+    {
+        var popup = new Dialog
+        {
+            Title = "Delete Simulation"
+        };
+
+        popup.ButtonOk.Click += (sender, result) =>
+        {
+            Console.WriteLine($"DEBUG: {fileName} deleted");
+            _fileManager.DeleteFile(path + "/" + fileName + ".json");
+        };
+
+        popup.ButtonCancel.Click += (sender, result) =>
+        {
+            Console.WriteLine("DEBUG: Delete operation cancelled");
+        };
+                    
+        popup.Show(_desktop);
+    }
+
+    private HorizontalStackPanel CreateFilePanel(string file, string path)
+    {
+        var fileName = Path.GetFileNameWithoutExtension(file);
+        var loadButton = new Button { Content = new Label { Text = fileName } };
+        var editButton = new Button { Content = new Label { Text = "Edit"}};
+        var deleteButton = new Button { Content = new Label { Text = "Delete"}};
+
+        loadButton.Click += (s, a) =>
+        {
+            Console.WriteLine("DEBUG: Navigating to simulation...");
+            game.GameStateManager.ChangeState(new Simulation(game, file));
+        };
+
+        editButton.Click += (s, a) =>
+        {
+            EditButtonDialog(fileName, path, file);
+        };
+        
+        deleteButton.Click += (s, a) =>
+        {
+            DeleteButtonDialog(fileName, path);
+        };
+        
+        var fileStackPanel = new HorizontalStackPanel { Spacing = 15, };
+        fileStackPanel.Widgets.Add(loadButton);
+        fileStackPanel.Widgets.Add(editButton);
+        fileStackPanel.Widgets.Add(deleteButton);
+        
+        return fileStackPanel;
+    }
+
     private void PopulateList(ListView listView, string path)
     {
         if (Directory.Exists(path) && Directory.EnumerateFileSystemEntries(path).Any())
@@ -127,67 +204,7 @@ public class SimulationMenu : GameState
             foreach (var file in files)
             {
                 Console.WriteLine(file);
-                var fileName = Path.GetFileNameWithoutExtension(file);
-                var loadButton = new Button { Content = new Label { Text = fileName } };
-                var editButton = new Button { Content = new Label { Text = "Edit"}};
-                var deleteButton = new Button { Content = new Label { Text = "Delete"}};
-
-                loadButton.Click += (s, a) =>
-                {
-                    Console.WriteLine("DEBUG: Navigating to simulation...");
-                    this.game.GameStateManager.ChangeState(new Simulation(game, file));
-                };
-
-                editButton.Click += (s, a) =>
-                {
-                    var textbox = new TextBox { Text = fileName };
-                    var popup = new Dialog
-                    {
-                        Title = "Rename Simulation",
-                        Content = textbox,
-                    };
-                    
-                    popup.ButtonOk.Click += (sender, result) =>
-                    {
-                        Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
-                        var newPath = path + "/" + textbox.Text + ".json";
-                        _fileManager.RenameFile(file, newPath);
-                    };
-
-                    popup.ButtonCancel.Click += (sender, result) =>
-                    {
-                        Console.WriteLine("DEBUG: File rename cancelled");
-                    };
-                    
-                    popup.Show(_desktop);
-                };
-                
-                deleteButton.Click += (s, a) =>
-                {
-                    var popup = new Dialog
-                    {
-                        Title = "Delete Simulation"
-                    };
-
-                    popup.ButtonOk.Click += (sender, result) =>
-                    {
-                        Console.WriteLine($"DEBUG: {fileName} deleted");
-                        _fileManager.DeleteFile(path + "/" + fileName + ".json");
-                    };
-
-                    popup.ButtonCancel.Click += (sender, result) =>
-                    {
-                        Console.WriteLine("DEBUG: Delete operation cancelled");
-                    };
-                    
-                    popup.Show(_desktop);
-                };
-                
-                var fileStackPanel = new HorizontalStackPanel { Spacing = 15, };
-                fileStackPanel.Widgets.Add(loadButton);
-                fileStackPanel.Widgets.Add(editButton);
-                fileStackPanel.Widgets.Add(deleteButton);
-                listView.Widgets.Add(fileStackPanel);
+                listView.Widgets.Add(CreateFilePanel(file, path));
             }
         }
         else
