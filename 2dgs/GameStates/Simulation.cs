@@ -28,17 +28,10 @@ public class Simulation : GameState
 
         if (saveData?.Bodies != null)
         {
-
             foreach (var bodyData in saveData.Bodies)
             {
                 bodies.Add(new Body(bodyData.Position, bodyData.Mass, bodyData.DisplayRadius));
             }
-
-            Console.WriteLine("Simulation initialized");
-        }
-        else
-        {
-            Console.WriteLine("Cannot load bodies from save file");
         }
     }
 
@@ -48,7 +41,6 @@ public class Simulation : GameState
         {
             body.LoadContent(content);
         }
-        Console.WriteLine("Simulation loaded");
     }
     public override void Update(GameTime gameTime)
     {

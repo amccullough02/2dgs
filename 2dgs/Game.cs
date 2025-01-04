@@ -34,7 +34,7 @@ public class Game : Microsoft.Xna.Framework.Game
         _test.RunAllTests(_graphics, Window.Title);
         
         GameStateManager = new GameStateManager();
-        GameStateManager.PushState(new SimulationMenu(this));
+        GameStateManager.PushState(new Simulation(this, "../../../sims/lessons/galilean_system.json"));
         GameStateManager.Initialize();
         base.Initialize();
     }

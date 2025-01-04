@@ -126,6 +126,7 @@ public class SimulationMenu : GameState
             var files = Directory.GetFiles(path, "*.json");
             foreach (var file in files)
             {
+                Console.WriteLine(file);
                 var fileName = Path.GetFileNameWithoutExtension(file);
                 var loadButton = new Button { Content = new Label { Text = fileName } };
                 var editButton = new Button { Content = new Label { Text = "Edit"}};
@@ -133,7 +134,8 @@ public class SimulationMenu : GameState
 
                 loadButton.Click += (s, a) =>
                 {
-                    game.GameStateManager.ChangeState(new Simulation(game, file));
+                    Console.WriteLine("DEBUG: Navigating to simulation...");
+                    this.game.GameStateManager.ChangeState(new Simulation(game, file));
                 };
 
                 editButton.Click += (s, a) =>
