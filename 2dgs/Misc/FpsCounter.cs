@@ -11,7 +11,7 @@ public class FpsCounter
     private double _elapsedTime;
     private int _frameCount;
     private int _fps;
-    private const int FontSize = 32;
+    private const int FontSize = 24;
     private FontManager _fontManager;
 
     public FpsCounter()

@@ -38,7 +38,7 @@ public class Body
         return forceVector;
     }
 
-    public void Update(List<Body> bodies)
+    public void Update(List<Body> bodies, int timestep)
     {
         Vector2 totalForce = Vector2.Zero;
 
@@ -53,8 +53,8 @@ public class Body
             totalForce += force;
         }
         
-        this._velocity += totalForce / this._mass;
-        this._position += this._velocity;
+        this._velocity += totalForce / this._mass * timestep;
+        this._position += this._velocity * timestep;
     }
 
     public void Draw(SpriteBatch spriteBatch)

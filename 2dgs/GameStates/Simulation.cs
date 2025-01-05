@@ -4,24 +4,29 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra;
+using Myra.Graphics2D;
+using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
 public class Simulation : GameState
 {
+    private Desktop desktop;
     private Game game;
-    private string filePath;
     private List<Body> bodies;
     private SaveSystem saveSystem;
+    private FontManager fontManager;
     private bool isPaused;
+    private int timeStep = 1;
     
     public Simulation(Game game, string filePath)
     {
         this.game = game;
-        this.filePath = filePath;
-        
+
         bodies = new List<Body>();
         saveSystem = new SaveSystem();
+        fontManager = new FontManager();
         
         SaveData saveData = saveSystem.Load(filePath);
 
@@ -39,6 +44,86 @@ public class Simulation : GameState
         }
         
         Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
+        
+        MyraEnvironment.Game = game;
+
+        var verticalPane = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(20, 0, 0, 20),
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Bottom,
+        };
+
+        var timestepLabel = new Label
+        {
+            Text = $"Time step: {timeStep}",
+            Font = fontManager.GetOrbitronLightFont(20)
+        };
+
+        var timestepSlider = new HorizontalSlider
+        {
+            Minimum = 1,
+            Maximum = 10,
+            Value = 1,
+            Width = 200,
+        };
+
+        timestepSlider.ValueChanged += (s, e) =>
+        {
+            timestepLabel.Text = $"Time step: {(int)timestepSlider.Value}";
+            timeStep = (int)timestepSlider.Value;
+        };
+
+        var pauseButton = new Button()
+        {
+            Width = 250,
+            Height = 60,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Pause Simulation",
+                Font = fontManager.GetOrbitronLightFont(20)
+            }
+        };
+
+        pauseButton.Click += (s, e) =>
+        {
+            isPaused = !isPaused;
+        };
+        
+        verticalPane.Widgets.Add(timestepLabel);
+        verticalPane.Widgets.Add(timestepSlider);
+        verticalPane.Widgets.Add(pauseButton);
+
+        var returnButton = new Button
+        {
+            Width = 250,
+            Height = 60,
+            Margin = new Thickness(0, 20, 20, 0),
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Top,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Simulation Menu",
+                Font = fontManager.GetOrbitronLightFont(20)
+            }
+        };
+        
+        returnButton.Click += (s, e) =>
+        {
+            game.GameStateManager.ChangeState(new SimulationMenu(game));
+        };
+        
+        var rootContainer = new Panel();
+        rootContainer.Widgets.Add(verticalPane);
+        rootContainer.Widgets.Add(returnButton);
+        
+        desktop = new Desktop();
+        desktop.Root = rootContainer;
     }
     
     private bool wasKeyPreviouslyDown = false;
@@ -66,7 +151,7 @@ public class Simulation : GameState
         {
             foreach (Body body in bodies)
             {
-                body.Update(bodies);
+                body.Update(bodies, timeStep);
             }
         }
         
@@ -83,5 +168,7 @@ public class Simulation : GameState
         }
         
         spriteBatch.End();
+        
+        desktop.Render();
     }
 }

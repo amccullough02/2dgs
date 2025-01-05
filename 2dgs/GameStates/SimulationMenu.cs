@@ -32,7 +32,6 @@ public class SimulationMenu : GameState
             HorizontalAlignment = HorizontalAlignment.Center,
         };
         
-
         grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TITLE
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // TABBED LIST
