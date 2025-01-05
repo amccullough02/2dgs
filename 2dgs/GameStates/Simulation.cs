@@ -16,6 +16,7 @@ public class Simulation : GameState
     private Game game;
     private List<Body> bodies;
     private SaveSystem saveSystem;
+    private SaveData saveData;
     private FontManager fontManager;
     private bool isPaused;
     private int timeStep = 1;
@@ -28,7 +29,7 @@ public class Simulation : GameState
         saveSystem = new SaveSystem();
         fontManager = new FontManager();
         
-        SaveData saveData = saveSystem.Load(filePath);
+        saveData = saveSystem.Load(filePath);
 
         if (saveData?.Bodies != null)
         {
@@ -124,6 +125,8 @@ public class Simulation : GameState
         
         desktop = new Desktop();
         desktop.Root = rootContainer;
+        
+        TestSimulationLoading();
     }
     
     private bool wasKeyPreviouslyDown = false;
@@ -143,6 +146,21 @@ public class Simulation : GameState
             Console.WriteLine($"DEBUG: Paused: {isPaused}");
         }
         wasKeyPreviouslyDown = isKeyDown;
+    }
+
+    private void TestSimulationLoading()
+    {
+        int serializedBodiesCount = saveData.Bodies.Count;
+        int loadedBodiesCount = bodies.Count;
+        
+        if (serializedBodiesCount == loadedBodiesCount)
+        {
+            Console.WriteLine("Test - Loading of simulation file... PASS!");
+        }
+        else
+        {
+            Console.WriteLine("Test - Loading of simulation file... FAIL!");
+        }
     }
     
     public override void Update(GameTime gameTime)
