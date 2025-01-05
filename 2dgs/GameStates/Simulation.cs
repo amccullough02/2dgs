@@ -13,6 +13,7 @@ public class Simulation : GameState
     private string filePath;
     private List<Body> bodies;
     private SaveSystem saveSystem;
+    private bool isPaused;
     
     public Simulation(Game game, string filePath)
     {
@@ -40,17 +41,36 @@ public class Simulation : GameState
         Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
     }
     
-    public override void Update(GameTime gameTime)
+    private bool wasKeyPreviouslyDown = false;
+
+    private void PauseToggle()
     {
-        foreach (Body body in bodies)
-        {
-            body.Update(bodies);
-        }
-        
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
         {
-            this.game.GameStateManager.ChangeState(new SimulationMenu(game));
+            game.GameStateManager.ChangeState(new SimulationMenu(game));
         }
+
+        var keyboardState = Keyboard.GetState();
+        bool isKeyDown = keyboardState.IsKeyDown(Keys.P);
+        if (isKeyDown && !wasKeyPreviouslyDown)
+        {
+            isPaused = !isPaused;
+            Console.WriteLine($"DEBUG: Paused: {isPaused}");
+        }
+        wasKeyPreviouslyDown = isKeyDown;
+    }
+    
+    public override void Update(GameTime gameTime)
+    {
+        if (!isPaused)
+        {
+            foreach (Body body in bodies)
+            {
+                body.Update(bodies);
+            }
+        }
+        
+        PauseToggle();
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
