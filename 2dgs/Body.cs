@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,29 +10,35 @@ namespace _2dgs;
 public class Body
 {
     private Texture2D _texture;
+    private Texture2D _orbitTexture;
     private Vector2 _position;
     private Vector2 _velocity;
+    private List<Vector2> _orbit_trail;
     private int _mass;
+    private int _maxTrailLength = 2000;
     private float _displayRadius;
 
     public Body(Vector2 position, int mass, float displayRadius)
     {
-        this._position = position;
-        this._velocity = Vector2.Zero;
-        this._mass = mass;
-        this._displayRadius = displayRadius;
+        _position = position;
+        _velocity = Vector2.Zero;
+        _mass = mass;
+        _displayRadius = displayRadius;
+        _orbit_trail = new List<Vector2>();
     }
 
-    public void LoadContent(ContentManager content)
+    public void LoadContent(ContentManager content, GraphicsDevice graphics)
     {
         _texture = content.Load<Texture2D>("blank_circle");
+        _orbitTexture = new Texture2D(graphics, 1, 1);
+        _orbitTexture.SetData([Color.White]);
     }
 
     private Vector2 CalculateGravity(Body otherBody)
     {
-        Vector2 componentDistance = otherBody._position - this._position;
+        Vector2 componentDistance = otherBody._position - _position;
         float distance = componentDistance.Length();
-        double forceOfGravity = 6.6743e-11 * this._mass * otherBody._mass / distance * distance;
+        double forceOfGravity = 6.6743e-11 * _mass * otherBody._mass / distance * distance;
         Vector2 unitVector = componentDistance / distance;
         Vector2 forceVector = unitVector * (float)forceOfGravity;
         
@@ -53,12 +60,46 @@ public class Body
             totalForce += force;
         }
         
-        this._velocity += totalForce / this._mass * timestep;
-        this._position += this._velocity * timestep;
+        _velocity += totalForce / _mass * timestep;
+        _position += _velocity * timestep;
+        _orbit_trail.Add(_position);
+
+        if (_orbit_trail.Count >= _maxTrailLength)
+        {
+            _orbit_trail.RemoveAt(0);
+        }
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    private void DrawOrbit(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color color, float thickness)
     {
+        Vector2 direction = end - start;
+        float length = direction.Length();
+        float angle = (float)Math.Atan2(direction.Y, direction.X);
+        
+        spriteBatch.Draw(_orbitTexture,
+            start,
+            null,
+            color,
+            angle,
+            Vector2.Zero,
+            new Vector2(length,
+                thickness),
+            SpriteEffects.None,
+            0f);
+    }
+
+    public void Draw(SpriteBatch spriteBatch, bool toggleTrails, int customTrailLength)
+    {
+        if (_orbit_trail.Count > 1 && toggleTrails)
+        {
+            
+            int trailLength = Math.Min(customTrailLength, _orbit_trail.Count);
+            
+            for (int i = _orbit_trail.Count - trailLength; i < _orbit_trail.Count - 1; i++)
+            {
+                DrawOrbit(spriteBatch, _orbit_trail[i], _orbit_trail[i + 1], Color.White, 2f);
+            }
+        }
 
         if (_texture == null)
         {
@@ -71,7 +112,7 @@ public class Body
             Color.White,
             0f,
             new Vector2(_texture.Width / 2, _texture.Height / 2),
-            new Vector2(this._displayRadius, this._displayRadius),
+            new Vector2(_displayRadius, _displayRadius),
             SpriteEffects.None,
             0f);
     }

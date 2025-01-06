@@ -19,11 +19,14 @@ public class Simulation : GameState
     private SaveData saveData;
     private FontManager fontManager;
     private bool isPaused;
+    private bool toggleTrails;
+    private int userTrailLength = 250;
     private int timeStep = 1;
     
     public Simulation(Game game, string filePath)
     {
         this.game = game;
+        toggleTrails = true;
 
         bodies = new List<Body>();
         saveSystem = new SaveSystem();
@@ -41,7 +44,7 @@ public class Simulation : GameState
         
         foreach (Body body in bodies)
         {
-            body.LoadContent(game.Content);
+            body.LoadContent(game.Content, game.GraphicsDevice);
         }
         
         Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
@@ -67,7 +70,7 @@ public class Simulation : GameState
             Minimum = 1,
             Maximum = 10,
             Value = 1,
-            Width = 200,
+            Width = 250,
         };
 
         timestepSlider.ValueChanged += (s, e) =>
@@ -75,7 +78,7 @@ public class Simulation : GameState
             timestepLabel.Text = $"Time step: {(int)timestepSlider.Value}";
             timeStep = (int)timestepSlider.Value;
         };
-
+        
         var pauseButton = new Button()
         {
             Width = 250,
@@ -93,10 +96,62 @@ public class Simulation : GameState
         {
             isPaused = !isPaused;
         };
+
+        var horizontalSeperator = new HorizontalSeparator
+        {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            Thickness = 5,
+            Color = Color.White,
+            Width = 250,
+            Margin = new Thickness(0, 10, 0, 10),
+        };
+        
+        var trailLengthLabel = new Label
+        {
+            Text = $"Trail length: {userTrailLength}",
+            Font = fontManager.GetOrbitronLightFont(20)
+        };
+
+        var trailLengthSlider = new HorizontalSlider
+        {
+            Minimum = 250,
+            Maximum = 2000,
+            Value = 1,
+            Width = 250,
+        };
+
+        trailLengthSlider.ValueChanged += (s, e) =>
+        {
+            trailLengthLabel.Text = $"Trail length: {(int)trailLengthSlider.Value}";
+            userTrailLength = (int)trailLengthSlider.Value;
+        };
+        
+        var trailsButton = new Button()
+        {
+            Width = 250,
+            Height = 60,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Toggle Trails",
+                Font = fontManager.GetOrbitronLightFont(20)
+            }
+        };
+
+        trailsButton.Click += (s, e) =>
+        {
+            toggleTrails = !toggleTrails;
+        };
         
         verticalPane.Widgets.Add(timestepLabel);
         verticalPane.Widgets.Add(timestepSlider);
         verticalPane.Widgets.Add(pauseButton);
+        verticalPane.Widgets.Add(horizontalSeperator);
+        verticalPane.Widgets.Add(trailLengthLabel);
+        verticalPane.Widgets.Add(trailLengthSlider);
+        verticalPane.Widgets.Add(trailsButton);
 
         var returnButton = new Button
         {
@@ -182,7 +237,7 @@ public class Simulation : GameState
         
         foreach (Body body in bodies)
         {
-            body.Draw(spriteBatch);
+            body.Draw(spriteBatch, toggleTrails, userTrailLength);
         }
         
         spriteBatch.End();
