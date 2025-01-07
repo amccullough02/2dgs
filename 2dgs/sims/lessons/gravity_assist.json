@@ -1,41 +1,49 @@
 {
   "Bodies": [
     {
+      "Name": "Test Name #1",
       "Position": { "X": 300.0, "Y": 300.0 },
       "Mass": 100000000,
       "DisplayRadius": 0.1
     },
     {
+      "Name": "Test Name #2",
       "Position": { "X": 1300.0, "Y": 900.0 },
       "Mass": 1000000,
       "DisplayRadius": 0.025
     },
     {
+      "Name": "Test Name #3",
       "Position": { "X": 600.0, "Y": 700.0 },
       "Mass": 5000000,
       "DisplayRadius": 0.05
     },
     {
+      "Name": "Test Name #4",
       "Position": { "X": 1100.0, "Y": 500.0 },
       "Mass": 20000000,
       "DisplayRadius": 0.05
     },
     {
+      "Name": "Test Name #5",
       "Position": { "X": 800.0, "Y": 1200.0 },
       "Mass": 7500000,
       "DisplayRadius": 0.025
     },
     {
+      "Name": "Test Name #6",
       "Position": { "X": 500.0, "Y": 400.0 },
       "Mass": 1000000,
       "DisplayRadius": 0.1
     },
     {
+      "Name": "Test Name #7",
       "Position": { "X": 1500.0, "Y": 1000.0 },
       "Mass": 3000000,
       "DisplayRadius": 0.08
     },
     {
+      "Name": "Test Name #8",
       "Position": { "X": 700.0, "Y": 200.0 },
       "Mass": 25000000,
       "DisplayRadius": 0.1

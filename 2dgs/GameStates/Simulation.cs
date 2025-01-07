@@ -17,20 +17,12 @@ public class Simulation : GameState
     private SaveSystem saveSystem;
     private SaveData saveData;
     private FontManager fontManager;
-    private bool isPaused;
-    private bool toggleTrails;
-    private bool toggleNames;
-    private Position position;
-    private int userTrailLength = 250;
-    private int timeStep = 1;
+    private SimulationData simData;
     
     public Simulation(Game game, string filePath)
     {
         this.game = game;
-        toggleTrails = true;
-        toggleNames = true;
-        position = Position.Left;
-
+        simData = new SimulationData();
         bodies = new List<Body>();
         saveSystem = new SaveSystem();
         fontManager = new FontManager();
@@ -64,7 +56,7 @@ public class Simulation : GameState
 
         var timestepLabel = new Label
         {
-            Text = $"Time step: {timeStep}",
+            Text = $"Time step: {simData.TimeStep}",
             Font = fontManager.GetOrbitronLightFont(20)
         };
 
@@ -79,7 +71,7 @@ public class Simulation : GameState
         timestepSlider.ValueChanged += (s, e) =>
         {
             timestepLabel.Text = $"Time step: {(int)timestepSlider.Value}";
-            timeStep = (int)timestepSlider.Value;
+            simData.TimeStep = (int)timestepSlider.Value;
         };
         
         var pauseButton = new Button()
@@ -97,7 +89,7 @@ public class Simulation : GameState
 
         pauseButton.Click += (s, e) =>
         {
-            isPaused = !isPaused;
+            simData.IsPaused = !simData.IsPaused;
         };
 
         var firstDivider = new HorizontalSeparator
@@ -112,7 +104,7 @@ public class Simulation : GameState
         
         var trailLengthLabel = new Label
         {
-            Text = $"Trail length: {userTrailLength}",
+            Text = $"Trail length: {simData.TrailLength}",
             Font = fontManager.GetOrbitronLightFont(20)
         };
 
@@ -127,7 +119,7 @@ public class Simulation : GameState
         trailLengthSlider.ValueChanged += (s, e) =>
         {
             trailLengthLabel.Text = $"Trail length: {(int)trailLengthSlider.Value}";
-            userTrailLength = (int)trailLengthSlider.Value;
+            simData.TrailLength = (int)trailLengthSlider.Value;
         };
         
         var trailsButton = new Button()
@@ -145,7 +137,7 @@ public class Simulation : GameState
 
         trailsButton.Click += (s, e) =>
         {
-            toggleTrails = !toggleTrails;
+            simData.ToggleTrails = !simData.ToggleTrails;
         };
         
         var secondDivider = new HorizontalSeparator
@@ -173,7 +165,7 @@ public class Simulation : GameState
 
         namesButton.Click += (s, e) =>
         {
-            toggleNames = !toggleNames;
+            simData.ToggleNames = !simData.ToggleNames;
         };
 
         var namesDropdown = new ComboView()
@@ -220,16 +212,16 @@ public class Simulation : GameState
             switch (namesDropdown.SelectedIndex)
             {
                 case 0:
-                    position = Position.Left;
+                    simData.Position = Position.Left;
                     break;
                 case 1:
-                    position = Position.Right;
+                    simData.Position = Position.Right;
                     break;
                 case 2:
-                    position = Position.Top;
+                    simData.Position = Position.Top;
                     break;
                 case 3:
-                    position = Position.Bottom;
+                    simData.Position = Position.Bottom;
                     break;
             }
         };
@@ -289,8 +281,8 @@ public class Simulation : GameState
         bool isKeyDown = keyboardState.IsKeyDown(Keys.P);
         if (isKeyDown && !wasKeyPreviouslyDown)
         {
-            isPaused = !isPaused;
-            Console.WriteLine($"DEBUG: Paused: {isPaused}");
+            simData.IsPaused = !simData.IsPaused;
+            Console.WriteLine($"DEBUG: Paused: {simData.IsPaused}");
         }
         wasKeyPreviouslyDown = isKeyDown;
     }
@@ -312,11 +304,11 @@ public class Simulation : GameState
     
     public override void Update(GameTime gameTime)
     {
-        if (!isPaused)
+        if (!simData.IsPaused)
         {
             foreach (Body body in bodies)
             {
-                body.Update(bodies, timeStep);
+                body.Update(bodies, simData.TimeStep);
             }
         }
         
@@ -329,7 +321,7 @@ public class Simulation : GameState
         
         foreach (Body body in bodies)
         {
-            body.Draw(spriteBatch, toggleTrails, userTrailLength, toggleNames, position);
+            body.Draw(spriteBatch, simData.ToggleTrails, simData.TrailLength, simData.ToggleNames, simData.Position);
         }
         
         spriteBatch.End();
