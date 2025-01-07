@@ -13,6 +13,7 @@ public class Body
     private Texture2D _orbitTexture;
     private Vector2 _position;
     private Vector2 _velocity;
+    private string _name;
     private List<Vector2> _orbit_trail;
     private int _mass;
     private int _maxTrailLength = 2000;
@@ -20,8 +21,9 @@ public class Body
     private const int FontSize = 20;
     private FontManager _fontManager;
 
-    public Body(Vector2 position, int mass, float displayRadius)
+    public Body(string name, Vector2 position, int mass, float displayRadius)
     {
+        _name = name;
         _position = position;
         _velocity = Vector2.Zero;
         _mass = mass;
@@ -99,9 +101,9 @@ public class Body
     {
         if (_orbit_trail.Count > 1 && toggleTrails)
         {
-            
+
             int trailLength = Math.Min(customTrailLength, _orbit_trail.Count);
-            
+
             for (int i = _orbit_trail.Count - trailLength; i < _orbit_trail.Count - 1; i++)
             {
                 DrawOrbit(spriteBatch, _orbit_trail[i], _orbit_trail[i + 1], Color.White, 2f);
@@ -112,8 +114,8 @@ public class Body
         {
             throw new InvalidOperationException("Body has no texture!");
         }
-        
-        spriteBatch.Draw(_texture, 
+
+        spriteBatch.Draw(_texture,
             _position,
             null,
             Color.White,
@@ -124,15 +126,13 @@ public class Body
             0f);
 
         if (toggleNames)
-        {
-            string testString = "ALongNameNice";
-            
+
             switch (position)
             {
                 case Position.Left:
                     _fontManager.GetOrbitronLightFont(FontSize)
                         .DrawText(spriteBatch,
-                            testString,
+                            _name,
                             _position +
                             new Vector2((_displayRadius * 600) + 5,
                                 -10f),
@@ -141,26 +141,26 @@ public class Body
                 case Position.Right:
                     _fontManager.GetOrbitronLightFont(FontSize)
                         .DrawText(spriteBatch,
-                            testString,
+                            _name,
                             _position +
-                            new Vector2((-_displayRadius * 600) - 5 - (FontSize * testString.Length / 1.5f),
+                            new Vector2((-_displayRadius * 600) - 5 - (FontSize * _name.Length / 1.5f),
                                 -10f),
                             Color.White);
                     break;
                 case Position.Bottom:
                     _fontManager.GetOrbitronLightFont(FontSize)
                         .DrawText(spriteBatch,
-                            testString,
+                            _name,
                             _position +
-                            new Vector2(-FontSize * testString.Length / 3, _displayRadius * 600),
+                            new Vector2(-FontSize * _name.Length / 3, _displayRadius * 600),
                             Color.White);
                     break;
                 case Position.Top:
                     _fontManager.GetOrbitronLightFont(FontSize)
                         .DrawText(spriteBatch,
-                            testString,
+                            _name,
                             _position +
-                            new Vector2(-FontSize * testString.Length / 3, -(_displayRadius * 600) - FontSize),
+                            new Vector2(-FontSize * _name.Length / 3, -(_displayRadius * 600) - FontSize),
                             Color.White);
                     break;
                 default:
@@ -173,7 +173,5 @@ public class Body
                             Color.White);
                     break;
             }
-            
-        }
     }
 }
