@@ -32,7 +32,7 @@ public class Game : Microsoft.Xna.Framework.Game
         Window.Title = "2DGS - Alpha";
         _test.RunAllTests(_graphics, Window.Title);
         GameStateManager = new GameStateManager();
-        GameStateManager.PushState(new SimulationMenu(this));
+        GameStateManager.PushState(new Simulation(this, "../../../sims/lessons/galilean_system.json"));
         base.Initialize();
     }
 

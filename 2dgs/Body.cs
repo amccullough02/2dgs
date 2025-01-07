@@ -17,6 +17,8 @@ public class Body
     private int _mass;
     private int _maxTrailLength = 2000;
     private float _displayRadius;
+    private const int FontSize = 20;
+    private FontManager _fontManager;
 
     public Body(Vector2 position, int mass, float displayRadius)
     {
@@ -25,6 +27,7 @@ public class Body
         _mass = mass;
         _displayRadius = displayRadius;
         _orbit_trail = new List<Vector2>();
+        _fontManager = new FontManager();
     }
 
     public void LoadContent(ContentManager content, GraphicsDevice graphics)
@@ -88,7 +91,11 @@ public class Body
             0f);
     }
 
-    public void Draw(SpriteBatch spriteBatch, bool toggleTrails, int customTrailLength)
+    public void Draw(SpriteBatch spriteBatch,
+        bool toggleTrails,
+        int customTrailLength,
+        bool toggleNames,
+        Position position)
     {
         if (_orbit_trail.Count > 1 && toggleTrails)
         {
@@ -115,5 +122,58 @@ public class Body
             new Vector2(_displayRadius, _displayRadius),
             SpriteEffects.None,
             0f);
+
+        if (toggleNames)
+        {
+            string testString = "ALongNameNice";
+            
+            switch (position)
+            {
+                case Position.Left:
+                    _fontManager.GetOrbitronLightFont(FontSize)
+                        .DrawText(spriteBatch,
+                            testString,
+                            _position +
+                            new Vector2((_displayRadius * 600) + 5,
+                                -10f),
+                            Color.White);
+                    break;
+                case Position.Right:
+                    _fontManager.GetOrbitronLightFont(FontSize)
+                        .DrawText(spriteBatch,
+                            testString,
+                            _position +
+                            new Vector2((-_displayRadius * 600) - 5 - (FontSize * testString.Length / 1.5f),
+                                -10f),
+                            Color.White);
+                    break;
+                case Position.Bottom:
+                    _fontManager.GetOrbitronLightFont(FontSize)
+                        .DrawText(spriteBatch,
+                            testString,
+                            _position +
+                            new Vector2(-FontSize * testString.Length / 3, _displayRadius * 600),
+                            Color.White);
+                    break;
+                case Position.Top:
+                    _fontManager.GetOrbitronLightFont(FontSize)
+                        .DrawText(spriteBatch,
+                            testString,
+                            _position +
+                            new Vector2(-FontSize * testString.Length / 3, -(_displayRadius * 600) - FontSize),
+                            Color.White);
+                    break;
+                default:
+                    _fontManager.GetOrbitronLightFont(FontSize)
+                        .DrawText(spriteBatch,
+                            "Test Name",
+                            _position +
+                            new Vector2(_displayRadius * 600,
+                                -10f),
+                            Color.White);
+                    break;
+            }
+            
+        }
     }
 }

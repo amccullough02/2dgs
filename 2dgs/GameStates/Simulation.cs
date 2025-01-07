@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra;
@@ -20,6 +19,8 @@ public class Simulation : GameState
     private FontManager fontManager;
     private bool isPaused;
     private bool toggleTrails;
+    private bool toggleNames;
+    private Position position;
     private int userTrailLength = 250;
     private int timeStep = 1;
     
@@ -27,6 +28,8 @@ public class Simulation : GameState
     {
         this.game = game;
         toggleTrails = true;
+        toggleNames = true;
+        position = Position.Left;
 
         bodies = new List<Body>();
         saveSystem = new SaveSystem();
@@ -97,7 +100,7 @@ public class Simulation : GameState
             isPaused = !isPaused;
         };
 
-        var horizontalSeperator = new HorizontalSeparator
+        var firstDivider = new HorizontalSeparator
         {
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
@@ -145,13 +148,102 @@ public class Simulation : GameState
             toggleTrails = !toggleTrails;
         };
         
+        var secondDivider = new HorizontalSeparator
+        {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            Thickness = 5,
+            Color = Color.White,
+            Width = 250,
+            Margin = new Thickness(0, 10, 0, 10),
+        };
+        
+        var namesButton = new Button()
+        {
+            Width = 250,
+            Height = 60,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Toggle Names",
+                Font = fontManager.GetOrbitronLightFont(20)
+            }
+        };
+
+        namesButton.Click += (s, e) =>
+        {
+            toggleNames = !toggleNames;
+        };
+
+        var namesDropdown = new ComboView()
+        {
+            Width = 250,
+            SelectedIndex = 0,
+        };
+        
+        namesDropdown.Widgets.Add(new Label
+        {
+            Text = "Left",
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Font = fontManager.GetOrbitronLightFont(18),
+            Padding = new Thickness(0, 5, 0, 5),
+        });
+        
+        namesDropdown.Widgets.Add(new Label
+        {
+            Text = "Right",
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Font = fontManager.GetOrbitronLightFont(18),
+            Padding = new Thickness(0, 5, 0, 5),
+        });
+        
+        namesDropdown.Widgets.Add(new Label
+        {
+            Text = "Top",
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Font = fontManager.GetOrbitronLightFont(18),
+            Padding = new Thickness(0, 5, 0, 5),
+        });
+        
+        namesDropdown.Widgets.Add(new Label
+        {
+            Text = "Bottom",
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Font = fontManager.GetOrbitronLightFont(18),
+            Padding = new Thickness(0, 5, 0, 5),
+        });
+
+        namesDropdown.SelectedIndex = 0;
+        namesDropdown.SelectedIndexChanged += (s, e) =>
+        {
+            switch (namesDropdown.SelectedIndex)
+            {
+                case 0:
+                    position = Position.Left;
+                    break;
+                case 1:
+                    position = Position.Right;
+                    break;
+                case 2:
+                    position = Position.Top;
+                    break;
+                case 3:
+                    position = Position.Bottom;
+                    break;
+            }
+        };
+        
         verticalPane.Widgets.Add(timestepLabel);
         verticalPane.Widgets.Add(timestepSlider);
         verticalPane.Widgets.Add(pauseButton);
-        verticalPane.Widgets.Add(horizontalSeperator);
+        verticalPane.Widgets.Add(firstDivider);
         verticalPane.Widgets.Add(trailLengthLabel);
         verticalPane.Widgets.Add(trailLengthSlider);
         verticalPane.Widgets.Add(trailsButton);
+        verticalPane.Widgets.Add(secondDivider);
+        verticalPane.Widgets.Add(namesButton);
+        verticalPane.Widgets.Add(namesDropdown);
 
         var returnButton = new Button
         {
@@ -237,7 +329,7 @@ public class Simulation : GameState
         
         foreach (Body body in bodies)
         {
-            body.Draw(spriteBatch, toggleTrails, userTrailLength);
+            body.Draw(spriteBatch, toggleTrails, userTrailLength, toggleNames, position);
         }
         
         spriteBatch.End();
