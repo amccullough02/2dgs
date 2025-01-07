@@ -93,16 +93,12 @@ public class Body
             0f);
     }
 
-    public void Draw(SpriteBatch spriteBatch,
-        bool toggleTrails,
-        int customTrailLength,
-        bool toggleNames,
-        Position position)
+    public void Draw(SpriteBatch spriteBatch, SimulationData simData)
     {
-        if (_orbit_trail.Count > 1 && toggleTrails)
+        if (_orbit_trail.Count > 1 && simData.ToggleTrails)
         {
 
-            int trailLength = Math.Min(customTrailLength, _orbit_trail.Count);
+            int trailLength = Math.Min(simData.TrailLength, _orbit_trail.Count);
 
             for (int i = _orbit_trail.Count - trailLength; i < _orbit_trail.Count - 1; i++)
             {
@@ -125,9 +121,9 @@ public class Body
             SpriteEffects.None,
             0f);
 
-        if (toggleNames)
+        if (simData.ToggleNames)
 
-            switch (position)
+            switch (simData.Position)
             {
                 case Position.Left:
                     _fontManager.GetOrbitronLightFont(FontSize)

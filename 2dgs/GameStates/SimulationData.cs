@@ -2,7 +2,7 @@
 
 public class SimulationData
 {
-    public bool IsPaused { get; set; } = false;
+    public bool IsPaused { get; set; }
     public bool ToggleTrails { get; set; } = true;
     public bool ToggleNames { get; set; } = true;
     public int TimeStep { get; set; } = 1;
