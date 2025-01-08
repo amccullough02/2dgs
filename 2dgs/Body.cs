@@ -21,11 +21,11 @@ public class Body
     private const int FontSize = 20;
     private FontManager _fontManager;
 
-    public Body(string name, Vector2 position, int mass, float displayRadius)
+    public Body(string name, Vector2 position, Vector2 velocity, int mass, float displayRadius)
     {
         _name = name;
         _position = position;
-        _velocity = Vector2.Zero;
+        _velocity = velocity;
         _mass = mass;
         _displayRadius = displayRadius;
         _orbit_trail = new List<Vector2>();

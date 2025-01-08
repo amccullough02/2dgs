@@ -31,7 +31,7 @@ public class Simulation : GameState
         {
             foreach (var bodyData in saveData.Bodies)
             {
-                bodies.Add(new Body(bodyData.Name, bodyData.Position, bodyData.Mass, bodyData.DisplayRadius));
+                bodies.Add(new Body(bodyData.Name, bodyData.Position, bodyData.Velocity, bodyData.Mass, bodyData.DisplayRadius));
             }
         }
         
