@@ -4,35 +4,35 @@
       "Name": "Jupiter",
       "Position": { "X": 960.0, "Y": 540.0 },
       "Velocity": { "X": 0.0, "Y": 0.0 },
-      "Mass": 1000000000,
+      "Mass": 1e9,
       "DisplayRadius": 0.15
     },
     {
       "Name": "Io",
       "Position": { "X": 1160.0, "Y": 540.0 },
       "Velocity": { "X": 0.0, "Y": 4.472 },
-      "Mass": 2500000,
+      "Mass": 2.5e6,
       "DisplayRadius": 0.02
     },
     {
       "Name": "Europa",
       "Position": { "X": 660.0, "Y": 540.0 },
       "Velocity": { "X": 0.0, "Y": -4.995 },
-      "Mass": 2000000,
+      "Mass": 2e6,
       "DisplayRadius": 0.02
     },
     {
       "Name": "Ganymede",
       "Position": { "X": 1360.0, "Y": 540.0 },
       "Velocity": { "X": 0.0, "Y": 3.874 },
-      "Mass": 3500000,
+      "Mass": 3.5e6,
       "DisplayRadius": 0.035
     },
     {
       "Name": "Callisto",
       "Position": { "X": 460.0, "Y": 540.0 },
       "Velocity": { "X": 0.0, "Y": -3.605 },
-      "Mass": 3000000,
+      "Mass": 3e6,
       "DisplayRadius": 0.03
     }
   ]

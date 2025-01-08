@@ -15,13 +15,13 @@ public class Body
     private Vector2 _velocity;
     private string _name;
     private List<Vector2> _orbit_trail;
-    private int _mass;
+    private float _mass;
     private int _maxTrailLength = 2000;
     private float _displayRadius;
     private const int FontSize = 20;
     private FontManager _fontManager;
 
-    public Body(string name, Vector2 position, Vector2 velocity, int mass, float displayRadius)
+    public Body(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius)
     {
         _name = name;
         _position = position;
