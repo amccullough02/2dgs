@@ -41,7 +41,7 @@ public class SimulationMenu : GameState
         {
             Id = "title",
             Text = "Simulation Menu",
-            Font = _fontManager.GetOrbitronLightFont(70),
+            Font = _fontManager.LightFont(70),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Top,
             Margin = new Thickness(0, 50, 0, 0),
@@ -91,7 +91,7 @@ public class SimulationMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Return to Main Menu",
-                Font = _fontManager.GetOrbitronLightFont(20)
+                Font = _fontManager.LightFont(20)
             }
         };
         Grid.SetRow(returnButton, 2);

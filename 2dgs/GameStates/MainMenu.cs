@@ -40,7 +40,7 @@ public class MainMenu : GameState
         {
             Id = "title",
             Text = "2DGS",
-            Font = _fontManager.GetOrbitronLightFont(70),
+            Font = _fontManager.LightFont(70),
             HorizontalAlignment = HorizontalAlignment.Center
         };
         
@@ -56,7 +56,7 @@ public class MainMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Simulations",
-                Font = _fontManager.GetOrbitronLightFont(20),
+                Font = _fontManager.LightFont(20),
             }
         };
         
@@ -79,7 +79,7 @@ public class MainMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Settings",
-                Font = _fontManager.GetOrbitronLightFont(20),
+                Font = _fontManager.LightFont(20),
             }
         };
         
@@ -102,7 +102,7 @@ public class MainMenu : GameState
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Quit",
-                Font = _fontManager.GetOrbitronLightFont(20),
+                Font = _fontManager.LightFont(20),
             }
         };
         

@@ -31,7 +31,7 @@ public class SimulationUI
         var timestepLabel = new Label
         {
             Text = $"Time step: {simData.TimeStep}",
-            Font = fontManager.GetOrbitronLightFont(20)
+            Font = fontManager.LightFont(20)
         };
 
         var timestepSlider = new HorizontalSlider
@@ -57,7 +57,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Pause Simulation",
-                Font = fontManager.GetOrbitronLightFont(20)
+                Font = fontManager.LightFont(20)
             }
         };
 
@@ -79,7 +79,7 @@ public class SimulationUI
         var trailLengthLabel = new Label
         {
             Text = $"Trail length: {simData.TrailLength}",
-            Font = fontManager.GetOrbitronLightFont(20)
+            Font = fontManager.LightFont(20)
         };
 
         var trailLengthSlider = new HorizontalSlider
@@ -105,7 +105,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Toggle Trails",
-                Font = fontManager.GetOrbitronLightFont(20)
+                Font = fontManager.LightFont(20)
             }
         };
 
@@ -133,7 +133,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Toggle Names",
-                Font = fontManager.GetOrbitronLightFont(20)
+                Font = fontManager.LightFont(20)
             }
         };
 
@@ -152,7 +152,7 @@ public class SimulationUI
         {
             Text = "Left",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.GetOrbitronLightFont(18),
+            Font = fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
         
@@ -160,7 +160,7 @@ public class SimulationUI
         {
             Text = "Right",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.GetOrbitronLightFont(18),
+            Font = fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
         
@@ -168,7 +168,7 @@ public class SimulationUI
         {
             Text = "Top",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.GetOrbitronLightFont(18),
+            Font = fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
         
@@ -176,7 +176,7 @@ public class SimulationUI
         {
             Text = "Bottom",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.GetOrbitronLightFont(18),
+            Font = fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
 
@@ -228,7 +228,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Simulation Menu",
-                Font = fontManager.GetOrbitronLightFont(20)
+                Font = fontManager.LightFont(20)
             }
         };
         

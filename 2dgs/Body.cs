@@ -126,7 +126,7 @@ public class Body
             switch (simData.Position)
             {
                 case Position.Left:
-                    _fontManager.GetOrbitronLightFont(FontSize)
+                    _fontManager.LightFont(FontSize)
                         .DrawText(spriteBatch,
                             _name,
                             _position +
@@ -135,7 +135,7 @@ public class Body
                             Color.White);
                     break;
                 case Position.Right:
-                    _fontManager.GetOrbitronLightFont(FontSize)
+                    _fontManager.LightFont(FontSize)
                         .DrawText(spriteBatch,
                             _name,
                             _position +
@@ -144,7 +144,7 @@ public class Body
                             Color.White);
                     break;
                 case Position.Bottom:
-                    _fontManager.GetOrbitronLightFont(FontSize)
+                    _fontManager.LightFont(FontSize)
                         .DrawText(spriteBatch,
                             _name,
                             _position +
@@ -152,7 +152,7 @@ public class Body
                             Color.White);
                     break;
                 case Position.Top:
-                    _fontManager.GetOrbitronLightFont(FontSize)
+                    _fontManager.LightFont(FontSize)
                         .DrawText(spriteBatch,
                             _name,
                             _position +
@@ -160,7 +160,7 @@ public class Body
                             Color.White);
                     break;
                 default:
-                    _fontManager.GetOrbitronLightFont(FontSize)
+                    _fontManager.LightFont(FontSize)
                         .DrawText(spriteBatch,
                             "Test Name",
                             _position +
