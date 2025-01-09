@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +10,7 @@ public class Body
 {
     private Texture2D _texture;
     private Texture2D _orbitTexture;
-    private Vector2 _position;
+    public Vector2 _position;
     private Vector2 _velocity;
     private string _name;
     private List<Vector2> _orbit_trail;
@@ -21,7 +20,7 @@ public class Body
     private const int FontSize = 20;
     private FontManager _fontManager;
 
-    public Body(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius)
+    public Body(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius, TextureManager textureManager)
     {
         _name = name;
         _position = position;
@@ -30,13 +29,8 @@ public class Body
         _displayRadius = displayRadius;
         _orbit_trail = new List<Vector2>();
         _fontManager = new FontManager();
-    }
-
-    public void LoadContent(ContentManager content, GraphicsDevice graphics)
-    {
-        _texture = content.Load<Texture2D>("blank_circle");
-        _orbitTexture = new Texture2D(graphics, 1, 1);
-        _orbitTexture.SetData([Color.White]);
+        _texture = textureManager.BodyTexture;
+        _orbitTexture = textureManager.OrbitTexture;
     }
 
     private Vector2 CalculateGravity(Body otherBody)

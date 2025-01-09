@@ -214,6 +214,39 @@ public class SimulationUI
         return settingsPanel;
     }
 
+    public VerticalStackPanel EditPanel(SimulationData simData)
+    {
+        var editPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(0, 0, 20, 20),
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Bottom,
+        };
+        
+        var createBodyButton = new Button()
+        {
+            Width = 250,
+            Height = 60,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Create Body",
+                Font = fontManager.LightFont(20)
+            }
+        };
+
+        createBodyButton.Click += (s, e) =>
+        {
+            simData.ToggleBodyGhost = true;
+        };
+        
+        editPanel.Widgets.Add(createBodyButton);
+
+        return editPanel;
+    }
+
     public Button ReturnButton ()
     {
         Button returnButton = new Button

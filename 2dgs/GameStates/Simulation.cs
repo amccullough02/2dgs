@@ -17,6 +17,12 @@ public class Simulation : GameState
     private SaveData saveData;
     private SimulationData simData;
     private SimulationUI simUI;
+    private TextureManager textureManager;
+    
+    // TEMP
+    private float bodyDisplaySize = 0.1f;
+    private MouseState mouseState;
+    private Vector2 mousePosition;
     
     public Simulation(Game game, string filePath)
     {
@@ -24,6 +30,10 @@ public class Simulation : GameState
         simUI = new SimulationUI(game);
         bodies = new List<Body>();
         saveSystem = new SaveSystem();
+        textureManager = new TextureManager();
+        textureManager.LoadContent(game.Content, game.GraphicsDevice);
+        mouseState = new MouseState();
+        mousePosition = Vector2.Zero;
         
         saveData = saveSystem.Load(filePath);
 
@@ -31,13 +41,8 @@ public class Simulation : GameState
         {
             foreach (var bodyData in saveData.Bodies)
             {
-                bodies.Add(new Body(bodyData.Name, bodyData.Position, bodyData.Velocity, bodyData.Mass, bodyData.DisplayRadius));
+                bodies.Add(new Body(bodyData.Name, bodyData.Position, bodyData.Velocity, bodyData.Mass, bodyData.DisplayRadius, textureManager));
             }
-        }
-        
-        foreach (Body body in bodies)
-        {
-            body.LoadContent(game.Content, game.GraphicsDevice);
         }
         
         Console.WriteLine($"DEBUG: Simulation loaded: {filePath}");
@@ -47,6 +52,7 @@ public class Simulation : GameState
         var rootContainer = new Panel();
         rootContainer.Widgets.Add(simUI.SettingsPanel(simData));
         rootContainer.Widgets.Add(simUI.ReturnButton());
+        rootContainer.Widgets.Add(simUI.EditPanel(simData));
         
         desktop = new Desktop();
         desktop.Root = rootContainer;
@@ -71,6 +77,20 @@ public class Simulation : GameState
     
     public override void Update(GameTime gameTime)
     {
+        mouseState = Mouse.GetState();
+        mousePosition = mouseState.Position.ToVector2();
+
+        if (simData.ToggleBodyGhost)
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                // CREATE BODY LOGIC
+                var body = new Body("Test Body", mousePosition, Vector2.Zero, 2e6f, bodyDisplaySize, textureManager);
+                bodies.Add(body);
+                simData.ToggleBodyGhost = !simData.ToggleBodyGhost;
+            }
+        }
+        
         if (!simData.IsPaused)
         {
             foreach (Body body in bodies)
@@ -89,6 +109,19 @@ public class Simulation : GameState
         foreach (Body body in bodies)
         {
             body.Draw(spriteBatch, simData);
+        }
+
+        if (simData.ToggleBodyGhost)
+        {
+            spriteBatch.Draw(textureManager.BodyTexture,
+                mousePosition,
+                null,
+                Color.White * 0.5f,
+                0f,
+                new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
+                new Vector2(bodyDisplaySize, bodyDisplaySize),
+                SpriteEffects.None,
+                0f);
         }
         
         spriteBatch.End();
