@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
 
@@ -8,14 +9,25 @@ namespace _2dgs;
 
 public class SimulationUI
 {
-    private Game game;
-    private FontManager fontManager;
-    private bool wasKeyPreviouslyDown;
+    private Game _game;
+    private Desktop _desktop;
+    private FontManager _fontManager;
+    private bool _wasKeyPreviouslyDown;
     
-    public SimulationUI(Game game)
+    public SimulationUI(Game game, SimulationData simData)
     {
-        this.game = game;
-        fontManager = new FontManager();
+        _game = game;
+        _fontManager = new FontManager();
+        
+        MyraEnvironment.Game = _game;
+        
+        var rootContainer = new Panel();
+        rootContainer.Widgets.Add(SettingsPanel(simData));
+        rootContainer.Widgets.Add(ReturnButton());
+        rootContainer.Widgets.Add(EditPanel(simData));
+        
+        _desktop = new Desktop();
+        _desktop.Root = rootContainer;
     }
 
     public VerticalStackPanel SettingsPanel(SimulationData simData)
@@ -31,7 +43,7 @@ public class SimulationUI
         var timestepLabel = new Label
         {
             Text = $"Time step: {simData.TimeStep}",
-            Font = fontManager.LightFont(20)
+            Font = _fontManager.LightFont(20)
         };
 
         var timestepSlider = new HorizontalSlider
@@ -57,7 +69,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Pause Simulation",
-                Font = fontManager.LightFont(20)
+                Font = _fontManager.LightFont(20)
             }
         };
 
@@ -79,7 +91,7 @@ public class SimulationUI
         var trailLengthLabel = new Label
         {
             Text = $"Trail length: {simData.TrailLength}",
-            Font = fontManager.LightFont(20)
+            Font = _fontManager.LightFont(20)
         };
 
         var trailLengthSlider = new HorizontalSlider
@@ -105,7 +117,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Toggle Trails",
-                Font = fontManager.LightFont(20)
+                Font = _fontManager.LightFont(20)
             }
         };
 
@@ -133,7 +145,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Toggle Names",
-                Font = fontManager.LightFont(20)
+                Font = _fontManager.LightFont(20)
             }
         };
 
@@ -152,7 +164,7 @@ public class SimulationUI
         {
             Text = "Left",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.LightFont(18),
+            Font = _fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
         
@@ -160,7 +172,7 @@ public class SimulationUI
         {
             Text = "Right",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.LightFont(18),
+            Font = _fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
         
@@ -168,7 +180,7 @@ public class SimulationUI
         {
             Text = "Top",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.LightFont(18),
+            Font = _fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
         
@@ -176,7 +188,7 @@ public class SimulationUI
         {
             Text = "Bottom",
             HorizontalAlignment = HorizontalAlignment.Center,
-            Font = fontManager.LightFont(18),
+            Font = _fontManager.LightFont(18),
             Padding = new Thickness(0, 5, 0, 5),
         });
 
@@ -233,7 +245,7 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Create Body",
-                Font = fontManager.LightFont(20)
+                Font = _fontManager.LightFont(20)
             }
         };
 
@@ -261,13 +273,13 @@ public class SimulationUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Simulation Menu",
-                Font = fontManager.LightFont(20)
+                Font = _fontManager.LightFont(20)
             }
         };
         
         returnButton.Click += (s, e) =>
         {
-            game.GameStateManager.ChangeState(new SimulationMenu(game));
+            _game.GameStateManager.ChangeState(new SimulationMenu(_game));
         };
         
         return returnButton;
@@ -277,16 +289,21 @@ public class SimulationUI
     {
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
         {
-            game.GameStateManager.ChangeState(new SimulationMenu(game));
+            _game.GameStateManager.ChangeState(new SimulationMenu(_game));
         }
 
         var keyboardState = Keyboard.GetState();
         bool isKeyDown = keyboardState.IsKeyDown(Keys.P);
-        if (isKeyDown && !wasKeyPreviouslyDown)
+        if (isKeyDown && !_wasKeyPreviouslyDown)
         {
             simData.IsPaused = !simData.IsPaused;
             Console.WriteLine($"DEBUG: Paused: {simData.IsPaused}");
         }
-        wasKeyPreviouslyDown = isKeyDown;
+        _wasKeyPreviouslyDown = isKeyDown;
+    }
+
+    public void Draw()
+    {
+        _desktop.Render();
     }
 }

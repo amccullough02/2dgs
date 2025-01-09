@@ -11,117 +11,103 @@ namespace _2dgs;
 
 public class Simulation : GameState
 {
-    private Desktop desktop;
-    private List<Body> bodies;
-    private SaveSystem saveSystem;
-    private SaveData saveData;
-    private SimulationData simData;
-    private SimulationUI simUI;
-    private TextureManager textureManager;
-    private MouseState mouseState;
-    private Test test;
-    private GhostBody ghostBody;
+    private Desktop _desktop;
+    private List<Body> _bodies;
+    private SaveSystem _saveSystem;
+    private SaveData _saveData;
+    private SimulationData _simData;
+    private SimulationUI _simUi;
+    private TextureManager _textureManager;
+    private MouseState _mouseState;
+    private Test _test;
+    private GhostBody _ghostBody;
     
     // PLACEHOLDER BODY DATA
-    private float bodyDisplaySize = 0.05f;
-    private Vector2 velocity = new(0.0f, 4.0f);
+    private const float _bodyDisplaySize = 0.05f;
+    private Vector2 _velocity = new(0.0f, 4.0f);
     
     public Simulation(Game game, string filePath)
     {
-        simData = new SimulationData();
-        simUI = new SimulationUI(game);
-        bodies = new List<Body>();
-        saveSystem = new SaveSystem();
-        textureManager = new TextureManager();
-        textureManager.LoadContent(game.Content, game.GraphicsDevice);
-        mouseState = new MouseState();
-        test = new Test();
-        ghostBody = new GhostBody(bodyDisplaySize);
+        _simData = new SimulationData();
+        _simUi = new SimulationUI(game, _simData);
+        _bodies = new List<Body>();
+        _saveSystem = new SaveSystem();
+        _textureManager = new TextureManager();
+        _textureManager.LoadContent(game.Content, game.GraphicsDevice);
+        _mouseState = new MouseState();
+        _test = new Test();
+        _ghostBody = new GhostBody(_bodyDisplaySize);
         
         SetupSimulation(filePath);
-        SetupUi(game);
-        test.TestSimulationLoading(saveData.Bodies.Count, bodies.Count);
-    }
-
-    private void SetupUi(Game game)
-    {
-        MyraEnvironment.Game = game;
-        
-        var rootContainer = new Panel();
-        rootContainer.Widgets.Add(simUI.SettingsPanel(simData));
-        rootContainer.Widgets.Add(simUI.ReturnButton());
-        rootContainer.Widgets.Add(simUI.EditPanel(simData));
-        
-        desktop = new Desktop();
-        desktop.Root = rootContainer;
+        _test.TestSimulationLoading(_saveData.Bodies.Count, _bodies.Count);
     }
 
     private void SetupSimulation(String filePath)
     {
-        saveData = saveSystem.Load(filePath);
+        _saveData = _saveSystem.Load(filePath);
 
-        if (saveData?.Bodies != null)
+        if (_saveData?.Bodies != null)
         {
-            foreach (var bodyData in saveData.Bodies)
+            foreach (var bodyData in _saveData.Bodies)
             {
-                bodies.Add(new Body(bodyData.Name,
+                _bodies.Add(new Body(bodyData.Name,
                     bodyData.Position,
                     bodyData.Velocity,
                     bodyData.Mass,
                     bodyData.DisplayRadius,
-                    textureManager));
+                    _textureManager));
             }
         }
     }
 
     private void CreateBody()
     {
-        if (simData.ToggleBodyGhost)
+        if (_simData.ToggleBodyGhost)
         {
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 var body = new Body(
                     "Test Body",
-                    ghostBody.Position, 
-                    velocity, 
+                    _ghostBody.Position, 
+                    _velocity, 
                     2e6f, 
-                    bodyDisplaySize, 
-                    textureManager);
+                    _bodyDisplaySize, 
+                    _textureManager);
                 
-                bodies.Add(body);
-                simData.ToggleBodyGhost = !simData.ToggleBodyGhost;
+                _bodies.Add(body);
+                _simData.ToggleBodyGhost = !_simData.ToggleBodyGhost;
             }
         }
     }
     
     public override void Update(GameTime gameTime)
     {
-        mouseState = Mouse.GetState();
-        ghostBody.Update();
+        _mouseState = Mouse.GetState();
+        _ghostBody.Update();
         CreateBody();
         
-        if (!simData.IsPaused)
+        if (!_simData.IsPaused)
         {
-            foreach (Body body in bodies)
+            foreach (Body body in _bodies)
             {
-                body.Update(bodies, simData.TimeStep);
+                body.Update(_bodies, _simData.TimeStep);
             }
         }
         
-        simUI.PauseToggle(simData);
+        _simUi.PauseToggle(_simData);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
         
-        foreach (Body body in bodies)
+        foreach (Body body in _bodies)
         {
-            body.Draw(spriteBatch, simData);
+            body.Draw(spriteBatch, _simData);
         }
 
-        ghostBody.Draw(spriteBatch, textureManager, simData);
+        _ghostBody.Draw(spriteBatch, _textureManager, _simData);
         spriteBatch.End();
-        desktop.Render();
+        _simUi.Draw();
     }
 }
