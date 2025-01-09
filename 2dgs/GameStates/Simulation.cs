@@ -28,17 +28,30 @@ public class Simulation : GameState
     
     public Simulation(Game game, string filePath)
     {
-        _simData = new SimulationData();
-        _simUi = new SimulationUI(game, _simData);
-        _bodies = new List<Body>();
+        InitializeComponents(game);
+        SetupSimulation(filePath);
+        RunTests();
+    }
+
+    private void InitializeComponents(Game game)
+    {
+        #region Systems
         _saveSystem = new SaveSystem();
         _textureManager = new TextureManager();
         _textureManager.LoadContent(game.Content, game.GraphicsDevice);
-        _mouseState = new MouseState();
+        _simData = new SimulationData();
+        _simUi = new SimulationUI(game, _simData);
         _test = new Test();
-        _ghostBody = new GhostBody(_bodyDisplaySize);
+        #endregion
         
-        SetupSimulation(filePath);
+        #region Components
+        _bodies = new List<Body>();
+        _ghostBody = new GhostBody(_bodyDisplaySize);
+        #endregion
+    }
+
+    private void RunTests()
+    {
         _test.TestSimulationLoading(_saveData.Bodies.Count, _bodies.Count);
     }
 
