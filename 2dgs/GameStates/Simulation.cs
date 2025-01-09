@@ -18,11 +18,14 @@ public class Simulation : GameState
     private SimulationData simData;
     private SimulationUI simUI;
     private TextureManager textureManager;
-    
-    // TEMP
-    private float bodyDisplaySize = 0.1f;
     private MouseState mouseState;
     private Vector2 mousePosition;
+    private Test test;
+    private GhostBody ghostBody;
+    
+    // PLACEHOLDER BODY DATA
+    private float bodyDisplaySize = 0.05f;
+    private Vector2 velocity = new(0.0f, 4.0f);
     
     public Simulation(Game game, string filePath)
     {
@@ -34,6 +37,8 @@ public class Simulation : GameState
         textureManager.LoadContent(game.Content, game.GraphicsDevice);
         mouseState = new MouseState();
         mousePosition = Vector2.Zero;
+        test = new Test();
+        ghostBody = new GhostBody(bodyDisplaySize);
         
         saveData = saveSystem.Load(filePath);
 
@@ -41,7 +46,12 @@ public class Simulation : GameState
         {
             foreach (var bodyData in saveData.Bodies)
             {
-                bodies.Add(new Body(bodyData.Name, bodyData.Position, bodyData.Velocity, bodyData.Mass, bodyData.DisplayRadius, textureManager));
+                bodies.Add(new Body(bodyData.Name,
+                    bodyData.Position,
+                    bodyData.Velocity,
+                    bodyData.Mass,
+                    bodyData.DisplayRadius,
+                    textureManager));
             }
         }
         
@@ -57,35 +67,27 @@ public class Simulation : GameState
         desktop = new Desktop();
         desktop.Root = rootContainer;
         
-        TestSimulationLoading();
-    }
-
-    private void TestSimulationLoading()
-    {
-        int serializedBodiesCount = saveData.Bodies.Count;
-        int loadedBodiesCount = bodies.Count;
-        
-        if (serializedBodiesCount == loadedBodiesCount)
-        {
-            Console.WriteLine("Test - Loading of simulation file... PASS!");
-        }
-        else
-        {
-            Console.WriteLine("Test - Loading of simulation file... FAIL!");
-        }
+        test.TestSimulationLoading(saveData.Bodies.Count, bodies.Count);
     }
     
     public override void Update(GameTime gameTime)
     {
         mouseState = Mouse.GetState();
         mousePosition = mouseState.Position.ToVector2();
+        ghostBody.Update(mousePosition);
 
         if (simData.ToggleBodyGhost)
         {
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                // CREATE BODY LOGIC
-                var body = new Body("Test Body", mousePosition, Vector2.Zero, 2e6f, bodyDisplaySize, textureManager);
+                var body = new Body(
+                    "Test Body",
+                    mousePosition, 
+                    velocity, 
+                    2e6f, 
+                    bodyDisplaySize, 
+                    textureManager);
+                
                 bodies.Add(body);
                 simData.ToggleBodyGhost = !simData.ToggleBodyGhost;
             }
@@ -113,15 +115,7 @@ public class Simulation : GameState
 
         if (simData.ToggleBodyGhost)
         {
-            spriteBatch.Draw(textureManager.BodyTexture,
-                mousePosition,
-                null,
-                Color.White * 0.5f,
-                0f,
-                new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
-                new Vector2(bodyDisplaySize, bodyDisplaySize),
-                SpriteEffects.None,
-                0f);
+            ghostBody.Draw(spriteBatch, textureManager);
         }
         
         spriteBatch.End();

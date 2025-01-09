@@ -59,11 +59,26 @@ public class Test
         fm.DeleteFile(filePath);
         Console.WriteLine("TEST - Delete JSON file... PASS!");
     }
+    
+    public void TestSimulationLoading(int serialized, int loaded)
+    {
+        int serializedBodiesCount = serialized;
+        int loadedBodiesCount = loaded;
+        
+        if (serializedBodiesCount == loadedBodiesCount)
+        {
+            Console.WriteLine("Test - Loading of simulation file... PASS!");
+        }
+        else
+        {
+            Console.WriteLine("Test - Loading of simulation file... FAIL!");
+        }
+    }
 
     public void RunAllTests(GraphicsDeviceManager graphics, String windowTitle)
     {
-        this.TestApplicationName(windowTitle);
-        this.TestApplicationResolution(graphics);
+        TestApplicationName(windowTitle);
+        TestApplicationResolution(graphics);
         // this.TestRenameJsonFile();
     }
 }
