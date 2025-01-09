@@ -12,24 +12,28 @@ public class GhostBody
     public GhostBody(float displaySize)
     {
         this.displaySize = displaySize;
-        Position = new Vector2(0, 0);
+        Position = Vector2.Zero;
     }
 
-    public void Update(Vector2 position)
+    public void Update()
     {
-        Position = position;
+        var mouseState = Mouse.GetState();
+        Position = mouseState.Position.ToVector2();
     }
 
-    public void Draw(SpriteBatch spriteBatch, TextureManager textureManager)
+    public void Draw(SpriteBatch spriteBatch, TextureManager textureManager, SimulationData simData)
     {
-        spriteBatch.Draw(textureManager.BodyTexture,
-            Position,
-            null,
-            Color.White * 0.5f,
-            0f,
-            new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
-            new Vector2(displaySize, displaySize),
-            SpriteEffects.None,
-            0f);
+        if (simData.ToggleBodyGhost)
+        {
+            spriteBatch.Draw(textureManager.BodyTexture,
+                Position,
+                null,
+                Color.White * 0.5f,
+                0f,
+                new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
+                new Vector2(displaySize, displaySize),
+                SpriteEffects.None,
+                0f);
+        }
     }
 }
