@@ -7,14 +7,14 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
-public class SimulationUI
+public class SimulationUi
 {
     private Game _game;
     private Desktop _desktop;
     private FontManager _fontManager;
     private bool _wasKeyPreviouslyDown;
     
-    public SimulationUI(Game game, SimulationData simData)
+    public SimulationUi(Game game, SimulationData simData)
     {
         _game = game;
         _fontManager = new FontManager();
@@ -30,7 +30,7 @@ public class SimulationUI
         _desktop.Root = rootContainer;
     }
 
-    public VerticalStackPanel SettingsPanel(SimulationData simData)
+    private VerticalStackPanel SettingsPanel(SimulationData simData)
     {
         var settingsPanel = new VerticalStackPanel
         {
@@ -226,7 +226,7 @@ public class SimulationUI
         return settingsPanel;
     }
 
-    public VerticalStackPanel EditPanel(SimulationData simData)
+    private Dialog CreateBodyDialog(SimulationData simData)
     {
         var grid = new Grid
         {
@@ -357,6 +357,13 @@ public class SimulationUI
             simData.CreateBodyData.DisplayRadius = size;
             simData.ToggleBodyGhost = true;
         };
+
+        return createBodyDialogue;
+    }
+
+    private VerticalStackPanel EditPanel(SimulationData simData)
+    {
+        var createBodyDialogue = CreateBodyDialog(simData);
         
         var createBodyButton = new Button
         {
@@ -376,6 +383,28 @@ public class SimulationUI
             createBodyDialogue.Show(_desktop);
         };
         
+        var editModeLabel = EditModeLabel();
+
+        var editBodyButton = new Button
+        {
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Edit Body",
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
+            }
+        };
+
+        editBodyButton.Click += (sender, args) =>
+        {
+            simData.IsPaused = !simData.IsPaused;
+            simData.EditMode = true;
+            editModeLabel.Visible = true;
+        };
+        
         var editPanel = new VerticalStackPanel
         {
             Spacing = 8,
@@ -384,12 +413,30 @@ public class SimulationUI
             VerticalAlignment = VerticalAlignment.Bottom,
         };
         
+        editPanel.Widgets.Add(editModeLabel);
+        editPanel.Widgets.Add(editBodyButton);
         editPanel.Widgets.Add(createBodyButton);
 
         return editPanel;
     }
 
-    public Button ReturnButton()
+    private Label EditModeLabel()
+    {
+        Label editModeLabel = new Label
+        {
+            Text = "Edit Mode Active",
+            Font = _fontManager.MediumFont(30),
+            TextColor = Color.Green,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Top,
+            Margin = new Thickness(0, UIConstants.DefaultMargin, 0, 0),
+            Visible = false
+        };
+        
+        return editModeLabel;
+    }
+
+    private Button ReturnButton()
     {
         Button returnButton = new Button
         {

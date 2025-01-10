@@ -16,7 +16,7 @@ public class Simulation : GameState
     private SaveSystem _saveSystem;
     private SaveData _saveData;
     private SimulationData _simData;
-    private SimulationUI _simUi;
+    private SimulationUi _simUi;
     private TextureManager _textureManager;
     private MouseState _mouseState;
     private Test _test;
@@ -40,7 +40,7 @@ public class Simulation : GameState
         _textureManager = new TextureManager();
         _textureManager.LoadContent(game.Content, game.GraphicsDevice);
         _simData = new SimulationData();
-        _simUi = new SimulationUI(game, _simData);
+        _simUi = new SimulationUi(game, _simData);
         _test = new Test();
         #endregion
         
