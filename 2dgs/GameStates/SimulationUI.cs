@@ -35,7 +35,7 @@ public class SimulationUI
         var settingsPanel = new VerticalStackPanel
         {
             Spacing = 8,
-            Margin = new Thickness(20, 0, 0, 20),
+            Margin = new Thickness(UIConstants.DefaultMargin, 0, 0, UIConstants.DefaultMargin),
             HorizontalAlignment = HorizontalAlignment.Left,
             VerticalAlignment = VerticalAlignment.Bottom,
         };
@@ -43,7 +43,7 @@ public class SimulationUI
         var timestepLabel = new Label
         {
             Text = $"Time step: {simData.TimeStep}",
-            Font = _fontManager.LightFont(20)
+            Font = _fontManager.LightFont(UIConstants.DefaultMargin)
         };
 
         var timestepSlider = new HorizontalSlider
@@ -51,7 +51,7 @@ public class SimulationUI
             Minimum = 1,
             Maximum = 10,
             Value = 1,
-            Width = 250,
+            Width = UIConstants.DefaultElementWidth,
         };
 
         timestepSlider.ValueChanged += (s, e) =>
@@ -60,16 +60,16 @@ public class SimulationUI
             simData.TimeStep = (int)timestepSlider.Value;
         };
         
-        var pauseButton = new Button()
+        var pauseButton = new Button
         {
-            Width = 250,
-            Height = 60,
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight,
             Content = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Pause Simulation",
-                Font = _fontManager.LightFont(20)
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
             }
         };
 
@@ -82,16 +82,16 @@ public class SimulationUI
         {
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
-            Thickness = 5,
+            Thickness = UIConstants.DefaultSeparatorHeight,
             Color = Color.White,
-            Width = 250,
+            Width = UIConstants.DefaultElementWidth,
             Margin = new Thickness(0, 10, 0, 10),
         };
         
         var trailLengthLabel = new Label
         {
             Text = $"Trail length: {simData.TrailLength}",
-            Font = _fontManager.LightFont(20)
+            Font = _fontManager.LightFont(UIConstants.DefaultFontSize)
         };
 
         var trailLengthSlider = new HorizontalSlider
@@ -99,7 +99,7 @@ public class SimulationUI
             Minimum = 250,
             Maximum = 2000,
             Value = 1,
-            Width = 250,
+            Width = UIConstants.DefaultElementWidth,
         };
 
         trailLengthSlider.ValueChanged += (s, e) =>
@@ -108,16 +108,16 @@ public class SimulationUI
             simData.TrailLength = (int)trailLengthSlider.Value;
         };
         
-        var trailsButton = new Button()
+        var trailsButton = new Button
         {
-            Width = 250,
-            Height = 60,
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight,
             Content = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Toggle Trails",
-                Font = _fontManager.LightFont(20)
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
             }
         };
 
@@ -130,22 +130,22 @@ public class SimulationUI
         {
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
-            Thickness = 5,
+            Thickness = UIConstants.DefaultSeparatorHeight,
             Color = Color.White,
-            Width = 250,
+            Width = UIConstants.DefaultElementWidth,
             Margin = new Thickness(0, 10, 0, 10),
         };
         
-        var namesButton = new Button()
+        var namesButton = new Button
         {
-            Width = 250,
-            Height = 60,
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight,
             Content = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Toggle Names",
-                Font = _fontManager.LightFont(20)
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
             }
         };
 
@@ -156,7 +156,7 @@ public class SimulationUI
 
         var namesDropdown = new ComboView()
         {
-            Width = 250,
+            Width = UIConstants.DefaultElementWidth,
             SelectedIndex = 0,
         };
         
@@ -254,7 +254,7 @@ public class SimulationUI
 
         var bodyNameTextbox = new TextBox
         {
-            MinWidth = 150,
+            MinWidth = UIConstants.DefaultTextboxWidth,
             Text = "Default name"
         };
         
@@ -272,7 +272,7 @@ public class SimulationUI
 
         var bodyVelXTextbox = new TextBox
         {
-            MinWidth = 150,
+            MinWidth = UIConstants.DefaultTextboxWidth,
             Text = "0.0",
         };
         
@@ -291,7 +291,7 @@ public class SimulationUI
 
         var bodyVelYTextbox = new TextBox
         {
-            MinWidth = 150,
+            MinWidth = UIConstants.DefaultTextboxWidth,
             Text = "4.0",
         };
         
@@ -310,7 +310,7 @@ public class SimulationUI
 
         var bodyMassTextbox = new TextBox
         {
-            MinWidth = 150,
+            MinWidth = UIConstants.DefaultTextboxWidth,
             Text = "1e6",
         };
         
@@ -329,7 +329,7 @@ public class SimulationUI
 
         var bodyDisplaySizeTextbox = new TextBox
         {
-            MinWidth = 150,
+            MinWidth = UIConstants.DefaultTextboxWidth,
             Text = "0.05",
         };
         
@@ -358,16 +358,16 @@ public class SimulationUI
             simData.ToggleBodyGhost = true;
         };
         
-        var createBodyButton = new Button()
+        var createBodyButton = new Button
         {
-            Width = 250,
-            Height = 60,
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight,
             Content = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Text = "Create Body",
-                Font = _fontManager.LightFont(20)
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
             }
         };
 
@@ -379,7 +379,7 @@ public class SimulationUI
         var editPanel = new VerticalStackPanel
         {
             Spacing = 8,
-            Margin = new Thickness(0, 0, 20, 20),
+            Margin = new Thickness(0, 0, UIConstants.DefaultMargin, UIConstants.DefaultMargin),
             HorizontalAlignment = HorizontalAlignment.Right,
             VerticalAlignment = VerticalAlignment.Bottom,
         };
@@ -389,21 +389,21 @@ public class SimulationUI
         return editPanel;
     }
 
-    public Button ReturnButton ()
+    public Button ReturnButton()
     {
         Button returnButton = new Button
         {
-            Width = 250,
-            Height = 60,
-            Margin = new Thickness(0, 20, 20, 0),
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight + UIConstants.DefaultMargin,
             HorizontalAlignment = HorizontalAlignment.Right,
             VerticalAlignment = VerticalAlignment.Top,
+            Margin = new Thickness(0, UIConstants.DefaultMargin, UIConstants.DefaultMargin, 0),
             Content = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Text = "Simulation Menu",
-                Font = _fontManager.LightFont(20)
+                Text = "Return to Sim Menu",
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
             }
         };
         
