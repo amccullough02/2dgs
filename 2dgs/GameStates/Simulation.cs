@@ -104,6 +104,14 @@ public class Simulation : GameState
                 body.Update(_bodies, _simData.TimeStep);
             }
         }
+
+        if (_simData.EditMode)
+        {
+            foreach (Body body in _bodies)
+            {
+                body.CheckIfSelected(_mouseState.Position, _mouseState);
+            }
+        }
     }
 
     private void EditModeDisplay(SpriteBatch spriteBatch)

@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Color = Microsoft.Xna.Framework.Color;
+using Point = Microsoft.Xna.Framework.Point;
 
 namespace _2dgs;
 
@@ -18,6 +22,8 @@ public class Body
     private const int FontSize = 20;
     private FontManager _fontManager;
     private TextureManager _textureManager;
+    private bool _selected;
+    private Color _color = Color.White;
 
     public Body(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius, TextureManager textureManager)
     {
@@ -40,6 +46,21 @@ public class Body
         Vector2 forceVector = unitVector * (float)forceOfGravity;
         
         return forceVector;
+    }
+
+    public void CheckIfSelected(Point mousePosition, MouseState mouseState)
+    {
+        float trueDisplayRadius = _displayRadius * _textureManager.BodyTexture.Width;
+        RectangleF bodyBounds = new RectangleF(
+            _position.X - trueDisplayRadius / 2,
+            _position.Y - trueDisplayRadius / 2,
+            trueDisplayRadius,
+            trueDisplayRadius);
+        
+        PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
+        
+        if (mouseState.LeftButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) _selected = true;
+        if (mouseState.RightButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) _selected = false;
     }
 
     public void Update(List<Body> bodies, int timestep)
@@ -93,17 +114,34 @@ public class Body
         }
     }
 
+    private void DrawSelector(SpriteBatch spriteBatch, SimulationData simData)
+    {
+        if (_selected && simData.EditMode)
+        {
+            spriteBatch.Draw(_textureManager.SelectorTexture,
+                _position,
+                null,
+                _color,
+                0f,
+                new Vector2(_textureManager.SelectorTexture.Width / 2, _textureManager.SelectorTexture.Height / 2),
+                new Vector2(_displayRadius, _displayRadius),
+                SpriteEffects.None,
+                0f);
+        }
+    }
+
     private void DrawBody(SpriteBatch spriteBatch)
     {
+        
         if (_textureManager.BodyTexture == null)
         {
             throw new InvalidOperationException("Body has no texture!");
         }
-
+        
         spriteBatch.Draw(_textureManager.BodyTexture,
             _position,
             null,
-            Color.White,
+            _color,
             0f,
             new Vector2(_textureManager.BodyTexture.Width / 2, _textureManager.BodyTexture.Height / 2),
             new Vector2(_displayRadius, _displayRadius),
@@ -166,6 +204,7 @@ public class Body
     {
         DrawOrbit(spriteBatch, simData, Color.White, 2f);
         DrawBody(spriteBatch);
+        DrawSelector(spriteBatch, simData);
         DrawNames(simData, spriteBatch);
     }
 }
