@@ -80,11 +80,11 @@ public class Simulation : GameState
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 var body = new Body(
-                    "Test Body",
+                    _simData.CreateBodyData.Name,
                     _ghostBody.Position, 
-                    _velocity, 
-                    2e6f, 
-                    _bodyDisplaySize, 
+                    _simData.CreateBodyData.Velocity, 
+                    _simData.CreateBodyData.Mass, 
+                    _simData.CreateBodyData.DisplayRadius, 
                     _textureManager);
                 
                 _bodies.Add(body);
@@ -96,7 +96,7 @@ public class Simulation : GameState
     public override void Update(GameTime gameTime)
     {
         _mouseState = Mouse.GetState();
-        _ghostBody.Update();
+        _ghostBody.Update(_simData);
         CreateBody();
         
         if (!_simData.IsPaused)

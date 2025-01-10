@@ -228,12 +228,134 @@ public class SimulationUI
 
     public VerticalStackPanel EditPanel(SimulationData simData)
     {
-        var editPanel = new VerticalStackPanel
+        var grid = new Grid
         {
-            Spacing = 8,
-            Margin = new Thickness(0, 0, 20, 20),
-            HorizontalAlignment = HorizontalAlignment.Right,
-            VerticalAlignment = VerticalAlignment.Bottom,
+            RowSpacing = 10,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Margin = new Thickness(10, 10, 10, 10),
+        };
+        
+        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
+        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // NAME
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY X
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY Y
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // MASS
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // DISPLAY RADIUS
+
+        // BODY NAME
+        var bodyNameLabel = new Label
+        {
+            Text = "Body Name: ",
+        };
+        
+        grid.Widgets.Add(bodyNameLabel);
+        Grid.SetRow(bodyNameLabel, 0);
+
+        var bodyNameTextbox = new TextBox
+        {
+            MinWidth = 150,
+            Text = "Default name"
+        };
+        
+        grid.Widgets.Add(bodyNameTextbox);
+        Grid.SetColumn(bodyNameTextbox, 1);
+        
+        // VEL X
+        var bodyVelXLabel = new Label
+        {
+            Text = "Body Vel X: ",
+        };
+        
+        grid.Widgets.Add(bodyVelXLabel);
+        Grid.SetRow(bodyVelXLabel, 1);
+
+        var bodyVelXTextbox = new TextBox
+        {
+            MinWidth = 150,
+            Text = "0.0",
+        };
+        
+        grid.Widgets.Add(bodyVelXTextbox);
+        Grid.SetColumn(bodyVelXTextbox, 1);
+        Grid.SetRow(bodyVelXTextbox, 1);
+        
+        // VEL Y
+        var bodyVelYLabel = new Label
+        {
+            Text = "Body Vel Y: ",
+        };
+        
+        grid.Widgets.Add(bodyVelYLabel);
+        Grid.SetRow(bodyVelYLabel, 2);
+
+        var bodyVelYTextbox = new TextBox
+        {
+            MinWidth = 150,
+            Text = "4.0",
+        };
+        
+        grid.Widgets.Add(bodyVelYTextbox);
+        Grid.SetColumn(bodyVelYTextbox, 1);
+        Grid.SetRow(bodyVelYTextbox, 2);
+        
+        // MASS
+        var bodyMassLabel = new Label
+        {
+            Text = "Body Mass: ",
+        };
+        
+        grid.Widgets.Add(bodyMassLabel);
+        Grid.SetRow(bodyMassLabel, 3);
+
+        var bodyMassTextbox = new TextBox
+        {
+            MinWidth = 150,
+            Text = "1e6",
+        };
+        
+        grid.Widgets.Add(bodyMassTextbox);
+        Grid.SetColumn(bodyMassTextbox, 1);
+        Grid.SetRow(bodyMassTextbox, 3);
+        
+        // DISPLAY RADIUS
+        var bodyDisplaySizeLabel = new Label
+        {
+            Text = "Body Size: ",
+        };
+        
+        grid.Widgets.Add(bodyDisplaySizeLabel);
+        Grid.SetRow(bodyDisplaySizeLabel, 4);
+
+        var bodyDisplaySizeTextbox = new TextBox
+        {
+            MinWidth = 150,
+            Text = "0.05",
+        };
+        
+        grid.Widgets.Add(bodyDisplaySizeTextbox);
+        Grid.SetColumn(bodyDisplaySizeTextbox, 1);
+        Grid.SetRow(bodyDisplaySizeTextbox, 4);
+        
+        // DIALOG AND SETUP
+        var createBodyDialogue = new Dialog
+        {
+            Title = "Create New Body",
+            Content = grid
+        };
+
+        createBodyDialogue.ButtonOk.Click += (sender, e) =>
+        {
+            string name = bodyNameTextbox.Text;
+            Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
+            float mass = float.Parse(bodyMassTextbox.Text);
+            float size = float.Parse(bodyDisplaySizeTextbox.Text);
+
+            simData.CreateBodyData.Name = name;
+            simData.CreateBodyData.Velocity = velocity;
+            simData.CreateBodyData.Mass = mass;
+            simData.CreateBodyData.DisplayRadius = size;
+            simData.ToggleBodyGhost = true;
         };
         
         var createBodyButton = new Button()
@@ -251,7 +373,15 @@ public class SimulationUI
 
         createBodyButton.Click += (s, e) =>
         {
-            simData.ToggleBodyGhost = true;
+            createBodyDialogue.Show(_desktop);
+        };
+        
+        var editPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(0, 0, 20, 20),
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Bottom,
         };
         
         editPanel.Widgets.Add(createBodyButton);

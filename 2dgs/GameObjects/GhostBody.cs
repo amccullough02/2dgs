@@ -15,15 +15,20 @@ public class GhostBody
         Position = Vector2.Zero;
     }
 
-    public void Update()
+    public void Update(SimulationData simulationData)
     {
         var mouseState = Mouse.GetState();
         Position = mouseState.Position.ToVector2();
+
+        if (simulationData.ToggleBodyGhost)
+        {
+            displaySize = simulationData.CreateBodyData.DisplayRadius;
+        }
     }
 
-    public void Draw(SpriteBatch spriteBatch, TextureManager textureManager, SimulationData simData)
+    public void Draw(SpriteBatch spriteBatch, TextureManager textureManager, SimulationData simulationData)
     {
-        if (simData.ToggleBodyGhost)
+        if (simulationData.ToggleBodyGhost)
         {
             spriteBatch.Draw(textureManager.BodyTexture,
                 Position,
