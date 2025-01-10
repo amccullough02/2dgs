@@ -9,6 +9,12 @@ public class GhostBody
     public Vector2 Position { get; set; }
     public float displaySize { get; set; }
 
+    public GhostBody()
+    {
+        displaySize = 0.1f;
+        Position = Vector2.Zero;
+    }
+    
     public GhostBody(float displaySize)
     {
         this.displaySize = displaySize;

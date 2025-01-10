@@ -76,6 +76,7 @@ public class SimulationUi
         pauseButton.Click += (s, e) =>
         {
             simData.IsPaused = !simData.IsPaused;
+            if (simData.EditMode) simData.EditMode = false;
         };
 
         var firstDivider = new HorizontalSeparator
@@ -382,8 +383,6 @@ public class SimulationUi
         {
             createBodyDialogue.Show(_desktop);
         };
-        
-        var editModeLabel = EditModeLabel();
 
         var editBodyButton = new Button
         {
@@ -401,8 +400,7 @@ public class SimulationUi
         editBodyButton.Click += (sender, args) =>
         {
             simData.IsPaused = !simData.IsPaused;
-            simData.EditMode = true;
-            editModeLabel.Visible = true;
+            simData.EditMode = !simData.EditMode;
         };
         
         var editPanel = new VerticalStackPanel
@@ -413,27 +411,10 @@ public class SimulationUi
             VerticalAlignment = VerticalAlignment.Bottom,
         };
         
-        editPanel.Widgets.Add(editModeLabel);
         editPanel.Widgets.Add(editBodyButton);
         editPanel.Widgets.Add(createBodyButton);
 
         return editPanel;
-    }
-
-    private Label EditModeLabel()
-    {
-        Label editModeLabel = new Label
-        {
-            Text = "Edit Mode Active",
-            Font = _fontManager.MediumFont(30),
-            TextColor = Color.Green,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Top,
-            Margin = new Thickness(0, UIConstants.DefaultMargin, 0, 0),
-            Visible = false
-        };
-        
-        return editModeLabel;
     }
 
     private Button ReturnButton()
@@ -460,23 +441,6 @@ public class SimulationUi
         };
         
         return returnButton;
-    }
-
-    public void PauseToggle(SimulationData simData)
-    {
-        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-        {
-            _game.GameStateManager.ChangeState(new SimulationMenu(_game));
-        }
-
-        var keyboardState = Keyboard.GetState();
-        bool isKeyDown = keyboardState.IsKeyDown(Keys.P);
-        if (isKeyDown && !_wasKeyPreviouslyDown)
-        {
-            simData.IsPaused = !simData.IsPaused;
-            Console.WriteLine($"DEBUG: Paused: {simData.IsPaused}");
-        }
-        _wasKeyPreviouslyDown = isKeyDown;
     }
 
     public void Draw()

@@ -18,13 +18,10 @@ public class Simulation : GameState
     private SimulationData _simData;
     private SimulationUi _simUi;
     private TextureManager _textureManager;
+    private FontManager _fontManager;
     private MouseState _mouseState;
     private Test _test;
     private GhostBody _ghostBody;
-    
-    // PLACEHOLDER BODY DATA
-    private const float _bodyDisplaySize = 0.05f;
-    private Vector2 _velocity = new(0.0f, 4.0f);
     
     public Simulation(Game game, string filePath)
     {
@@ -39,6 +36,7 @@ public class Simulation : GameState
         _saveSystem = new SaveSystem();
         _textureManager = new TextureManager();
         _textureManager.LoadContent(game.Content, game.GraphicsDevice);
+        _fontManager = new FontManager();
         _simData = new SimulationData();
         _simUi = new SimulationUi(game, _simData);
         _test = new Test();
@@ -46,7 +44,7 @@ public class Simulation : GameState
         
         #region Components
         _bodies = new List<Body>();
-        _ghostBody = new GhostBody(_bodyDisplaySize);
+        _ghostBody = new GhostBody();
         #endregion
     }
 
@@ -106,13 +104,21 @@ public class Simulation : GameState
                 body.Update(_bodies, _simData.TimeStep);
             }
         }
-        
-        _simUi.PauseToggle(_simData);
     }
+
+    private void EditModeDisplay(SpriteBatch spriteBatch)
+    {
+        if (_simData.EditMode)
+        {
+            _fontManager.MediumFont(24)
+                .DrawText(spriteBatch, "Edit Mode Active", new Vector2(10, 40), Color.Green);
+        }
+    } 
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
+        EditModeDisplay(spriteBatch);
         
         foreach (Body body in _bodies)
         {
