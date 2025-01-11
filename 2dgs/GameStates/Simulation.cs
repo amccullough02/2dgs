@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Myra;
-using Myra.Graphics2D;
-using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
 public class Simulation : GameState
 {
-    private Desktop _desktop;
     private List<Body> _bodies;
     private SaveSystem _saveSystem;
     private SaveData _saveData;
@@ -71,6 +68,13 @@ public class Simulation : GameState
         }
     }
 
+    private bool IsABodySelected()
+    {
+        return _bodies.Any(body => body.Selected);
+    }
+    
+    private Body GetSelectedBody() { return _bodies.FirstOrDefault(body => body.Selected); }
+
     private void CreateBody()
     {
         if (_simData.ToggleBodyGhost)
@@ -90,9 +94,32 @@ public class Simulation : GameState
             }
         }
     }
+
+    private void DeleteBody()
+    {
+        var bodiesToRemove = new List<Body>();
+            
+        foreach (Body body in _bodies)
+        {
+            body.CheckIfDeselected(_mouseState.Position, _mouseState);
+
+            if (_simData.DeleteSelectedBody && body.Selected)
+            {
+                bodiesToRemove.Add(body);
+            }
+        }
+
+        foreach (Body body in bodiesToRemove)
+        {
+            _bodies.Remove(body);
+        }
+        
+        _simData.DeleteSelectedBody = false;
+    }
     
     public override void Update(GameTime gameTime)
     {
+        _simData.IsABodySelected = IsABodySelected();
         _mouseState = Mouse.GetState();
         _ghostBody.Update(_simData);
         CreateBody();
@@ -105,12 +132,17 @@ public class Simulation : GameState
             }
         }
 
-        if (_simData.EditMode)
+        if (_simData.EditMode && !IsABodySelected())
         {
             foreach (Body body in _bodies)
             {
                 body.CheckIfSelected(_mouseState.Position, _mouseState);
             }
+        }
+
+        if (_simData.EditMode && IsABodySelected())
+        {
+            DeleteBody();
         }
     }
 

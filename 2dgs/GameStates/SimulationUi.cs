@@ -362,6 +362,132 @@ public class SimulationUi
         return createBodyDialogue;
     }
 
+    private Dialog EditBodyDialog(SimulationData simData)
+    {
+        var grid = new Grid
+        {
+            RowSpacing = 10,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Margin = new Thickness(10, 10, 10, 10),
+        };
+        
+        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
+        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // NAME
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY X
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY Y
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // MASS
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // DISPLAY RADIUS
+
+        // BODY NAME
+        var bodyNameLabel = new Label
+        {
+            Text = "Body Name: ",
+        };
+        
+        grid.Widgets.Add(bodyNameLabel);
+        Grid.SetRow(bodyNameLabel, 0);
+
+        var bodyNameTextbox = new TextBox
+        {
+            MinWidth = UIConstants.DefaultTextboxWidth,
+            Text = "Default name"
+        };
+        
+        grid.Widgets.Add(bodyNameTextbox);
+        Grid.SetColumn(bodyNameTextbox, 1);
+        
+        // VEL X
+        var bodyVelXLabel = new Label
+        {
+            Text = "Body Vel X: ",
+        };
+        
+        grid.Widgets.Add(bodyVelXLabel);
+        Grid.SetRow(bodyVelXLabel, 1);
+
+        var bodyVelXTextbox = new TextBox
+        {
+            MinWidth = UIConstants.DefaultTextboxWidth,
+            Text = "0.0",
+        };
+        
+        grid.Widgets.Add(bodyVelXTextbox);
+        Grid.SetColumn(bodyVelXTextbox, 1);
+        Grid.SetRow(bodyVelXTextbox, 1);
+        
+        // VEL Y
+        var bodyVelYLabel = new Label
+        {
+            Text = "Body Vel Y: ",
+        };
+        
+        grid.Widgets.Add(bodyVelYLabel);
+        Grid.SetRow(bodyVelYLabel, 2);
+
+        var bodyVelYTextbox = new TextBox
+        {
+            MinWidth = UIConstants.DefaultTextboxWidth,
+            Text = "4.0",
+        };
+        
+        grid.Widgets.Add(bodyVelYTextbox);
+        Grid.SetColumn(bodyVelYTextbox, 1);
+        Grid.SetRow(bodyVelYTextbox, 2);
+        
+        // MASS
+        var bodyMassLabel = new Label
+        {
+            Text = "Body Mass: ",
+        };
+        
+        grid.Widgets.Add(bodyMassLabel);
+        Grid.SetRow(bodyMassLabel, 3);
+
+        var bodyMassTextbox = new TextBox
+        {
+            MinWidth = UIConstants.DefaultTextboxWidth,
+            Text = "1e6",
+        };
+        
+        grid.Widgets.Add(bodyMassTextbox);
+        Grid.SetColumn(bodyMassTextbox, 1);
+        Grid.SetRow(bodyMassTextbox, 3);
+        
+        // DISPLAY RADIUS
+        var bodyDisplaySizeLabel = new Label
+        {
+            Text = "Body Size: ",
+        };
+        
+        grid.Widgets.Add(bodyDisplaySizeLabel);
+        Grid.SetRow(bodyDisplaySizeLabel, 4);
+
+        var bodyDisplaySizeTextbox = new TextBox
+        {
+            MinWidth = UIConstants.DefaultTextboxWidth,
+            Text = "0.05",
+        };
+        
+        grid.Widgets.Add(bodyDisplaySizeTextbox);
+        Grid.SetColumn(bodyDisplaySizeTextbox, 1);
+        Grid.SetRow(bodyDisplaySizeTextbox, 4);
+        
+        // DIALOG AND SETUP
+        var editBodyDialog = new Dialog
+        {
+            Title = "Edit Body",
+            Content = grid
+        };
+
+        editBodyDialog.ButtonOk.Click += (sender, e) =>
+        {
+            Console.WriteLine("This body will be edited!");
+        };
+
+        return editBodyDialog;
+    }
+
     private VerticalStackPanel EditPanel(SimulationData simData)
     {
         var createBodyDialogue = CreateBodyDialog(simData);
@@ -383,7 +509,28 @@ public class SimulationUi
         {
             createBodyDialogue.Show(_desktop);
         };
+        
+        var editBodyDialog = EditBodyDialog(simData);
 
+        var editModeButton = new Button
+        {
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Edit Mode",
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
+            }
+        };
+
+        editModeButton.Click += (sender, args) =>
+        {
+            simData.IsPaused = !simData.IsPaused;
+            simData.EditMode = !simData.EditMode;
+        };
+        
         var editBodyButton = new Button
         {
             Width = UIConstants.DefaultButtonWidth,
@@ -399,8 +546,31 @@ public class SimulationUi
 
         editBodyButton.Click += (sender, args) =>
         {
-            simData.IsPaused = !simData.IsPaused;
-            simData.EditMode = !simData.EditMode;
+            if (simData.EditMode && simData.IsABodySelected)
+            {
+                editBodyDialog.Show(_desktop);
+            }
+        };
+
+        var deleteBodyButton = new Button
+        {
+            Width = UIConstants.DefaultButtonWidth,
+            Height = UIConstants.DefaultButtonHeight,
+            Content = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Text = "Delete Body",
+                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
+            }
+        };
+
+        deleteBodyButton.Click += (sender, args) =>
+        {
+            if (simData.EditMode && simData.IsABodySelected)
+            {
+                simData.DeleteSelectedBody = true;
+            }
         };
         
         var editPanel = new VerticalStackPanel
@@ -411,7 +581,9 @@ public class SimulationUi
             VerticalAlignment = VerticalAlignment.Bottom,
         };
         
+        editPanel.Widgets.Add(deleteBodyButton);
         editPanel.Widgets.Add(editBodyButton);
+        editPanel.Widgets.Add(editModeButton);
         editPanel.Widgets.Add(createBodyButton);
 
         return editPanel;

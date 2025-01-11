@@ -6,6 +6,8 @@ public class SimulationData
     public bool ToggleTrails { get; set; } = true;
     public bool ToggleNames { get; set; } = true;
     public bool ToggleBodyGhost { get; set; }
+    public bool IsABodySelected { get; set; }
+    public bool DeleteSelectedBody { get; set; }
     public bool EditMode { get; set; }
     public int TimeStep { get; set; } = 1;
     public int TrailLength { get; set; } = 250;

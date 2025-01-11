@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Color = Microsoft.Xna.Framework.Color;
@@ -12,7 +11,8 @@ namespace _2dgs;
 
 public class Body
 {
-    public Vector2 _position;
+    private Vector2 _position;
+    public bool Selected;
     private Vector2 _velocity;
     private string _name;
     private List<Vector2> _orbit_trail;
@@ -22,7 +22,6 @@ public class Body
     private const int FontSize = 20;
     private FontManager _fontManager;
     private TextureManager _textureManager;
-    private bool _selected;
     private Color _color = Color.White;
 
     public Body(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius, TextureManager textureManager)
@@ -59,8 +58,21 @@ public class Body
         
         PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         
-        if (mouseState.LeftButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) _selected = true;
-        if (mouseState.RightButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) _selected = false;
+        if (mouseState.LeftButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) Selected = true;
+    }
+
+    public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
+    {
+        float trueDisplayRadius = _displayRadius * _textureManager.BodyTexture.Width;
+        RectangleF bodyBounds = new RectangleF(
+            _position.X - trueDisplayRadius / 2,
+            _position.Y - trueDisplayRadius / 2,
+            trueDisplayRadius,
+            trueDisplayRadius);
+        
+        PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
+        
+        if (mouseState.RightButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) Selected = false; 
     }
 
     public void Update(List<Body> bodies, int timestep)
@@ -116,7 +128,7 @@ public class Body
 
     private void DrawSelector(SpriteBatch spriteBatch, SimulationData simData)
     {
-        if (_selected && simData.EditMode)
+        if (Selected && simData.EditMode)
         {
             spriteBatch.Draw(_textureManager.SelectorTexture,
                 _position,
@@ -154,7 +166,7 @@ public class Body
         if (!simData.ToggleNames) return;
         switch (simData.Position)
         {
-            case Position.Left:
+            case _2dgs.Position.Left:
                 _fontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
@@ -163,7 +175,7 @@ public class Body
                             -10f),
                         Color.White);
                 break;
-            case Position.Right:
+            case _2dgs.Position.Right:
                 _fontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
@@ -172,7 +184,7 @@ public class Body
                             -10f),
                         Color.White);
                 break;
-            case Position.Bottom:
+            case _2dgs.Position.Bottom:
                 _fontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
@@ -180,7 +192,7 @@ public class Body
                         new Vector2(-FontSize * _name.Length / 3, _displayRadius * 600),
                         Color.White);
                 break;
-            case Position.Top:
+            case _2dgs.Position.Top:
                 _fontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
