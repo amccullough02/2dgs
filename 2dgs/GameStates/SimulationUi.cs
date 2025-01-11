@@ -374,6 +374,8 @@ public class SimulationUi
         grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
         grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // NAME
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // POSITION X
+        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // POSITION Y
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY X
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY Y
         grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // MASS
@@ -397,6 +399,44 @@ public class SimulationUi
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
         
+        // POS X
+        var bodyPosXLabel = new Label
+        {
+            Text = "Body Pos X: ",
+        };
+        
+        grid.Widgets.Add(bodyPosXLabel);
+        Grid.SetRow(bodyPosXLabel, 1);
+
+        var posXTextbox = new TextBox
+        {
+            MinWidth = UIConstants.DefaultTextboxWidth,
+            Text = "0.0",
+        };
+        
+        grid.Widgets.Add(posXTextbox);
+        Grid.SetColumn(posXTextbox, 1);
+        Grid.SetRow(posXTextbox, 1);
+        
+        // POS Y
+        var bodyPosYLabel = new Label
+        {
+            Text = "Body Pos X: ",
+        };
+        
+        grid.Widgets.Add(bodyPosYLabel);
+        Grid.SetRow(bodyPosYLabel, 2);
+
+        var posYTextbox = new TextBox
+        {
+            MinWidth = UIConstants.DefaultTextboxWidth,
+            Text = "0.0",
+        };
+        
+        grid.Widgets.Add(posYTextbox);
+        Grid.SetColumn(posYTextbox, 1);
+        Grid.SetRow(posYTextbox, 2);
+        
         // VEL X
         var bodyVelXLabel = new Label
         {
@@ -404,7 +444,7 @@ public class SimulationUi
         };
         
         grid.Widgets.Add(bodyVelXLabel);
-        Grid.SetRow(bodyVelXLabel, 1);
+        Grid.SetRow(bodyVelXLabel, 3);
 
         var bodyVelXTextbox = new TextBox
         {
@@ -414,7 +454,7 @@ public class SimulationUi
         
         grid.Widgets.Add(bodyVelXTextbox);
         Grid.SetColumn(bodyVelXTextbox, 1);
-        Grid.SetRow(bodyVelXTextbox, 1);
+        Grid.SetRow(bodyVelXTextbox, 3);
         
         // VEL Y
         var bodyVelYLabel = new Label
@@ -423,7 +463,7 @@ public class SimulationUi
         };
         
         grid.Widgets.Add(bodyVelYLabel);
-        Grid.SetRow(bodyVelYLabel, 2);
+        Grid.SetRow(bodyVelYLabel, 4);
 
         var bodyVelYTextbox = new TextBox
         {
@@ -433,7 +473,7 @@ public class SimulationUi
         
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
-        Grid.SetRow(bodyVelYTextbox, 2);
+        Grid.SetRow(bodyVelYTextbox, 4);
         
         // MASS
         var bodyMassLabel = new Label
@@ -442,7 +482,7 @@ public class SimulationUi
         };
         
         grid.Widgets.Add(bodyMassLabel);
-        Grid.SetRow(bodyMassLabel, 3);
+        Grid.SetRow(bodyMassLabel, 5);
 
         var bodyMassTextbox = new TextBox
         {
@@ -452,7 +492,7 @@ public class SimulationUi
         
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
-        Grid.SetRow(bodyMassTextbox, 3);
+        Grid.SetRow(bodyMassTextbox, 5);
         
         // DISPLAY RADIUS
         var bodyDisplaySizeLabel = new Label
@@ -461,7 +501,7 @@ public class SimulationUi
         };
         
         grid.Widgets.Add(bodyDisplaySizeLabel);
-        Grid.SetRow(bodyDisplaySizeLabel, 4);
+        Grid.SetRow(bodyDisplaySizeLabel, 6);
 
         var bodyDisplaySizeTextbox = new TextBox
         {
@@ -471,7 +511,7 @@ public class SimulationUi
         
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
-        Grid.SetRow(bodyDisplaySizeTextbox, 4);
+        Grid.SetRow(bodyDisplaySizeTextbox, 6);
         
         // DIALOG AND SETUP
         var editBodyDialog = new Dialog
@@ -482,7 +522,18 @@ public class SimulationUi
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
         {
-            Console.WriteLine("This body will be edited!");
+            string name = bodyNameTextbox.Text;
+            Vector2 position = new Vector2(float.Parse(posXTextbox.Text), float.Parse(posYTextbox.Text));
+            Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
+            float mass = float.Parse(bodyMassTextbox.Text);
+            float size = float.Parse(bodyDisplaySizeTextbox.Text);
+            
+            simData.EditBodyData.Name = name;
+            simData.EditBodyData.Position = position;
+            simData.EditBodyData.Velocity = velocity;
+            simData.EditBodyData.Mass = mass;
+            simData.EditBodyData.DisplayRadius = size;
+            simData.EditSelectedBody = true;
         };
 
         return editBodyDialog;

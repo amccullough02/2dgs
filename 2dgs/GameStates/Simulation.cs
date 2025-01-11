@@ -95,14 +95,39 @@ public class Simulation : GameState
         }
     }
 
+    private void EditBody()
+    {
+        if (_simData.EditSelectedBody)
+        {
+            GetSelectedBody()
+                .Edit(_simData.EditBodyData.Name,
+                    _simData.EditBodyData.Position,
+                    _simData.EditBodyData.Velocity,
+                    _simData.EditBodyData.Mass,
+                    _simData.EditBodyData.DisplayRadius);
+        }
+        _simData.EditSelectedBody = false;
+    }
+
+    private void ForgetSelections()
+    {
+        foreach (Body body in _bodies) { body.Selected = false; }
+    }
+    
+    private void CheckForDeselections()
+    {
+        foreach (Body body in _bodies)
+        {
+            body.CheckIfDeselected(_mouseState.Position, _mouseState);
+        }
+    }
+
     private void DeleteBody()
     {
         var bodiesToRemove = new List<Body>();
             
         foreach (Body body in _bodies)
         {
-            body.CheckIfDeselected(_mouseState.Position, _mouseState);
-
             if (_simData.DeleteSelectedBody && body.Selected)
             {
                 bodiesToRemove.Add(body);
@@ -122,7 +147,14 @@ public class Simulation : GameState
         _simData.IsABodySelected = IsABodySelected();
         _mouseState = Mouse.GetState();
         _ghostBody.Update(_simData);
+        
+        CheckForDeselections();
         CreateBody();
+
+        if (!_simData.EditMode)
+        {
+            ForgetSelections();
+        }
         
         if (!_simData.IsPaused)
         {
@@ -143,6 +175,7 @@ public class Simulation : GameState
         if (_simData.EditMode && IsABodySelected())
         {
             DeleteBody();
+            EditBody();
         }
     }
 

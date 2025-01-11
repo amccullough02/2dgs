@@ -47,6 +47,15 @@ public class Body
         return forceVector;
     }
 
+    public void Edit(String name, Vector2 position, Vector2 velocity, float mass, float displayRadius)
+    {
+        _name = name;
+        _position = position;
+        _velocity = velocity;
+        _mass = mass;
+        _displayRadius = displayRadius;
+    }
+
     public void CheckIfSelected(Point mousePosition, MouseState mouseState)
     {
         float trueDisplayRadius = _displayRadius * _textureManager.BodyTexture.Width;
