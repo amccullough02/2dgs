@@ -132,4 +132,16 @@ public static class UiComponents
                VerticalAlignment = verticalAlignment,
           };
      }
+
+     public static ToggleButton CreateToggleButton(string text, bool toggled)
+     {
+          return new ToggleButton
+          {
+               IsToggled = toggled,
+               Content = new Label
+               {
+                    Text = text
+               }
+          };
+     }
 }
