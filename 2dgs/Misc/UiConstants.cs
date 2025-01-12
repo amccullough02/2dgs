@@ -1,6 +1,6 @@
 ﻿namespace _2dgs;
 
-public static class UIConstants
+public static class UiConstants
 {
     public const int DefaultButtonWidth = 250;
     public const int DefaultElementWidth = 250;

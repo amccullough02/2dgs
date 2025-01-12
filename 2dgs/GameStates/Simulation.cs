@@ -12,8 +12,8 @@ public class Simulation : GameState
     private List<Body> _bodies;
     private SaveSystem _saveSystem;
     private SaveData _saveData;
-    private SimulationData _simData;
-    private SimulationUi _simUi;
+    private SimulationData _simulationData;
+    private SimulationUi _simulationUi;
     private TextureManager _textureManager;
     private FontManager _fontManager;
     private MouseState _mouseState;
@@ -34,8 +34,8 @@ public class Simulation : GameState
         _textureManager = new TextureManager();
         _textureManager.LoadContent(game.Content, game.GraphicsDevice);
         _fontManager = new FontManager();
-        _simData = new SimulationData();
-        _simUi = new SimulationUi(game, _simData);
+        _simulationData = new SimulationData();
+        _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
         #endregion
         
@@ -77,36 +77,36 @@ public class Simulation : GameState
 
     private void CreateBody()
     {
-        if (_simData.ToggleBodyGhost)
+        if (_simulationData.ToggleBodyGhost)
         {
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 var body = new Body(
-                    _simData.CreateBodyData.Name,
+                    _simulationData.CreateBodyData.Name,
                     _ghostBody.Position, 
-                    _simData.CreateBodyData.Velocity, 
-                    _simData.CreateBodyData.Mass, 
-                    _simData.CreateBodyData.DisplayRadius, 
+                    _simulationData.CreateBodyData.Velocity, 
+                    _simulationData.CreateBodyData.Mass, 
+                    _simulationData.CreateBodyData.DisplayRadius, 
                     _textureManager);
                 
                 _bodies.Add(body);
-                _simData.ToggleBodyGhost = !_simData.ToggleBodyGhost;
+                _simulationData.ToggleBodyGhost = !_simulationData.ToggleBodyGhost;
             }
         }
     }
 
     private void EditBody()
     {
-        if (_simData.EditSelectedBody)
+        if (_simulationData.EditSelectedBody)
         {
             GetSelectedBody()
-                .Edit(_simData.EditBodyData.Name,
-                    _simData.EditBodyData.Position,
-                    _simData.EditBodyData.Velocity,
-                    _simData.EditBodyData.Mass,
-                    _simData.EditBodyData.DisplayRadius);
+                .Edit(_simulationData.EditBodyData.Name,
+                    _simulationData.EditBodyData.Position,
+                    _simulationData.EditBodyData.Velocity,
+                    _simulationData.EditBodyData.Mass,
+                    _simulationData.EditBodyData.DisplayRadius);
         }
-        _simData.EditSelectedBody = false;
+        _simulationData.EditSelectedBody = false;
     }
 
     private void ForgetSelections()
@@ -128,7 +128,7 @@ public class Simulation : GameState
             
         foreach (Body body in _bodies)
         {
-            if (_simData.DeleteSelectedBody && body.Selected)
+            if (_simulationData.DeleteSelectedBody && body.Selected)
             {
                 bodiesToRemove.Add(body);
             }
@@ -139,32 +139,32 @@ public class Simulation : GameState
             _bodies.Remove(body);
         }
         
-        _simData.DeleteSelectedBody = false;
+        _simulationData.DeleteSelectedBody = false;
     }
     
     public override void Update(GameTime gameTime)
     {
-        _simData.IsABodySelected = IsABodySelected();
+        _simulationData.IsABodySelected = IsABodySelected();
         _mouseState = Mouse.GetState();
-        _ghostBody.Update(_simData);
+        _ghostBody.Update(_simulationData);
         
         CheckForDeselections();
         CreateBody();
 
-        if (!_simData.EditMode)
+        if (!_simulationData.EditMode)
         {
             ForgetSelections();
         }
         
-        if (!_simData.IsPaused)
+        if (!_simulationData.IsPaused)
         {
             foreach (Body body in _bodies)
             {
-                body.Update(_bodies, _simData.TimeStep);
+                body.Update(_bodies, _simulationData.TimeStep);
             }
         }
 
-        if (_simData.EditMode && !IsABodySelected())
+        if (_simulationData.EditMode && !IsABodySelected())
         {
             foreach (Body body in _bodies)
             {
@@ -172,7 +172,7 @@ public class Simulation : GameState
             }
         }
 
-        if (_simData.EditMode && IsABodySelected())
+        if (_simulationData.EditMode && IsABodySelected())
         {
             DeleteBody();
             EditBody();
@@ -181,7 +181,7 @@ public class Simulation : GameState
 
     private void EditModeDisplay(SpriteBatch spriteBatch)
     {
-        if (_simData.EditMode)
+        if (_simulationData.EditMode)
         {
             _fontManager.MediumFont(24)
                 .DrawText(spriteBatch, "Edit Mode Active", new Vector2(10, 40), Color.Green);
@@ -195,11 +195,11 @@ public class Simulation : GameState
         
         foreach (Body body in _bodies)
         {
-            body.Draw(spriteBatch, _simData);
+            body.Draw(spriteBatch, _simulationData);
         }
 
-        _ghostBody.Draw(spriteBatch, _textureManager, _simData);
+        _ghostBody.Draw(spriteBatch, _textureManager, _simulationData);
         spriteBatch.End();
-        _simUi.Draw();
+        _simulationUi.Draw();
     }
 }

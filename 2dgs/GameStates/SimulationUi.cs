@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
@@ -9,212 +7,95 @@ namespace _2dgs;
 
 public class SimulationUi
 {
-    private Game _game;
     private Desktop _desktop;
-    private FontManager _fontManager;
-    private bool _wasKeyPreviouslyDown;
     
-    public SimulationUi(Game game, SimulationData simData)
+    public SimulationUi(Game game, SimulationData simulationData)
     {
-        _game = game;
-        _fontManager = new FontManager();
-        
-        MyraEnvironment.Game = _game;
+        MyraEnvironment.Game = game;
         
         var rootContainer = new Panel();
-        rootContainer.Widgets.Add(SettingsPanel(simData));
-        rootContainer.Widgets.Add(ReturnButton());
-        rootContainer.Widgets.Add(EditPanel(simData));
+        rootContainer.Widgets.Add(SettingsPanel(simulationData));
+        rootContainer.Widgets.Add(EditPanel(simulationData));
+        rootContainer.Widgets.Add(ReturnPanel(game));
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
-    private VerticalStackPanel SettingsPanel(SimulationData simData)
+    private VerticalStackPanel SettingsPanel(SimulationData simulationData)
     {
-        var settingsPanel = new VerticalStackPanel
+        var settingsPanel =
+            UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Left, VerticalAlignment.Bottom,
+                new Thickness(UiConstants.DefaultMargin, 0, 0, UiConstants.DefaultMargin));
+
+        var timeStepLabel = UiComponents.CreateStyledLabel($"Time step: {simulationData.TimeStep}");
+
+        var timeStepSlider = UiComponents.CreateHorizontalSlider(1, 1, 10);
+        timeStepSlider.ValueChanged += (s, e) =>
         {
-            Spacing = 8,
-            Margin = new Thickness(UIConstants.DefaultMargin, 0, 0, UIConstants.DefaultMargin),
-            HorizontalAlignment = HorizontalAlignment.Left,
-            VerticalAlignment = VerticalAlignment.Bottom,
+            timeStepLabel.Text = $"Time step: {(int)timeStepSlider.Value}";
+            simulationData.TimeStep = (int)timeStepSlider.Value;
         };
 
-        var timestepLabel = new Label
-        {
-            Text = $"Time step: {simData.TimeStep}",
-            Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-        };
-
-        var timestepSlider = new HorizontalSlider
-        {
-            Minimum = 1,
-            Maximum = 10,
-            Value = 1,
-            Width = UIConstants.DefaultElementWidth,
-        };
-
-        timestepSlider.ValueChanged += (s, e) =>
-        {
-            timestepLabel.Text = $"Time step: {(int)timestepSlider.Value}";
-            simData.TimeStep = (int)timestepSlider.Value;
-        };
-        
-        var pauseButton = new Button
-        {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight,
-            Content = new Label
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Pause Simulation",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-            }
-        };
-
+        var pauseButton = UiComponents.CreateButton("Pause Simulation");
         pauseButton.Click += (s, e) =>
         {
-            simData.IsPaused = !simData.IsPaused;
-            if (simData.EditMode) simData.EditMode = false;
+            simulationData.IsPaused = !simulationData.IsPaused;
+            if (simulationData.EditMode) simulationData.EditMode = false;
         };
 
-        var firstDivider = new HorizontalSeparator
-        {
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Thickness = UIConstants.DefaultSeparatorHeight,
-            Color = Color.White,
-            Width = UIConstants.DefaultElementWidth,
-            Margin = new Thickness(0, 10, 0, 10),
-        };
+        var firstDivider = UiComponents.CreateHorizontalSeparator();
         
-        var trailLengthLabel = new Label
-        {
-            Text = $"Trail length: {simData.TrailLength}",
-            Font = _fontManager.LightFont(UIConstants.DefaultFontSize)
-        };
+        var trailLengthLabel = UiComponents.CreateStyledLabel($"Trail length: {simulationData.TrailLength}");
 
-        var trailLengthSlider = new HorizontalSlider
-        {
-            Minimum = 250,
-            Maximum = 2000,
-            Value = 1,
-            Width = UIConstants.DefaultElementWidth,
-        };
-
+        var trailLengthSlider = UiComponents.CreateHorizontalSlider(250, 250, 2000);
         trailLengthSlider.ValueChanged += (s, e) =>
         {
             trailLengthLabel.Text = $"Trail length: {(int)trailLengthSlider.Value}";
-            simData.TrailLength = (int)trailLengthSlider.Value;
+            simulationData.TrailLength = (int)trailLengthSlider.Value;
         };
         
-        var trailsButton = new Button
-        {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight,
-            Content = new Label
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Toggle Trails",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-            }
-        };
-
+        var trailsButton = UiComponents.CreateButton("Toggle Trails");
         trailsButton.Click += (s, e) =>
         {
-            simData.ToggleTrails = !simData.ToggleTrails;
+            simulationData.ToggleTrails = !simulationData.ToggleTrails;
         };
         
-        var secondDivider = new HorizontalSeparator
-        {
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Thickness = UIConstants.DefaultSeparatorHeight,
-            Color = Color.White,
-            Width = UIConstants.DefaultElementWidth,
-            Margin = new Thickness(0, 10, 0, 10),
-        };
+        var secondDivider = UiComponents.CreateHorizontalSeparator();
         
-        var namesButton = new Button
-        {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight,
-            Content = new Label
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Toggle Names",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-            }
-        };
-
+        var namesButton = UiComponents.CreateButton("Toggle Names");
         namesButton.Click += (s, e) =>
         {
-            simData.ToggleNames = !simData.ToggleNames;
+            simulationData.ToggleNames = !simulationData.ToggleNames;
         };
 
-        var namesDropdown = new ComboView()
-        {
-            Width = UIConstants.DefaultElementWidth,
-            SelectedIndex = 0,
-        };
-        
-        namesDropdown.Widgets.Add(new Label
-        {
-            Text = "Left",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Font = _fontManager.LightFont(18),
-            Padding = new Thickness(0, 5, 0, 5),
-        });
-        
-        namesDropdown.Widgets.Add(new Label
-        {
-            Text = "Right",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Font = _fontManager.LightFont(18),
-            Padding = new Thickness(0, 5, 0, 5),
-        });
-        
-        namesDropdown.Widgets.Add(new Label
-        {
-            Text = "Top",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Font = _fontManager.LightFont(18),
-            Padding = new Thickness(0, 5, 0, 5),
-        });
-        
-        namesDropdown.Widgets.Add(new Label
-        {
-            Text = "Bottom",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Font = _fontManager.LightFont(18),
-            Padding = new Thickness(0, 5, 0, 5),
-        });
-
+        var namesDropdown = UiComponents.CreateComboView();
+        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Left"));
+        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Right"));
+        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Top"));
+        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Bottom"));
         namesDropdown.SelectedIndex = 0;
         namesDropdown.SelectedIndexChanged += (s, e) =>
         {
             switch (namesDropdown.SelectedIndex)
             {
                 case 0:
-                    simData.Position = Position.Left;
+                    simulationData.Position = Position.Left;
                     break;
                 case 1:
-                    simData.Position = Position.Right;
+                    simulationData.Position = Position.Right;
                     break;
                 case 2:
-                    simData.Position = Position.Top;
+                    simulationData.Position = Position.Top;
                     break;
                 case 3:
-                    simData.Position = Position.Bottom;
+                    simulationData.Position = Position.Bottom;
                     break;
             }
         };
         
-        settingsPanel.Widgets.Add(timestepLabel);
-        settingsPanel.Widgets.Add(timestepSlider);
+        settingsPanel.Widgets.Add(timeStepLabel);
+        settingsPanel.Widgets.Add(timeStepSlider);
         settingsPanel.Widgets.Add(pauseButton);
         settingsPanel.Widgets.Add(firstDivider);
         settingsPanel.Widgets.Add(trailLengthLabel);
@@ -227,123 +108,52 @@ public class SimulationUi
         return settingsPanel;
     }
 
-    private Dialog CreateBodyDialog(SimulationData simData)
+    private Dialog CreateBodyDialog(SimulationData simulationData)
     {
-        var grid = new Grid
-        {
-            RowSpacing = 10,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Margin = new Thickness(10, 10, 10, 10),
-        };
+        var grid = UiComponents.CreateGrid(10);
+        UiComponents.AddGridColumns(grid, 2);
+        UiComponents.AddGridRows(grid, 5);
         
-        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
-        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // NAME
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY X
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY Y
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // MASS
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // DISPLAY RADIUS
-
-        // BODY NAME
-        var bodyNameLabel = new Label
-        {
-            Text = "Body Name: ",
-        };
-        
+        var bodyNameLabel = UiComponents.CreateDialogLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
-
-        var bodyNameTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "Default name"
-        };
-        
+        var bodyNameTextbox = UiComponents.CreateBasicTextBox("Default name");
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
         
-        // VEL X
-        var bodyVelXLabel = new Label
-        {
-            Text = "Body Vel X: ",
-        };
-        
+        var bodyVelXLabel = UiComponents.CreateDialogLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
         Grid.SetRow(bodyVelXLabel, 1);
-
-        var bodyVelXTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "0.0",
-        };
-        
+        var bodyVelXTextbox = UiComponents.CreateBasicTextBox("0.0");
         grid.Widgets.Add(bodyVelXTextbox);
         Grid.SetColumn(bodyVelXTextbox, 1);
         Grid.SetRow(bodyVelXTextbox, 1);
         
-        // VEL Y
-        var bodyVelYLabel = new Label
-        {
-            Text = "Body Vel Y: ",
-        };
-        
+        var bodyVelYLabel = UiComponents.CreateDialogLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 2);
-
-        var bodyVelYTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "4.0",
-        };
-        
+        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("4.0");
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 2);
         
-        // MASS
-        var bodyMassLabel = new Label
-        {
-            Text = "Body Mass: ",
-        };
-        
+        var bodyMassLabel = UiComponents.CreateDialogLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 3);
-
-        var bodyMassTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "1e6",
-        };
-        
+        var bodyMassTextbox = UiComponents.CreateBasicTextBox("1e6");
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 3);
-        
-        // DISPLAY RADIUS
-        var bodyDisplaySizeLabel = new Label
-        {
-            Text = "Body Size: ",
-        };
-        
+
+        var bodyDisplaySizeLabel = UiComponents.CreateDialogLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
         Grid.SetRow(bodyDisplaySizeLabel, 4);
-
-        var bodyDisplaySizeTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "0.05",
-        };
-        
+        var bodyDisplaySizeTextbox = UiComponents.CreateBasicTextBox("0.05");
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 4);
         
-        // DIALOG AND SETUP
-        var createBodyDialogue = new Dialog
-        {
-            Title = "Create New Body",
-            Content = grid
-        };
+        var createBodyDialogue = new Dialog { Title = "Create New Body", Content = grid };
 
         createBodyDialogue.ButtonOk.Click += (sender, e) =>
         {
@@ -352,173 +162,78 @@ public class SimulationUi
             float mass = float.Parse(bodyMassTextbox.Text);
             float size = float.Parse(bodyDisplaySizeTextbox.Text);
 
-            simData.CreateBodyData.Name = name;
-            simData.CreateBodyData.Velocity = velocity;
-            simData.CreateBodyData.Mass = mass;
-            simData.CreateBodyData.DisplayRadius = size;
-            simData.ToggleBodyGhost = true;
+            simulationData.CreateBodyData.Name = name;
+            simulationData.CreateBodyData.Velocity = velocity;
+            simulationData.CreateBodyData.Mass = mass;
+            simulationData.CreateBodyData.DisplayRadius = size;
+            simulationData.ToggleBodyGhost = true;
         };
 
         return createBodyDialogue;
     }
 
-    private Dialog EditBodyDialog(SimulationData simData)
+    private Dialog EditBodyDialog(SimulationData simulationData)
     {
-        var grid = new Grid
-        {
-            RowSpacing = 10,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Margin = new Thickness(10, 10, 10, 10),
-        };
+        var grid = UiComponents.CreateGrid(10);
+        UiComponents.AddGridColumns(grid, 2);
+        UiComponents.AddGridRows(grid, 7);
         
-        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
-        grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // NAME
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // POSITION X
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // POSITION Y
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY X
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // VELOCITY Y
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // MASS
-        grid.RowsProportions.Add(new Proportion(ProportionType.Auto)); // DISPLAY RADIUS
-
-        // BODY NAME
-        var bodyNameLabel = new Label
-        {
-            Text = "Body Name: ",
-        };
-        
+        var bodyNameLabel = UiComponents.CreateDialogLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
-
-        var bodyNameTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "Default name"
-        };
-        
+        var bodyNameTextbox = UiComponents.CreateBasicTextBox("Default name");
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
-        
-        // POS X
-        var bodyPosXLabel = new Label
-        {
-            Text = "Body Pos X: ",
-        };
-        
+
+        var bodyPosXLabel = UiComponents.CreateDialogLabel("Pos X: ");
         grid.Widgets.Add(bodyPosXLabel);
         Grid.SetRow(bodyPosXLabel, 1);
-
-        var posXTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "0.0",
-        };
-        
+        var posXTextbox = UiComponents.CreateBasicTextBox("0.0");
         grid.Widgets.Add(posXTextbox);
         Grid.SetColumn(posXTextbox, 1);
         Grid.SetRow(posXTextbox, 1);
-        
-        // POS Y
-        var bodyPosYLabel = new Label
-        {
-            Text = "Body Pos X: ",
-        };
-        
+
+        var bodyPosYLabel = UiComponents.CreateDialogLabel("Pos Y: ");
         grid.Widgets.Add(bodyPosYLabel);
         Grid.SetRow(bodyPosYLabel, 2);
-
-        var posYTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "0.0",
-        };
-        
+        var posYTextbox = UiComponents.CreateBasicTextBox("0.0");
         grid.Widgets.Add(posYTextbox);
         Grid.SetColumn(posYTextbox, 1);
         Grid.SetRow(posYTextbox, 2);
-        
-        // VEL X
-        var bodyVelXLabel = new Label
-        {
-            Text = "Body Vel X: ",
-        };
-        
+
+        var bodyVelXLabel = UiComponents.CreateDialogLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
         Grid.SetRow(bodyVelXLabel, 3);
-
-        var bodyVelXTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "0.0",
-        };
-        
+        var bodyVelXTextbox = UiComponents.CreateBasicTextBox("0.0");
         grid.Widgets.Add(bodyVelXTextbox);
         Grid.SetColumn(bodyVelXTextbox, 1);
         Grid.SetRow(bodyVelXTextbox, 3);
-        
-        // VEL Y
-        var bodyVelYLabel = new Label
-        {
-            Text = "Body Vel Y: ",
-        };
-        
+
+        var bodyVelYLabel = UiComponents.CreateDialogLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 4);
-
-        var bodyVelYTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "4.0",
-        };
-        
+        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("4.0");
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 4);
-        
-        // MASS
-        var bodyMassLabel = new Label
-        {
-            Text = "Body Mass: ",
-        };
-        
+
+        var bodyMassLabel = UiComponents.CreateDialogLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 5);
-
-        var bodyMassTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "1e6",
-        };
-        
+        var bodyMassTextbox = UiComponents.CreateBasicTextBox("1e6");
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 5);
-        
-        // DISPLAY RADIUS
-        var bodyDisplaySizeLabel = new Label
-        {
-            Text = "Body Size: ",
-        };
-        
+
+        var bodyDisplaySizeLabel = UiComponents.CreateDialogLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
         Grid.SetRow(bodyDisplaySizeLabel, 6);
-
-        var bodyDisplaySizeTextbox = new TextBox
-        {
-            MinWidth = UIConstants.DefaultTextboxWidth,
-            Text = "0.05",
-        };
-        
+        var bodyDisplaySizeTextbox = UiComponents.CreateBasicTextBox("0.05");
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 6);
-        
-        // DIALOG AND SETUP
-        var editBodyDialog = new Dialog
-        {
-            Title = "Edit Body",
-            Content = grid
-        };
+
+    var editBodyDialog = new Dialog { Title = "Edit Body", Content = grid };
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
         {
@@ -528,109 +243,57 @@ public class SimulationUi
             float mass = float.Parse(bodyMassTextbox.Text);
             float size = float.Parse(bodyDisplaySizeTextbox.Text);
             
-            simData.EditBodyData.Name = name;
-            simData.EditBodyData.Position = position;
-            simData.EditBodyData.Velocity = velocity;
-            simData.EditBodyData.Mass = mass;
-            simData.EditBodyData.DisplayRadius = size;
-            simData.EditSelectedBody = true;
+            simulationData.EditBodyData.Name = name;
+            simulationData.EditBodyData.Position = position;
+            simulationData.EditBodyData.Velocity = velocity;
+            simulationData.EditBodyData.Mass = mass;
+            simulationData.EditBodyData.DisplayRadius = size;
+            simulationData.EditSelectedBody = true;
         };
 
         return editBodyDialog;
     }
 
-    private VerticalStackPanel EditPanel(SimulationData simData)
+    private VerticalStackPanel EditPanel(SimulationData simulationData)
     {
-        var createBodyDialogue = CreateBodyDialog(simData);
-        
-        var createBodyButton = new Button
-        {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight,
-            Content = new Label
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Create Body",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-            }
-        };
+        var createBodyDialogue = CreateBodyDialog(simulationData);
 
+        var createBodyButton = UiComponents.CreateButton("Create Body");
         createBodyButton.Click += (s, e) =>
         {
             createBodyDialogue.Show(_desktop);
         };
         
-        var editBodyDialog = EditBodyDialog(simData);
+        var editBodyDialog = EditBodyDialog(simulationData);
 
-        var editModeButton = new Button
-        {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight,
-            Content = new Label
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Edit Mode",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-            }
-        };
-
+        var editModeButton = UiComponents.CreateButton("Edit Mode");
         editModeButton.Click += (sender, args) =>
         {
-            simData.IsPaused = !simData.IsPaused;
-            simData.EditMode = !simData.EditMode;
+            simulationData.IsPaused = !simulationData.IsPaused;
+            simulationData.EditMode = !simulationData.EditMode;
         };
         
-        var editBodyButton = new Button
-        {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight,
-            Content = new Label
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Edit Body",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-            }
-        };
-
+        var editBodyButton = UiComponents.CreateButton("Edit Body");
         editBodyButton.Click += (sender, args) =>
         {
-            if (simData.EditMode && simData.IsABodySelected)
+            if (simulationData.EditMode && simulationData.IsABodySelected)
             {
                 editBodyDialog.Show(_desktop);
             }
         };
 
-        var deleteBodyButton = new Button
+        var deleteBodyButton = UiComponents.CreateButton("Delete Body");
+        deleteBodyButton.Click += (sender, args) =>
         {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight,
-            Content = new Label
+            if (simulationData.EditMode && simulationData.IsABodySelected)
             {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Delete Body",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
+                simulationData.DeleteSelectedBody = true;
             }
         };
 
-        deleteBodyButton.Click += (sender, args) =>
-        {
-            if (simData.EditMode && simData.IsABodySelected)
-            {
-                simData.DeleteSelectedBody = true;
-            }
-        };
-        
-        var editPanel = new VerticalStackPanel
-        {
-            Spacing = 8,
-            Margin = new Thickness(0, 0, UIConstants.DefaultMargin, UIConstants.DefaultMargin),
-            HorizontalAlignment = HorizontalAlignment.Right,
-            VerticalAlignment = VerticalAlignment.Bottom,
-        };
+        var editPanel = 
+            UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Bottom,
+                new Thickness(0, 0, UiConstants.DefaultMargin, UiConstants.DefaultMargin));
         
         editPanel.Widgets.Add(deleteBodyButton);
         editPanel.Widgets.Add(editBodyButton);
@@ -640,30 +303,20 @@ public class SimulationUi
         return editPanel;
     }
 
-    private Button ReturnButton()
+    private VerticalStackPanel ReturnPanel(Game game)
     {
-        Button returnButton = new Button
-        {
-            Width = UIConstants.DefaultButtonWidth,
-            Height = UIConstants.DefaultButtonHeight + UIConstants.DefaultMargin,
-            HorizontalAlignment = HorizontalAlignment.Right,
-            VerticalAlignment = VerticalAlignment.Top,
-            Margin = new Thickness(0, UIConstants.DefaultMargin, UIConstants.DefaultMargin, 0),
-            Content = new Label
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Text = "Return to Sim Menu",
-                Font = _fontManager.LightFont(UIConstants.DefaultMargin)
-            }
-        };
+        var returnPanel = UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Top,
+            new Thickness(0, UiConstants.DefaultMargin, UiConstants.DefaultMargin, 0));
         
+        var returnButton = UiComponents.CreateButton("Exit Simulation");
         returnButton.Click += (s, e) =>
         {
-            _game.GameStateManager.ChangeState(new SimulationMenu(_game));
+            game.GameStateManager.ChangeState(new SimulationMenu(game));
         };
         
-        return returnButton;
+        returnPanel.Widgets.Add(returnButton);
+        
+        return returnPanel;
     }
 
     public void Draw()
