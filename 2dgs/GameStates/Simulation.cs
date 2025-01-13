@@ -30,8 +30,7 @@ public class Simulation : GameState
     {
         #region Systems
         _saveSystem = new SaveSystem();
-        _textureManager = new TextureManager();
-        _textureManager.LoadContent(game.Content, game.GraphicsDevice);
+        _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _simulationData = new SimulationData();
         _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
