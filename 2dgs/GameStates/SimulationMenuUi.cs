@@ -25,9 +25,7 @@ public class SimulationMenuUi
 
     private Grid CreateSimulationMenu(Game game)
     {
-        var grid = UiComponents.CreateGrid(10);
-        UiComponents.AddGridColumns(grid, 1);
-        UiComponents.AddGridRows(grid, 3);
+        var grid = UiComponents.CreateGrid(10, 1, 3);
 
         var title = UiComponents.CreateStyledLabel("Simulation Menu");
         Grid.SetRow(title, 0);

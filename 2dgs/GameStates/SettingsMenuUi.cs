@@ -21,9 +21,7 @@ public class SettingsMenuUi
 
     private Grid CreateSettingsMenu(Game game)
     {
-        var grid = UiComponents.CreateGrid(10);
-        UiComponents.AddGridColumns(grid, 1);
-        UiComponents.AddGridRows(grid, 4);
+        var grid = UiComponents.CreateGrid(10, 1, 4);
 
         var settingsMenuTitle = UiComponents.CreateStyledLabel("Settings Menu");
 

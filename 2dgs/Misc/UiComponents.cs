@@ -67,30 +67,26 @@ public static class UiComponents
           };
      }
 
-     public static Grid CreateGrid(int spacing)
+     public static Grid CreateGrid(int spacing, int columns, int rows)
      {
-          return new Grid
+          var grid = new Grid
           {
                RowSpacing = spacing,
                HorizontalAlignment = HorizontalAlignment.Center,
                Margin = new Thickness(10, 10, 10, 10),
           };
-     }
-
-     public static void AddGridColumns(Grid grid, int columns)
-     {
+          
           for (var i = 0; i < columns; i++)
           {
                grid.ColumnsProportions.Add(new Proportion(ProportionType.Auto));
           }
-     }
-
-     public static void AddGridRows(Grid grid, int rows)
-     {
+          
           for (var i = 0; i < rows; i++)
           {
                grid.RowsProportions.Add(new Proportion(ProportionType.Auto));
           }
+
+          return grid;
      }
 
      public static Label CreateStyledLabel(string text)
