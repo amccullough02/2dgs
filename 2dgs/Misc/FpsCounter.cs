@@ -12,12 +12,10 @@ public class FpsCounter
     private int _frameCount;
     private int _fps;
     private const int FontSize = 24;
-    private readonly FontManager _fontManager;
 
     public FpsCounter()
     {
         _showFps = true;
-        _fontManager = new FontManager();
     }
 
     public void Update(GameTime gameTime)
@@ -42,7 +40,7 @@ public class FpsCounter
         {
             spriteBatch.Begin();
             string fpsText = $"FPS: {_fps}";
-            _fontManager.MediumFont(FontSize).
+            FontManager.MediumFont(FontSize).
                 DrawText(spriteBatch, fpsText, new Vector2(10, 10), Color.White);
             spriteBatch.End();
         }

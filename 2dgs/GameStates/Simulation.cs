@@ -15,7 +15,6 @@ public class Simulation : GameState
     private SimulationData _simulationData;
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
-    private FontManager _fontManager;
     private MouseState _mouseState;
     private Test _test;
     private GhostBody _ghostBody;
@@ -33,7 +32,6 @@ public class Simulation : GameState
         _saveSystem = new SaveSystem();
         _textureManager = new TextureManager();
         _textureManager.LoadContent(game.Content, game.GraphicsDevice);
-        _fontManager = new FontManager();
         _simulationData = new SimulationData();
         _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
@@ -183,7 +181,7 @@ public class Simulation : GameState
     {
         if (_simulationData.EditMode)
         {
-            _fontManager.MediumFont(24)
+            FontManager.MediumFont(24)
                 .DrawText(spriteBatch, "Edit Mode Active", new Vector2(10, 40), Color.Green);
         }
     } 

@@ -3,34 +3,34 @@ using FontStashSharp;
 
 namespace _2dgs;
 
-public class FontManager
+public static class FontManager
 {
-    private FontSystem _lightFontSystem;
-    private FontSystem _mediumFontSystem;
-    private FontSystem _boldFontSystem;
+    private static readonly FontSystem LightFontSystem;
+    private static readonly FontSystem MediumFontSystem;
+    private static readonly FontSystem BoldFontSystem;
 
-    public FontManager()
+    static FontManager()
     {
-        _lightFontSystem = new FontSystem();
-        _lightFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Light.ttf"));
-        _mediumFontSystem = new FontSystem();
-        _mediumFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Medium.ttf"));
-        _boldFontSystem = new FontSystem();
-        _boldFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Bold.ttf"));
+        LightFontSystem = new FontSystem();
+        LightFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Light.ttf"));
+        MediumFontSystem = new FontSystem();
+        MediumFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Medium.ttf"));
+        BoldFontSystem = new FontSystem();
+        BoldFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Bold.ttf"));
     }
 
-    public SpriteFontBase LightFont(int size)
+    public static SpriteFontBase LightFont(int size)
     {
-        return _lightFontSystem.GetFont(size);
+        return LightFontSystem.GetFont(size);
     }
 
-    public SpriteFontBase MediumFont(int size)
+    public static SpriteFontBase MediumFont(int size)
     {
-        return _mediumFontSystem.GetFont(size);
+        return MediumFontSystem.GetFont(size);
     }
 
-    public SpriteFontBase BoldFont(int size)
+    public static SpriteFontBase BoldFont(int size)
     {
-        return _boldFontSystem.GetFont(size);
+        return BoldFontSystem.GetFont(size);
     }
 }

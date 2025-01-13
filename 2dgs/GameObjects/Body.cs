@@ -20,7 +20,6 @@ public class Body
     private int _maxTrailLength = 2000;
     private float _displayRadius;
     private const int FontSize = 20;
-    private FontManager _fontManager;
     private TextureManager _textureManager;
     private Color _color = Color.White;
 
@@ -32,7 +31,6 @@ public class Body
         _mass = mass;
         _displayRadius = displayRadius;
         _orbit_trail = new List<Vector2>();
-        _fontManager = new FontManager();
         _textureManager = textureManager;
     }
 
@@ -175,8 +173,8 @@ public class Body
         if (!simData.ToggleNames) return;
         switch (simData.Position)
         {
-            case _2dgs.Position.Left:
-                _fontManager.LightFont(FontSize)
+            case Position.Left:
+                FontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -184,8 +182,8 @@ public class Body
                             -10f),
                         Color.White);
                 break;
-            case _2dgs.Position.Right:
-                _fontManager.LightFont(FontSize)
+            case Position.Right:
+                FontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -193,16 +191,16 @@ public class Body
                             -10f),
                         Color.White);
                 break;
-            case _2dgs.Position.Bottom:
-                _fontManager.LightFont(FontSize)
+            case Position.Bottom:
+                FontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
                         new Vector2(-FontSize * _name.Length / 3, _displayRadius * 600),
                         Color.White);
                 break;
-            case _2dgs.Position.Top:
-                _fontManager.LightFont(FontSize)
+            case Position.Top:
+                FontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -210,7 +208,7 @@ public class Body
                         Color.White);
                 break;
             default:
-                _fontManager.LightFont(FontSize)
+                FontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         "Test Name",
                         _position +

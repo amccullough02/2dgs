@@ -6,7 +6,6 @@ namespace _2dgs;
 
 public static class UiComponents
 {
-     private static readonly FontManager FontManager = new FontManager();
      
      public static Button CreateButton(string text)
      {
