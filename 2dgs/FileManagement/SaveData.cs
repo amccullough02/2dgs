@@ -4,5 +4,5 @@ namespace _2dgs;
 
 public class SaveData
 {
-    public List<BodyData> Bodies;
+    public List<BodyData> Bodies = new List<BodyData>();
 }

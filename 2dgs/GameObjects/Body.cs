@@ -45,6 +45,18 @@ public class Body
         return forceVector;
     }
 
+    public BodyData ConvertToBodyData()
+    {
+        return new BodyData
+        {
+            Name = _name,
+            Position = _position,
+            Velocity = _velocity,
+            Mass = _mass,
+            DisplayRadius = _displayRadius
+        };
+    }
+
     public void Edit(String name, Vector2 position, Vector2 velocity, float mass, float displayRadius)
     {
         _name = name;

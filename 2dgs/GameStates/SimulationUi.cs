@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
@@ -16,7 +17,7 @@ public class SimulationUi
         var rootContainer = new Panel();
         rootContainer.Widgets.Add(SettingsPanel(simulationData));
         rootContainer.Widgets.Add(EditPanel(simulationData));
-        rootContainer.Widgets.Add(ReturnPanel(game));
+        rootContainer.Widgets.Add(SaveAndQuitPanel(game, simulationData));
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
@@ -299,9 +300,9 @@ public class SimulationUi
         return editPanel;
     }
 
-    private VerticalStackPanel ReturnPanel(Game game)
+    private VerticalStackPanel SaveAndQuitPanel(Game game, SimulationData simulationData)
     {
-        var returnPanel = UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Top,
+        var saveAndQuitPanel = UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Top,
             new Thickness(0, UiConstants.DefaultMargin, UiConstants.DefaultMargin, 0));
         
         var returnButton = UiComponents.CreateButton("Exit Simulation");
@@ -310,9 +311,16 @@ public class SimulationUi
             game.GameStateManager.ChangeState(new SimulationMenu(game));
         };
         
-        returnPanel.Widgets.Add(returnButton);
+        var saveButton = UiComponents.CreateButton("Save Simulation");
+        saveButton.Click += (s, e) =>
+        {
+            simulationData.AttemptToSaveFile = true;
+        };
         
-        return returnPanel;
+        saveAndQuitPanel.Widgets.Add(returnButton);
+        saveAndQuitPanel.Widgets.Add(saveButton);
+        
+        return saveAndQuitPanel;
     }
 
     public void Draw()

@@ -63,6 +63,25 @@ public class Simulation : GameState
                     _textureManager));
             }
         }
+        
+        _simulationData.FilePath = filePath;
+    }
+
+    private void SaveSimulation()
+    {
+        SaveData dataToSave = new SaveData();
+        if (_simulationData.AttemptToSaveFile)
+        {
+            Console.WriteLine("DEBUG: Saving simulation to " + _simulationData.FilePath);
+
+            foreach (Body body in _bodies)
+            {
+                dataToSave.Bodies.Add(body.ConvertToBodyData());
+            }
+            
+            _saveSystem.Save(_simulationData.FilePath, dataToSave);
+            _simulationData.AttemptToSaveFile = false;
+        }
     }
 
     private bool IsABodySelected()
@@ -147,6 +166,7 @@ public class Simulation : GameState
         
         CheckForDeselections();
         CreateBody();
+        SaveSimulation();
 
         if (!_simulationData.EditMode)
         {
