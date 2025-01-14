@@ -41,8 +41,12 @@ public class SimulationUi
         var pauseButton = UiComponents.CreateButton("Pause Simulation");
         pauseButton.Click += (s, e) =>
         {
-            simulationData.IsPaused = !simulationData.IsPaused;
-            if (simulationData.EditMode) simulationData.EditMode = false;
+            if (!simulationData.EditMode)
+            {
+                ((Label)pauseButton.Content).Text = simulationData.IsPaused ? "Pause Simulation" : "Resume Simulation";
+                simulationData.IsPaused = !simulationData.IsPaused;
+                if (simulationData.EditMode) simulationData.EditMode = false;
+            }
         };
 
         var firstDivider = UiComponents.CreateHorizontalSeparator();
@@ -225,9 +229,10 @@ public class SimulationUi
         var bodyNameLabel = UiComponents.CreateDialogLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
-        var bodyNameTextbox = UiComponents.CreateBasicTextBox("Default name");
+        var bodyNameTextbox = UiComponents.CreateBasicTextBox("Default");
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
+        bodyNameTextbox.Id = "bodyNameTextbox";
 
         var bodyPosXLabel = UiComponents.CreateDialogLabel("Pos X: ");
         grid.Widgets.Add(bodyPosXLabel);
@@ -236,6 +241,7 @@ public class SimulationUi
         grid.Widgets.Add(bodyPosXTextbox);
         Grid.SetColumn(bodyPosXTextbox, 1);
         Grid.SetRow(bodyPosXTextbox, 1);
+        bodyPosXTextbox.Id = "bodyPosXTextbox";
 
         var bodyPosYLabel = UiComponents.CreateDialogLabel("Pos Y: ");
         grid.Widgets.Add(bodyPosYLabel);
@@ -244,6 +250,7 @@ public class SimulationUi
         grid.Widgets.Add(bodyPosYTextbox);
         Grid.SetColumn(bodyPosYTextbox, 1);
         Grid.SetRow(bodyPosYTextbox, 2);
+        bodyPosYTextbox.Id = "bodyPosYTextbox";
 
         var bodyVelXLabel = UiComponents.CreateDialogLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
@@ -252,14 +259,16 @@ public class SimulationUi
         grid.Widgets.Add(bodyVelXTextbox);
         Grid.SetColumn(bodyVelXTextbox, 1);
         Grid.SetRow(bodyVelXTextbox, 3);
+        bodyVelXTextbox.Id = "bodyVelXTextbox";
 
         var bodyVelYLabel = UiComponents.CreateDialogLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 4);
-        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("4.0");
+        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("0.0");
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 4);
+        bodyVelYTextbox.Id = "bodyVelYTextbox";
 
         var bodyMassLabel = UiComponents.CreateDialogLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
@@ -268,6 +277,7 @@ public class SimulationUi
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 5);
+        bodyMassTextbox.Id = "bodyMassTextbox";
 
         var bodyDisplaySizeLabel = UiComponents.CreateDialogLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
@@ -276,6 +286,7 @@ public class SimulationUi
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 6);
+        bodyDisplaySizeTextbox.Id = "bodyDisplaySizeTextbox";
 
     var editBodyDialog = new Dialog { Title = "Edit Body", Content = grid };
     
@@ -358,8 +369,51 @@ public class SimulationUi
         return editBodyDialog;
     }
 
+    private void PopulateFormData(Dialog dialog, SimulationData simulationData)
+    {
+        ((TextBox)dialog.FindChildById("bodyNameTextbox")).Text = simulationData.SelectedBodyData.Name;
+        ((TextBox)dialog.FindChildById("bodyPosXTextbox")).Text = simulationData.SelectedBodyData.Position.X.ToString();
+        ((TextBox)dialog.FindChildById("bodyPosYTextbox")).Text = simulationData.SelectedBodyData.Position.Y.ToString();
+        ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text = simulationData.SelectedBodyData.Velocity.X.ToString();
+        ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text = simulationData.SelectedBodyData.Velocity.Y.ToString();
+        ((TextBox)dialog.FindChildById("bodyMassTextbox")).Text = simulationData.SelectedBodyData.Mass.ToString();
+        ((TextBox)dialog.FindChildById("bodyDisplaySizeTextbox")).Text = simulationData.SelectedBodyData.DisplayRadius.ToString();
+    }
+
     private VerticalStackPanel EditPanel(SimulationData simulationData)
     {
+        var deleteBodyButton = UiComponents.CreateButton("Delete Body");
+        deleteBodyButton.Visible = false;
+        deleteBodyButton.Click += (sender, args) =>
+        {
+            if (simulationData.EditMode && simulationData.IsABodySelected)
+            {
+                simulationData.DeleteSelectedBody = true;
+            }
+        };
+        
+        var editBodyDialog = EditBodyDialog(simulationData);
+        var editBodyButton = UiComponents.CreateButton("Edit Body");
+        editBodyButton.Visible = false;
+        editBodyButton.Click += (sender, args) =>
+        {
+            if (simulationData.EditMode && simulationData.IsABodySelected)
+            {
+                PopulateFormData(editBodyDialog, simulationData);
+                editBodyDialog.Show(_desktop);
+            }
+        };
+        
+        var editModeButton = UiComponents.CreateButton("Enter Edit Mode");
+        editModeButton.Click += (sender, args) =>
+        {
+            ((Label)editModeButton.Content).Text = simulationData.EditMode ? "Enter Edit Mode" : "Exit Edit Mode";
+            simulationData.IsPaused = !simulationData.IsPaused;
+            simulationData.EditMode = !simulationData.EditMode;
+            deleteBodyButton.Visible = simulationData.EditMode;
+            editBodyButton.Visible = simulationData.EditMode;
+        };
+        
         var createBodyDialogue = CreateBodyDialog(simulationData);
 
         var createBodyButton = UiComponents.CreateButton("Create Body");
@@ -368,33 +422,6 @@ public class SimulationUi
             createBodyDialogue.Show(_desktop);
         };
         
-        var editBodyDialog = EditBodyDialog(simulationData);
-
-        var editModeButton = UiComponents.CreateButton("Edit Mode");
-        editModeButton.Click += (sender, args) =>
-        {
-            simulationData.IsPaused = !simulationData.IsPaused;
-            simulationData.EditMode = !simulationData.EditMode;
-        };
-        
-        var editBodyButton = UiComponents.CreateButton("Edit Body");
-        editBodyButton.Click += (sender, args) =>
-        {
-            if (simulationData.EditMode && simulationData.IsABodySelected)
-            {
-                editBodyDialog.Show(_desktop);
-            }
-        };
-
-        var deleteBodyButton = UiComponents.CreateButton("Delete Body");
-        deleteBodyButton.Click += (sender, args) =>
-        {
-            if (simulationData.EditMode && simulationData.IsABodySelected)
-            {
-                simulationData.DeleteSelectedBody = true;
-            }
-        };
-
         var editPanel = 
             UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Bottom,
                 new Thickness(0, 0, UiConstants.DefaultMargin, UiConstants.DefaultMargin));

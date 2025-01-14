@@ -15,6 +15,7 @@ public class SimulationData
     public int TimeStep { get; set; } = 1;
     public int TrailLength { get; set; } = 250;
     public Position Position { get; set; } = Position.Left;
+    public BodyData SelectedBodyData { get; set; } = new();
     public BodyData CreateBodyData { get; set; } = new();
     public BodyData EditBodyData { get; set; } = new();
 }
