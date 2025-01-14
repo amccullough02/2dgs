@@ -155,11 +155,8 @@ public class SimulationUi
         var createBodyDialogue = new Dialog { Title = "Create New Body", Content = grid };
         
         var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
-        var validationErrorDialogue = new Window { Title = "Validation Error", Content = validationErrorMessage};
-        validationErrorDialogue.CloseButton.Click += (s, e) =>
-        {
-            createBodyDialogue.Show(_desktop);
-        };
+        var validationErrorDialogue = UiComponents.CreateValidationWindow(validationErrorMessage);
+        validationErrorDialogue.CloseButton.Click += (s, e) => { createBodyDialogue.Show(_desktop); };
 
         createBodyDialogue.ButtonOk.Click += (sender, e) =>
         {
@@ -283,11 +280,8 @@ public class SimulationUi
     var editBodyDialog = new Dialog { Title = "Edit Body", Content = grid };
     
     var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
-    var validationErrorDialogue = new Window { Title = "Validation Error", Content = validationErrorMessage};
-    validationErrorDialogue.CloseButton.Click += (s, e) =>
-    {
-        editBodyDialog.Show(_desktop);
-    };
+    var validationErrorDialogue = UiComponents.CreateValidationWindow(validationErrorMessage);
+    validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(_desktop); };
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
         {

@@ -139,4 +139,13 @@ public static class UiComponents
                }
           };
      }
+
+     public static Window CreateValidationWindow(Label label)
+     {
+          return new Window
+          {
+               Title = "Validation Error",
+               Content = label
+          };
+     }
 }
