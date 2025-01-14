@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
