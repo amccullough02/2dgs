@@ -11,31 +11,64 @@ public class SimulationMenuUi
     private Desktop _desktop;
     private FileManager _fileManager;
 
-    public SimulationMenuUi(Game game)
+    public SimulationMenuUi(Game game, SaveSystem saveSystem)
     {
         MyraEnvironment.Game = game;
         
         var rootContainer = new Panel();
-        rootContainer.Widgets.Add(CreateSimulationMenu(game));
+        rootContainer.Widgets.Add(CreateSimulationMenu(game, saveSystem));
         
         _fileManager = new FileManager();
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
-    private Grid CreateSimulationMenu(Game game)
+    private Dialog NameSimulationDialog(Game game, SaveSystem saveSystem)
     {
-        var grid = UiComponents.CreateGrid(10, 1, 3);
+        var grid = UiComponents.CreateGrid(10, 2, 1);
+        var nameSimulationLabel = UiComponents.CreateDialogLabel("Name simulation: ");
+        Grid.SetColumn(nameSimulationLabel, 0);
+
+        var nameSimulationTextbox = UiComponents.CreateBasicTextBox("new_simulation");
+        Grid.SetColumn(nameSimulationTextbox, 1);
+        
+        grid.Widgets.Add(nameSimulationLabel);
+        grid.Widgets.Add(nameSimulationTextbox);
+        
+        var createNewSimulationDialog = new Dialog { Title = "Simulation Name: ", Content = grid};
+        createNewSimulationDialog.ButtonOk.Click += (sender, e) =>
+        {
+            string newFilePath = "../../../sims/my_simulations/" + nameSimulationTextbox.Text + ".json";
+            saveSystem.CreateBlankSimulation(newFilePath);
+            game.GameStateManager.ChangeState(new Simulation(game, newFilePath));
+        };
+        
+        return createNewSimulationDialog;
+    }
+
+    private Grid CreateSimulationMenu(Game game, SaveSystem saveSystem)
+    {
+        var grid = UiComponents.CreateGrid(10, 1, 4);
 
         var title = UiComponents.CreateStyledLabel("Simulation Menu");
         Grid.SetRow(title, 0);
+        
+        var createNewSimulationButton = UiComponents.CreateButton("Create New Simulation");
+        
+        var createNewSimulationDialog = NameSimulationDialog(game, saveSystem);
+        
+        createNewSimulationButton.Click += (s, e) =>
+        {
+            createNewSimulationDialog.Show(_desktop);
+        };
+        Grid.SetRow(createNewSimulationButton, 1);
         
         var tabControl = new TabControl
         {
             Width = 400,
             MouseCursor = MouseCursorType.Hand,
         };
-        Grid.SetRow(tabControl, 1);
+        Grid.SetRow(tabControl, 2);
         
         var lessonsListView = new ListView();
         var userSimulationsListView = new ListView();
@@ -65,9 +98,10 @@ public class SimulationMenuUi
             Console.WriteLine("DEBUG: Navigating to main menu...");
             game.GameStateManager.ChangeState(new MainMenu(game));
         };
-        Grid.SetRow(returnButton, 2);
+        Grid.SetRow(returnButton, 3);
         
         grid.Widgets.Add(title);
+        grid.Widgets.Add(createNewSimulationButton);
         grid.Widgets.Add(tabControl);
         grid.Widgets.Add(returnButton);
 

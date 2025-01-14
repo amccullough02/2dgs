@@ -6,6 +6,25 @@ namespace _2dgs;
 
 public class SaveSystem
 {
+    public void CreateBlankSimulation(string saveFilePath)
+    {
+        SaveData saveData = new SaveData();
+        
+        try
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters.Add(new Vector2Converter());
+            settings.Formatting = Formatting.Indented;
+            string jsonData = JsonConvert.SerializeObject(saveData, settings);
+
+            File.WriteAllText(saveFilePath, jsonData);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+    
     public void Save(string saveFilePath, SaveData saveData)
     {
         try
