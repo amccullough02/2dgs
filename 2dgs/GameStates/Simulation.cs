@@ -125,6 +125,15 @@ public class Simulation : GameState
         _simulationData.EditSelectedBody = false;
     }
 
+    private void ColorBody()
+    {
+        if (_simulationData.ColorSelectedBody)
+        {
+            GetSelectedBody().ChangeColor(_simulationData.NewBodyColor);
+        }
+        _simulationData.ColorSelectedBody = false;
+    }
+
     private void DeleteBody()
     {
         var bodiesToRemove = new List<Body>();
@@ -198,6 +207,7 @@ public class Simulation : GameState
         {
             StoreSelectedBodyData();
             DeleteBody();
+            ColorBody();
             EditBody();
         }
     }

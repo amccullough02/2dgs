@@ -19,7 +19,7 @@ public class Body
     private float _mass;
     private int _maxTrailLength = 2000;
     private float _displayRadius;
-    private const int FontSize = 20;
+    private const int FontSize = 24;
     private TextureManager _textureManager;
     private Color _color = Color.White;
 
@@ -64,6 +64,11 @@ public class Body
         _velocity = velocity;
         _mass = mass;
         _displayRadius = displayRadius;
+    }
+
+    public void ChangeColor(Color color)
+    {
+        _color = color;
     }
 
     public void CheckIfSelected(Point mousePosition, MouseState mouseState)
@@ -119,7 +124,7 @@ public class Body
         }
     }
 
-    private void DrawOrbit(SpriteBatch spriteBatch, SimulationData simData, Color color, float thickness)
+    private void DrawOrbit(SpriteBatch spriteBatch, SimulationData simData, float thickness)
     {
         if (_orbit_trail.Count > 1 && simData.ToggleTrails)
         {
@@ -134,7 +139,7 @@ public class Body
                 spriteBatch.Draw(_textureManager.OrbitTexture,
                     _orbit_trail[i + 1],
                     null,
-                    color,
+                    _color,
                     angle,
                     Vector2.Zero,
                     new Vector2(length,
@@ -152,7 +157,7 @@ public class Body
             spriteBatch.Draw(_textureManager.SelectorTexture,
                 _position,
                 null,
-                _color,
+                Color.White,
                 0f,
                 new Vector2(_textureManager.SelectorTexture.Width / 2, _textureManager.SelectorTexture.Height / 2),
                 new Vector2(_displayRadius, _displayRadius),
@@ -183,57 +188,58 @@ public class Body
     private void DrawNames(SimulationData simData, SpriteBatch spriteBatch)
     {
         if (!simData.ToggleNames) return;
+
+        Vector2 textSize = FontManager.MediumFont(FontSize).MeasureString(_name);
+        float padding = 10f;
+        
         switch (simData.Position)
         {
-            case Position.Left:
-                FontManager.LightFont(FontSize)
-                    .DrawText(spriteBatch,
-                        _name,
-                        _position +
-                        new Vector2((_displayRadius * 600) + 5,
-                            -10f),
-                        Color.White);
-                break;
             case Position.Right:
-                FontManager.LightFont(FontSize)
+                FontManager.MediumFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2((-_displayRadius * 600) - 5 - (FontSize * _name.Length / 1.5f),
-                            -10f),
-                        Color.White);
+                        new Vector2((_displayRadius * 600) + padding, -textSize.Y / 2),
+                        _color);
+                break;
+            case Position.Left:
+                FontManager.MediumFont(FontSize)
+                    .DrawText(spriteBatch,
+                        _name,
+                        _position +
+                        new Vector2((-_displayRadius * 600) - padding - textSize.X, -textSize.Y / 2),
+                        _color);
                 break;
             case Position.Bottom:
-                FontManager.LightFont(FontSize)
+                FontManager.MediumFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2(-FontSize * _name.Length / 3, _displayRadius * 600),
-                        Color.White);
+                        new Vector2(-textSize.X / 2, (_displayRadius * 600) + padding),
+                        _color);
                 break;
             case Position.Top:
-                FontManager.LightFont(FontSize)
+                FontManager.MediumFont(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2(-FontSize * _name.Length / 3, -(_displayRadius * 600) - FontSize),
-                        Color.White);
+                        new Vector2(-textSize.X / 2, -(_displayRadius * 600) - padding - textSize.Y),
+                        _color);
                 break;
             default:
                 FontManager.LightFont(FontSize)
                     .DrawText(spriteBatch,
                         "Test Name",
                         _position +
-                        new Vector2(_displayRadius * 600,
-                            -10f),
-                        Color.White);
+                        new Vector2(_displayRadius * 600, -10f),
+                        _color);
                 break;
         }
     }
 
     public void Draw(SpriteBatch spriteBatch, SimulationData simData)
     {
-        DrawOrbit(spriteBatch, simData, Color.White, 2f);
+        DrawOrbit(spriteBatch, simData, 2f);
         DrawBody(spriteBatch);
         DrawSelector(spriteBatch, simData);
         DrawNames(simData, spriteBatch);

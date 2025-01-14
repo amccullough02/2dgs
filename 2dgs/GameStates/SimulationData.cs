@@ -1,4 +1,6 @@
-﻿namespace _2dgs;
+﻿using Microsoft.Xna.Framework;
+
+namespace _2dgs;
 
 public class SimulationData
 {
@@ -7,6 +9,7 @@ public class SimulationData
     public bool ToggleNames { get; set; } = true;
     public bool ToggleBodyGhost { get; set; }
     public bool IsABodySelected { get; set; }
+    public bool ColorSelectedBody { get; set; }
     public bool EditSelectedBody { get; set; }
     public bool DeleteSelectedBody { get; set; }
     public bool AttemptToSaveFile { get; set; }
@@ -14,7 +17,8 @@ public class SimulationData
     public string FilePath { get; set; }
     public int TimeStep { get; set; } = 1;
     public int TrailLength { get; set; } = 250;
-    public Position Position { get; set; } = Position.Left;
+    public Color NewBodyColor { get; set; }
+    public Position Position { get; set; } = Position.Right;
     public BodyData SelectedBodyData { get; set; } = new();
     public BodyData CreateBodyData { get; set; } = new();
     public BodyData EditBodyData { get; set; } = new();

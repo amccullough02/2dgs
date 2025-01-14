@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.ColorPicker;
 
 namespace _2dgs;
 
@@ -75,8 +76,8 @@ public class SimulationUi
         };
 
         var namesDropdown = UiComponents.CreateComboView();
-        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Left"));
         namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Right"));
+        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Left"));
         namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Top"));
         namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Bottom"));
         namesDropdown.SelectedIndex = 0;
@@ -85,10 +86,10 @@ public class SimulationUi
             switch (namesDropdown.SelectedIndex)
             {
                 case 0:
-                    simulationData.Position = Position.Left;
+                    simulationData.Position = Position.Right;
                     break;
                 case 1:
-                    simulationData.Position = Position.Right;
+                    simulationData.Position = Position.Left;
                     break;
                 case 2:
                     simulationData.Position = Position.Top;
@@ -382,8 +383,7 @@ public class SimulationUi
 
     private VerticalStackPanel EditPanel(SimulationData simulationData)
     {
-        var deleteBodyButton = UiComponents.CreateButton("Delete Body");
-        deleteBodyButton.Visible = false;
+        var deleteBodyButton = UiComponents.CreateButton("Delete Body", false);
         deleteBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -391,10 +391,25 @@ public class SimulationUi
                 simulationData.DeleteSelectedBody = true;
             }
         };
+
+        var colorBodyDialog = new ColorPickerDialog();
+        colorBodyDialog.ButtonOk.Click += (sender, args) =>
+        {
+            simulationData.NewBodyColor = colorBodyDialog.Color;
+            simulationData.ColorSelectedBody = true;
+        };
+        
+        var colorBodyButton = UiComponents.CreateButton("Change Body Colour", false);
+        colorBodyButton.Click += (sender, args) =>
+        {
+            if (simulationData.EditMode && simulationData.IsABodySelected)
+            {
+                colorBodyDialog.Show(_desktop);
+            }
+        };
         
         var editBodyDialog = EditBodyDialog(simulationData);
-        var editBodyButton = UiComponents.CreateButton("Edit Body");
-        editBodyButton.Visible = false;
+        var editBodyButton = UiComponents.CreateButton("Edit Body Properties", false);
         editBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -411,6 +426,7 @@ public class SimulationUi
             simulationData.IsPaused = !simulationData.IsPaused;
             simulationData.EditMode = !simulationData.EditMode;
             deleteBodyButton.Visible = simulationData.EditMode;
+            colorBodyButton.Visible = simulationData.EditMode;
             editBodyButton.Visible = simulationData.EditMode;
         };
         
@@ -427,6 +443,7 @@ public class SimulationUi
                 new Thickness(0, 0, UiConstants.DefaultMargin, UiConstants.DefaultMargin));
         
         editPanel.Widgets.Add(deleteBodyButton);
+        editPanel.Widgets.Add(colorBodyButton);
         editPanel.Widgets.Add(editBodyButton);
         editPanel.Widgets.Add(editModeButton);
         editPanel.Widgets.Add(createBodyButton);

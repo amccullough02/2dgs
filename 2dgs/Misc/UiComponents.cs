@@ -7,12 +7,13 @@ namespace _2dgs;
 public static class UiComponents
 {
      
-     public static Button CreateButton(string text)
+     public static Button CreateButton(string text, bool visible = true)
      {
           return new Button
           {
                Width = UiConstants.DefaultButtonWidth,
                Height = UiConstants.DefaultButtonHeight,
+               Visible = visible,
                Content = new Label
                {
                     HorizontalAlignment = HorizontalAlignment.Center,
