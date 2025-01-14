@@ -153,19 +153,69 @@ public class SimulationUi
         Grid.SetRow(bodyDisplaySizeTextbox, 4);
         
         var createBodyDialogue = new Dialog { Title = "Create New Body", Content = grid };
+        
+        var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
+        var validationErrorDialogue = new Window { Title = "Validation Error", Content = validationErrorMessage};
+        validationErrorDialogue.CloseButton.Click += (s, e) =>
+        {
+            createBodyDialogue.Show(_desktop);
+        };
 
         createBodyDialogue.ButtonOk.Click += (sender, e) =>
         {
-            string name = bodyNameTextbox.Text;
-            Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
-            float mass = float.Parse(bodyMassTextbox.Text);
-            float size = float.Parse(bodyDisplaySizeTextbox.Text);
+            bool valid = true;
+            string errorMessage = "";
 
-            simulationData.CreateBodyData.Name = name;
-            simulationData.CreateBodyData.Velocity = velocity;
-            simulationData.CreateBodyData.Mass = mass;
-            simulationData.CreateBodyData.DisplayRadius = size;
-            simulationData.ToggleBodyGhost = true;
+            if (bodyNameTextbox.Text.Length <= 2)
+            {
+                valid = false;
+                errorMessage = "Name must be at least 2 characters.";
+            }
+
+            else if (!float.TryParse(bodyVelXTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Vel X must be a number.";
+            }
+
+            else if (!float.TryParse(bodyVelYTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Vel Y must be a number.";
+            }
+
+            else if (!float.TryParse(bodyMassTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Mass must be a number.";
+            }
+
+            else if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Display Size must be a number.";
+            }
+
+            if (valid)
+            {
+                string name = bodyNameTextbox.Text;
+                Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
+                float mass = float.Parse(bodyMassTextbox.Text);
+                float size = float.Parse(bodyDisplaySizeTextbox.Text);
+
+                simulationData.CreateBodyData.Name = name;
+                simulationData.CreateBodyData.Velocity = velocity;
+                simulationData.CreateBodyData.Mass = mass;
+                simulationData.CreateBodyData.DisplayRadius = size;
+                simulationData.ToggleBodyGhost = true;
+                
+                createBodyDialogue.Close();
+            }
+            else
+            {
+                validationErrorMessage.Text = errorMessage;
+                validationErrorDialogue.Show(_desktop);
+            }
         };
 
         return createBodyDialogue;
@@ -185,18 +235,18 @@ public class SimulationUi
         var bodyPosXLabel = UiComponents.CreateDialogLabel("Pos X: ");
         grid.Widgets.Add(bodyPosXLabel);
         Grid.SetRow(bodyPosXLabel, 1);
-        var posXTextbox = UiComponents.CreateBasicTextBox("0.0");
-        grid.Widgets.Add(posXTextbox);
-        Grid.SetColumn(posXTextbox, 1);
-        Grid.SetRow(posXTextbox, 1);
+        var bodyPosXTextbox = UiComponents.CreateBasicTextBox("0.0");
+        grid.Widgets.Add(bodyPosXTextbox);
+        Grid.SetColumn(bodyPosXTextbox, 1);
+        Grid.SetRow(bodyPosXTextbox, 1);
 
         var bodyPosYLabel = UiComponents.CreateDialogLabel("Pos Y: ");
         grid.Widgets.Add(bodyPosYLabel);
         Grid.SetRow(bodyPosYLabel, 2);
-        var posYTextbox = UiComponents.CreateBasicTextBox("0.0");
-        grid.Widgets.Add(posYTextbox);
-        Grid.SetColumn(posYTextbox, 1);
-        Grid.SetRow(posYTextbox, 2);
+        var bodyPosYTextbox = UiComponents.CreateBasicTextBox("0.0");
+        grid.Widgets.Add(bodyPosYTextbox);
+        Grid.SetColumn(bodyPosYTextbox, 1);
+        Grid.SetRow(bodyPosYTextbox, 2);
 
         var bodyVelXLabel = UiComponents.CreateDialogLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
@@ -231,21 +281,84 @@ public class SimulationUi
         Grid.SetRow(bodyDisplaySizeTextbox, 6);
 
     var editBodyDialog = new Dialog { Title = "Edit Body", Content = grid };
+    
+    var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
+    var validationErrorDialogue = new Window { Title = "Validation Error", Content = validationErrorMessage};
+    validationErrorDialogue.CloseButton.Click += (s, e) =>
+    {
+        editBodyDialog.Show(_desktop);
+    };
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
         {
-            string name = bodyNameTextbox.Text;
-            Vector2 position = new Vector2(float.Parse(posXTextbox.Text), float.Parse(posYTextbox.Text));
-            Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
-            float mass = float.Parse(bodyMassTextbox.Text);
-            float size = float.Parse(bodyDisplaySizeTextbox.Text);
+            bool valid = true;
+            string errorMessage = "";
+
+            if (bodyNameTextbox.Text.Length <= 2)
+            {
+                valid = false;
+                errorMessage = "Name must be at least 2 characters.";
+            }
             
-            simulationData.EditBodyData.Name = name;
-            simulationData.EditBodyData.Position = position;
-            simulationData.EditBodyData.Velocity = velocity;
-            simulationData.EditBodyData.Mass = mass;
-            simulationData.EditBodyData.DisplayRadius = size;
-            simulationData.EditSelectedBody = true;
+            else if (!float.TryParse(bodyPosXTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Pos X must be a number.";
+            }
+            
+            else if (!float.TryParse(bodyPosYTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Pos Y must be a number.";
+            }
+
+            else if (!float.TryParse(bodyVelXTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Vel X must be a number.";
+            }
+
+            else if (!float.TryParse(bodyVelYTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Vel Y must be a number.";
+            }
+
+            else if (!float.TryParse(bodyMassTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Mass must be a number.";
+            }
+
+            else if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
+            {
+                valid = false;
+                errorMessage = "Display Size must be a number.";
+            }
+
+            if (valid)
+            {
+
+                string name = bodyNameTextbox.Text;
+                Vector2 position = new Vector2(float.Parse(bodyPosXTextbox.Text), float.Parse(bodyPosYTextbox.Text));
+                Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
+                float mass = float.Parse(bodyMassTextbox.Text);
+                float size = float.Parse(bodyDisplaySizeTextbox.Text);
+
+                simulationData.EditBodyData.Name = name;
+                simulationData.EditBodyData.Position = position;
+                simulationData.EditBodyData.Velocity = velocity;
+                simulationData.EditBodyData.Mass = mass;
+                simulationData.EditBodyData.DisplayRadius = size;
+                simulationData.EditSelectedBody = true;
+                
+                editBodyDialog.Close();
+            }
+            else
+            {
+                validationErrorMessage.Text = errorMessage;
+                validationErrorDialogue.Show(_desktop);
+            }
         };
 
         return editBodyDialog;
