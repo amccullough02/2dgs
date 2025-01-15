@@ -18,13 +18,19 @@ public class Body
     private const float FadeValue = 0.4f;
     private const int MaxTrailLength = 2000;
     private const int FontSize = 24;
-    private Color _color = Color.White;
+    private Color _color;
     private readonly List<Vector2> _orbitTrail;
     private readonly TextureManager _textureManager;
     private Vector2 _velocity;
     private Vector2 _position;
 
-    public Body(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius, TextureManager textureManager)
+    public Body(string name,
+        Vector2 position,
+        Vector2 velocity,
+        float mass,
+        float displayRadius,
+        Color color,
+        TextureManager textureManager)
     {
         _name = name;
         _position = position;
@@ -32,6 +38,7 @@ public class Body
         _mass = mass;
         _displayRadius = displayRadius;
         _orbitTrail = [];
+        _color = color;
         _textureManager = textureManager;
     }
 
@@ -54,7 +61,8 @@ public class Body
             Position = _position,
             Velocity = _velocity,
             Mass = _mass,
-            DisplayRadius = _displayRadius
+            DisplayRadius = _displayRadius,
+            Color = _color,
         };
     }
 

@@ -60,6 +60,7 @@ public class Simulation : GameState
                     bodyData.Velocity,
                     bodyData.Mass,
                     bodyData.DisplayRadius,
+                    bodyData.Color,
                     _textureManager));
             }
         }
@@ -102,7 +103,8 @@ public class Simulation : GameState
                     _ghostBody.Position, 
                     _simulationData.CreateBodyData.Velocity, 
                     _simulationData.CreateBodyData.Mass, 
-                    _simulationData.CreateBodyData.DisplayRadius, 
+                    _simulationData.CreateBodyData.DisplayRadius,
+                    Color.White,
                     _textureManager);
                 
                 _bodies.Add(body);
