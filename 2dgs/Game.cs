@@ -17,6 +17,7 @@ public class Game : Microsoft.Xna.Framework.Game
         _graphics.PreferredBackBufferHeight = 1080;
         _graphics.PreferredBackBufferWidth = 1920;
         _graphics.SynchronizeWithVerticalRetrace = true;
+        _graphics.GraphicsProfile = GraphicsProfile.HiDef;
         _graphics.ApplyChanges();
         IsMouseVisible = true;
         IsFixedTimeStep = false;

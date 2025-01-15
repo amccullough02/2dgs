@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -18,6 +19,7 @@ public class Simulation : GameState
     private MouseState _mouseState;
     private Test _test;
     private GhostBody _ghostBody;
+    private ShapeBatch _shapeBatch;
     
     public Simulation(Game game, string filePath)
     {
@@ -31,6 +33,7 @@ public class Simulation : GameState
         #region Systems
         _saveSystem = new SaveSystem();
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
+        _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
         _simulationData = new SimulationData();
         _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
@@ -220,7 +223,7 @@ public class Simulation : GameState
         
         foreach (Body body in _bodies)
         {
-            body.Draw(spriteBatch, _simulationData);
+            body.Draw(spriteBatch, _simulationData, _shapeBatch);
         }
 
         _ghostBody.Draw(spriteBatch, _textureManager, _simulationData);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -66,7 +67,7 @@ public class Body
         };
     }
 
-    public void Edit(String name, Vector2 position, Vector2 velocity, float mass, float displayRadius)
+    public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius)
     {
         _name = name;
         _position = position;
@@ -161,19 +162,21 @@ public class Body
         }
     }
 
-    private void DrawSelector(SpriteBatch spriteBatch, SimulationData simData)
+    private void DrawSelector(SimulationData simData, ShapeBatch shapeBatch)
     {
         if (Selected && simData.EditMode)
         {
-            spriteBatch.Draw(_textureManager.SelectorTexture,
-                _position,
-                null,
-                Color.White * FadeValue,
-                0f,
-                new Vector2(_textureManager.SelectorTexture.Width / 2, _textureManager.SelectorTexture.Height / 2),
-                new Vector2(_displayRadius, _displayRadius),
-                SpriteEffects.None,
-                0f);
+            float trueDisplayRadius = _displayRadius * _textureManager.BodyTexture.Width / 2;
+            float selectorOffset = trueDisplayRadius / 5;
+            const float miniMumOffset = 8.0f;
+            
+            if (selectorOffset < miniMumOffset) selectorOffset = miniMumOffset;
+            
+            float radius = trueDisplayRadius + selectorOffset;
+            
+            shapeBatch.Begin();
+            shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 2f);
+            shapeBatch.End();
         }
     }
 
@@ -248,11 +251,11 @@ public class Body
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, SimulationData simData)
+    public void Draw(SpriteBatch spriteBatch, SimulationData simData, ShapeBatch shapeBatch)
     {
         DrawOrbit(spriteBatch, simData, 2f);
         DrawBody(spriteBatch);
-        DrawSelector(spriteBatch, simData);
+        DrawSelector(simData, shapeBatch);
         DrawNames(simData, spriteBatch);
     }
 }
