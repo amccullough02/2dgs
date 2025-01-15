@@ -11,17 +11,18 @@ namespace _2dgs;
 
 public class Body
 {
-    private Vector2 _position;
     public bool Selected;
-    private Vector2 _velocity;
     private string _name;
-    private List<Vector2> _orbit_trail;
-    private float _mass;
-    private int _maxTrailLength = 2000;
     private float _displayRadius;
+    private float _mass;
+    private const float FadeValue = 0.4f;
+    private const int MaxTrailLength = 2000;
     private const int FontSize = 24;
-    private TextureManager _textureManager;
     private Color _color = Color.White;
+    private readonly List<Vector2> _orbitTrail;
+    private readonly TextureManager _textureManager;
+    private Vector2 _velocity;
+    private Vector2 _position;
 
     public Body(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius, TextureManager textureManager)
     {
@@ -30,7 +31,7 @@ public class Body
         _velocity = velocity;
         _mass = mass;
         _displayRadius = displayRadius;
-        _orbit_trail = new List<Vector2>();
+        _orbitTrail = [];
         _textureManager = textureManager;
     }
 
@@ -96,7 +97,7 @@ public class Body
         
         PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         
-        if (mouseState.RightButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) Selected = false; 
+        if (mouseState.RightButton == ButtonState.Pressed && !bodyBounds.Contains(mousePositionF)) Selected = false; 
     }
 
     public void Update(List<Body> bodies, int timestep)
@@ -116,30 +117,30 @@ public class Body
         
         _velocity += totalForce / _mass * timestep;
         _position += _velocity * timestep;
-        _orbit_trail.Add(_position);
+        _orbitTrail.Add(_position);
 
-        if (_orbit_trail.Count >= _maxTrailLength)
+        if (_orbitTrail.Count >= MaxTrailLength)
         {
-            _orbit_trail.RemoveAt(0);
+            _orbitTrail.RemoveAt(0);
         }
     }
 
     private void DrawOrbit(SpriteBatch spriteBatch, SimulationData simData, float thickness)
     {
-        if (_orbit_trail.Count > 1 && simData.ToggleTrails)
+        if (_orbitTrail.Count > 1 && simData.ToggleTrails)
         {
 
-            int trailLength = Math.Min(simData.TrailLength, _orbit_trail.Count);
-            for (int i = _orbit_trail.Count - trailLength; i < _orbit_trail.Count - 1; i++)
+            int trailLength = Math.Min(simData.TrailLength, _orbitTrail.Count);
+            for (int i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
             {
-                Vector2 direction = _orbit_trail[i] - _orbit_trail[i + 1];
+                Vector2 direction = _orbitTrail[i] - _orbitTrail[i + 1];
                 float length = direction.Length();
                 float angle = (float)Math.Atan2(direction.Y, direction.X);
 
                 spriteBatch.Draw(_textureManager.OrbitTexture,
-                    _orbit_trail[i + 1],
+                    _orbitTrail[i + 1],
                     null,
-                    _color,
+                    _color * FadeValue,
                     angle,
                     Vector2.Zero,
                     new Vector2(length,
@@ -157,7 +158,7 @@ public class Body
             spriteBatch.Draw(_textureManager.SelectorTexture,
                 _position,
                 null,
-                Color.White,
+                Color.White * FadeValue,
                 0f,
                 new Vector2(_textureManager.SelectorTexture.Width / 2, _textureManager.SelectorTexture.Height / 2),
                 new Vector2(_displayRadius, _displayRadius),
