@@ -191,7 +191,7 @@ public class Simulation : GameState
         {
             foreach (Body body in _bodies)
             {
-                body.Update(_bodies, _simulationData.TimeStep);
+                body.Update(_bodies, _simulationData.TimeStep, gameTime);
             }
         }
 

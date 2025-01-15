@@ -31,7 +31,7 @@ public class SimulationUi
 
         var timeStepLabel = UiComponents.CreateStyledLabel($"Time step: {simulationData.TimeStep}");
 
-        var timeStepSlider = UiComponents.CreateHorizontalSlider(1, 1, 10);
+        var timeStepSlider = UiComponents.CreateHorizontalSlider(10, 10, 400);
         timeStepSlider.ValueChanged += (s, e) =>
         {
             timeStepLabel.Text = $"Time step: {(int)timeStepSlider.Value}";

@@ -100,8 +100,10 @@ public class Body
         if (mouseState.RightButton == ButtonState.Pressed && !bodyBounds.Contains(mousePositionF)) Selected = false; 
     }
 
-    public void Update(List<Body> bodies, int timestep)
+    public void Update(List<Body> bodies, int userTimeStep, GameTime gameTime)
     {
+        float timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        
         Vector2 totalForce = Vector2.Zero;
 
         foreach (Body body in bodies)
@@ -115,8 +117,8 @@ public class Body
             totalForce += force;
         }
         
-        _velocity += totalForce / _mass * timestep;
-        _position += _velocity * timestep;
+        _velocity += totalForce / _mass * timeStep;
+        _position += _velocity * timeStep;
         _orbitTrail.Add(_position);
 
         if (_orbitTrail.Count >= MaxTrailLength)
