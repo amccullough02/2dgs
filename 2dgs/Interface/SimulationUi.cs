@@ -466,9 +466,18 @@ public class SimulationUi
         {
             simulationData.AttemptToSaveFile = true;
         };
+
+        var prompt = new LessonPrompt("Lesson Prompt");
+        
+        var promptButton = UiComponents.CreateButton("Show Lesson Prompt");
+        promptButton.Click += (s, e) =>
+        {
+            prompt.Show(_desktop);
+        };
         
         saveAndQuitPanel.Widgets.Add(returnButton);
         saveAndQuitPanel.Widgets.Add(saveButton);
+        saveAndQuitPanel.Widgets.Add(promptButton);
         
         return saveAndQuitPanel;
     }

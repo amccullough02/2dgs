@@ -7,19 +7,22 @@ namespace _2dgs;
 public static class UiComponents
 {
      
-     public static Button CreateButton(string text, bool visible = true)
+     public static Button CreateButton(string text,
+          bool visible = true,
+          int width = UiConstants.DefaultButtonWidth,
+          int height = UiConstants.DefaultButtonHeight)
      {
           return new Button
           {
-               Width = UiConstants.DefaultButtonWidth,
-               Height = UiConstants.DefaultButtonHeight,
+               Width = width,
+               Height = height,
                Visible = visible,
                Content = new Label
                {
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Text = text,
-                    Font = FontManager.LightFont(UiConstants.DefaultMargin)
+                    Font = FontManager.LightFont(UiConstants.DefaultFontSize)
                }
           };
      }
@@ -73,6 +76,7 @@ public static class UiComponents
           var grid = new Grid
           {
                RowSpacing = spacing,
+               ColumnSpacing = spacing,
                HorizontalAlignment = HorizontalAlignment.Center,
                Margin = new Thickness(10, 10, 10, 10),
           };
