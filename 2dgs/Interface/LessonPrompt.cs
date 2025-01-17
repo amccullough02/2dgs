@@ -6,15 +6,24 @@ namespace _2dgs;
 public class LessonPrompt
 {
     private Window _window;
+    private string[] _lessonContent;
+    private string _title;
     private int _index;
-    private readonly string[] _placeholder = ["Apple", "Orange", "Pineapple", "Banana", "Cherry"];
-    private int _numPages = 0;
+    private int _numPages;
     
-    public LessonPrompt(string title)
+    public LessonPrompt(SimulationData simulationData)
     {
-        _window = new Window
+        _lessonContent = simulationData.LessonContent;
+        _title = simulationData.SimulationTitle;
+        _numPages = _lessonContent.Length;
+        _window = LessonWindow();
+    }
+
+    private Window LessonWindow()
+    {
+        var window = new Window
         {
-            Title = title,
+            Title = _title,
             TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
             TitlePanel =
             {
@@ -28,6 +37,8 @@ public class LessonPrompt
             Opacity = 0.9f,
             Content = LessonLayout()
         };
+
+        return window;
     }
 
     private VerticalStackPanel LessonLayout()
@@ -52,7 +63,7 @@ public class LessonPrompt
         var textbox = new TextBox
         {
             Font = FontManager.LightFont(UiConstants.DefaultFontSize),
-            Text = _placeholder[_index],
+            Text = _lessonContent[_index],
             Multiline = true,
             Readonly = true,
             Wrap = true,
@@ -67,8 +78,6 @@ public class LessonPrompt
 
     private Grid PaginationControls(TextBox textBox)
     {
-        _numPages = _placeholder.Length;
-        
         var grid = UiComponents.CreateGrid(0, 3, 1);
         
         var previousButton = UiComponents.CreateButton("Previous Button", width: 150, height: 50);
@@ -87,7 +96,7 @@ public class LessonPrompt
             if (_index < _numPages - 1)
             {
                 _index++;
-                textBox.Text = _placeholder[_index];
+                textBox.Text = _lessonContent[_index];
                 pageLabel.Text = $"Page {_index + 1} of {_numPages}";
             }
         };
@@ -98,8 +107,8 @@ public class LessonPrompt
             {
                 _index--;
             }
-            textBox.Text = _placeholder[_index];
-            pageLabel.Text = $"Page {_index + 1} of {_placeholder.Length}";
+            textBox.Text = _lessonContent[_index];
+            pageLabel.Text = $"Page {_index + 1} of {_lessonContent.Length}";
         };
         
         grid.Widgets.Add(previousButton);

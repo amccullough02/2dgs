@@ -15,6 +15,8 @@ public class SimulationData
     public bool AttemptToSaveFile { get; set; }
     public bool EditMode { get; set; }
     public string FilePath { get; set; }
+    public string SimulationTitle { get; set; }
+    public string[] LessonContent { get; set; }
     public int TimeStep { get; set; } = 50;
     public int TrailLength { get; set; } = 250;
     public Color NewBodyColor { get; set; }

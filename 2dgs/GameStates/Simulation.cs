@@ -23,19 +23,28 @@ public class Simulation : GameState
     
     public Simulation(Game game, string filePath)
     {
-        InitializeComponents(game);
+        InitializeComponents(game, filePath);
         SetupSimulation(filePath);
         RunTests();
     }
 
-    private void InitializeComponents(Game game)
+    private void InitializeComponents(Game game, string filePath)
     {
-        #region Systems
+        #region Loading Save Data and Important Systems
         _saveSystem = new SaveSystem();
+        _saveData = _saveSystem.Load(filePath);
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
+        #endregion
+        
+        #region Lesson/UI Setup
         _simulationData = new SimulationData();
+        _simulationData.SimulationTitle = _saveData.Title;
+        _simulationData.LessonContent = _saveData.LessonContent;
         _simulationUi = new SimulationUi(game, _simulationData);
+        #endregion
+        
+        #region Test Class Creation
         _test = new Test();
         #endregion
         
@@ -50,10 +59,8 @@ public class Simulation : GameState
         _test.TestSimulationLoading(_saveData.Bodies.Count, _bodies.Count);
     }
 
-    private void SetupSimulation(String filePath)
+    private void SetupSimulation(string filePath)
     {
-        _saveData = _saveSystem.Load(filePath);
-
         if (_saveData?.Bodies != null)
         {
             foreach (var bodyData in _saveData.Bodies)
@@ -67,7 +74,7 @@ public class Simulation : GameState
                     _textureManager));
             }
         }
-        
+
         _simulationData.FilePath = filePath;
     }
 

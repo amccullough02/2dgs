@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
@@ -466,8 +467,8 @@ public class SimulationUi
         {
             simulationData.AttemptToSaveFile = true;
         };
-
-        var prompt = new LessonPrompt("Lesson Prompt");
+        
+        var prompt = new LessonPrompt(simulationData);
         
         var promptButton = UiComponents.CreateButton("Show Lesson Prompt");
         promptButton.Click += (s, e) =>
