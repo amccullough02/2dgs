@@ -18,6 +18,8 @@ public class LessonPrompt
         _numPages = _lessonContent.Length;
         _window = LessonWindow();
     }
+    
+    public string[] GetLessonContent => _lessonContent;
 
     private Window LessonWindow()
     {

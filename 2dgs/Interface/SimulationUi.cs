@@ -470,6 +470,8 @@ public class SimulationUi
         
         var prompt = new LessonPrompt(simulationData);
         
+        UiTests.TestLessonPrompt(simulationData.LessonContent, prompt.GetLessonContent);
+        
         var promptButton = UiComponents.CreateButton("Show Lesson Prompt");
         promptButton.Click += (s, e) =>
         {
