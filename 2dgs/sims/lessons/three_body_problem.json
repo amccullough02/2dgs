@@ -1,5 +1,6 @@
 {
   "Title": "Three Body Problem",
+  "IsLesson": true,
   "Bodies": [
     {
       "Name": "Jupiter",

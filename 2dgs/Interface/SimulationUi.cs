@@ -136,7 +136,7 @@ public class SimulationUi
         var bodyVelYLabel = UiComponents.CreateDialogLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 2);
-        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("4.0");
+        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("0.0");
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 2);
@@ -475,6 +475,8 @@ public class SimulationUi
         {
             prompt.Show(_desktop);
         };
+
+        if (!simulationData.IsLesson) promptButton.Visible = false;
         
         saveAndQuitPanel.Widgets.Add(returnButton);
         saveAndQuitPanel.Widgets.Add(saveButton);

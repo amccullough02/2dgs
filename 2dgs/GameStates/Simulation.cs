@@ -35,6 +35,7 @@ public class Simulation : GameState
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
         _simulationData = new SimulationData();
+        _simulationData.IsLesson = _saveData.IsLesson;
         _simulationData.SimulationTitle = _saveData.Title;
         _simulationData.LessonContent = _saveData.LessonContent;
         _simulationUi = new SimulationUi(game, _simulationData);

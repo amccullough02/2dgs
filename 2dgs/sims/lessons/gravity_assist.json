@@ -1,5 +1,6 @@
 {
   "Title": "Gravity Assist",
+  "IsLesson": true,
   "Bodies": [
     {
       "Name": "Jupiter",
