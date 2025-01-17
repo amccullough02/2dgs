@@ -4,7 +4,7 @@ namespace _2dgs;
 
 public class SaveData
 {
-    public string Title;
+    public string Title = "default";
     public List<BodyData> Bodies = new List<BodyData>();
-    public string[] LessonContent;
+    public string[] LessonContent = ["default", "lesson"];
 }

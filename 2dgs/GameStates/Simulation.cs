@@ -30,28 +30,18 @@ public class Simulation : GameState
 
     private void InitializeComponents(Game game, string filePath)
     {
-        #region Loading Save Data and Important Systems
         _saveSystem = new SaveSystem();
         _saveData = _saveSystem.Load(filePath);
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
-        #endregion
-        
-        #region Lesson/UI Setup
         _simulationData = new SimulationData();
         _simulationData.SimulationTitle = _saveData.Title;
         _simulationData.LessonContent = _saveData.LessonContent;
         _simulationUi = new SimulationUi(game, _simulationData);
-        #endregion
-        
-        #region Test Class Creation
         _test = new Test();
-        #endregion
         
-        #region Components
         _bodies = new List<Body>();
         _ghostBody = new GhostBody();
-        #endregion
     }
 
     private void RunTests()
@@ -81,6 +71,8 @@ public class Simulation : GameState
     private void SaveSimulation()
     {
         SaveData dataToSave = new SaveData();
+        dataToSave.Title = _saveData.Title;
+        dataToSave.LessonContent = _saveData.LessonContent;
         if (_simulationData.AttemptToSaveFile)
         {
             Console.WriteLine("DEBUG: Saving simulation to " + _simulationData.FilePath);
