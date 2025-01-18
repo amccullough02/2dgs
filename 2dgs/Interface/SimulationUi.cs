@@ -475,7 +475,7 @@ public class SimulationUi
         var promptButton = UiComponents.CreateButton("Show Lesson Prompt");
         promptButton.Click += (s, e) =>
         {
-            prompt.Show(_desktop);
+            prompt.Show(_desktop, simulationData);
         };
 
         if (!simulationData.IsLesson) promptButton.Visible = false;

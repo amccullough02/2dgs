@@ -15,6 +15,7 @@ public class SimulationData
     public bool AttemptToSaveFile { get; set; }
     public bool EditMode { get; set; }
     public bool IsLesson { get; set; }
+    public bool ResetSimulation { get; set; }
     public string FilePath { get; set; }
     public string SimulationTitle { get; set; }
     public string[] LessonContent { get; set; }

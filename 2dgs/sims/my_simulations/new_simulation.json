@@ -1,7 +1,36 @@
 {
   "Title": "default",
   "IsLesson": false,
-  "Bodies": [],
+  "Bodies": [
+    {
+      "Name": "Sun",
+      "Position": {
+        "X": 971.5485,
+        "Y": 554.029
+      },
+      "Velocity": {
+        "X": -0.0022605832,
+        "Y": 0.01222284
+      },
+      "Mass": 1E+09,
+      "DisplayRadius": 0.2,
+      "Color": "#FFCC01"
+    },
+    {
+      "Name": "Earth",
+      "Position": {
+        "X": 707.22815,
+        "Y": 387.6396
+      },
+      "Velocity": {
+        "X": 1.5422643,
+        "Y": -4.360934
+      },
+      "Mass": 1000000.0,
+      "DisplayRadius": 0.02,
+      "Color": "#5BC6FA"
+    }
+  ],
   "LessonContent": [
     "default",
     "lesson"

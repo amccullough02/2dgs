@@ -20,9 +20,11 @@ public class Simulation : GameState
     private Test _test;
     private GhostBody _ghostBody;
     private ShapeBatch _shapeBatch;
+    private Game _game;
     
     public Simulation(Game game, string filePath)
     {
+        _game = game;
         InitializeComponents(game, filePath);
         SetupSimulation(filePath);
         RunTests();
@@ -176,13 +178,23 @@ public class Simulation : GameState
     {
         _simulationData.SelectedBodyData = GetSelectedBody().ConvertToBodyData();
     }
+
+    private void ResetSimulation(Game game)
+    {
+        if (_simulationData.ResetSimulation)
+        {
+            Console.WriteLine("DEBUG: Resetting simulation");
+            game.GameStateManager.ChangeState(new Simulation(game, _simulationData.FilePath));
+        }
+    }
     
     public override void Update(GameTime gameTime)
     {
         _simulationData.IsABodySelected = IsABodySelected();
         _mouseState = Mouse.GetState();
         _ghostBody.Update(_simulationData);
-        
+     
+        ResetSimulation(_game);
         CheckForDeselections();
         CreateBody();
         SaveSimulation();

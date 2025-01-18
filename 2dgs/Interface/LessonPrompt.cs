@@ -5,6 +5,8 @@ namespace _2dgs;
 
 public class LessonPrompt
 {
+    private Desktop _desktop;
+    private SimulationData _simulationData;
     private Window _window;
     private string[] _lessonContent;
     private string _title;
@@ -80,10 +82,9 @@ public class LessonPrompt
 
     private Grid PaginationControls(TextBox textBox)
     {
-        var grid = UiComponents.CreateGrid(0, 3, 1);
+        var grid = UiComponents.CreateGrid(0, 4, 1);
         
-        var previousButton = UiComponents.CreateButton("Previous Button", width: 150, height: 50);
-        previousButton.Visible = false;
+        var previousButton = UiComponents.CreateButton("Previous Button", visible: false, width: 150, height: 50);
         Grid.SetColumn(previousButton, 0);
         
         var pageLabel = UiComponents.CreateStyledLabel($"Page {_index + 1} of {_numPages}");
@@ -93,6 +94,16 @@ public class LessonPrompt
         
         var nextButton = UiComponents.CreateButton("Next Button", width: 150, height: 50);
         Grid.SetColumn(nextButton, 2);
+        
+        var confirmReset = new Dialog { Title = "Confirm Action", 
+            Content = new Label { Text = "Are you sure you want to reset the lesson?" }};
+        confirmReset.ButtonOk.Click += (_, __) =>
+        {
+            _simulationData.ResetSimulation = true;
+        };
+        
+        var resetButton = UiComponents.CreateButton("Reset Button", visible: false, width: 150, height: 50);
+        Grid.SetColumn(resetButton, 3);
         
         nextButton.Click += (s, e) =>
         {
@@ -104,8 +115,12 @@ public class LessonPrompt
                 nextButton.Visible = true;
                 previousButton.Visible = true;
             }
-            
-            if (_index == _numPages - 1) nextButton.Visible = false;
+
+            if (_index == _numPages - 1)
+            {
+                nextButton.Visible = false;
+                resetButton.Visible = true;
+            }
         };
         
         previousButton.Click += (s, e) =>
@@ -114,21 +129,30 @@ public class LessonPrompt
             {
                 _index--;
                 nextButton.Visible = true;
+                resetButton.Visible = false;
             }
             if (_index == 0) previousButton.Visible = false;
             textBox.Text = _lessonContent[_index];
             pageLabel.Text = $"Page {_index + 1} of {_lessonContent.Length}";
         };
         
+        resetButton.Click += (s, e) =>
+        {
+            confirmReset.Show(_desktop);
+        };
+        
         grid.Widgets.Add(previousButton);
         grid.Widgets.Add(pageLabel);
         grid.Widgets.Add(nextButton);
+        grid.Widgets.Add(resetButton);
         
         return grid;
     }
 
-    public void Show(Desktop desktop)
+    public void Show(Desktop desktop, SimulationData simulationData)
     {
+        _simulationData = simulationData;
+        _desktop = desktop;
         _window.Show(desktop);
     }
 }
