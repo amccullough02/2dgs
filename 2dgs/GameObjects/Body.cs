@@ -175,8 +175,30 @@ public class Body
             float radius = trueDisplayRadius + selectorOffset;
             
             shapeBatch.Begin();
-            shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 2f);
+            shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 3f);
             shapeBatch.End();
+        }
+    }
+
+    private void DrawGlow(SpriteBatch spriteBatch, SimulationData simulationData)
+    {
+        if (simulationData.ToggleGlow)
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                float glowOpacity = 0.07f - (i * 0.002f);
+                float glowRadius = 1.0f + (i * 0.02f);
+            
+                spriteBatch.Draw(_textureManager.BodyTexture,
+                    _position,
+                    null,
+                    _color * glowOpacity,
+                    0f,
+                    new Vector2(_textureManager.BodyTexture.Width / 2, _textureManager.BodyTexture.Height / 2),
+                    new Vector2(_displayRadius * glowRadius, _displayRadius * glowRadius),
+                    SpriteEffects.None,
+                    0f);
+            }   
         }
     }
 
@@ -251,11 +273,12 @@ public class Body
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, SimulationData simData, ShapeBatch shapeBatch)
+    public void Draw(SpriteBatch spriteBatch, SimulationData simulationData, ShapeBatch shapeBatch)
     {
-        DrawOrbit(spriteBatch, simData, 2f);
+        DrawOrbit(spriteBatch, simulationData, 2f);
         DrawBody(spriteBatch);
-        DrawSelector(simData, shapeBatch);
-        DrawNames(simData, spriteBatch);
+        DrawGlow(spriteBatch, simulationData);
+        DrawSelector(simulationData, shapeBatch);
+        DrawNames(simulationData, spriteBatch);
     }
 }

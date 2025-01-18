@@ -100,6 +100,13 @@ public class SimulationUi
             }
         };
         
+        var thirdDivider = UiComponents.CreateHorizontalSeparator();
+        var glowButton = UiComponents.CreateButton("Toggle Glow");
+        glowButton.Click += (s, e) =>
+        {
+            simulationData.ToggleGlow = !simulationData.ToggleGlow;
+        };
+        
         settingsPanel.Widgets.Add(timeStepLabel);
         settingsPanel.Widgets.Add(timeStepSlider);
         settingsPanel.Widgets.Add(pauseButton);
@@ -110,6 +117,8 @@ public class SimulationUi
         settingsPanel.Widgets.Add(secondDivider);
         settingsPanel.Widgets.Add(namesButton);
         settingsPanel.Widgets.Add(namesDropdown);
+        settingsPanel.Widgets.Add(thirdDivider);
+        settingsPanel.Widgets.Add(glowButton);
 
         return settingsPanel;
     }

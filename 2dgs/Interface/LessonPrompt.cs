@@ -102,7 +102,7 @@ public class LessonPrompt
             _simulationData.ResetSimulation = true;
         };
         
-        var resetButton = UiComponents.CreateButton("Reset Button", visible: false, width: 150, height: 50);
+        var resetButton = UiComponents.CreateButton("Reset Simulation", visible: false, width: 150, height: 50);
         Grid.SetColumn(resetButton, 3);
         
         nextButton.Click += (s, e) =>
