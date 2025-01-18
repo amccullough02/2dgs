@@ -84,7 +84,7 @@ public class LessonPrompt
     {
         var grid = UiComponents.CreateGrid(0, 4, 1);
         
-        var previousButton = UiComponents.CreateButton("Previous Button", visible: false, width: 150, height: 50);
+        var previousButton = UiComponents.CreateButton("Previous Page", visible: false, width: 150, height: 50);
         Grid.SetColumn(previousButton, 0);
         
         var pageLabel = UiComponents.CreateStyledLabel($"Page {_index + 1} of {_numPages}");
@@ -92,11 +92,28 @@ public class LessonPrompt
         pageLabel.Margin = new Thickness(50, 0, 50, 0);
         Grid.SetColumn(pageLabel, 1);
         
-        var nextButton = UiComponents.CreateButton("Next Button", width: 150, height: 50);
+        var nextButton = UiComponents.CreateButton("Next Page", width: 150, height: 50);
         Grid.SetColumn(nextButton, 2);
         
-        var confirmReset = new Dialog { Title = "Confirm Action", 
-            Content = new Label { Text = "Are you sure you want to reset the lesson?" }};
+        var confirmReset = new Dialog { 
+            Title = "Confirm Action", 
+            Opacity = 0.9f,
+            TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
+            ButtonOk = { Padding = new Thickness(UiConstants.DefaultMargin,
+                5, UiConstants.DefaultMargin, 5), Content = new Label
+            {
+                Font = FontManager.MediumFont(18),
+                Text = "Ok"
+            }},
+            ButtonCancel = { Padding = new Thickness(UiConstants.DefaultMargin,
+                5, UiConstants.DefaultMargin, 5), Content = new Label
+            {
+                Font = FontManager.MediumFont(18),
+                Text = "Cancel"
+            }},
+            Content = new Label { Text = "Are you sure you want to reset the lesson?", 
+            Font = FontManager.LightFont(UiConstants.DefaultFontSize) }};
+        
         confirmReset.ButtonOk.Click += (_, __) =>
         {
             _simulationData.ResetSimulation = true;
