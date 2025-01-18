@@ -83,6 +83,7 @@ public class LessonPrompt
         var grid = UiComponents.CreateGrid(0, 3, 1);
         
         var previousButton = UiComponents.CreateButton("Previous Button", width: 150, height: 50);
+        previousButton.Visible = false;
         Grid.SetColumn(previousButton, 0);
         
         var pageLabel = UiComponents.CreateStyledLabel($"Page {_index + 1} of {_numPages}");
@@ -100,7 +101,11 @@ public class LessonPrompt
                 _index++;
                 textBox.Text = _lessonContent[_index];
                 pageLabel.Text = $"Page {_index + 1} of {_numPages}";
+                nextButton.Visible = true;
+                previousButton.Visible = true;
             }
+            
+            if (_index == _numPages - 1) nextButton.Visible = false;
         };
         
         previousButton.Click += (s, e) =>
@@ -108,7 +113,9 @@ public class LessonPrompt
             if (_index > 0)
             {
                 _index--;
+                nextButton.Visible = true;
             }
+            if (_index == 0) previousButton.Visible = false;
             textBox.Text = _lessonContent[_index];
             pageLabel.Text = $"Page {_index + 1} of {_lessonContent.Length}";
         };
