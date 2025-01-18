@@ -153,4 +153,32 @@ public static class UiComponents
                Content = label
           };
      }
+
+     public static Dialog CreateStyledDialog(string title)
+     {
+          return new Dialog
+          {
+               Title = title,
+               TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
+               Opacity = UiConstants.DefaultDialogOpacity,
+               ButtonOk =
+               {
+                    Content = new Label
+                    {
+                         Font = FontManager.MediumFont(18),
+                         Text = "Ok",
+                         Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
+                    }
+               },
+               ButtonCancel =
+               {
+                    Content = new Label
+                    {
+                         Font = FontManager.MediumFont(18),
+                         Text = "Cancel",
+                         Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
+                    }
+               },
+          };
+     }
 }

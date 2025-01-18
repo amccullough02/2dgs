@@ -1,4 +1,5 @@
 ﻿using Myra.Graphics2D;
+using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -38,7 +39,7 @@ public class LessonPrompt
             },
             Width = 600,
             Height = 400,
-            Opacity = 0.9f,
+            Opacity = UiConstants.DefaultDialogOpacity,
             Content = LessonLayout()
         };
 
@@ -94,25 +95,9 @@ public class LessonPrompt
         
         var nextButton = UiComponents.CreateButton("Next Page", width: 150, height: 50);
         Grid.SetColumn(nextButton, 2);
-        
-        var confirmReset = new Dialog { 
-            Title = "Confirm Action", 
-            Opacity = 0.9f,
-            TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
-            ButtonOk = { Padding = new Thickness(UiConstants.DefaultMargin,
-                5, UiConstants.DefaultMargin, 5), Content = new Label
-            {
-                Font = FontManager.MediumFont(18),
-                Text = "Ok"
-            }},
-            ButtonCancel = { Padding = new Thickness(UiConstants.DefaultMargin,
-                5, UiConstants.DefaultMargin, 5), Content = new Label
-            {
-                Font = FontManager.MediumFont(18),
-                Text = "Cancel"
-            }},
-            Content = new Label { Text = "Are you sure you want to reset the lesson?", 
-            Font = FontManager.LightFont(UiConstants.DefaultFontSize) }};
+
+        var confirmReset = UiComponents.CreateStyledDialog("Confirm Action");
+        confirmReset.Content = UiComponents.CreateStyledLabel("Are you sure you want to reset the simulation?");
         
         confirmReset.ButtonOk.Click += (_, __) =>
         {

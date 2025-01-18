@@ -9,4 +9,5 @@ public static class UiConstants
     public const int DefaultMargin = 20;
     public const int DefaultFontSize = 20;
     public const int DefaultSeparatorHeight = 5;
+    public const float DefaultDialogOpacity = 0.9f;
 }
