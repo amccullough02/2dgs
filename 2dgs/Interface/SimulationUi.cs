@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Globalization;
 using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
@@ -9,7 +9,7 @@ namespace _2dgs;
 
 public class SimulationUi
 {
-    private Desktop _desktop;
+    private readonly Desktop _desktop;
     
     public SimulationUi(Game game, SimulationData simulationData)
     {
@@ -165,14 +165,15 @@ public class SimulationUi
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 4);
-        
-        var createBodyDialogue = new Dialog { Title = "Create New Body", Content = grid };
+
+        var createBodyDialog = UiComponents.CreateStyledDialog("Create New Body");
+        createBodyDialog.Content = grid;
         
         var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
         var validationErrorDialogue = UiComponents.CreateValidationWindow(validationErrorMessage);
-        validationErrorDialogue.CloseButton.Click += (s, e) => { createBodyDialogue.Show(_desktop); };
+        validationErrorDialogue.CloseButton.Click += (s, e) => { createBodyDialog.Show(_desktop); };
 
-        createBodyDialogue.ButtonOk.Click += (sender, e) =>
+        createBodyDialog.ButtonOk.Click += (sender, e) =>
         {
             bool valid = true;
             string errorMessage = "";
@@ -220,7 +221,7 @@ public class SimulationUi
                 simulationData.CreateBodyData.DisplayRadius = size;
                 simulationData.ToggleBodyGhost = true;
                 
-                createBodyDialogue.Close();
+                createBodyDialog.Close();
             }
             else
             {
@@ -229,7 +230,7 @@ public class SimulationUi
             }
         };
 
-        return createBodyDialogue;
+        return createBodyDialog;
     }
 
     private Dialog EditBodyDialog(SimulationData simulationData)
@@ -298,11 +299,11 @@ public class SimulationUi
         Grid.SetRow(bodyDisplaySizeTextbox, 6);
         bodyDisplaySizeTextbox.Id = "bodyDisplaySizeTextbox";
 
-    var editBodyDialog = new Dialog { Title = "Edit Body", Content = grid };
-    
-    var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
-    var validationErrorDialogue = UiComponents.CreateValidationWindow(validationErrorMessage);
-    validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(_desktop); };
+        var editBodyDialog = UiComponents.CreateStyledDialog("Edit Body");
+        editBodyDialog.Content = grid;
+        var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
+        var validationErrorDialogue = UiComponents.CreateValidationWindow(validationErrorMessage);
+        validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(_desktop); };
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
         {
@@ -382,12 +383,18 @@ public class SimulationUi
     private void PopulateFormData(Dialog dialog, SimulationData simulationData)
     {
         ((TextBox)dialog.FindChildById("bodyNameTextbox")).Text = simulationData.SelectedBodyData.Name;
-        ((TextBox)dialog.FindChildById("bodyPosXTextbox")).Text = simulationData.SelectedBodyData.Position.X.ToString();
-        ((TextBox)dialog.FindChildById("bodyPosYTextbox")).Text = simulationData.SelectedBodyData.Position.Y.ToString();
-        ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text = simulationData.SelectedBodyData.Velocity.X.ToString();
-        ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text = simulationData.SelectedBodyData.Velocity.Y.ToString();
-        ((TextBox)dialog.FindChildById("bodyMassTextbox")).Text = simulationData.SelectedBodyData.Mass.ToString();
-        ((TextBox)dialog.FindChildById("bodyDisplaySizeTextbox")).Text = simulationData.SelectedBodyData.DisplayRadius.ToString();
+        ((TextBox)dialog.FindChildById("bodyPosXTextbox")).Text =
+            simulationData.SelectedBodyData.Position.X.ToString(CultureInfo.CurrentCulture);
+        ((TextBox)dialog.FindChildById("bodyPosYTextbox")).Text =
+            simulationData.SelectedBodyData.Position.Y.ToString(CultureInfo.CurrentCulture);
+        ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text =
+            simulationData.SelectedBodyData.Velocity.X.ToString(CultureInfo.CurrentCulture);
+        ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text =
+            simulationData.SelectedBodyData.Velocity.Y.ToString(CultureInfo.CurrentCulture);
+        ((TextBox)dialog.FindChildById("bodyMassTextbox")).Text =
+            simulationData.SelectedBodyData.Mass.ToString(CultureInfo.CurrentCulture);
+        ((TextBox)dialog.FindChildById("bodyDisplaySizeTextbox")).Text =
+            simulationData.SelectedBodyData.DisplayRadius.ToString(CultureInfo.CurrentCulture);
     }
 
     private VerticalStackPanel EditPanel(SimulationData simulationData)

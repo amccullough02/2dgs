@@ -108,6 +108,7 @@ public static class UiComponents
           return new Label
           {
                Text = text,
+               Font = FontManager.MediumFont(UiConstants.DialogFontSize),
           };
      }
 
@@ -117,6 +118,7 @@ public static class UiComponents
           {
                MinWidth = UiConstants.DefaultTextboxWidth,
                Text = text,
+               Font = FontManager.LightFont(UiConstants.DialogFontSize),
           };
      }
      
@@ -150,6 +152,7 @@ public static class UiComponents
           return new Window
           {
                Title = "Validation Error",
+               TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
                Content = label
           };
      }
