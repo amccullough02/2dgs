@@ -1,12 +1,12 @@
 {
-  "Title": "Three Body Problem",
+  "Title": "Galilean System",
   "IsLesson": true,
   "Bodies": [
     {
       "Name": "Jupiter",
       "Position": {
-        "X": 959.5531,
-        "Y": 540.6894
+        "X": 0.0,
+        "Y": 0.0
       },
       "Velocity": {
         "X": 0.015999218,
@@ -19,8 +19,8 @@
     {
       "Name": "Io",
       "Position": {
-        "X": 1115.869,
-        "Y": 665.25073
+        "X": 155.869,
+        "Y": 125.25073
       },
       "Velocity": {
         "X": -3.0283296,
@@ -33,8 +33,8 @@
     {
       "Name": "Europa",
       "Position": {
-        "X": 650.27386,
-        "Y": 676.3923
+        "X": -309.72614,
+        "Y": 136.3923
       },
       "Velocity": {
         "X": -1.3650537,
@@ -47,8 +47,8 @@
     {
       "Name": "Ganymede",
       "Position": {
-        "X": 1232.5896,
-        "Y": 443.65408
+        "X": 272.5896,
+        "Y": -96.34592
       },
       "Velocity": {
         "X": 2.8732052,
@@ -61,8 +61,8 @@
     {
       "Name": "Callisto",
       "Position": {
-        "X": 802.1295,
-        "Y": 767.5173
+        "X": -157.8705,
+        "Y": 227.5173
       },
       "Velocity": {
         "X": -5.251455,

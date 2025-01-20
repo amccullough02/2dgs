@@ -22,6 +22,7 @@ public class SimulationData
     public string[] LessonContent { get; set; }
     public int TimeStep { get; set; } = 50;
     public int TrailLength { get; set; } = 250;
+    public Vector2 ScreenDimensions { get; set; }
     public Color NewBodyColor { get; set; }
     public Position Position { get; set; } = Position.Right;
     public BodyData SelectedBodyData { get; set; } = new();

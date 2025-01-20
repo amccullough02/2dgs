@@ -54,12 +54,17 @@ public class Body
         return forceVector;
     }
 
-    public BodyData ConvertToBodyData()
+    public void OffsetPosition(SimulationData simulationData)
+    {
+        _position += simulationData.ScreenDimensions / 2;
+    }
+
+    public BodyData ConvertToBodyData(SimulationData simulationData)
     {
         return new BodyData
         {
             Name = _name,
-            Position = _position,
+            Position = _position - simulationData.ScreenDimensions / 2,
             Velocity = _velocity,
             Mass = _mass,
             DisplayRadius = _displayRadius,

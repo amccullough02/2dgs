@@ -39,6 +39,8 @@ public class Simulation : GameState
         _simulationData = new SimulationData();
         _simulationData.IsLesson = _saveData.IsLesson;
         _simulationData.SimulationTitle = _saveData.Title;
+        _simulationData.ScreenDimensions =
+            new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
         _simulationData.LessonContent = _saveData.LessonContent;
         _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
@@ -67,6 +69,11 @@ public class Simulation : GameState
                     _textureManager));
             }
         }
+        
+        foreach (Body body in _bodies)
+        {
+            body.OffsetPosition(_simulationData);
+        }
 
         _simulationData.FilePath = filePath;
     }
@@ -82,7 +89,7 @@ public class Simulation : GameState
 
             foreach (Body body in _bodies)
             {
-                dataToSave.Bodies.Add(body.ConvertToBodyData());
+                dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationData));
             }
             
             _saveSystem.Save(_simulationData.FilePath, dataToSave);
@@ -124,7 +131,7 @@ public class Simulation : GameState
         {
             GetSelectedBody()
                 .Edit(_simulationData.EditBodyData.Name,
-                    _simulationData.EditBodyData.Position,
+                    _simulationData.EditBodyData.Position + _simulationData.ScreenDimensions / 2,
                     _simulationData.EditBodyData.Velocity,
                     _simulationData.EditBodyData.Mass,
                     _simulationData.EditBodyData.DisplayRadius);
@@ -176,7 +183,7 @@ public class Simulation : GameState
 
     private void StoreSelectedBodyData()
     {
-        _simulationData.SelectedBodyData = GetSelectedBody().ConvertToBodyData();
+        _simulationData.SelectedBodyData = GetSelectedBody().ConvertToBodyData(_simulationData);
     }
 
     private void ResetSimulation(Game game)
