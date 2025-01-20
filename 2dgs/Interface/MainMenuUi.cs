@@ -22,26 +22,26 @@ public class MainMenuUi
 
     private VerticalStackPanel CreateMainMenu(Game game)
     {
-        var mainMenuStackPanel = UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Center,
+        var mainMenuStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Center,
             VerticalAlignment.Center, new Thickness(UiConstants.DefaultMargin));
         
-        var menuLabel = UiComponents.CreateStyledLabel("2DGS");
+        var menuLabel = UiComponents.Label("2DGS");
 
-        var simulationMenuButton = UiComponents.CreateButton("Simulation Menu");
+        var simulationMenuButton = UiComponents.Button("Simulation Menu");
         simulationMenuButton.Click += (s, e) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation menu...");
             game.GameStateManager.ChangeState(new SimulationMenu(game));
         };
         
-        var settingsMenuButton = UiComponents.CreateButton("Settings");
+        var settingsMenuButton = UiComponents.Button("Settings");
         settingsMenuButton.Click += (s, a) =>
         {
             Console.WriteLine("DEBUG: Navigating to settings menu...");
             game.GameStateManager.ChangeState(new SettingsMenu(game));
         };
         
-        var quitButton = UiComponents.CreateButton("Quit");
+        var quitButton = UiComponents.Button("Quit");
         quitButton.Click += (s, a) =>
         {
             MyraEnvironment.Game.Exit();

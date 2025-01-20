@@ -21,12 +21,12 @@ public class SettingsMenuUi
 
     private Grid CreateSettingsMenu(Game game)
     {
-        var grid = UiComponents.CreateGrid(10, 1, 4);
+        var grid = UiComponents.Grid(10, 1, 4);
 
-        var settingsMenuTitle = UiComponents.CreateStyledLabel("Settings Menu");
+        var settingsMenuTitle = UiComponents.Label("Settings Menu");
 
         var vsyncToggleButton =
-            UiComponents.CreateToggleButton("Disable V-Sync", game._graphics.SynchronizeWithVerticalRetrace);
+            UiComponents.ToggleButton("Disable V-Sync", game._graphics.SynchronizeWithVerticalRetrace);
         vsyncToggleButton.Click += (s, e) =>
         {
             game._graphics.SynchronizeWithVerticalRetrace = vsyncToggleButton.IsToggled;
@@ -37,7 +37,7 @@ public class SettingsMenuUi
         };
         Grid.SetRow(vsyncToggleButton, 1);
         
-        var showFpsToggleButton = UiComponents.CreateToggleButton("Hide FPS", true);
+        var showFpsToggleButton = UiComponents.ToggleButton("Hide FPS", true);
         showFpsToggleButton.Click += (s, e) =>
         {
             game._fpsCounter.ToggleFps();
@@ -45,7 +45,7 @@ public class SettingsMenuUi
         };
         Grid.SetRow(showFpsToggleButton, 2);
         
-        var returnToMainMenuButton = UiComponents.CreateButton("Return to Main Menu");
+        var returnToMainMenuButton = UiComponents.Button("Return to Main Menu");
         returnToMainMenuButton.Click += (s, e) =>
         {
             game.GameStateManager.ChangeState(new MainMenu(game));

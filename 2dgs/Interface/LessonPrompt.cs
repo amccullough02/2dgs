@@ -83,28 +83,28 @@ public class LessonPrompt
 
     private Grid PaginationControls(TextBox textBox)
     {
-        var grid = UiComponents.CreateGrid(0, 4, 1);
+        var grid = UiComponents.Grid(0, 4, 1);
         
-        var previousButton = UiComponents.CreateButton("Previous Page", visible: false, width: 150, height: 50);
+        var previousButton = UiComponents.Button("Previous Page", visible: false, width: 150, height: 50);
         Grid.SetColumn(previousButton, 0);
         
-        var pageLabel = UiComponents.CreateStyledLabel($"Page {_index + 1} of {_numPages}");
+        var pageLabel = UiComponents.Label($"Page {_index + 1} of {_numPages}");
         pageLabel.VerticalAlignment = VerticalAlignment.Center;
         pageLabel.Margin = new Thickness(50, 0, 50, 0);
         Grid.SetColumn(pageLabel, 1);
         
-        var nextButton = UiComponents.CreateButton("Next Page", width: 150, height: 50);
+        var nextButton = UiComponents.Button("Next Page", width: 150, height: 50);
         Grid.SetColumn(nextButton, 2);
 
-        var confirmReset = UiComponents.CreateStyledDialog("Confirm Action");
-        confirmReset.Content = UiComponents.CreateStyledLabel("Are you sure you want to reset the simulation?");
+        var confirmReset = UiComponents.StyledDialog("Confirm Action");
+        confirmReset.Content = UiComponents.Label("Are you sure you want to reset the simulation?");
         
         confirmReset.ButtonOk.Click += (_, __) =>
         {
             _simulationData.ResetSimulation = true;
         };
         
-        var resetButton = UiComponents.CreateButton("Reset Simulation", visible: false, width: 150, height: 50);
+        var resetButton = UiComponents.Button("Reset Simulation", visible: false, width: 150, height: 50);
         Grid.SetColumn(resetButton, 3);
         
         nextButton.Click += (s, e) =>

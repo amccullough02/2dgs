@@ -25,11 +25,11 @@ public class SimulationMenuUi
 
     private Dialog NameSimulationDialog(Game game, SaveSystem saveSystem)
     {
-        var grid = UiComponents.CreateGrid(10, 2, 1);
-        var nameSimulationLabel = UiComponents.CreateDialogLabel("Name simulation: ");
+        var grid = UiComponents.Grid(10, 2, 1);
+        var nameSimulationLabel = UiComponents.DialogLabel("Name simulation: ");
         Grid.SetColumn(nameSimulationLabel, 0);
 
-        var nameSimulationTextbox = UiComponents.CreateBasicTextBox("new_simulation");
+        var nameSimulationTextbox = UiComponents.TextBox("new_simulation");
         Grid.SetColumn(nameSimulationTextbox, 1);
         
         grid.Widgets.Add(nameSimulationLabel);
@@ -48,12 +48,12 @@ public class SimulationMenuUi
 
     private Grid CreateSimulationMenu(Game game, SaveSystem saveSystem)
     {
-        var grid = UiComponents.CreateGrid(10, 1, 4);
+        var grid = UiComponents.Grid(10, 1, 4);
 
-        var title = UiComponents.CreateStyledLabel("Simulation Menu");
+        var title = UiComponents.Label("Simulation Menu");
         Grid.SetRow(title, 0);
         
-        var createNewSimulationButton = UiComponents.CreateButton("Create New Simulation");
+        var createNewSimulationButton = UiComponents.Button("Create New Simulation");
         
         var createNewSimulationDialog = NameSimulationDialog(game, saveSystem);
         
@@ -92,7 +92,7 @@ public class SimulationMenuUi
         PopulateList(userSimulationsListView, "../../../sims/my_simulations", game);
         TestFileLoading(lessonsListView);
         
-        var returnButton = UiComponents.CreateButton("Main Menu");
+        var returnButton = UiComponents.Button("Main Menu");
         returnButton.Click += (s, a) =>
         {
             Console.WriteLine("DEBUG: Navigating to main menu...");

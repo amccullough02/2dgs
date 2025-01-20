@@ -27,19 +27,19 @@ public class SimulationUi
     private VerticalStackPanel SettingsPanel(SimulationData simulationData)
     {
         var settingsPanel =
-            UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Left, VerticalAlignment.Bottom,
+            UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, VerticalAlignment.Bottom,
                 new Thickness(UiConstants.DefaultMargin, 0, 0, UiConstants.DefaultMargin));
 
-        var timeStepLabel = UiComponents.CreateStyledLabel($"Time step: {simulationData.TimeStep}");
+        var timeStepLabel = UiComponents.Label($"Time step: {simulationData.TimeStep}");
 
-        var timeStepSlider = UiComponents.CreateHorizontalSlider(simulationData.TimeStep, 10, 400);
+        var timeStepSlider = UiComponents.HorizontalSlider(simulationData.TimeStep, 10, 400);
         timeStepSlider.ValueChanged += (s, e) =>
         {
             timeStepLabel.Text = $"Time step: {(int)timeStepSlider.Value}";
             simulationData.TimeStep = (int)timeStepSlider.Value;
         };
 
-        var pauseButton = UiComponents.CreateButton("Pause Simulation");
+        var pauseButton = UiComponents.Button("Pause Simulation");
         pauseButton.Click += (s, e) =>
         {
             if (!simulationData.EditMode)
@@ -50,36 +50,36 @@ public class SimulationUi
             }
         };
 
-        var firstDivider = UiComponents.CreateHorizontalSeparator();
+        var firstDivider = UiComponents.HorizontalSeparator();
         
-        var trailLengthLabel = UiComponents.CreateStyledLabel($"Trail length: {simulationData.TrailLength}");
+        var trailLengthLabel = UiComponents.Label($"Trail length: {simulationData.TrailLength}");
 
-        var trailLengthSlider = UiComponents.CreateHorizontalSlider(250, 250, 2000);
+        var trailLengthSlider = UiComponents.HorizontalSlider(250, 250, 2000);
         trailLengthSlider.ValueChanged += (s, e) =>
         {
             trailLengthLabel.Text = $"Trail length: {(int)trailLengthSlider.Value}";
             simulationData.TrailLength = (int)trailLengthSlider.Value;
         };
         
-        var trailsButton = UiComponents.CreateButton("Toggle Trails");
+        var trailsButton = UiComponents.Button("Toggle Trails");
         trailsButton.Click += (s, e) =>
         {
             simulationData.ToggleTrails = !simulationData.ToggleTrails;
         };
         
-        var secondDivider = UiComponents.CreateHorizontalSeparator();
+        var secondDivider = UiComponents.HorizontalSeparator();
         
-        var namesButton = UiComponents.CreateButton("Toggle Names");
+        var namesButton = UiComponents.Button("Toggle Names");
         namesButton.Click += (s, e) =>
         {
             simulationData.ToggleNames = !simulationData.ToggleNames;
         };
 
-        var namesDropdown = UiComponents.CreateComboView();
-        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Right"));
-        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Left"));
-        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Top"));
-        namesDropdown.Widgets.Add(UiComponents.CreateDropdownLabel("Bottom"));
+        var namesDropdown = UiComponents.ComboView();
+        namesDropdown.Widgets.Add(UiComponents.DropdownLabel("Right"));
+        namesDropdown.Widgets.Add(UiComponents.DropdownLabel("Left"));
+        namesDropdown.Widgets.Add(UiComponents.DropdownLabel("Top"));
+        namesDropdown.Widgets.Add(UiComponents.DropdownLabel("Bottom"));
         namesDropdown.SelectedIndex = 0;
         namesDropdown.SelectedIndexChanged += (s, e) =>
         {
@@ -100,8 +100,8 @@ public class SimulationUi
             }
         };
         
-        var thirdDivider = UiComponents.CreateHorizontalSeparator();
-        var glowButton = UiComponents.CreateButton("Toggle Glow");
+        var thirdDivider = UiComponents.HorizontalSeparator();
+        var glowButton = UiComponents.Button("Toggle Glow");
         glowButton.Click += (s, e) =>
         {
             simulationData.ToggleGlow = !simulationData.ToggleGlow;
@@ -125,52 +125,52 @@ public class SimulationUi
 
     private Dialog CreateBodyDialog(SimulationData simulationData)
     {
-        var grid = UiComponents.CreateGrid(10, 2, 5);
+        var grid = UiComponents.Grid(10, 2, 5);
         
-        var bodyNameLabel = UiComponents.CreateDialogLabel("Name: ");
+        var bodyNameLabel = UiComponents.DialogLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
-        var bodyNameTextbox = UiComponents.CreateBasicTextBox("Default name");
+        var bodyNameTextbox = UiComponents.TextBox("Default name");
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
         
-        var bodyVelXLabel = UiComponents.CreateDialogLabel("Vel X: ");
+        var bodyVelXLabel = UiComponents.DialogLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
         Grid.SetRow(bodyVelXLabel, 1);
-        var bodyVelXTextbox = UiComponents.CreateBasicTextBox("0.0");
+        var bodyVelXTextbox = UiComponents.TextBox("0.0");
         grid.Widgets.Add(bodyVelXTextbox);
         Grid.SetColumn(bodyVelXTextbox, 1);
         Grid.SetRow(bodyVelXTextbox, 1);
         
-        var bodyVelYLabel = UiComponents.CreateDialogLabel("Vel Y: ");
+        var bodyVelYLabel = UiComponents.DialogLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 2);
-        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("0.0");
+        var bodyVelYTextbox = UiComponents.TextBox("0.0");
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 2);
         
-        var bodyMassLabel = UiComponents.CreateDialogLabel("Mass: ");
+        var bodyMassLabel = UiComponents.DialogLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 3);
-        var bodyMassTextbox = UiComponents.CreateBasicTextBox("1e6");
+        var bodyMassTextbox = UiComponents.TextBox("1e6");
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 3);
 
-        var bodyDisplaySizeLabel = UiComponents.CreateDialogLabel("Display Size: ");
+        var bodyDisplaySizeLabel = UiComponents.DialogLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
         Grid.SetRow(bodyDisplaySizeLabel, 4);
-        var bodyDisplaySizeTextbox = UiComponents.CreateBasicTextBox("0.05");
+        var bodyDisplaySizeTextbox = UiComponents.TextBox("0.05");
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 4);
 
-        var createBodyDialog = UiComponents.CreateStyledDialog("Create New Body");
+        var createBodyDialog = UiComponents.StyledDialog("Create New Body");
         createBodyDialog.Content = grid;
         
-        var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
-        var validationErrorDialogue = UiComponents.CreateValidationWindow(validationErrorMessage);
+        var validationErrorMessage = UiComponents.DialogLabel("Validation Error: ");
+        var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
         validationErrorDialogue.CloseButton.Click += (s, e) => { createBodyDialog.Show(_desktop); };
 
         createBodyDialog.ButtonOk.Click += (sender, e) =>
@@ -235,74 +235,74 @@ public class SimulationUi
 
     private Dialog EditBodyDialog(SimulationData simulationData)
     {
-        var grid = UiComponents.CreateGrid(10, 2, 7);
+        var grid = UiComponents.Grid(10, 2, 7);
         
-        var bodyNameLabel = UiComponents.CreateDialogLabel("Name: ");
+        var bodyNameLabel = UiComponents.DialogLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
-        var bodyNameTextbox = UiComponents.CreateBasicTextBox("Default");
+        var bodyNameTextbox = UiComponents.TextBox("Default");
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
         bodyNameTextbox.Id = "bodyNameTextbox";
 
-        var bodyPosXLabel = UiComponents.CreateDialogLabel("Pos X: ");
+        var bodyPosXLabel = UiComponents.DialogLabel("Pos X: ");
         grid.Widgets.Add(bodyPosXLabel);
         Grid.SetRow(bodyPosXLabel, 1);
-        var bodyPosXTextbox = UiComponents.CreateBasicTextBox("0.0");
+        var bodyPosXTextbox = UiComponents.TextBox("0.0");
         grid.Widgets.Add(bodyPosXTextbox);
         Grid.SetColumn(bodyPosXTextbox, 1);
         Grid.SetRow(bodyPosXTextbox, 1);
         bodyPosXTextbox.Id = "bodyPosXTextbox";
 
-        var bodyPosYLabel = UiComponents.CreateDialogLabel("Pos Y: ");
+        var bodyPosYLabel = UiComponents.DialogLabel("Pos Y: ");
         grid.Widgets.Add(bodyPosYLabel);
         Grid.SetRow(bodyPosYLabel, 2);
-        var bodyPosYTextbox = UiComponents.CreateBasicTextBox("0.0");
+        var bodyPosYTextbox = UiComponents.TextBox("0.0");
         grid.Widgets.Add(bodyPosYTextbox);
         Grid.SetColumn(bodyPosYTextbox, 1);
         Grid.SetRow(bodyPosYTextbox, 2);
         bodyPosYTextbox.Id = "bodyPosYTextbox";
 
-        var bodyVelXLabel = UiComponents.CreateDialogLabel("Vel X: ");
+        var bodyVelXLabel = UiComponents.DialogLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
         Grid.SetRow(bodyVelXLabel, 3);
-        var bodyVelXTextbox = UiComponents.CreateBasicTextBox("0.0");
+        var bodyVelXTextbox = UiComponents.TextBox("0.0");
         grid.Widgets.Add(bodyVelXTextbox);
         Grid.SetColumn(bodyVelXTextbox, 1);
         Grid.SetRow(bodyVelXTextbox, 3);
         bodyVelXTextbox.Id = "bodyVelXTextbox";
 
-        var bodyVelYLabel = UiComponents.CreateDialogLabel("Vel Y: ");
+        var bodyVelYLabel = UiComponents.DialogLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 4);
-        var bodyVelYTextbox = UiComponents.CreateBasicTextBox("0.0");
+        var bodyVelYTextbox = UiComponents.TextBox("0.0");
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 4);
         bodyVelYTextbox.Id = "bodyVelYTextbox";
 
-        var bodyMassLabel = UiComponents.CreateDialogLabel("Mass: ");
+        var bodyMassLabel = UiComponents.DialogLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 5);
-        var bodyMassTextbox = UiComponents.CreateBasicTextBox("1e6");
+        var bodyMassTextbox = UiComponents.TextBox("1e6");
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 5);
         bodyMassTextbox.Id = "bodyMassTextbox";
 
-        var bodyDisplaySizeLabel = UiComponents.CreateDialogLabel("Display Size: ");
+        var bodyDisplaySizeLabel = UiComponents.DialogLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
         Grid.SetRow(bodyDisplaySizeLabel, 6);
-        var bodyDisplaySizeTextbox = UiComponents.CreateBasicTextBox("0.05");
+        var bodyDisplaySizeTextbox = UiComponents.TextBox("0.05");
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 6);
         bodyDisplaySizeTextbox.Id = "bodyDisplaySizeTextbox";
 
-        var editBodyDialog = UiComponents.CreateStyledDialog("Edit Body");
+        var editBodyDialog = UiComponents.StyledDialog("Edit Body");
         editBodyDialog.Content = grid;
-        var validationErrorMessage = UiComponents.CreateDialogLabel("Validation Error: ");
-        var validationErrorDialogue = UiComponents.CreateValidationWindow(validationErrorMessage);
+        var validationErrorMessage = UiComponents.DialogLabel("Validation Error: ");
+        var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
         validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(_desktop); };
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
@@ -399,7 +399,7 @@ public class SimulationUi
 
     private VerticalStackPanel EditPanel(SimulationData simulationData)
     {
-        var deleteBodyButton = UiComponents.CreateButton("Delete Body", false);
+        var deleteBodyButton = UiComponents.Button("Delete Body", false);
         deleteBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -415,7 +415,7 @@ public class SimulationUi
             simulationData.ColorSelectedBody = true;
         };
         
-        var colorBodyButton = UiComponents.CreateButton("Change Body Colour", false);
+        var colorBodyButton = UiComponents.Button("Change Body Colour", false);
         colorBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -425,7 +425,7 @@ public class SimulationUi
         };
         
         var editBodyDialog = EditBodyDialog(simulationData);
-        var editBodyButton = UiComponents.CreateButton("Edit Body Properties", false);
+        var editBodyButton = UiComponents.Button("Edit Body Properties", false);
         editBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -435,7 +435,7 @@ public class SimulationUi
             }
         };
         
-        var editModeButton = UiComponents.CreateButton("Enter Edit Mode");
+        var editModeButton = UiComponents.Button("Enter Edit Mode");
         editModeButton.Click += (sender, args) =>
         {
             ((Label)editModeButton.Content).Text = simulationData.EditMode ? "Enter Edit Mode" : "Exit Edit Mode";
@@ -448,14 +448,14 @@ public class SimulationUi
         
         var createBodyDialogue = CreateBodyDialog(simulationData);
 
-        var createBodyButton = UiComponents.CreateButton("Create Body");
+        var createBodyButton = UiComponents.Button("Create Body");
         createBodyButton.Click += (s, e) =>
         {
             createBodyDialogue.Show(_desktop);
         };
         
         var editPanel = 
-            UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Bottom,
+            UiComponents.VerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Bottom,
                 new Thickness(0, 0, UiConstants.DefaultMargin, UiConstants.DefaultMargin));
         
         editPanel.Widgets.Add(deleteBodyButton);
@@ -469,16 +469,16 @@ public class SimulationUi
 
     private VerticalStackPanel SaveAndQuitPanel(Game game, SimulationData simulationData)
     {
-        var saveAndQuitPanel = UiComponents.CreateVerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Top,
+        var saveAndQuitPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Top,
             new Thickness(0, UiConstants.DefaultMargin, UiConstants.DefaultMargin, 0));
         
-        var returnButton = UiComponents.CreateButton("Exit Simulation");
+        var returnButton = UiComponents.Button("Exit Simulation");
         returnButton.Click += (s, e) =>
         {
             game.GameStateManager.ChangeState(new SimulationMenu(game));
         };
         
-        var saveButton = UiComponents.CreateButton("Save Simulation");
+        var saveButton = UiComponents.Button("Save Simulation");
         saveButton.Click += (s, e) =>
         {
             simulationData.AttemptToSaveFile = true;
@@ -488,7 +488,7 @@ public class SimulationUi
         
         UiTests.TestLessonPrompt(simulationData.LessonContent, prompt.GetLessonContent);
         
-        var promptButton = UiComponents.CreateButton("Show Lesson Prompt");
+        var promptButton = UiComponents.Button("Show Lesson Prompt");
         promptButton.Click += (s, e) =>
         {
             prompt.Show(_desktop, simulationData);

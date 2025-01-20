@@ -7,7 +7,7 @@ namespace _2dgs;
 public static class UiComponents
 {
      
-     public static Button CreateButton(string text,
+     public static Button Button(string text,
           bool visible = true,
           int width = UiConstants.DefaultButtonWidth,
           int height = UiConstants.DefaultButtonHeight)
@@ -27,7 +27,7 @@ public static class UiComponents
           };
      }
 
-     public static HorizontalSeparator CreateHorizontalSeparator()
+     public static HorizontalSeparator HorizontalSeparator()
      {
           return new HorizontalSeparator
           {
@@ -40,7 +40,7 @@ public static class UiComponents
           };
      }
 
-     public static HorizontalSlider CreateHorizontalSlider(int value, int min, int max)
+     public static HorizontalSlider HorizontalSlider(int value, int min, int max)
      {
           return new HorizontalSlider
           {
@@ -51,7 +51,7 @@ public static class UiComponents
           };
      }
 
-     public static ComboView CreateComboView()
+     public static ComboView ComboView()
      {
           return new ComboView()
           {
@@ -60,7 +60,7 @@ public static class UiComponents
           };
      }
 
-     public static Label CreateDropdownLabel(string text)
+     public static Label DropdownLabel(string text)
      {
           return new Label
           {
@@ -71,7 +71,7 @@ public static class UiComponents
           };
      }
 
-     public static Grid CreateGrid(int spacing, int columns, int rows)
+     public static Grid Grid(int spacing, int columns, int rows)
      {
           var grid = new Grid
           {
@@ -94,7 +94,7 @@ public static class UiComponents
           return grid;
      }
 
-     public static Label CreateStyledLabel(string text)
+     public static Label Label(string text)
      {
           return new Label
           {
@@ -103,7 +103,7 @@ public static class UiComponents
           };
      }
      
-     public static Label CreateDialogLabel(string text)
+     public static Label DialogLabel(string text)
      {
           return new Label
           {
@@ -112,7 +112,7 @@ public static class UiComponents
           };
      }
 
-     public static TextBox CreateBasicTextBox(string text)
+     public static TextBox TextBox(string text)
      {
           return new TextBox
           {
@@ -122,7 +122,7 @@ public static class UiComponents
           };
      }
      
-     public static VerticalStackPanel CreateVerticalStackPanel(int spacing,
+     public static VerticalStackPanel VerticalStackPanel(int spacing,
           HorizontalAlignment horizontalAlignment,
           VerticalAlignment verticalAlignment, Thickness thickness)
      {
@@ -135,7 +135,7 @@ public static class UiComponents
           };
      }
 
-     public static ToggleButton CreateToggleButton(string text, bool toggled)
+     public static ToggleButton ToggleButton(string text, bool toggled)
      {
           return new ToggleButton
           {
@@ -147,7 +147,7 @@ public static class UiComponents
           };
      }
 
-     public static Window CreateValidationWindow(Label label)
+     public static Window ValidationWindow(Label label)
      {
           return new Window
           {
@@ -157,7 +157,7 @@ public static class UiComponents
           };
      }
 
-     public static Dialog CreateStyledDialog(string title)
+     public static Dialog StyledDialog(string title)
      {
           return new Dialog
           {
