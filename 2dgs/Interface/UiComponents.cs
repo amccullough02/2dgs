@@ -116,7 +116,9 @@ public static class UiComponents
           return new Label
           {
                Text = text,
-               Font = FontManager.MediumFont(UiConstants.TitleFontSize)
+               Font = FontManager.MediumFont(UiConstants.TitleFontSize),
+               HorizontalAlignment = HorizontalAlignment.Center,
+               Padding = new Thickness(UiConstants.DefaultTitleMargin),
           };
      }
 

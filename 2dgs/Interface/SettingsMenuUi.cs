@@ -15,6 +15,7 @@ public class SettingsMenuUi
         MyraEnvironment.Game = game;
 
         var rootContainer = new Panel();
+        
         rootContainer.Widgets.Add(Settings(game));
         rootContainer.Widgets.Add(ExitPanel(game));
         
@@ -25,12 +26,11 @@ public class SettingsMenuUi
     private VerticalStackPanel Settings(Game game)
     {
         var settingsTitle = UiComponents.TitleLabel("Settings Menu");
-        settingsTitle.Padding = new Thickness(UiConstants.DefaultMargin);
         
         var settingsPanel = UiComponents.VerticalStackPanel(8,
             HorizontalAlignment.Center,
             VerticalAlignment.Top,
-            new Thickness(UiConstants.DefaultMargin));
+            new Thickness(0));
         
         settingsPanel.Widgets.Add(settingsTitle);
         settingsPanel.Widgets.Add(DisplaySettings(game));

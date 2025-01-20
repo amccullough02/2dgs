@@ -12,9 +12,12 @@ public class MainMenuUi
     public MainMenuUi(Game game)
     {
         MyraEnvironment.Game = game;
-
+        
         var rootContainer = new Panel();
+        var menuTitle = UiComponents.TitleLabel("2D Gravity Simulator");
+        
         rootContainer.Widgets.Add(CreateMainMenu(game));
+        rootContainer.Widgets.Add(menuTitle);
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
@@ -24,8 +27,6 @@ public class MainMenuUi
     {
         var mainMenuStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Center,
             VerticalAlignment.Center, new Thickness(UiConstants.DefaultMargin));
-        
-        var menuLabel = UiComponents.Label("2DGS");
 
         var simulationMenuButton = UiComponents.Button("Simulation Menu");
         simulationMenuButton.Click += (s, e) =>
@@ -47,7 +48,6 @@ public class MainMenuUi
             MyraEnvironment.Game.Exit();
         };
         
-        mainMenuStackPanel.Widgets.Add(menuLabel);
         mainMenuStackPanel.Widgets.Add(simulationMenuButton);
         mainMenuStackPanel.Widgets.Add(settingsMenuButton);
         mainMenuStackPanel.Widgets.Add(quitButton);

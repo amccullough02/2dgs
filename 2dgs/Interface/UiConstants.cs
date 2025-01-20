@@ -7,6 +7,7 @@ public static class UiConstants
     public const int DefaultTextboxWidth = 150;
     public const int DefaultButtonHeight = 60;
     public const int DefaultMargin = 20;
+    public const int DefaultTitleMargin = 50;
     public const int DefaultFontSize = 20;
     public const int DialogFontSize = 18;
     public const int DefaultSeparatorHeight = 5;
