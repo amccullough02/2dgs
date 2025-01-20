@@ -178,7 +178,7 @@ public class SimulationUi
             bool valid = true;
             string errorMessage = "";
 
-            if (bodyNameTextbox.Text.Length <= 2)
+            if (bodyNameTextbox.Text.Length < 2)
             {
                 valid = false;
                 errorMessage = "Name must be at least 2 characters.";
@@ -310,7 +310,7 @@ public class SimulationUi
             bool valid = true;
             string errorMessage = "";
 
-            if (bodyNameTextbox.Text.Length <= 2)
+            if (bodyNameTextbox.Text.Length < 2)
             {
                 valid = false;
                 errorMessage = "Name must be at least 2 characters.";
@@ -389,7 +389,7 @@ public class SimulationUi
             simulationData.SelectedBodyData.Position.Y.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text =
             simulationData.SelectedBodyData.Velocity.X.ToString(CultureInfo.CurrentCulture);
-        ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text =
+        ((TextBox)dialog.FindChildById("bodyVelYTextbox")).Text =
             simulationData.SelectedBodyData.Velocity.Y.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyMassTextbox")).Text =
             simulationData.SelectedBodyData.Mass.ToString(CultureInfo.CurrentCulture);
