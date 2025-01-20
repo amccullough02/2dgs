@@ -25,7 +25,7 @@ public class SimulationMenuUi
 
     private Dialog NameSimulationDialog(Game game, SaveSystem saveSystem)
     {
-        var grid = UiComponents.Grid(10, 2, 1);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
         var nameSimulationLabel = UiComponents.DialogLabel("Name simulation: ");
         Grid.SetColumn(nameSimulationLabel, 0);
 
@@ -48,7 +48,7 @@ public class SimulationMenuUi
 
     private Grid CreateSimulationMenu(Game game, SaveSystem saveSystem)
     {
-        var grid = UiComponents.Grid(10, 1, 4);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 4);
 
         var title = UiComponents.Label("Simulation Menu");
         Grid.SetRow(title, 0);

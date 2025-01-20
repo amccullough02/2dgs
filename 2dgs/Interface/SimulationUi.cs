@@ -125,7 +125,7 @@ public class SimulationUi
 
     private Dialog CreateBodyDialog(SimulationData simulationData)
     {
-        var grid = UiComponents.Grid(10, 2, 5);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 5);
         
         var bodyNameLabel = UiComponents.DialogLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
@@ -235,7 +235,7 @@ public class SimulationUi
 
     private Dialog EditBodyDialog(SimulationData simulationData)
     {
-        var grid = UiComponents.Grid(10, 2, 7);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 7);
         
         var bodyNameLabel = UiComponents.DialogLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);

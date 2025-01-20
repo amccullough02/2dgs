@@ -112,6 +112,15 @@ public static class UiComponents
           };
      }
 
+     public static Label TitleLabel(string text)
+     {
+          return new Label
+          {
+               Text = text,
+               Font = FontManager.MediumFont(UiConstants.TitleFontSize)
+          };
+     }
+
      public static TextBox TextBox(string text)
      {
           return new TextBox
@@ -139,10 +148,16 @@ public static class UiComponents
      {
           return new ToggleButton
           {
+               MaxWidth = 150,
+               MaxHeight = 40,
                IsToggled = toggled,
                Content = new Label
                {
-                    Text = text
+                    Font = FontManager.LightFont(UiConstants.DefaultFontSize),
+                    Text = text,
+                    Padding = new Thickness(8),
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                }
           };
      }

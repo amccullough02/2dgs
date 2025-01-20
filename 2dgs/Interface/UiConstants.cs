@@ -10,5 +10,8 @@ public static class UiConstants
     public const int DefaultFontSize = 20;
     public const int DialogFontSize = 18;
     public const int DefaultSeparatorHeight = 5;
+    public const int TitleFontSize = 80;
+    public const int DefaultGridSpacing = 10;
     public const float DefaultDialogOpacity = 0.9f;
+    
 }

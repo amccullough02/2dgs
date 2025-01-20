@@ -1,5 +1,6 @@
 ﻿using System;
 using Myra;
+using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -13,51 +14,111 @@ public class SettingsMenuUi
         MyraEnvironment.Game = game;
 
         var rootContainer = new Panel();
-        rootContainer.Widgets.Add(CreateSettingsMenu(game));
+        rootContainer.Widgets.Add(Settings(game));
+        rootContainer.Widgets.Add(ExitPanel(game));
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
-    private Grid CreateSettingsMenu(Game game)
+    private VerticalStackPanel Settings(Game game)
     {
-        var grid = UiComponents.Grid(10, 1, 4);
+        var settingsTitle = UiComponents.TitleLabel("Settings Menu");
+        settingsTitle.Padding = new Thickness(UiConstants.DefaultMargin);
+        
+        var settingsPanel = UiComponents.VerticalStackPanel(8,
+            HorizontalAlignment.Center,
+            VerticalAlignment.Top,
+            new Thickness(UiConstants.DefaultMargin));
+        
+        settingsPanel.Widgets.Add(settingsTitle);
+        settingsPanel.Widgets.Add(DisplaySettings(game));
+        settingsPanel.Widgets.Add(MiscSettings(game));
+        
+        return settingsPanel;
+    }
 
-        var settingsMenuTitle = UiComponents.Label("Settings Menu");
-
+    private VerticalStackPanel DisplaySettings(Game game)
+    {
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 3, 2);
+        
+        var vsyncToggleLabel = UiComponents.Label("Toggle VSync");
+        Grid.SetRow(vsyncToggleLabel, 0);
+        
         var vsyncToggleButton =
-            UiComponents.ToggleButton("Disable V-Sync", game._graphics.SynchronizeWithVerticalRetrace);
+            UiComponents.ToggleButton("V-Sync Enabled", game._graphics.SynchronizeWithVerticalRetrace);
+        vsyncToggleButton.HorizontalAlignment = HorizontalAlignment.Right;
         vsyncToggleButton.Click += (s, e) =>
         {
             game._graphics.SynchronizeWithVerticalRetrace = vsyncToggleButton.IsToggled;
             game._graphics.ApplyChanges();
             Console.WriteLine("DEBUG: V-sync toggled: " + vsyncToggleButton.IsToggled);
-            ((Label)vsyncToggleButton.Content).Text = vsyncToggleButton.IsToggled ? "Disable V-Sync" : "Enable V-Sync";
+            ((Label)vsyncToggleButton.Content).Text = vsyncToggleButton.IsToggled ? "V-Sync Enabled" : "V-Sync Disabled";
             Console.WriteLine("Actual status of V-sync: " + game._graphics.SynchronizeWithVerticalRetrace);
         };
-        Grid.SetRow(vsyncToggleButton, 1);
+        Grid.SetRow(vsyncToggleButton, 0);
+        Grid.SetColumn(vsyncToggleButton, 1);
         
-        var showFpsToggleButton = UiComponents.ToggleButton("Hide FPS", true);
+        grid.Widgets.Add(vsyncToggleLabel);
+        grid.Widgets.Add(vsyncToggleButton);
+        
+        var sectionTitle = UiComponents.Label("Display Settings");
+        sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
+        var divider = UiComponents.HorizontalSeparator();
+        
+        var panel = new VerticalStackPanel();
+        
+        panel.Widgets.Add(sectionTitle);
+        panel.Widgets.Add(divider);
+        panel.Widgets.Add(grid);
+
+        return panel;
+    }
+
+    private VerticalStackPanel MiscSettings(Game game)
+    {
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 2);
+        
+        var showFpsLabel = UiComponents.Label("Toggle FPS Counter");
+        
+        var showFpsToggleButton = UiComponents.ToggleButton("FPS Enabled", true);
+        showFpsToggleButton.HorizontalAlignment = HorizontalAlignment.Right;
         showFpsToggleButton.Click += (s, e) =>
         {
             game._fpsCounter.ToggleFps();
-            ((Label)showFpsToggleButton.Content).Text = showFpsToggleButton.IsToggled ? "Hide FPS" : "Show FPS";
+            ((Label)showFpsToggleButton.Content).Text = showFpsToggleButton.IsToggled ? "FPS Enabled" : "FPS Disabled";
         };
-        Grid.SetRow(showFpsToggleButton, 2);
+        Grid.SetColumn(showFpsToggleButton, 1);
         
-        var returnToMainMenuButton = UiComponents.Button("Return to Main Menu");
-        returnToMainMenuButton.Click += (s, e) =>
+        grid.Widgets.Add(showFpsLabel);
+        grid.Widgets.Add(showFpsToggleButton);
+
+        var sectionTitle = UiComponents.Label("Miscellaneous Settings");
+        sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
+        var divider = UiComponents.HorizontalSeparator();
+        
+        var panel = new VerticalStackPanel();
+        panel.Widgets.Add(sectionTitle);
+        panel.Widgets.Add(divider);
+        panel.Widgets.Add(grid);
+        
+        return panel;
+    }
+
+    private VerticalStackPanel ExitPanel(Game game)
+    {
+        var button = UiComponents.Button("Return to Main Menu");
+        button.Click += (s, e) =>
         {
             game.GameStateManager.ChangeState(new MainMenu(game));
         };
-        Grid.SetRow(returnToMainMenuButton, 3);
 
-        grid.Widgets.Add(settingsMenuTitle);
-        grid.Widgets.Add(vsyncToggleButton);
-        grid.Widgets.Add(showFpsToggleButton);
-        grid.Widgets.Add(returnToMainMenuButton);
-
-        return grid;
+        var verticalStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, 
+            VerticalAlignment.Bottom, new Thickness(UiConstants.DefaultMargin));
+        
+        verticalStackPanel.Widgets.Add(button);
+        
+        return verticalStackPanel;
     }
 
     public void Draw()
