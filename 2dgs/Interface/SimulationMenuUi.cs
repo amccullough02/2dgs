@@ -2,27 +2,71 @@
 using System.IO;
 using System.Linq;
 using Myra;
+using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
 public class SimulationMenuUi
 {
-    private Desktop _desktop;
-    private FileManager _fileManager;
+    private readonly Desktop _desktop;
+    private readonly FileManager _fileManager;
 
     public SimulationMenuUi(Game game, SaveSystem saveSystem)
     {
         MyraEnvironment.Game = game;
         
         var rootContainer = new Panel();
+        var simMenuTitle = UiComponents.TitleLabel("Simulation Menu");
+        
+        rootContainer.Widgets.Add(simMenuTitle);
         rootContainer.Widgets.Add(CreateSimulationMenu(game, saveSystem));
+        rootContainer.Widgets.Add(ExitPanel(game));
         
         _fileManager = new FileManager();
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
+    private VerticalStackPanel CreateSimulationMenu(Game game, SaveSystem saveSystem)
+    {
+        var verticalStackPanel = UiComponents.VerticalStackPanel(8,
+            HorizontalAlignment.Center,
+            VerticalAlignment.Center,
+            new Thickness(UiConstants.DefaultMargin));
+        
+        var createNewSimulationButton = UiComponents.Button("Create New Simulation");
+        
+        var createNewSimulationDialog = NameSimulationDialog(game, saveSystem);
+        
+        createNewSimulationButton.Click += (s, e) =>
+        {
+            createNewSimulationDialog.Show(_desktop);
+        };
+
+        var tabControl = UiComponents.TabControl(400);
+
+        var lessonsTab = UiComponents.TabItem("Lesson Simulations");
+        var lessonsListView = UiComponents.ListView(400);
+        lessonsTab.Content = lessonsListView;
+        
+        var userSimsTab = UiComponents.TabItem("Sandbox Simulations");
+        var userSimulationsListView = UiComponents.ListView(400);
+        userSimsTab.Content = userSimulationsListView;
+        
+        tabControl.Items.Add(lessonsTab);
+        tabControl.Items.Add(userSimsTab);
+        
+        PopulateList(lessonsListView, "../../../sims/lessons", game);
+        PopulateList(userSimulationsListView, "../../../sims/my_simulations", game);
+        TestFileLoading(lessonsListView);
+        
+        userSimulationsListView.Widgets.Add(createNewSimulationButton);
+        verticalStackPanel.Widgets.Add(tabControl);
+
+        return verticalStackPanel;
+    }
+    
     private Dialog NameSimulationDialog(Game game, SaveSystem saveSystem)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
@@ -35,131 +79,64 @@ public class SimulationMenuUi
         grid.Widgets.Add(nameSimulationLabel);
         grid.Widgets.Add(nameSimulationTextbox);
         
-        var createNewSimulationDialog = new Dialog { Title = "Simulation Name: ", Content = grid};
-        createNewSimulationDialog.ButtonOk.Click += (sender, e) =>
+        var newSimulationDialog = UiComponents.StyledDialog("New simulation");
+        newSimulationDialog.Content = grid;
+        newSimulationDialog.ButtonOk.Click += (sender, e) =>
         {
             string newFilePath = "../../../sims/my_simulations/" + nameSimulationTextbox.Text + ".json";
             saveSystem.CreateBlankSimulation(newFilePath);
             game.GameStateManager.ChangeState(new Simulation(game, newFilePath));
         };
         
-        return createNewSimulationDialog;
-    }
-
-    private Grid CreateSimulationMenu(Game game, SaveSystem saveSystem)
-    {
-        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 4);
-
-        var title = UiComponents.Label("Simulation Menu");
-        Grid.SetRow(title, 0);
-        
-        var createNewSimulationButton = UiComponents.Button("Create New Simulation");
-        
-        var createNewSimulationDialog = NameSimulationDialog(game, saveSystem);
-        
-        createNewSimulationButton.Click += (s, e) =>
-        {
-            createNewSimulationDialog.Show(_desktop);
-        };
-        Grid.SetRow(createNewSimulationButton, 1);
-        
-        var tabControl = new TabControl
-        {
-            Width = 400,
-            MouseCursor = MouseCursorType.Hand,
-        };
-        Grid.SetRow(tabControl, 2);
-        
-        var lessonsListView = new ListView();
-        var userSimulationsListView = new ListView();
-
-        var lessonsTab = new TabItem
-        {
-            Text = "Lessons",
-            Content = lessonsListView,
-        };
-        
-        var userSimsTab = new TabItem
-        {
-            Text = "My Simulations",
-            Content = userSimulationsListView
-        };
-        
-        tabControl.Items.Add(lessonsTab);
-        tabControl.Items.Add(userSimsTab);
-        
-        PopulateList(lessonsListView, "../../../sims/lessons", game);
-        PopulateList(userSimulationsListView, "../../../sims/my_simulations", game);
-        TestFileLoading(lessonsListView);
-        
-        var returnButton = UiComponents.Button("Main Menu");
-        returnButton.Click += (s, a) =>
-        {
-            Console.WriteLine("DEBUG: Navigating to main menu...");
-            game.GameStateManager.ChangeState(new MainMenu(game));
-        };
-        Grid.SetRow(returnButton, 3);
-        
-        grid.Widgets.Add(title);
-        grid.Widgets.Add(createNewSimulationButton);
-        grid.Widgets.Add(tabControl);
-        grid.Widgets.Add(returnButton);
-
-        return grid;
+        return newSimulationDialog;
     }
     
-    private void EditButtonDialog(string fileName, string path, string file)
+    private void RenameButtonDialog(string fileName, string path, string file)
     {
-        var textbox = new TextBox { Text = fileName };
+        var textbox = UiComponents.TextBox(fileName);
         
-        var popup = new Dialog
-        {
-            Title = "Rename Simulation",
-            Content = textbox,
-        };
+        var renameButtonDialog = UiComponents.StyledDialog("Rename");
+        renameButtonDialog.Content = textbox;
                     
-        popup.ButtonOk.Click += (sender, result) =>
+        renameButtonDialog.ButtonOk.Click += (sender, result) =>
         {
             Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
             var newPath = path + "/" + textbox.Text + ".json";
             _fileManager.RenameFile(file, newPath);
         };
 
-        popup.ButtonCancel.Click += (sender, result) =>
+        renameButtonDialog.ButtonCancel.Click += (sender, result) =>
         {
             Console.WriteLine("DEBUG: File rename cancelled");
         };
                     
-        popup.Show(_desktop);
+        renameButtonDialog.Show(_desktop);
     }
     
     private void DeleteButtonDialog(string fileName, string path)
     {
-        var popup = new Dialog
-        {
-            Title = "Delete Simulation"
-        };
+        var deleteButtonDialog = UiComponents.StyledDialog("Delete");
 
-        popup.ButtonOk.Click += (sender, result) =>
+        deleteButtonDialog.ButtonOk.Click += (sender, result) =>
         {
             Console.WriteLine($"DEBUG: {fileName} deleted");
             _fileManager.DeleteFile(path + "/" + fileName + ".json");
         };
 
-        popup.ButtonCancel.Click += (sender, result) =>
+        deleteButtonDialog.ButtonCancel.Click += (sender, result) =>
         {
             Console.WriteLine("DEBUG: Delete operation cancelled");
         };
                     
-        popup.Show(_desktop);
+        deleteButtonDialog.Show(_desktop);
     }
     
     private HorizontalStackPanel CreateFilePanel(string file, string path, Game game)
     {
         var fileName = Path.GetFileNameWithoutExtension(file);
-        var loadButton = new Button { Content = new Label { Text = fileName } };
-        var editButton = new Button { Content = new Label { Text = "Edit"}};
-        var deleteButton = new Button { Content = new Label { Text = "Delete"}};
+        var loadButton = new Button { Content = UiComponents.Label(fileName) };
+        var editButton = new Button { Content = UiComponents.Label("Rename")};
+        var deleteButton = new Button { Content = UiComponents.Label("Delete")};
 
         loadButton.Click += (s, a) =>
         {
@@ -169,7 +146,7 @@ public class SimulationMenuUi
 
         editButton.Click += (s, a) =>
         {
-            EditButtonDialog(fileName, path, file);
+            RenameButtonDialog(fileName, path, file);
         };
         
         deleteButton.Click += (s, a) =>
@@ -177,7 +154,7 @@ public class SimulationMenuUi
             DeleteButtonDialog(fileName, path);
         };
         
-        var fileStackPanel = new HorizontalStackPanel { Spacing = 15, };
+        var fileStackPanel = new HorizontalStackPanel { Spacing = 15, Margin = new Thickness(10), VerticalAlignment = VerticalAlignment.Center };
         fileStackPanel.Widgets.Add(loadButton);
         fileStackPanel.Widgets.Add(editButton);
         fileStackPanel.Widgets.Add(deleteButton);
@@ -201,6 +178,22 @@ public class SimulationMenuUi
             var noFilesLabel = new Label { Text = "No files found" };
             listView.Widgets.Add(noFilesLabel);
         }
+    }
+    
+    private VerticalStackPanel ExitPanel(Game game)
+    {
+        var button = UiComponents.Button("Return to Main Menu");
+        button.Click += (s, e) =>
+        {
+            game.GameStateManager.ChangeState(new MainMenu(game));
+        };
+
+        var verticalStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, 
+            VerticalAlignment.Bottom, new Thickness(UiConstants.DefaultMargin));
+        
+        verticalStackPanel.Widgets.Add(button);
+        
+        return verticalStackPanel;
     }
     
     private void TestFileLoading(ListView listView)

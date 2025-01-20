@@ -5,20 +5,20 @@ namespace _2dgs;
 
 public class Game : Microsoft.Xna.Framework.Game
 {
-    public GraphicsDeviceManager _graphics { get; }
+    public GraphicsDeviceManager Graphics { get; }
     private SpriteBatch _spriteBatch;
-    private Test _test;
-    public FpsCounter _fpsCounter { get; private set; }
+    private readonly Test _test;
+    public FpsCounter FpsCounter { get; private set; }
     public GameStateManager GameStateManager { get; private set; }
 
     public Game()
     {
-        _graphics = new GraphicsDeviceManager(this);
-        _graphics.PreferredBackBufferHeight = 1080;
-        _graphics.PreferredBackBufferWidth = 1920;
-        _graphics.SynchronizeWithVerticalRetrace = true;
-        _graphics.GraphicsProfile = GraphicsProfile.HiDef;
-        _graphics.ApplyChanges();
+        Graphics = new GraphicsDeviceManager(this);
+        Graphics.PreferredBackBufferHeight = 1080;
+        Graphics.PreferredBackBufferWidth = 1920;
+        Graphics.SynchronizeWithVerticalRetrace = true;
+        Graphics.GraphicsProfile = GraphicsProfile.HiDef;
+        Graphics.ApplyChanges();
         IsMouseVisible = true;
         IsFixedTimeStep = false;
         Content.RootDirectory = "Content";
@@ -28,21 +28,21 @@ public class Game : Microsoft.Xna.Framework.Game
     protected override void Initialize()
     {
         Window.Title = "2DGS - Alpha";
-        _test.RunAllTests(_graphics, Window.Title);
+        _test.RunAllTests(Graphics, Window.Title);
         GameStateManager = new GameStateManager();
-        GameStateManager.PushState(new SettingsMenu(this));
+        GameStateManager.PushState(new SimulationMenu(this));
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        _fpsCounter = new FpsCounter();
+        FpsCounter = new FpsCounter();
     }
 
     protected override void Update(GameTime gameTime)
     {
-        _fpsCounter.Update(gameTime);
+        FpsCounter.Update(gameTime);
         GameStateManager.Update(gameTime);
         base.Update(gameTime);
     }
@@ -50,7 +50,7 @@ public class Game : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        _fpsCounter.Draw(_spriteBatch);
+        FpsCounter.Draw(_spriteBatch);
         GameStateManager.Draw(gameTime, _spriteBatch);
         base.Draw(gameTime);
     }

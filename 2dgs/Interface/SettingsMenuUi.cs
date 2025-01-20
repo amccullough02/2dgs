@@ -8,7 +8,7 @@ namespace _2dgs;
 
 public class SettingsMenuUi
 {
-    private Desktop _desktop;
+    private readonly Desktop _desktop;
 
     public SettingsMenuUi(Game game)
     {
@@ -47,16 +47,16 @@ public class SettingsMenuUi
         Grid.SetRow(vsyncToggleLabel, 0);
         
         var vsyncToggleButton =
-            UiComponents.ToggleButton("V-Sync Enabled", game._graphics.SynchronizeWithVerticalRetrace);
+            UiComponents.ToggleButton("V-Sync Enabled", game.Graphics.SynchronizeWithVerticalRetrace);
         Grid.SetColumn(vsyncToggleButton, 1);
         vsyncToggleButton.HorizontalAlignment = HorizontalAlignment.Right;
         vsyncToggleButton.Click += (s, e) =>
         {
-            game._graphics.SynchronizeWithVerticalRetrace = vsyncToggleButton.IsToggled;
-            game._graphics.ApplyChanges();
+            game.Graphics.SynchronizeWithVerticalRetrace = vsyncToggleButton.IsToggled;
+            game.Graphics.ApplyChanges();
             Console.WriteLine("DEBUG: V-sync toggled: " + vsyncToggleButton.IsToggled);
             ((Label)vsyncToggleButton.Content).Text = vsyncToggleButton.IsToggled ? "V-Sync Enabled" : "V-Sync Disabled";
-            Console.WriteLine("Actual status of V-sync: " + game._graphics.SynchronizeWithVerticalRetrace);
+            Console.WriteLine("Actual status of V-sync: " + game.Graphics.SynchronizeWithVerticalRetrace);
         };
         
         var resolutionOptions = UiComponents.ComboView();
@@ -79,33 +79,33 @@ public class SettingsMenuUi
             {
                 case 0:
                     Console.WriteLine("DEBUG: Switching to 1920 x 1080 resolution");
-                    game._graphics.PreferredBackBufferWidth = 1920;
-                    game._graphics.PreferredBackBufferHeight = 1080;
-                    game._graphics.ApplyChanges();
+                    game.Graphics.PreferredBackBufferWidth = 1920;
+                    game.Graphics.PreferredBackBufferHeight = 1080;
+                    game.Graphics.ApplyChanges();
                     break;
                 case 1:
                     Console.WriteLine("DEBUG: Switching to 2560 x 1080 resolution");
-                    game._graphics.PreferredBackBufferWidth = 2560;
-                    game._graphics.PreferredBackBufferHeight = 1080;
-                    game._graphics.ApplyChanges();
+                    game.Graphics.PreferredBackBufferWidth = 2560;
+                    game.Graphics.PreferredBackBufferHeight = 1080;
+                    game.Graphics.ApplyChanges();
                     break;
                 case 2:
                     Console.WriteLine("DEBUG: Switching to 2560 x 1440 resolution");
-                    game._graphics.PreferredBackBufferWidth = 2560;
-                    game._graphics.PreferredBackBufferHeight = 1440;
-                    game._graphics.ApplyChanges();
+                    game.Graphics.PreferredBackBufferWidth = 2560;
+                    game.Graphics.PreferredBackBufferHeight = 1440;
+                    game.Graphics.ApplyChanges();
                     break;
                 case 3:
                     Console.WriteLine("DEBUG: Switching to 3440 x 1440 resolution");
-                    game._graphics.PreferredBackBufferWidth = 3440;
-                    game._graphics.PreferredBackBufferHeight = 1440;
-                    game._graphics.ApplyChanges();
+                    game.Graphics.PreferredBackBufferWidth = 3440;
+                    game.Graphics.PreferredBackBufferHeight = 1440;
+                    game.Graphics.ApplyChanges();
                     break;
                 case 4:
                     Console.WriteLine("DEBUG: Switching to 3840 x 2160 resolution");
-                    game._graphics.PreferredBackBufferWidth = 3840;
-                    game._graphics.PreferredBackBufferHeight = 2160;
-                    game._graphics.ApplyChanges();
+                    game.Graphics.PreferredBackBufferWidth = 3840;
+                    game.Graphics.PreferredBackBufferHeight = 2160;
+                    game.Graphics.ApplyChanges();
                     break;
             }
         };
@@ -125,14 +125,14 @@ public class SettingsMenuUi
             switch (windowOptions.SelectedIndex)
             {
                 case 0:
-                    game._graphics.IsFullScreen = false;
-                    game._graphics.ApplyChanges();
+                    game.Graphics.IsFullScreen = false;
+                    game.Graphics.ApplyChanges();
                     game.Window.Position = new Point(100, 100);
                     Console.WriteLine("DEBUG: Switching to windowed mode");
                     break;
                 case 1:
-                    game._graphics.IsFullScreen = true;
-                    game._graphics.ApplyChanges();
+                    game.Graphics.IsFullScreen = true;
+                    game.Graphics.ApplyChanges();
                     Console.WriteLine("DEBUG: Switching to fullscreen mode");
                     break;
             }
@@ -168,7 +168,7 @@ public class SettingsMenuUi
         showFpsToggleButton.HorizontalAlignment = HorizontalAlignment.Right;
         showFpsToggleButton.Click += (s, e) =>
         {
-            game._fpsCounter.ToggleFps();
+            game.FpsCounter.ToggleFps();
             ((Label)showFpsToggleButton.Content).Text = showFpsToggleButton.IsToggled ? "FPS Enabled" : "FPS Disabled";
         };
         Grid.SetColumn(showFpsToggleButton, 1);

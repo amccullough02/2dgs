@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.Styles;
 
 namespace _2dgs;
 
@@ -198,6 +199,31 @@ public static class UiComponents
                          Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
                     }
                },
+          };
+     }
+
+     public static TabControl TabControl(int width)
+     {
+          return new TabControl
+          {
+               Width = width,
+               MouseCursor = MouseCursorType.Hand,
+          };
+     }
+
+     public static TabItem TabItem(string title)
+     {
+          return new TabItem
+          {
+               Text = title,
+          };
+     }
+
+     public static ListView ListView(int width)
+     {
+          return new ListView
+          {
+               Width = width,
           };
      }
 }

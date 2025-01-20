@@ -7,7 +7,7 @@ namespace _2dgs;
 
 public class MainMenuUi
 {
-    private Desktop _desktop;
+    private readonly Desktop _desktop;
 
     public MainMenuUi(Game game)
     {
