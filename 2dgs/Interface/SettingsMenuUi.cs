@@ -2,6 +2,7 @@
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
+using Point = Microsoft.Xna.Framework.Point;
 
 namespace _2dgs;
 
@@ -40,13 +41,14 @@ public class SettingsMenuUi
 
     private VerticalStackPanel DisplaySettings(Game game)
     {
-        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 3, 2);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 3);
         
         var vsyncToggleLabel = UiComponents.Label("Toggle VSync");
         Grid.SetRow(vsyncToggleLabel, 0);
         
         var vsyncToggleButton =
             UiComponents.ToggleButton("V-Sync Enabled", game._graphics.SynchronizeWithVerticalRetrace);
+        Grid.SetColumn(vsyncToggleButton, 1);
         vsyncToggleButton.HorizontalAlignment = HorizontalAlignment.Right;
         vsyncToggleButton.Click += (s, e) =>
         {
@@ -56,11 +58,92 @@ public class SettingsMenuUi
             ((Label)vsyncToggleButton.Content).Text = vsyncToggleButton.IsToggled ? "V-Sync Enabled" : "V-Sync Disabled";
             Console.WriteLine("Actual status of V-sync: " + game._graphics.SynchronizeWithVerticalRetrace);
         };
-        Grid.SetRow(vsyncToggleButton, 0);
-        Grid.SetColumn(vsyncToggleButton, 1);
+        
+        var resolutionOptions = UiComponents.ComboView();
+        Grid.SetRow(resolutionOptions, 1);
+        resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("1920 x 1080"));
+        resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("2560 x 1080"));
+        resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("2560 x 1440"));
+        resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("3440 x 1440"));
+        resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("3840 x 2160"));
+        resolutionOptions.SelectedIndex = 0;
+        resolutionOptions.Width = 150;
+
+        var resolutionOptionButton = UiComponents.Button("Select", width: 150, height: 40);
+        Grid.SetRow(resolutionOptionButton, 1);
+        Grid.SetColumn(resolutionOptionButton, 1);
+        
+        resolutionOptionButton.Click += (s, e) =>
+        {
+            switch (resolutionOptions.SelectedIndex)
+            {
+                case 0:
+                    Console.WriteLine("DEBUG: Switching to 1920 x 1080 resolution");
+                    game._graphics.PreferredBackBufferWidth = 1920;
+                    game._graphics.PreferredBackBufferHeight = 1080;
+                    game._graphics.ApplyChanges();
+                    break;
+                case 1:
+                    Console.WriteLine("DEBUG: Switching to 2560 x 1080 resolution");
+                    game._graphics.PreferredBackBufferWidth = 2560;
+                    game._graphics.PreferredBackBufferHeight = 1080;
+                    game._graphics.ApplyChanges();
+                    break;
+                case 2:
+                    Console.WriteLine("DEBUG: Switching to 2560 x 1440 resolution");
+                    game._graphics.PreferredBackBufferWidth = 2560;
+                    game._graphics.PreferredBackBufferHeight = 1440;
+                    game._graphics.ApplyChanges();
+                    break;
+                case 3:
+                    Console.WriteLine("DEBUG: Switching to 3440 x 1440 resolution");
+                    game._graphics.PreferredBackBufferWidth = 3440;
+                    game._graphics.PreferredBackBufferHeight = 1440;
+                    game._graphics.ApplyChanges();
+                    break;
+                case 4:
+                    Console.WriteLine("DEBUG: Switching to 3840 x 2160 resolution");
+                    game._graphics.PreferredBackBufferWidth = 3840;
+                    game._graphics.PreferredBackBufferHeight = 2160;
+                    game._graphics.ApplyChanges();
+                    break;
+            }
+        };
+        
+        var windowOptions = UiComponents.ComboView();
+        windowOptions.Widgets.Add(UiComponents.DropdownLabel("Windowed"));
+        windowOptions.Widgets.Add(UiComponents.DropdownLabel("Fullscreen"));
+        windowOptions.SelectedIndex = 0;
+        windowOptions.Width = 150;
+        Grid.SetRow(windowOptions, 2);
+        
+        var windowOptionButton = UiComponents.Button("Select", width: 150, height: 40);
+        Grid.SetRow(windowOptionButton, 2);
+        Grid.SetColumn(windowOptionButton, 1);
+        windowOptionButton.Click += (s, e) =>
+        {
+            switch (windowOptions.SelectedIndex)
+            {
+                case 0:
+                    game._graphics.IsFullScreen = false;
+                    game._graphics.ApplyChanges();
+                    game.Window.Position = new Point(100, 100);
+                    Console.WriteLine("DEBUG: Switching to windowed mode");
+                    break;
+                case 1:
+                    game._graphics.IsFullScreen = true;
+                    game._graphics.ApplyChanges();
+                    Console.WriteLine("DEBUG: Switching to fullscreen mode");
+                    break;
+            }
+        };
         
         grid.Widgets.Add(vsyncToggleLabel);
         grid.Widgets.Add(vsyncToggleButton);
+        grid.Widgets.Add(resolutionOptions);
+        grid.Widgets.Add(resolutionOptionButton);
+        grid.Widgets.Add(windowOptions);
+        grid.Widgets.Add(windowOptionButton);
         
         var sectionTitle = UiComponents.Label("Display Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;

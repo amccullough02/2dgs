@@ -56,7 +56,6 @@ public static class UiComponents
           return new ComboView()
           {
                Width = UiConstants.DefaultElementWidth,
-               SelectedIndex = 0,
           };
      }
 
