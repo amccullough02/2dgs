@@ -5,9 +5,10 @@ namespace _2dgs;
 
 public class Game : Microsoft.Xna.Framework.Game
 {
-    public GraphicsDeviceManager Graphics { get; }
+    
     private SpriteBatch _spriteBatch;
     private readonly Test _test;
+    public GraphicsDeviceManager Graphics { get; }
     public FpsCounter FpsCounter { get; private set; }
     public GameStateManager GameStateManager { get; private set; }
 
