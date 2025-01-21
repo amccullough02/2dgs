@@ -1,4 +1,6 @@
-﻿using Myra.Graphics2D;
+﻿using Microsoft.Xna.Framework;
+using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 
@@ -123,6 +125,10 @@ public class LessonPrompt
                 nextButton.Visible = false;
                 resetButton.Visible = true;
             }
+
+            Button pauseButton = (Button)FindWidget.GetWidgetById(_desktop.Root, "pause_button");
+            pauseButton.BorderThickness = new Thickness(5);
+            pauseButton.Border = new SolidBrush(Color.White);
         };
         
         previousButton.Click += (s, e) =>
@@ -136,6 +142,10 @@ public class LessonPrompt
             if (_index == 0) previousButton.Visible = false;
             textBox.Text = _lessonContent[_index];
             pageLabel.Text = $"Page {_index + 1} of {_lessonContent.Length}";
+            
+            Button pauseButton = (Button)FindWidget.GetWidgetById(_desktop.Root, "pause_button");
+            pauseButton.BorderThickness = new Thickness(0);
+            pauseButton.Border = new SolidBrush(Color.White);
         };
         
         resetButton.Click += (s, e) =>

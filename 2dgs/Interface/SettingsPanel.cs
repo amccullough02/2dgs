@@ -21,6 +21,7 @@ public static class SettingsPanel
         };
 
         var pauseButton = UiComponents.Button("Pause Simulation");
+        pauseButton.Id = "pause_button";
         pauseButton.Click += (s, e) =>
         {
             if (!simulationData.EditMode)
