@@ -6,6 +6,6 @@ public class SaveData
 {
     public string Title = "default";
     public bool IsLesson = false;
-    public List<BodyData> Bodies = new List<BodyData>();
-    public string[] LessonContent = ["default", "lesson"];
+    public List<BodyData> Bodies = [];
+    public List<LessonPage> LessonPages = [];
 }

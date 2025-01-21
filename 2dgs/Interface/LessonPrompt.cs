@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Myra.Graphics2D;
 using Myra.Graphics2D.Brushes;
-using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -11,20 +11,20 @@ public class LessonPrompt
     private Desktop _desktop;
     private SimulationData _simulationData;
     private Window _window;
-    private string[] _lessonContent;
+    private List<LessonPage> _lessonPages;
     private string _title;
     private int _index;
     private int _numPages;
     
     public LessonPrompt(SimulationData simulationData)
     {
-        _lessonContent = simulationData.LessonContent;
         _title = simulationData.SimulationTitle;
-        _numPages = _lessonContent.Length;
+        _lessonPages = simulationData.LessonPages;
+        _numPages = simulationData.LessonPages.Count;
         _window = LessonWindow();
     }
     
-    public string[] GetLessonContent => _lessonContent;
+    public List<LessonPage> GetLessons => _lessonPages;
 
     private Window LessonWindow()
     {
@@ -70,7 +70,7 @@ public class LessonPrompt
         var textbox = new TextBox
         {
             Font = FontManager.LightFont(UiConstants.DefaultFontSize),
-            Text = _lessonContent[_index],
+            Text = _lessonPages[_index].Text,
             Multiline = true,
             Readonly = true,
             Wrap = true,
@@ -114,7 +114,7 @@ public class LessonPrompt
             if (_index < _numPages - 1)
             {
                 _index++;
-                textBox.Text = _lessonContent[_index];
+                textBox.Text = _lessonPages[_index].Text;
                 pageLabel.Text = $"Page {_index + 1} of {_numPages}";
                 nextButton.Visible = true;
                 previousButton.Visible = true;
@@ -140,8 +140,8 @@ public class LessonPrompt
                 resetButton.Visible = false;
             }
             if (_index == 0) previousButton.Visible = false;
-            textBox.Text = _lessonContent[_index];
-            pageLabel.Text = $"Page {_index + 1} of {_lessonContent.Length}";
+            textBox.Text = _lessonPages[_index].Text;
+            pageLabel.Text = $"Page {_index + 1} of {_numPages}";
             
             Button pauseButton = (Button)FindWidget.GetWidgetById(_desktop.Root, "pause_button");
             pauseButton.BorderThickness = new Thickness(0);

@@ -20,7 +20,7 @@ public class Simulation : GameState
     private Test _test;
     private GhostBody _ghostBody;
     private ShapeBatch _shapeBatch;
-    private Game _game;
+    private readonly Game _game;
     
     public Simulation(Game game, string filePath)
     {
@@ -41,7 +41,7 @@ public class Simulation : GameState
         _simulationData.SimulationTitle = _saveData.Title;
         _simulationData.ScreenDimensions =
             new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-        _simulationData.LessonContent = _saveData.LessonContent;
+        _simulationData.LessonPages = _saveData.LessonPages;
         _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
         
@@ -82,7 +82,8 @@ public class Simulation : GameState
     {
         SaveData dataToSave = new SaveData();
         dataToSave.Title = _saveData.Title;
-        dataToSave.LessonContent = _saveData.LessonContent;
+        dataToSave.IsLesson = _saveData.IsLesson;
+        dataToSave.LessonPages = _saveData.LessonPages;
         if (_simulationData.AttemptToSaveFile)
         {
             Console.WriteLine("DEBUG: Saving simulation to " + _simulationData.FilePath);

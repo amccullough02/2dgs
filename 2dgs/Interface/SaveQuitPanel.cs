@@ -22,22 +22,24 @@ public static class SaveQuitPanel
             simulationData.AttemptToSaveFile = true;
         };
         
-        var prompt = new LessonPrompt(simulationData);
-        
-        UiTests.TestLessonPrompt(simulationData.LessonContent, prompt.GetLessonContent);
-        
-        var promptButton = UiComponents.Button("Show Lesson Prompt");
-        promptButton.Click += (s, e) =>
-        {
-            prompt.Show(desktop, simulationData);
-        };
-
-        if (!simulationData.IsLesson) promptButton.Visible = false;
-        
         saveAndQuitPanel.Widgets.Add(returnButton);
         saveAndQuitPanel.Widgets.Add(saveButton);
-        saveAndQuitPanel.Widgets.Add(promptButton);
+
+        if (!simulationData.IsLesson) return saveAndQuitPanel;
+        {
+            var prompt = new LessonPrompt(simulationData);
         
+            UiTests.TestLessonPrompt(simulationData.LessonPages, prompt.GetLessons);
+        
+            var promptButton = UiComponents.Button("Show Lesson Prompt");
+            promptButton.Click += (s, e) =>
+            {
+                prompt.Show(desktop, simulationData);
+            };
+            
+            saveAndQuitPanel.Widgets.Add(promptButton);
+        }
+
         return saveAndQuitPanel;
     }
 }

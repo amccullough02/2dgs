@@ -5,12 +5,12 @@
     {
       "Name": "Jupiter",
       "Position": {
-        "X": 1.0402222,
-        "Y": 3.6628418
+        "X": -0.52264404,
+        "Y": 4.260803
       },
       "Velocity": {
-        "X": -0.01181414,
-        "Y": 0.017119007
+        "X": 0.005207276,
+        "Y": -0.0031471737
       },
       "Mass": 1E+09,
       "DisplayRadius": 0.15,
@@ -19,12 +19,12 @@
     {
       "Name": "Io",
       "Position": {
-        "X": -66.0719,
-        "Y": -222.19919
+        "X": -48.99176,
+        "Y": 233.48383
       },
       "Velocity": {
-        "X": 3.8686671,
-        "Y": -0.20446207
+        "X": -3.5290813,
+        "Y": -1.6910836
       },
       "Mass": 2500000.0,
       "DisplayRadius": 0.02,
@@ -33,12 +33,12 @@
     {
       "Name": "Europa",
       "Position": {
-        "X": 113.20581,
-        "Y": -275.3124
+        "X": -78.25232,
+        "Y": 299.901
       },
       "Velocity": {
-        "X": 4.6712394,
-        "Y": 1.7356172
+        "X": -4.6307673,
+        "Y": -1.6406814
       },
       "Mass": 2000000.0,
       "DisplayRadius": 0.02,
@@ -47,12 +47,12 @@
     {
       "Name": "Ganymede",
       "Position": {
-        "X": -43.82837,
-        "Y": 393.43707
+        "X": 36.247192,
+        "Y": -333.12262
       },
       "Velocity": {
-        "X": -3.955744,
-        "Y": 0.3111959
+        "X": 4.640952,
+        "Y": -1.0990644
       },
       "Mass": 3500000.0,
       "DisplayRadius": 0.035,
@@ -61,23 +61,38 @@
     {
       "Name": "Callisto",
       "Position": {
-        "X": -231.8974,
-        "Y": -220.71878
+        "X": 309.01367,
+        "Y": -53.580505
       },
       "Velocity": {
-        "X": 2.216014,
-        "Y": -5.743409
+        "X": -1.1218374,
+        "Y": 6.1473083
       },
       "Mass": 3000000.0,
       "DisplayRadius": 0.03,
       "Color": "#5656D6"
     }
   ],
-  "LessonContent": [
-    "Lorem ipsum odor amet, consectetuer adipiscing elit. Maximus sociosqu pretium magna ad curae odio.",
-    "Blandit nisi ligula convallis metus nec sociosqu, sed aenean. Dis mauris fusce lectus nisl cubilia eget.",
-    "Viverra dolor sem montes netus quis sagittis. Consequat arcu cursus primis curabitur proin quam.",
-    "Mus nisi non nec posuere magnis eros ridiculus montes. Vestibulum bibendum magnis diam fermentum proin.",
-    "Aptent condimentum accumsan torquent urna justo enim; penatibus luctus ipsum. Nisi potenti vivamus morbi."
+  "LessonPages": [
+    {
+      "Text": "Lorem ipsum odor amet, consectetuer adipiscing elit. Maximus sociosqu pretium magna ad curae odio.",
+      "HighlightWidget": "pause_button"
+    },
+    {
+      "Text": "Blandit nisi ligula convallis metus nec sociosqu, sed aenean. Dis mauris fusce lectus nisl cubilia eget.",
+      "HighlightWidget": "pause_button"
+    },
+    {
+      "Text": "Viverra dolor sem montes netus quis sagittis. Consequat arcu cursus primis curabitur proin quam.",
+      "HighlightWidget": "pause_button"
+    },
+    {
+      "Text": "Mus nisi non nec posuere magnis eros ridiculus montes. Vestibulum bibendum magnis diam fermentum proin.",
+      "HighlightWidget": "pause_button"
+    },
+    {
+      "Text": "Aptent condimentum accumsan torquent urna justo enim; penatibus luctus ipsum. Nisi potenti vivamus morbi.",
+      "HighlightWidget": "pause_button"
+    }
   ]
 }
