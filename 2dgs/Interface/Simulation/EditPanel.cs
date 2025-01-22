@@ -59,6 +59,7 @@ public static class EditPanel
         var createBodyDialog = CreateBodyDialog.Create(simulationData, desktop);
 
         var createBodyButton = UiComponents.Button("Create Body");
+        createBodyButton.Id = "create_body";
         createBodyButton.Click += (s, e) =>
         {
             createBodyDialog.Show(desktop);

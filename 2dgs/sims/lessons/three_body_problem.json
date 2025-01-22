@@ -1,5 +1,5 @@
 {
-  "Title": "Galilean System",
+  "Title": "Three Body Problem",
   "IsLesson": true,
   "Bodies": [
     {
@@ -75,24 +75,24 @@
   ],
   "LessonPages": [
     {
-      "Text": "Lorem ipsum odor amet, consectetuer adipiscing elit. Maximus sociosqu pretium magna ad curae odio.",
+      "Text": "This is a test of the UI element highlighting. The next page will highlight the pause button.",
+      "HighlightWidget": ""
+    },
+    {
+      "Text": "The next page will highlight the create body button.",
       "HighlightWidget": "pause_button"
     },
     {
-      "Text": "Blandit nisi ligula convallis metus nec sociosqu, sed aenean. Dis mauris fusce lectus nisl cubilia eget.",
-      "HighlightWidget": "pause_button"
+      "Text": "The next page will highlight the sim speed slider.",
+      "HighlightWidget": "create_body"
     },
     {
-      "Text": "Viverra dolor sem montes netus quis sagittis. Consequat arcu cursus primis curabitur proin quam.",
-      "HighlightWidget": "pause_button"
+      "Text": "The next page will highlight the name position dropdown.",
+      "HighlightWidget": "speed_slider"
     },
     {
-      "Text": "Mus nisi non nec posuere magnis eros ridiculus montes. Vestibulum bibendum magnis diam fermentum proin.",
-      "HighlightWidget": "pause_button"
-    },
-    {
-      "Text": "Aptent condimentum accumsan torquent urna justo enim; penatibus luctus ipsum. Nisi potenti vivamus morbi.",
-      "HighlightWidget": "pause_button"
+      "Text": "Test complete.",
+      "HighlightWidget": "name_position"
     }
   ]
 }

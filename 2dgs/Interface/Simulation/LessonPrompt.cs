@@ -10,11 +10,11 @@ public class LessonPrompt
 {
     private Desktop _desktop;
     private SimulationData _simulationData;
-    private Window _window;
-    private List<LessonPage> _lessonPages;
-    private string _title;
+    private readonly Window _window;
+    private readonly List<LessonPage> _lessonPages;
+    private readonly string _title;
     private int _index;
-    private int _numPages;
+    private readonly int _numPages;
     
     public LessonPrompt(SimulationData simulationData)
     {
@@ -113,9 +113,11 @@ public class LessonPrompt
         {
             if (_index < _numPages - 1)
             {
+                FindWidget.UnhighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
                 _index++;
                 textBox.Text = _lessonPages[_index].Text;
                 pageLabel.Text = $"Page {_index + 1} of {_numPages}";
+                FindWidget.HighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
                 nextButton.Visible = true;
                 previousButton.Visible = true;
             }
@@ -125,27 +127,21 @@ public class LessonPrompt
                 nextButton.Visible = false;
                 resetButton.Visible = true;
             }
-
-            Button pauseButton = (Button)FindWidget.GetWidgetById(_desktop.Root, "pause_button");
-            pauseButton.BorderThickness = new Thickness(5);
-            pauseButton.Border = new SolidBrush(Color.White);
         };
         
         previousButton.Click += (s, e) =>
         {
             if (_index > 0)
             {
+                FindWidget.UnhighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
                 _index--;
+                FindWidget.HighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
                 nextButton.Visible = true;
                 resetButton.Visible = false;
             }
             if (_index == 0) previousButton.Visible = false;
             textBox.Text = _lessonPages[_index].Text;
             pageLabel.Text = $"Page {_index + 1} of {_numPages}";
-            
-            Button pauseButton = (Button)FindWidget.GetWidgetById(_desktop.Root, "pause_button");
-            pauseButton.BorderThickness = new Thickness(0);
-            pauseButton.Border = new SolidBrush(Color.White);
         };
         
         resetButton.Click += (s, e) =>

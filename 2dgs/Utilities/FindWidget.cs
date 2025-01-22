@@ -1,4 +1,7 @@
-﻿using Myra.Graphics2D.UI;
+﻿using Microsoft.Xna.Framework;
+using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
+using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
@@ -24,5 +27,26 @@ public static class FindWidget
             }
         }
         return null;
+    }
+
+    public static void HighlightWidget(Widget parent, string widgetId)
+    {
+        var widget = GetWidgetById(parent, widgetId);
+        if (widget != null)
+        {
+            widget.BorderThickness = new Thickness(4);
+            widget.Border = new SolidBrush(Color.White);
+        }
+    }
+
+    public static void UnhighlightWidget(Widget parent, string widgetId)
+    {
+        var widget = GetWidgetById(parent, widgetId);
+
+        if (widget != null)
+        {
+            widget.BorderThickness = default;
+            widget.Border = null;
+        }
     }
 }

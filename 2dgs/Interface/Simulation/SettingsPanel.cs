@@ -14,6 +14,7 @@ public static class SettingsPanel
         var timeStepLabel = UiComponents.Label($"Time step: {simulationData.TimeStep}");
 
         var timeStepSlider = UiComponents.HorizontalSlider(simulationData.TimeStep, 10, 400);
+        timeStepSlider.Id = "speed_slider";
         timeStepSlider.ValueChanged += (s, e) =>
         {
             timeStepLabel.Text = $"Time step: {(int)timeStepSlider.Value}";
@@ -58,6 +59,7 @@ public static class SettingsPanel
         };
 
         var namesDropdown = UiComponents.ComboView();
+        namesDropdown.Id = "name_position";
         namesDropdown.Widgets.Add(UiComponents.DropdownLabel("Right"));
         namesDropdown.Widgets.Add(UiComponents.DropdownLabel("Left"));
         namesDropdown.Widgets.Add(UiComponents.DropdownLabel("Top"));
