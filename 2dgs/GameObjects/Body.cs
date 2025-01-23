@@ -267,14 +267,6 @@ public class Body
                         new Vector2(-textSize.X / 2, -(_displayRadius * 600) - padding - textSize.Y),
                         _color);
                 break;
-            default:
-                FontManager.LightFont(FontSize)
-                    .DrawText(spriteBatch,
-                        "Test Name",
-                        _position +
-                        new Vector2(_displayRadius * 600, -10f),
-                        _color);
-                break;
         }
     }
 

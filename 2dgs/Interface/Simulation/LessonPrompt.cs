@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Myra.Graphics2D;
 using Myra.Graphics2D.Brushes;
@@ -114,10 +115,12 @@ public class LessonPrompt
             if (_index < _numPages - 1)
             {
                 FindWidget.UnhighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
+                FindWidget.EnableWidgets(_desktop.Root, _lessonPages[_index].RestrictWidgets);
                 _index++;
                 textBox.Text = _lessonPages[_index].Text;
                 pageLabel.Text = $"Page {_index + 1} of {_numPages}";
                 FindWidget.HighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
+                FindWidget.DisableWidgets(_desktop.Root, _lessonPages[_index].RestrictWidgets);
                 nextButton.Visible = true;
                 previousButton.Visible = true;
             }
@@ -134,8 +137,10 @@ public class LessonPrompt
             if (_index > 0)
             {
                 FindWidget.UnhighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
+                FindWidget.EnableWidgets(_desktop.Root, _lessonPages[_index].RestrictWidgets);
                 _index--;
                 FindWidget.HighlightWidget(_desktop.Root, _lessonPages[_index].HighlightWidget);
+                FindWidget.DisableWidgets(_desktop.Root, _lessonPages[_index].RestrictWidgets);
                 nextButton.Visible = true;
                 resetButton.Visible = false;
             }

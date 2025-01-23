@@ -7,7 +7,7 @@ namespace _2dgs;
 
 public static class FindWidget
 {
-    public static Widget GetWidgetById(Widget parent, string widgetId)
+    private static Widget GetWidgetById(Widget parent, string widgetId)
     {
         if (parent.Id == widgetId)
         {
@@ -47,6 +47,32 @@ public static class FindWidget
         {
             widget.BorderThickness = default;
             widget.Border = null;
+        }
+    }
+
+    public static void DisableWidgets(Widget parent, string[] widgetIds)
+    {
+        foreach (var widgetId in widgetIds)
+        {
+            var widget = GetWidgetById(parent, widgetId);
+            
+            if (widget != null)
+            {
+                widget.Enabled = false;
+            }
+        }
+    }
+    
+    public static void EnableWidgets(Widget parent, string[] widgetIds)
+    {
+        foreach (var widgetId in widgetIds)
+        {
+            var widget = GetWidgetById(parent, widgetId);
+            
+            if (widget != null)
+            {
+                widget.Enabled = true;
+            }
         }
     }
 }

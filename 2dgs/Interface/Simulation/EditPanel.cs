@@ -46,6 +46,7 @@ public static class EditPanel
         };
         
         var editModeButton = UiComponents.Button("Enter Edit Mode");
+        editModeButton.Id = "edit_mode";
         editModeButton.Click += (sender, args) =>
         {
             ((Label)editModeButton.Content).Text = simulationData.EditMode ? "Enter Edit Mode" : "Exit Edit Mode";

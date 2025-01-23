@@ -7,17 +7,11 @@ namespace _2dgs;
 public class GhostBody
 {
     public Vector2 Position { get; set; }
-    public float displaySize { get; set; }
+    private float DisplaySize { get; set; }
 
     public GhostBody()
     {
-        displaySize = 0.1f;
-        Position = Vector2.Zero;
-    }
-    
-    public GhostBody(float displaySize)
-    {
-        this.displaySize = displaySize;
+        DisplaySize = 0.1f;
         Position = Vector2.Zero;
     }
 
@@ -28,7 +22,7 @@ public class GhostBody
 
         if (simulationData.ToggleBodyGhost)
         {
-            displaySize = simulationData.CreateBodyData.DisplayRadius;
+            DisplaySize = simulationData.CreateBodyData.DisplayRadius;
         }
     }
 
@@ -49,7 +43,7 @@ public class GhostBody
                         Color.White * glowOpacity,
                         0f,
                         new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
-                        new Vector2(displaySize * glowRadius, displaySize * glowRadius),
+                        new Vector2(DisplaySize * glowRadius, DisplaySize * glowRadius),
                         SpriteEffects.None,
                         0f);
                 } 
@@ -61,7 +55,7 @@ public class GhostBody
                 Color.White * 0.5f,
                 0f,
                 new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
-                new Vector2(displaySize, displaySize),
+                new Vector2(DisplaySize, DisplaySize),
                 SpriteEffects.None,
                 0f);
         }

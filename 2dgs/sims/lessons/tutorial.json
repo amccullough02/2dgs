@@ -75,24 +75,29 @@
   ],
   "LessonPages": [
     {
-      "Text": "This is a test of the UI element highlighting. The next page will highlight the pause button.",
-      "HighlightWidget": ""
+      "Text": "This is a test of the UI element highlighting. The next page will highlight the pause button. It will also disable the create body button.",
+      "HighlightWidget": "",
+      "RestrictWidgets": []
     },
     {
-      "Text": "The next page will highlight the create body button.",
-      "HighlightWidget": "pause_button"
+      "Text": "The next page will highlight the create body button and disable the edit mode button.",
+      "HighlightWidget": "pause_button",
+      "RestrictWidgets": ["create_body"]
     },
     {
-      "Text": "The next page will highlight the sim speed slider.",
-      "HighlightWidget": "create_body"
+      "Text": "The next page will highlight the sim speed slider and disable both the create body and edit mode buttons.",
+      "HighlightWidget": "create_body",
+      "RestrictWidgets": ["edit_mode"]
     },
     {
-      "Text": "The next page will highlight the name position dropdown.",
-      "HighlightWidget": "speed_slider"
+      "Text": "The next page will highlight the name position dropdown and enable all buttons.",
+      "HighlightWidget": "speed_slider",
+      "RestrictWidgets": ["create_body", "edit_mode"]
     },
     {
       "Text": "Test complete.",
-      "HighlightWidget": "name_position"
+      "HighlightWidget": "name_position",
+      "RestrictWidgets": []
     }
   ]
 }
