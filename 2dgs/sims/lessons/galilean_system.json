@@ -76,23 +76,28 @@
   "LessonPages": [
     {
       "Text": "This is a test of the UI element highlighting. The next page will highlight the pause button.",
-      "HighlightWidget": ""
+      "HighlightWidget": "",
+      "RestrictWidgets": []
     },
     {
       "Text": "The next page will highlight the create body button.",
-      "HighlightWidget": "pause_button"
+      "HighlightWidget": "pause_button",
+      "RestrictWidgets": []
     },
     {
       "Text": "The next page will highlight the sim speed slider.",
-      "HighlightWidget": "create_body"
+      "HighlightWidget": "create_body",
+      "RestrictWidgets": []
     },
     {
       "Text": "The next page will highlight the name position dropdown.",
-      "HighlightWidget": "speed_slider"
+      "HighlightWidget": "speed_slider",
+      "RestrictWidgets": []
     },
     {
       "Text": "Test complete.",
-      "HighlightWidget": "name_position"
+      "HighlightWidget": "name_position",
+      "RestrictWidgets": []
     }
   ]
 }
