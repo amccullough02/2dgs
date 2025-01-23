@@ -8,7 +8,7 @@ public class SimulationData
     public bool IsPaused { get; set; }
     public bool ToggleTrails { get; set; } = true;
     public bool ToggleNames { get; set; } = true;
-    public bool ToggleGlow { get; set; } = false;
+    public bool ToggleGlow { get; set; }
     public bool ToggleBodyGhost { get; set; }
     public bool IsABodySelected { get; set; }
     public bool ColorSelectedBody { get; set; }

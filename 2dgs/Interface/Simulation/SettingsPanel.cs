@@ -67,21 +67,14 @@ public static class SettingsPanel
         namesDropdown.SelectedIndex = 0;
         namesDropdown.SelectedIndexChanged += (s, e) =>
         {
-            switch (namesDropdown.SelectedIndex)
+            simulationData.Position = namesDropdown.SelectedIndex switch
             {
-                case 0:
-                    simulationData.Position = Position.Right;
-                    break;
-                case 1:
-                    simulationData.Position = Position.Left;
-                    break;
-                case 2:
-                    simulationData.Position = Position.Top;
-                    break;
-                case 3:
-                    simulationData.Position = Position.Bottom;
-                    break;
-            }
+                0 => Position.Right,
+                1 => Position.Left,
+                2 => Position.Top,
+                3 => Position.Bottom,
+                _ => simulationData.Position
+            };
         };
         
         var thirdDivider = UiComponents.HorizontalSeparator();

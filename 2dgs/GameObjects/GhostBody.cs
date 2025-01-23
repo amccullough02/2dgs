@@ -6,14 +6,8 @@ namespace _2dgs;
 
 public class GhostBody
 {
-    public Vector2 Position { get; set; }
-    private float DisplaySize { get; set; }
-
-    public GhostBody()
-    {
-        DisplaySize = 0.1f;
-        Position = Vector2.Zero;
-    }
+    public Vector2 Position { get; set; } = Vector2.Zero;
+    private float DisplaySize { get; set; } = 0.1f;
 
     public void Update(SimulationData simulationData)
     {
@@ -42,7 +36,7 @@ public class GhostBody
                         null,
                         Color.White * glowOpacity,
                         0f,
-                        new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
+                        new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
                         new Vector2(DisplaySize * glowRadius, DisplaySize * glowRadius),
                         SpriteEffects.None,
                         0f);
@@ -54,7 +48,7 @@ public class GhostBody
                 null,
                 Color.White * 0.5f,
                 0f,
-                new Vector2(textureManager.BodyTexture.Width / 2, textureManager.BodyTexture.Height / 2),
+                new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
                 new Vector2(DisplaySize, DisplaySize),
                 SpriteEffects.None,
                 0f);

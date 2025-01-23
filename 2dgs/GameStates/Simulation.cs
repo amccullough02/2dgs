@@ -32,18 +32,24 @@ public class Simulation : GameState
 
     private void InitializeComponents(Game game, string filePath)
     {
+        #region Loading Data
         _saveSystem = new SaveSystem();
         _saveData = _saveSystem.Load(filePath);
+        _simulationData = new SimulationData
+        {
+            IsLesson = _saveData.IsLesson,
+            SimulationTitle = _saveData.Title,
+            ScreenDimensions = new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height),
+            LessonPages = _saveData.LessonPages
+        };
+        #endregion
+        
+        #region Initializing Systems
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
-        _simulationData = new SimulationData();
-        _simulationData.IsLesson = _saveData.IsLesson;
-        _simulationData.SimulationTitle = _saveData.Title;
-        _simulationData.ScreenDimensions =
-            new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-        _simulationData.LessonPages = _saveData.LessonPages;
         _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
+        #endregion
         
         _bodies = new List<Body>();
         _ghostBody = new GhostBody();
@@ -80,10 +86,12 @@ public class Simulation : GameState
 
     private void SaveSimulation()
     {
-        SaveData dataToSave = new SaveData();
-        dataToSave.Title = _saveData.Title;
-        dataToSave.IsLesson = _saveData.IsLesson;
-        dataToSave.LessonPages = _saveData.LessonPages;
+        SaveData dataToSave = new SaveData
+        {
+            Title = _saveData.Title,
+            IsLesson = _saveData.IsLesson,
+            LessonPages = _saveData.LessonPages
+        };
         if (_simulationData.AttemptToSaveFile)
         {
             Console.WriteLine("DEBUG: Saving simulation to " + _simulationData.FilePath);

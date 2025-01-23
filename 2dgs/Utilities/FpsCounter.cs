@@ -5,16 +5,11 @@ namespace _2dgs;
 
 public class FpsCounter
 {
-    private bool _showFps;
+    private bool _showFps = true;
     private double _elapsedTime;
     private int _frameCount;
     private int _fps;
     private const int FontSize = 24;
-
-    public FpsCounter()
-    {
-        _showFps = true;
-    }
 
     public void Update(GameTime gameTime)
     {

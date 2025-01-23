@@ -3,15 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
 
-public class SettingsMenu : GameState
+public class SettingsMenu(Game game) : GameState
 {
-    private SettingsMenuUi _settingsMenuUi;
-    
-    public SettingsMenu(Game game)
-    {
-        _settingsMenuUi = new SettingsMenuUi(game);
-    }
-    
+    private readonly SettingsMenuUi _settingsMenuUi = new(game);
+
     public override void Update(GameTime gameTime) {}
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

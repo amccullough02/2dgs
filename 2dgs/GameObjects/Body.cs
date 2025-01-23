@@ -10,38 +10,26 @@ using Point = Microsoft.Xna.Framework.Point;
 
 namespace _2dgs;
 
-public class Body
+public class Body(
+    string name,
+    Vector2 position,
+    Vector2 velocity,
+    float mass,
+    float displayRadius,
+    Color color,
+    TextureManager textureManager)
 {
     public bool Selected;
-    private string _name;
-    private float _displayRadius;
-    private float _mass;
+    private string _name = name;
+    private float _displayRadius = displayRadius;
+    private float _mass = mass;
+    private Color _color = color;
+    private readonly List<Vector2> _orbitTrail = [];
+    private Vector2 _velocity = velocity;
+    private Vector2 _position = position;
     private const float FadeValue = 0.4f;
     private const int MaxTrailLength = 2000;
     private const int FontSize = 24;
-    private Color _color;
-    private readonly List<Vector2> _orbitTrail;
-    private readonly TextureManager _textureManager;
-    private Vector2 _velocity;
-    private Vector2 _position;
-
-    public Body(string name,
-        Vector2 position,
-        Vector2 velocity,
-        float mass,
-        float displayRadius,
-        Color color,
-        TextureManager textureManager)
-    {
-        _name = name;
-        _position = position;
-        _velocity = velocity;
-        _mass = mass;
-        _displayRadius = displayRadius;
-        _orbitTrail = [];
-        _color = color;
-        _textureManager = textureManager;
-    }
 
     private Vector2 CalculateGravity(Body otherBody)
     {
@@ -88,7 +76,7 @@ public class Body
 
     public void CheckIfSelected(Point mousePosition, MouseState mouseState)
     {
-        float trueDisplayRadius = _displayRadius * _textureManager.BodyTexture.Width;
+        float trueDisplayRadius = _displayRadius * textureManager.BodyTexture.Width;
         RectangleF bodyBounds = new RectangleF(
             _position.X - trueDisplayRadius / 2,
             _position.Y - trueDisplayRadius / 2,
@@ -102,7 +90,7 @@ public class Body
 
     public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
     {
-        float trueDisplayRadius = _displayRadius * _textureManager.BodyTexture.Width;
+        float trueDisplayRadius = _displayRadius * textureManager.BodyTexture.Width;
         RectangleF bodyBounds = new RectangleF(
             _position.X - trueDisplayRadius / 2,
             _position.Y - trueDisplayRadius / 2,
@@ -153,7 +141,7 @@ public class Body
                 float length = direction.Length();
                 float angle = (float)Math.Atan2(direction.Y, direction.X);
 
-                spriteBatch.Draw(_textureManager.OrbitTexture,
+                spriteBatch.Draw(textureManager.OrbitTexture,
                     _orbitTrail[i + 1],
                     null,
                     _color * FadeValue,
@@ -171,7 +159,7 @@ public class Body
     {
         if (Selected && simData.EditMode)
         {
-            float trueDisplayRadius = _displayRadius * _textureManager.BodyTexture.Width / 2;
+            float trueDisplayRadius = _displayRadius * textureManager.BodyTexture.Width / 2;
             float selectorOffset = trueDisplayRadius / 5;
             const float miniMumOffset = 8.0f;
             
@@ -194,12 +182,12 @@ public class Body
                 float glowOpacity = 0.07f - (i * 0.002f);
                 float glowRadius = 1.0f + (i * 0.02f);
             
-                spriteBatch.Draw(_textureManager.BodyTexture,
+                spriteBatch.Draw(textureManager.BodyTexture,
                     _position,
                     null,
                     _color * glowOpacity,
                     0f,
-                    new Vector2(_textureManager.BodyTexture.Width / 2, _textureManager.BodyTexture.Height / 2),
+                    new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
                     new Vector2(_displayRadius * glowRadius, _displayRadius * glowRadius),
                     SpriteEffects.None,
                     0f);
@@ -210,17 +198,17 @@ public class Body
     private void DrawBody(SpriteBatch spriteBatch)
     {
         
-        if (_textureManager.BodyTexture == null)
+        if (textureManager.BodyTexture == null)
         {
             throw new InvalidOperationException("Body has no texture!");
         }
         
-        spriteBatch.Draw(_textureManager.BodyTexture,
+        spriteBatch.Draw(textureManager.BodyTexture,
             _position,
             null,
             _color,
             0f,
-            new Vector2(_textureManager.BodyTexture.Width / 2, _textureManager.BodyTexture.Height / 2),
+            new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
             new Vector2(_displayRadius, _displayRadius),
             SpriteEffects.None,
             0f);

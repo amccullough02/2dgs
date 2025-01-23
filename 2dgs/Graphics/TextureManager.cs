@@ -7,7 +7,7 @@ namespace _2dgs;
 public class TextureManager
 {
     public Texture2D BodyTexture { get; private set; }
-    public Texture2D OrbitTexture { get; private set; }
+    public Texture2D OrbitTexture { get; }
 
     public TextureManager(ContentManager content, GraphicsDevice graphicsDevice)
     {
