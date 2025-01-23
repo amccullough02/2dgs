@@ -9,7 +9,7 @@ public static class EditBodyDialog
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 7);
         
-        var bodyNameLabel = UiComponents.DialogLabel("Name: ");
+        var bodyNameLabel = UiComponents.MediumLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
         var bodyNameTextbox = UiComponents.TextBox("Default");
@@ -17,7 +17,7 @@ public static class EditBodyDialog
         Grid.SetColumn(bodyNameTextbox, 1);
         bodyNameTextbox.Id = "bodyNameTextbox";
 
-        var bodyPosXLabel = UiComponents.DialogLabel("Pos X: ");
+        var bodyPosXLabel = UiComponents.MediumLabel("Pos X: ");
         grid.Widgets.Add(bodyPosXLabel);
         Grid.SetRow(bodyPosXLabel, 1);
         var bodyPosXTextbox = UiComponents.TextBox("0.0");
@@ -26,7 +26,7 @@ public static class EditBodyDialog
         Grid.SetRow(bodyPosXTextbox, 1);
         bodyPosXTextbox.Id = "bodyPosXTextbox";
 
-        var bodyPosYLabel = UiComponents.DialogLabel("Pos Y: ");
+        var bodyPosYLabel = UiComponents.MediumLabel("Pos Y: ");
         grid.Widgets.Add(bodyPosYLabel);
         Grid.SetRow(bodyPosYLabel, 2);
         var bodyPosYTextbox = UiComponents.TextBox("0.0");
@@ -35,7 +35,7 @@ public static class EditBodyDialog
         Grid.SetRow(bodyPosYTextbox, 2);
         bodyPosYTextbox.Id = "bodyPosYTextbox";
 
-        var bodyVelXLabel = UiComponents.DialogLabel("Vel X: ");
+        var bodyVelXLabel = UiComponents.MediumLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
         Grid.SetRow(bodyVelXLabel, 3);
         var bodyVelXTextbox = UiComponents.TextBox("0.0");
@@ -44,7 +44,7 @@ public static class EditBodyDialog
         Grid.SetRow(bodyVelXTextbox, 3);
         bodyVelXTextbox.Id = "bodyVelXTextbox";
 
-        var bodyVelYLabel = UiComponents.DialogLabel("Vel Y: ");
+        var bodyVelYLabel = UiComponents.MediumLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 4);
         var bodyVelYTextbox = UiComponents.TextBox("0.0");
@@ -53,7 +53,7 @@ public static class EditBodyDialog
         Grid.SetRow(bodyVelYTextbox, 4);
         bodyVelYTextbox.Id = "bodyVelYTextbox";
 
-        var bodyMassLabel = UiComponents.DialogLabel("Mass: ");
+        var bodyMassLabel = UiComponents.MediumLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 5);
         var bodyMassTextbox = UiComponents.TextBox("1e6");
@@ -62,7 +62,7 @@ public static class EditBodyDialog
         Grid.SetRow(bodyMassTextbox, 5);
         bodyMassTextbox.Id = "bodyMassTextbox";
 
-        var bodyDisplaySizeLabel = UiComponents.DialogLabel("Display Size: ");
+        var bodyDisplaySizeLabel = UiComponents.MediumLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
         Grid.SetRow(bodyDisplaySizeLabel, 6);
         var bodyDisplaySizeTextbox = UiComponents.TextBox("0.05");
@@ -73,7 +73,7 @@ public static class EditBodyDialog
 
         var editBodyDialog = UiComponents.StyledDialog("Edit Body");
         editBodyDialog.Content = grid;
-        var validationErrorMessage = UiComponents.DialogLabel("Validation Error: ");
+        var validationErrorMessage = UiComponents.MediumLabel("Validation Error: ");
         var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
         validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(desktop); };
 

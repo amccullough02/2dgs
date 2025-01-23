@@ -9,14 +9,14 @@ public static class CreateBodyDialog
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 5);
         
-        var bodyNameLabel = UiComponents.DialogLabel("Name: ");
+        var bodyNameLabel = UiComponents.MediumLabel("Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
         var bodyNameTextbox = UiComponents.TextBox("Default name");
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
         
-        var bodyVelXLabel = UiComponents.DialogLabel("Vel X: ");
+        var bodyVelXLabel = UiComponents.MediumLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
         Grid.SetRow(bodyVelXLabel, 1);
         var bodyVelXTextbox = UiComponents.TextBox("0.0");
@@ -24,7 +24,7 @@ public static class CreateBodyDialog
         Grid.SetColumn(bodyVelXTextbox, 1);
         Grid.SetRow(bodyVelXTextbox, 1);
         
-        var bodyVelYLabel = UiComponents.DialogLabel("Vel Y: ");
+        var bodyVelYLabel = UiComponents.MediumLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 2);
         var bodyVelYTextbox = UiComponents.TextBox("0.0");
@@ -32,7 +32,7 @@ public static class CreateBodyDialog
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 2);
         
-        var bodyMassLabel = UiComponents.DialogLabel("Mass: ");
+        var bodyMassLabel = UiComponents.MediumLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 3);
         var bodyMassTextbox = UiComponents.TextBox("1e6");
@@ -40,7 +40,7 @@ public static class CreateBodyDialog
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 3);
     
-        var bodyDisplaySizeLabel = UiComponents.DialogLabel("Display Size: ");
+        var bodyDisplaySizeLabel = UiComponents.MediumLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
         Grid.SetRow(bodyDisplaySizeLabel, 4);
         var bodyDisplaySizeTextbox = UiComponents.TextBox("0.05");
@@ -51,7 +51,7 @@ public static class CreateBodyDialog
         var createBodyDialog = UiComponents.StyledDialog("Create New Body");
         createBodyDialog.Content = grid;
         
-        var validationErrorMessage = UiComponents.DialogLabel("Validation Error: ");
+        var validationErrorMessage = UiComponents.MediumLabel("Validation Error: ");
         var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
         validationErrorDialogue.CloseButton.Click += (s, e) => { createBodyDialog.Show(desktop); };
     

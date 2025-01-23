@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.Styles;
 
 namespace _2dgs;
 
@@ -27,16 +29,16 @@ public static class UiComponents
           };
      }
 
-     public static HorizontalSeparator HorizontalSeparator()
+     public static HorizontalSeparator HorizontalSeparator(int width=UiConstants.DefaultElementWidth, int height=UiConstants.DefaultSeparatorHeight, int margin=10)
      {
           return new HorizontalSeparator
           {
                HorizontalAlignment = HorizontalAlignment.Center,
                VerticalAlignment = VerticalAlignment.Center,
-               Thickness = UiConstants.DefaultSeparatorHeight,
+               Thickness = height,
                Color = Color.White,
-               Width = UiConstants.DefaultElementWidth,
-               Margin = new Thickness(0, 10, 0, 10),
+               Width = width,
+               Margin = new Thickness(0, margin, 0, margin),
           };
      }
 
@@ -93,21 +95,21 @@ public static class UiComponents
           return grid;
      }
 
-     public static Label Label(string text)
+     public static Label LightLabel(string text, int fontSize = UiConstants.DefaultFontSize)
      {
           return new Label
           {
                Text = text,
-               Font = FontManager.LightFont(UiConstants.DefaultFontSize),
+               Font = FontManager.LightFont(fontSize),
           };
      }
      
-     public static Label DialogLabel(string text)
+     public static Label MediumLabel(string text, int fontSize = UiConstants.DefaultFontSize)
      {
           return new Label
           {
                Text = text,
-               Font = FontManager.MediumFont(UiConstants.DialogFontSize),
+               Font = FontManager.MediumFont(fontSize),
           };
      }
 
@@ -201,11 +203,12 @@ public static class UiComponents
           };
      }
 
-     public static TabControl TabControl(int width)
+     public static TabControl TabControl(int width, int height)
      {
           return new TabControl
           {
                Width = width,
+               Height = height,
                MouseCursor = MouseCursorType.Hand,
           };
      }
@@ -223,6 +226,7 @@ public static class UiComponents
           return new ListView
           {
                Width = width,
+               Margin = new Thickness(10),
           };
      }
 }

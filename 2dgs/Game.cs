@@ -31,7 +31,8 @@ public class Game : Microsoft.Xna.Framework.Game
         Window.Title = "2DGS - Alpha";
         _test.RunAllTests(Graphics, Window.Title);
         GameStateManager = new GameStateManager();
-        GameStateManager.PushState(new Simulation(this, "../../../sims/lessons/tutorial.json"));
+        // GameStateManager.PushState(new Simulation(this, "../../../sims/lessons/tutorial.json"));
+        GameStateManager.PushState(new SimulationMenu(this));
         base.Initialize();
     }
 

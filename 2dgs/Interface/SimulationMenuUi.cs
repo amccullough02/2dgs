@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -11,6 +13,11 @@ public class SimulationMenuUi
 {
     private readonly Desktop _desktop;
     private readonly FileManager _fileManager;
+
+    private static readonly string DescriptionPlaceholder =
+        "Description: In physics, specifically classical mechanics, the three-body problem is to take the initial positions and " +
+        "velocities (or momenta) of three point masses that orbit each other in space and calculate their subsequent " +
+        "trajectories using Newton's laws of motion and Newton's law of universal gravitation.";
 
     public SimulationMenuUi(Game game, SaveSystem saveSystem)
     {
@@ -30,10 +37,10 @@ public class SimulationMenuUi
 
     private VerticalStackPanel CreateSimulationMenu(Game game, SaveSystem saveSystem)
     {
-        var verticalStackPanel = UiComponents.VerticalStackPanel(8,
+        var verticalStackPanel = UiComponents.VerticalStackPanel(0,
             HorizontalAlignment.Center,
             VerticalAlignment.Center,
-            new Thickness(UiConstants.DefaultMargin));
+            new Thickness(0));
         
         var createNewSimulationButton = UiComponents.Button("Create New Simulation");
         
@@ -44,14 +51,14 @@ public class SimulationMenuUi
             createNewSimulationDialog.Show(_desktop);
         };
 
-        var tabControl = UiComponents.TabControl(400);
+        var tabControl = UiComponents.TabControl(1280, 810);
 
         var lessonsTab = UiComponents.TabItem("Lesson Simulations");
-        var lessonsListView = UiComponents.ListView(400);
+        var lessonsListView = UiComponents.ListView(1280);
         lessonsTab.Content = lessonsListView;
         
         var userSimsTab = UiComponents.TabItem("Sandbox Simulations");
-        var userSimulationsListView = UiComponents.ListView(400);
+        var userSimulationsListView = UiComponents.ListView(1280);
         userSimsTab.Content = userSimulationsListView;
         
         tabControl.Items.Add(lessonsTab);
@@ -70,7 +77,7 @@ public class SimulationMenuUi
     private Dialog NameSimulationDialog(Game game, SaveSystem saveSystem)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
-        var nameSimulationLabel = UiComponents.DialogLabel("Name simulation: ");
+        var nameSimulationLabel = UiComponents.MediumLabel("Name simulation: ");
         Grid.SetColumn(nameSimulationLabel, 0);
 
         var nameSimulationTextbox = UiComponents.TextBox("new_simulation");
@@ -93,10 +100,18 @@ public class SimulationMenuUi
     
     private void RenameButtonDialog(string fileName, string path, string file)
     {
-        var textbox = UiComponents.TextBox(fileName);
-        
         var renameButtonDialog = UiComponents.StyledDialog("Rename");
-        renameButtonDialog.Content = textbox;
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
+        
+        var label = UiComponents.LightLabel("New file name: ");
+        Grid.SetColumn(label, 0);
+        var textbox = UiComponents.TextBox(fileName);
+        Grid.SetColumn(textbox, 1);
+        
+        grid.Widgets.Add(label);
+        grid.Widgets.Add(textbox);
+        
+        renameButtonDialog.Content = grid;
                     
         renameButtonDialog.ButtonOk.Click += (sender, result) =>
         {
@@ -116,6 +131,7 @@ public class SimulationMenuUi
     private void DeleteButtonDialog(string fileName, string path)
     {
         var deleteButtonDialog = UiComponents.StyledDialog("Delete");
+        deleteButtonDialog.Content = UiComponents.LightLabel("Are you sure you want to delete this simulation?");
 
         deleteButtonDialog.ButtonOk.Click += (sender, result) =>
         {
@@ -134,9 +150,69 @@ public class SimulationMenuUi
     private HorizontalStackPanel CreateFilePanel(string file, string path, Game game)
     {
         var fileName = Path.GetFileNameWithoutExtension(file);
-        var loadButton = new Button { Content = UiComponents.Label(fileName) };
-        var editButton = new Button { Content = UiComponents.Label("Rename")};
-        var deleteButton = new Button { Content = UiComponents.Label("Delete")};
+        
+        var simulationLabel = UiComponents.MediumLabel(StringTransformer.FileNamePrettier(fileName));
+        simulationLabel.HorizontalAlignment = HorizontalAlignment.Center;
+        simulationLabel.BorderThickness = new Thickness(1);
+        // simulationLabel.Border = new SolidBrush(Color.Lime);
+
+        var line = new HorizontalSeparator
+        {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Thickness = 1,
+            Color = Color.White,
+            Width = 128
+        };
+
+        var thumbnailPlaceholderLabel = UiComponents.LightLabel("Fancy Thumbnail!");
+        thumbnailPlaceholderLabel.HorizontalAlignment = HorizontalAlignment.Center;
+        thumbnailPlaceholderLabel.VerticalAlignment = VerticalAlignment.Center;
+        
+        var thumbnailPlaceholder = new Panel
+        {
+            Width = 192,
+            Height = 128,
+            Background = new SolidBrush(Color.Black),
+            Padding = new Thickness(10),
+        };
+        thumbnailPlaceholder.Widgets.Add(thumbnailPlaceholderLabel);
+        
+        var thumbnailPanel = new VerticalStackPanel
+        {
+            Spacing = 4,
+            VerticalAlignment = VerticalAlignment.Stretch,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            BorderThickness = new Thickness(1),
+            // Border = new SolidBrush(Color.Orange),
+            Border = new SolidBrush(Color.Gray),
+            Padding = new Thickness(4),
+            Width = 200,
+        };
+        
+        thumbnailPanel.Widgets.Add(simulationLabel);
+        thumbnailPanel.Widgets.Add(line);
+        thumbnailPanel.Widgets.Add(thumbnailPlaceholder);
+
+        var descriptionTextBox = new TextBox
+        {
+            Font = FontManager.LightFont(UiConstants.DefaultFontSize),
+            Padding = new Thickness(10),
+            Text = DescriptionPlaceholder,
+            Multiline = true,
+            Readonly = true,
+            Wrap = true,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Stretch,
+            BlinkIntervalInMs = 2000,
+            Width = 790,
+            Background = new SolidBrush(new Color(32, 32, 32)),
+            BorderThickness = new Thickness(1),
+            Border = new SolidBrush(Color.Gray)
+        };
+        
+        var loadButton = UiComponents.Button("Load", true, 200, 50);
+        var editButton = UiComponents.Button("Rename", true, 200, 50);
+        var deleteButton = UiComponents.Button("Delete", true, 200, 50);
 
         loadButton.Click += (s, a) =>
         {
@@ -153,11 +229,30 @@ public class SimulationMenuUi
         {
             DeleteButtonDialog(fileName, path);
         };
+
+        var optionsStackPanel = new VerticalStackPanel
+        {
+            Spacing = 10,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
+        };
         
-        var fileStackPanel = new HorizontalStackPanel { Spacing = 15, Margin = new Thickness(10), VerticalAlignment = VerticalAlignment.Center };
-        fileStackPanel.Widgets.Add(loadButton);
-        fileStackPanel.Widgets.Add(editButton);
-        fileStackPanel.Widgets.Add(deleteButton);
+        optionsStackPanel.Widgets.Add(loadButton);
+        optionsStackPanel.Widgets.Add(editButton);
+        optionsStackPanel.Widgets.Add(deleteButton);
+        
+        var fileStackPanel = new HorizontalStackPanel
+        {
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Padding = new Thickness(10),
+            Spacing = 10,
+            Background = new SolidBrush(new Color(24, 24, 24))
+        };
+        
+        fileStackPanel.Widgets.Add(thumbnailPanel);
+        fileStackPanel.Widgets.Add(descriptionTextBox);
+        fileStackPanel.Widgets.Add(optionsStackPanel);
         
         return fileStackPanel;
     }

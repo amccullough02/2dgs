@@ -43,7 +43,7 @@ public class SettingsMenuUi
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 3);
         
-        var vsyncToggleLabel = UiComponents.Label("Toggle VSync");
+        var vsyncToggleLabel = UiComponents.LightLabel("Toggle VSync");
         Grid.SetRow(vsyncToggleLabel, 0);
         
         var vsyncToggleButton =
@@ -145,7 +145,7 @@ public class SettingsMenuUi
         grid.Widgets.Add(windowOptions);
         grid.Widgets.Add(windowOptionButton);
         
-        var sectionTitle = UiComponents.Label("Display Settings");
+        var sectionTitle = UiComponents.LightLabel("Display Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
         var divider = UiComponents.HorizontalSeparator();
         
@@ -162,7 +162,7 @@ public class SettingsMenuUi
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 2);
         
-        var showFpsLabel = UiComponents.Label("Toggle FPS Counter");
+        var showFpsLabel = UiComponents.LightLabel("Toggle FPS Counter");
         
         var showFpsToggleButton = UiComponents.ToggleButton("FPS Enabled", true);
         showFpsToggleButton.HorizontalAlignment = HorizontalAlignment.Right;
@@ -176,7 +176,7 @@ public class SettingsMenuUi
         grid.Widgets.Add(showFpsLabel);
         grid.Widgets.Add(showFpsToggleButton);
 
-        var sectionTitle = UiComponents.Label("Miscellaneous Settings");
+        var sectionTitle = UiComponents.LightLabel("Miscellaneous Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
         var divider = UiComponents.HorizontalSeparator();
         

@@ -11,7 +11,7 @@ public static class SettingsPanel
             UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, VerticalAlignment.Bottom,
                 new Thickness(UiConstants.DefaultMargin, 0, 0, UiConstants.DefaultMargin));
 
-        var timeStepLabel = UiComponents.Label($"Time step: {simulationData.TimeStep}");
+        var timeStepLabel = UiComponents.LightLabel($"Time step: {simulationData.TimeStep}");
 
         var timeStepSlider = UiComponents.HorizontalSlider(simulationData.TimeStep, 10, 400);
         timeStepSlider.Id = "speed_slider";
@@ -35,7 +35,7 @@ public static class SettingsPanel
 
         var firstDivider = UiComponents.HorizontalSeparator();
         
-        var trailLengthLabel = UiComponents.Label($"Trail length: {simulationData.TrailLength}");
+        var trailLengthLabel = UiComponents.LightLabel($"Trail length: {simulationData.TrailLength}");
 
         var trailLengthSlider = UiComponents.HorizontalSlider(250, 250, 2000);
         trailLengthSlider.ValueChanged += (s, e) =>

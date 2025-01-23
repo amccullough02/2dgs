@@ -88,7 +88,7 @@ public class LessonPrompt
         var previousButton = UiComponents.Button("Previous Page", visible: false, width: 150, height: 50);
         Grid.SetColumn(previousButton, 0);
         
-        var pageLabel = UiComponents.Label($"Page {_index + 1} of {_numPages}");
+        var pageLabel = UiComponents.LightLabel($"Page {_index + 1} of {_numPages}");
         pageLabel.VerticalAlignment = VerticalAlignment.Center;
         pageLabel.Margin = new Thickness(50, 0, 50, 0);
         Grid.SetColumn(pageLabel, 1);
@@ -97,7 +97,7 @@ public class LessonPrompt
         Grid.SetColumn(nextButton, 2);
 
         var confirmReset = UiComponents.StyledDialog("Confirm Action");
-        confirmReset.Content = UiComponents.Label("Are you sure you want to reset the simulation?");
+        confirmReset.Content = UiComponents.LightLabel("Are you sure you want to reset the simulation?");
         
         confirmReset.ButtonOk.Click += (_, __) =>
         {
