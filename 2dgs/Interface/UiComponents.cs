@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FontStashSharp.RichText;
+using Microsoft.Xna.Framework;
 using Myra.Graphics2D;
 using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
@@ -101,6 +102,7 @@ public static class UiComponents
           {
                Text = text,
                Font = FontManager.LightFont(fontSize),
+               VerticalAlignment = VerticalAlignment.Center,
           };
      }
      
@@ -110,6 +112,7 @@ public static class UiComponents
           {
                Text = text,
                Font = FontManager.MediumFont(fontSize),
+               VerticalAlignment = VerticalAlignment.Center,
           };
      }
 
@@ -131,6 +134,7 @@ public static class UiComponents
                MinWidth = UiConstants.DefaultTextboxWidth,
                Text = text,
                Font = FontManager.LightFont(UiConstants.DialogFontSize),
+               Padding = new Thickness(4)
           };
      }
      

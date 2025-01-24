@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using FontStashSharp;
+using FontStashSharp.RichText;
 using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
@@ -28,7 +30,6 @@ public class SimulationMenuUi
         
         rootContainer.Widgets.Add(simMenuTitle);
         rootContainer.Widgets.Add(CreateSimulationMenu(game, saveSystem));
-        rootContainer.Widgets.Add(ExitPanel(game));
         
         _fileManager = new FileManager();
         _desktop = new Desktop();
@@ -37,10 +38,8 @@ public class SimulationMenuUi
 
     private VerticalStackPanel CreateSimulationMenu(Game game, SaveSystem saveSystem)
     {
-        var verticalStackPanel = UiComponents.VerticalStackPanel(0,
-            HorizontalAlignment.Center,
-            VerticalAlignment.Center,
-            new Thickness(0));
+        var verticalStackPanel = UiComponents.VerticalStackPanel(20, HorizontalAlignment.Center, 
+            VerticalAlignment.Center, new Thickness(0, 40, 0, 0));
         
         var createNewSimulationButton = UiComponents.Button("Create New Simulation");
         
@@ -50,26 +49,45 @@ public class SimulationMenuUi
         {
             createNewSimulationDialog.Show(_desktop);
         };
+        
+        var mainMenuButton = UiComponents.Button("Return to Main Menu");
+        mainMenuButton.Click += (s, e) => { game.GameStateManager.ChangeState(new MainMenu(game)); };
 
-        var tabControl = UiComponents.TabControl(1280, 810);
+        RichTextDefaults.FontResolver = p =>
+        {
+            var args = p.Split(',');
+            var fontName = args[0].Trim();
+            var fontSize = int.Parse(args[1].Trim());
+            var fontPath = "../../../assets/fonts/" + fontName + ".ttf";
 
-        var lessonsTab = UiComponents.TabItem("Lesson Simulations");
+            FontSystem fontSystem = new FontSystem();
+            fontSystem.AddFont(File.ReadAllBytes(fontPath));
+            return fontSystem.GetFont(fontSize);
+        };
+        
+        var tabControl = UiComponents.TabControl(1280, 720);
+        var lessonsTab = UiComponents.TabItem("/f[LeagueSpartan-Medium,20]\nLesson Simulations\n");
         var lessonsListView = UiComponents.ListView(1280);
         lessonsTab.Content = lessonsListView;
         
-        var userSimsTab = UiComponents.TabItem("Sandbox Simulations");
-        var userSimulationsListView = UiComponents.ListView(1280);
-        userSimsTab.Content = userSimulationsListView;
+        var userSimsTab = UiComponents.TabItem("/f[LeagueSpartan-Medium,20]\nSandbox Simulations\n");
+        var sandboxListView = UiComponents.ListView(1280);
+        userSimsTab.Content = sandboxListView;
         
         tabControl.Items.Add(lessonsTab);
         tabControl.Items.Add(userSimsTab);
         
         PopulateList(lessonsListView, "../../../sims/lessons", game);
-        PopulateList(userSimulationsListView, "../../../sims/my_simulations", game);
-        TestFileLoading(lessonsListView);
+        PopulateList(sandboxListView, "../../../sims/my_simulations", game);
+
+        var buttonPanel = new HorizontalStackPanel { HorizontalAlignment = HorizontalAlignment.Center, Spacing = 780 };
+        buttonPanel.Widgets.Add(mainMenuButton);
+        buttonPanel.Widgets.Add(createNewSimulationButton);
         
-        userSimulationsListView.Widgets.Add(createNewSimulationButton);
         verticalStackPanel.Widgets.Add(tabControl);
+        verticalStackPanel.Widgets.Add(buttonPanel);
+        
+        UiTests.TestSimFileLoading(lessonsListView, "../../../sims/lessons");
 
         return verticalStackPanel;
     }
@@ -98,12 +116,12 @@ public class SimulationMenuUi
         return newSimulationDialog;
     }
     
-    private void RenameButtonDialog(string fileName, string path, string file)
+    private Dialog RenameButtonDialog(string fileName, string path, string file)
     {
         var renameButtonDialog = UiComponents.StyledDialog("Rename");
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
         
-        var label = UiComponents.LightLabel("New file name: ");
+        var label = UiComponents.MediumLabel("New file name: ");
         Grid.SetColumn(label, 0);
         var textbox = UiComponents.TextBox(fileName);
         Grid.SetColumn(textbox, 1);
@@ -125,10 +143,10 @@ public class SimulationMenuUi
             Console.WriteLine("DEBUG: File rename cancelled");
         };
                     
-        renameButtonDialog.Show(_desktop);
+        return renameButtonDialog;
     }
     
-    private void DeleteButtonDialog(string fileName, string path)
+    private Dialog DeleteButtonDialog(string fileName, string path)
     {
         var deleteButtonDialog = UiComponents.StyledDialog("Delete");
         deleteButtonDialog.Content = UiComponents.LightLabel("Are you sure you want to delete this simulation?");
@@ -144,7 +162,7 @@ public class SimulationMenuUi
             Console.WriteLine("DEBUG: Delete operation cancelled");
         };
                     
-        deleteButtonDialog.Show(_desktop);
+        return deleteButtonDialog;
     }
     
     private HorizontalStackPanel CreateFilePanel(string file, string path, Game game)
@@ -154,7 +172,6 @@ public class SimulationMenuUi
         var simulationLabel = UiComponents.MediumLabel(StringTransformer.FileNamePrettier(fileName));
         simulationLabel.HorizontalAlignment = HorizontalAlignment.Center;
         simulationLabel.BorderThickness = new Thickness(1);
-        // simulationLabel.Border = new SolidBrush(Color.Lime);
 
         var line = new HorizontalSeparator
         {
@@ -183,7 +200,6 @@ public class SimulationMenuUi
             VerticalAlignment = VerticalAlignment.Stretch,
             HorizontalAlignment = HorizontalAlignment.Center,
             BorderThickness = new Thickness(1),
-            // Border = new SolidBrush(Color.Orange),
             Border = new SolidBrush(Color.Gray),
             Padding = new Thickness(4),
             Width = 200,
@@ -211,8 +227,10 @@ public class SimulationMenuUi
         };
         
         var loadButton = UiComponents.Button("Load", true, 200, 50);
-        var editButton = UiComponents.Button("Rename", true, 200, 50);
+        var renameButton = UiComponents.Button("Rename", true, 200, 50);
+        var renameDialog = RenameButtonDialog(fileName, path, file);
         var deleteButton = UiComponents.Button("Delete", true, 200, 50);
+        var deleteDialog = DeleteButtonDialog(fileName, path);
 
         loadButton.Click += (s, a) =>
         {
@@ -220,14 +238,14 @@ public class SimulationMenuUi
             game.GameStateManager.ChangeState(new Simulation(game, file));
         };
 
-        editButton.Click += (s, a) =>
+        renameButton.Click += (s, a) =>
         {
-            RenameButtonDialog(fileName, path, file);
+            renameDialog.Show(_desktop);
         };
         
         deleteButton.Click += (s, a) =>
         {
-            DeleteButtonDialog(fileName, path);
+            deleteDialog.Show(_desktop);
         };
 
         var optionsStackPanel = new VerticalStackPanel
@@ -238,13 +256,13 @@ public class SimulationMenuUi
         };
         
         optionsStackPanel.Widgets.Add(loadButton);
-        optionsStackPanel.Widgets.Add(editButton);
+        optionsStackPanel.Widgets.Add(renameButton);
         optionsStackPanel.Widgets.Add(deleteButton);
         
         var fileStackPanel = new HorizontalStackPanel
         {
             VerticalAlignment = VerticalAlignment.Center,
-            HorizontalAlignment = HorizontalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
             Padding = new Thickness(10),
             Spacing = 10,
             Background = new SolidBrush(new Color(24, 24, 24))
@@ -264,7 +282,6 @@ public class SimulationMenuUi
             var files = Directory.GetFiles(path, "*.json");
             foreach (var file in files)
             {
-                Console.WriteLine(file);
                 listView.Widgets.Add(CreateFilePanel(file, path, game));
             }
         }
@@ -272,34 +289,6 @@ public class SimulationMenuUi
         {
             var noFilesLabel = new Label { Text = "No files found" };
             listView.Widgets.Add(noFilesLabel);
-        }
-    }
-    
-    private VerticalStackPanel ExitPanel(Game game)
-    {
-        var button = UiComponents.Button("Return to Main Menu");
-        button.Click += (s, e) =>
-        {
-            game.GameStateManager.ChangeState(new MainMenu(game));
-        };
-
-        var verticalStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, 
-            VerticalAlignment.Bottom, new Thickness(UiConstants.DefaultMargin));
-        
-        verticalStackPanel.Widgets.Add(button);
-        
-        return verticalStackPanel;
-    }
-    
-    private void TestFileLoading(ListView listView)
-    {
-        if (listView.Widgets.Count == Directory.EnumerateFileSystemEntries("../../../sims/lessons").Count())
-        {
-            Console.WriteLine("TEST - Lessons files loaded... PASS!");
-        }
-        else
-        {
-            Console.WriteLine("TEST - Lessons files loaded... FAIL!");
         }
     }
 
