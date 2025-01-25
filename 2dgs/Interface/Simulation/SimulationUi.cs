@@ -20,6 +20,11 @@ public class SimulationUi
         _desktop.Root = rootContainer;
     }
 
+    public Widget GetRoot()
+    {
+        return _desktop.Root;
+    }
+
     public void Draw()
     {
         _desktop.Render();

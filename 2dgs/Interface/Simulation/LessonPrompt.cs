@@ -32,7 +32,7 @@ public class LessonPrompt
             TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
             TitlePanel =
             {
-                HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0,
+                HorizontalAlignment = HorizontalAlignment.Center, Padding = new Thickness(0,
                     UiConstants.DefaultMargin,
                     0,
                     0)

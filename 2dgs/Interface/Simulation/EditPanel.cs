@@ -10,6 +10,7 @@ public static class EditPanel
     public static VerticalStackPanel Create(SimulationData simulationData, Desktop desktop)
     {
         var deleteBodyButton = UiComponents.Button("Delete Body", false);
+        deleteBodyButton.Id = "delete_body_button";
         deleteBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -26,6 +27,7 @@ public static class EditPanel
         };
         
         var colorBodyButton = UiComponents.Button("Change Body Colour", false);
+        colorBodyButton.Id = "body_color_button";
         colorBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -36,6 +38,7 @@ public static class EditPanel
         
         var editBodyDialog = EditBodyDialog.Create(simulationData, desktop);
         var editBodyButton = UiComponents.Button("Edit Body Properties", false);
+        editBodyButton.Id = "edit_body_button";
         editBodyButton.Click += (sender, args) =>
         {
             if (simulationData.EditMode && simulationData.IsABodySelected)
@@ -55,6 +58,16 @@ public static class EditPanel
             deleteBodyButton.Visible = simulationData.EditMode;
             colorBodyButton.Visible = simulationData.EditMode;
             editBodyButton.Visible = simulationData.EditMode;
+
+            switch (simulationData.EditMode)
+            {
+                case true:
+                    FindWidget.DisableWidgets(desktop.Root, ["pause_button"]);
+                    break;
+                case false:
+                    FindWidget.EnableWidgets(desktop.Root, ["pause_button"]);
+                    break;
+            }
         };
         
         var createBodyDialog = CreateBodyDialog.Create(simulationData, desktop);

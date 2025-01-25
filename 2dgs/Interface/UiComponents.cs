@@ -133,7 +133,9 @@ public static class UiComponents
                MinWidth = UiConstants.DefaultTextboxWidth,
                Text = text,
                Font = FontManager.LightFont(UiConstants.DialogFontSize),
-               Padding = new Thickness(4)
+               Padding = new Thickness(4),
+               BorderThickness = new Thickness(1),
+               Border = new SolidBrush(Color.Gray)
           };
      }
      
@@ -186,6 +188,13 @@ public static class UiComponents
                Title = title,
                TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
                Opacity = UiConstants.DefaultDialogOpacity,
+               TitlePanel =
+               {
+                    HorizontalAlignment = HorizontalAlignment.Center, Padding = new Thickness(0,
+                         5,
+                         0,
+                         0)
+               },
                ButtonOk =
                {
                     Content = new Label

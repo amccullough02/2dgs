@@ -234,10 +234,16 @@ public class Simulation : GameState
             {
                 body.CheckIfSelected(_mouseState.Position, _mouseState);
             }
+            
+            FindWidget.DisableWidgets(_simulationUi.GetRoot(), 
+                ["delete_body_button", "body_color_button", "edit_body_button"]);
         }
 
         if (_simulationData.EditMode && IsABodySelected())
         {
+            FindWidget.EnableWidgets(_simulationUi.GetRoot(), 
+                ["delete_body_button", "body_color_button", "edit_body_button"]);
+            
             StoreSelectedBodyData();
             DeleteBody();
             ColorBody();
