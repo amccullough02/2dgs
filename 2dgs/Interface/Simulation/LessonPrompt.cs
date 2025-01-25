@@ -76,15 +76,15 @@ public class LessonPrompt
     {
         var grid = UiComponents.Grid(0, 4, 1);
         
-        var previousButton = UiComponents.Button("Previous Page", visible: false, width: 150, height: 50);
+        var previousButton = UiComponents.Button("Previous Page", visible: false, width: 175, height: 50);
         Grid.SetColumn(previousButton, 0);
         
         var pageLabel = UiComponents.LightLabel($"Page {_index + 1} of {_numPages}");
-        pageLabel.VerticalAlignment = VerticalAlignment.Center;
-        pageLabel.Margin = new Thickness(50, 0, 50, 0);
+        pageLabel.Margin = new Thickness(55, 0);
+        pageLabel.HorizontalAlignment = HorizontalAlignment.Center;
         Grid.SetColumn(pageLabel, 1);
         
-        var nextButton = UiComponents.Button("Next Page", width: 150, height: 50);
+        var nextButton = UiComponents.Button("Next Page", width: 175, height: 50);
         Grid.SetColumn(nextButton, 2);
 
         var confirmReset = UiComponents.StyledDialog("Confirm Action");
@@ -95,7 +95,7 @@ public class LessonPrompt
             _simulationData.ResetSimulation = true;
         };
         
-        var resetButton = UiComponents.Button("Reset Simulation", visible: false, width: 150, height: 50);
+        var resetButton = UiComponents.Button("Reset Simulation", visible: false, width: 175, height: 50);
         Grid.SetColumn(resetButton, 3);
         
         nextButton.Click += (s, e) =>
