@@ -65,19 +65,10 @@ public class LessonPrompt
 
     private TextBox LessonContent()
     {
-        var textbox = new TextBox
-        {
-            Font = FontManager.LightFont(UiConstants.DefaultFontSize),
-            Text = _lessonPages[_index].Text,
-            Multiline = true,
-            Readonly = true,
-            Wrap = true,
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            VerticalAlignment = VerticalAlignment.Stretch,
-            BlinkIntervalInMs = 2000,
-            MinHeight = 250
-        };
-
+        
+        var textbox = UiComponents.ReadOnlyTextBox(_lessonPages[_index].Text);
+        textbox.MinHeight = 250;
+        
         return textbox;
     }
 

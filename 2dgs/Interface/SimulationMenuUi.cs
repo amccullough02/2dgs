@@ -208,23 +208,9 @@ public class SimulationMenuUi
         thumbnailPanel.Widgets.Add(simulationLabel);
         thumbnailPanel.Widgets.Add(line);
         thumbnailPanel.Widgets.Add(thumbnailPlaceholder);
-
-        var descriptionTextBox = new TextBox
-        {
-            Font = FontManager.LightFont(UiConstants.DefaultFontSize),
-            Padding = new Thickness(10),
-            Text = DescriptionPlaceholder,
-            Multiline = true,
-            Readonly = true,
-            Wrap = true,
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            VerticalAlignment = VerticalAlignment.Stretch,
-            BlinkIntervalInMs = 2000,
-            Width = 790,
-            Background = new SolidBrush(new Color(32, 32, 32)),
-            BorderThickness = new Thickness(1),
-            Border = new SolidBrush(Color.Gray)
-        };
+        
+        var descriptionTextBox = UiComponents.ReadOnlyTextBox(DescriptionPlaceholder);
+        descriptionTextBox.Width = 790;
         
         var loadButton = UiComponents.Button("Load", true, 200, 50);
         var renameButton = UiComponents.Button("Rename", true, 200, 50);

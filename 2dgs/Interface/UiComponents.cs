@@ -9,7 +9,6 @@ namespace _2dgs;
 
 public static class UiComponents
 {
-     
      public static Button Button(string text,
           bool visible = true,
           int width = UiConstants.DefaultButtonWidth,
@@ -138,6 +137,7 @@ public static class UiComponents
           };
      }
      
+     // TODO Serves no real purpose -- remove or provide default values.
      public static VerticalStackPanel VerticalStackPanel(int spacing,
           HorizontalAlignment horizontalAlignment,
           VerticalAlignment verticalAlignment, Thickness thickness)
@@ -204,6 +204,25 @@ public static class UiComponents
                          Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
                     }
                },
+          };
+     }
+
+     public static TextBox ReadOnlyTextBox(string text)
+     {
+          return new TextBox
+          {
+               Text = text,
+               Font = FontManager.LightFont(UiConstants.DefaultFontSize),
+               Padding = new Thickness(10),
+               Multiline = true,
+               Readonly = true,
+               Wrap = true,
+               HorizontalAlignment = HorizontalAlignment.Stretch,
+               VerticalAlignment = VerticalAlignment.Stretch,
+               BlinkIntervalInMs = 2000,
+               Background = new SolidBrush(new Color(32, 32, 32)),
+               BorderThickness = new Thickness(1),
+               Border = new SolidBrush(Color.Gray)
           };
      }
 
