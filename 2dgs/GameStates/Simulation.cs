@@ -70,7 +70,7 @@ public class Simulation : GameState
                     bodyData.Position,
                     bodyData.Velocity,
                     bodyData.Mass,
-                    bodyData.DisplayRadius,
+                    bodyData.DisplaySize,
                     bodyData.Color,
                     _textureManager));
             }
@@ -124,7 +124,7 @@ public class Simulation : GameState
                     _ghostBody.Position, 
                     _simulationData.CreateBodyData.Velocity, 
                     _simulationData.CreateBodyData.Mass, 
-                    _simulationData.CreateBodyData.DisplayRadius,
+                    _simulationData.CreateBodyData.DisplaySize,
                     Color.White,
                     _textureManager);
                 
@@ -143,7 +143,7 @@ public class Simulation : GameState
                     _simulationData.EditBodyData.Position + _simulationData.ScreenDimensions / 2,
                     _simulationData.EditBodyData.Velocity,
                     _simulationData.EditBodyData.Mass,
-                    _simulationData.EditBodyData.DisplayRadius);
+                    _simulationData.EditBodyData.DisplaySize);
         }
         _simulationData.EditSelectedBody = false;
     }

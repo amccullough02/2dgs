@@ -100,7 +100,7 @@ public static class CreateBodyDialog
                 simulationData.CreateBodyData.Name = name;
                 simulationData.CreateBodyData.Velocity = velocity;
                 simulationData.CreateBodyData.Mass = mass;
-                simulationData.CreateBodyData.DisplayRadius = size;
+                simulationData.CreateBodyData.DisplaySize = size;
                 simulationData.ToggleBodyGhost = true;
                 
                 createBodyDialog.Close();

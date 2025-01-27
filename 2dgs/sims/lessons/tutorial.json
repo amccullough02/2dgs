@@ -5,71 +5,71 @@
     {
       "Name": "Jupiter",
       "Position": {
-        "X": -0.52264404,
-        "Y": 4.260803
+        "X": 0.87231445,
+        "Y": 4.3219604
       },
       "Velocity": {
-        "X": 0.005207276,
-        "Y": -0.0031471737
+        "X": 0.0052708345,
+        "Y": 0.000645218
       },
       "Mass": 1E+09,
-      "DisplayRadius": 0.15,
+      "DisplaySize": 0.15,
       "Color": "#4BD961"
     },
     {
       "Name": "Io",
       "Position": {
-        "X": -48.99176,
-        "Y": 233.48383
+        "X": 156.29932,
+        "Y": -163.48108
       },
       "Velocity": {
-        "X": -3.5290813,
-        "Y": -1.6910836
+        "X": 2.2177758,
+        "Y": 3.330631
       },
       "Mass": 2500000.0,
-      "DisplayRadius": 0.02,
+      "DisplaySize": 0.02,
       "Color": "#FFCC01"
     },
     {
       "Name": "Europa",
       "Position": {
-        "X": -78.25232,
-        "Y": 299.901
+        "X": 68.72717,
+        "Y": -312.72934
       },
       "Velocity": {
-        "X": -4.6307673,
-        "Y": -1.6406814
+        "X": 4.4039707,
+        "Y": 1.5596105
       },
       "Mass": 2000000.0,
-      "DisplayRadius": 0.02,
+      "DisplaySize": 0.02,
       "Color": "#D62F93"
     },
     {
       "Name": "Ganymede",
       "Position": {
-        "X": 36.247192,
-        "Y": -333.12262
+        "X": 20.234436,
+        "Y": 284.21564
       },
       "Velocity": {
-        "X": 4.640952,
-        "Y": -1.0990644
+        "X": -5.3516207,
+        "Y": 1.3902122
       },
       "Mass": 3500000.0,
-      "DisplayRadius": 0.035,
+      "DisplaySize": 0.035,
       "Color": "#5AC5FA"
     },
     {
       "Name": "Callisto",
       "Position": {
-        "X": 309.01367,
-        "Y": -53.580505
+        "X": -406.26556,
+        "Y": 229.81476
       },
       "Velocity": {
-        "X": -1.1218374,
-        "Y": 6.1473083
+        "X": -0.2972182,
+        "Y": -4.3396864
       },
       "Mass": 3000000.0,
-      "DisplayRadius": 0.03,
+      "DisplaySize": 0.03,
       "Color": "#5656D6"
     }
   ],
@@ -82,17 +82,24 @@
     {
       "Text": "The next page will highlight the create body button and disable the edit mode button.",
       "HighlightWidget": "pause_button",
-      "RestrictWidgets": ["create_body"]
+      "RestrictWidgets": [
+        "create_body"
+      ]
     },
     {
       "Text": "The next page will highlight the sim speed slider and disable both the create body and edit mode buttons.",
       "HighlightWidget": "create_body",
-      "RestrictWidgets": ["edit_mode"]
+      "RestrictWidgets": [
+        "edit_mode"
+      ]
     },
     {
       "Text": "The next page will highlight the name position dropdown and enable all buttons.",
       "HighlightWidget": "speed_slider",
-      "RestrictWidgets": ["create_body", "edit_mode"]
+      "RestrictWidgets": [
+        "create_body",
+        "edit_mode"
+      ]
     },
     {
       "Text": "Test complete.",

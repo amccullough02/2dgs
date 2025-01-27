@@ -137,7 +137,7 @@ public static class EditBodyDialog
                 simulationData.EditBodyData.Position = position;
                 simulationData.EditBodyData.Velocity = velocity;
                 simulationData.EditBodyData.Mass = mass;
-                simulationData.EditBodyData.DisplayRadius = size;
+                simulationData.EditBodyData.DisplaySize = size;
                 simulationData.EditSelectedBody = true;
                 
                 editBodyDialog.Close();

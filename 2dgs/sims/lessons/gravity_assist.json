@@ -13,7 +13,7 @@
         "Y": 0.017119007
       },
       "Mass": 1E+09,
-      "DisplayRadius": 0.15,
+      "DisplaySize": 0.15,
       "Color": "#4BD961"
     },
     {
@@ -27,7 +27,7 @@
         "Y": -0.20446207
       },
       "Mass": 2500000.0,
-      "DisplayRadius": 0.02,
+      "DisplaySize": 0.02,
       "Color": "#FFCC01"
     },
     {
@@ -41,7 +41,7 @@
         "Y": 1.7356172
       },
       "Mass": 2000000.0,
-      "DisplayRadius": 0.02,
+      "DisplaySize": 0.02,
       "Color": "#D62F93"
     },
     {
@@ -55,7 +55,7 @@
         "Y": 0.3111959
       },
       "Mass": 3500000.0,
-      "DisplayRadius": 0.035,
+      "DisplaySize": 0.035,
       "Color": "#5AC5FA"
     },
     {
@@ -69,7 +69,7 @@
         "Y": -5.743409
       },
       "Mass": 3000000.0,
-      "DisplayRadius": 0.03,
+      "DisplaySize": 0.03,
       "Color": "#5656D6"
     }
   ],

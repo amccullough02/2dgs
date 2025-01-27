@@ -16,7 +16,7 @@ public class GhostBody
 
         if (simulationData.ToggleBodyGhost)
         {
-            DisplaySize = simulationData.CreateBodyData.DisplayRadius;
+            DisplaySize = simulationData.CreateBodyData.DisplaySize;
         }
     }
 

@@ -106,6 +106,6 @@ public static class EditPanel
         ((TextBox)dialog.FindChildById("bodyMassTextbox")).Text =
             simulationData.SelectedBodyData.Mass.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyDisplaySizeTextbox")).Text =
-            simulationData.SelectedBodyData.DisplayRadius.ToString(CultureInfo.CurrentCulture);
+            simulationData.SelectedBodyData.DisplaySize.ToString(CultureInfo.CurrentCulture);
     }
 }

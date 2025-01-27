@@ -15,14 +15,14 @@ public class Body(
     Vector2 position,
     Vector2 velocity,
     float mass,
-    float displayRadius,
+    float displaySize,
     Color color,
     TextureManager textureManager)
 {
     public bool Selected;
     public bool Destroyed;
     private string _name = name;
-    private float _displayRadius = displayRadius;
+    private float _displaySize = displaySize;
     private float _mass = mass;
     private Color _color = color;
     private readonly List<Vector2> _orbitTrail = [];
@@ -56,18 +56,18 @@ public class Body(
             Position = _position - simulationData.ScreenDimensions / 2,
             Velocity = _velocity,
             Mass = _mass,
-            DisplayRadius = _displayRadius,
+            DisplaySize = _displaySize,
             Color = _color,
         };
     }
 
-    public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displayRadius)
+    public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize)
     {
         _name = name;
         _position = position;
         _velocity = velocity;
         _mass = mass;
-        _displayRadius = displayRadius;
+        _displaySize = displaySize;
     }
 
     public void ChangeColor(Color color)
@@ -77,12 +77,13 @@ public class Body(
 
     public void CheckIfSelected(Point mousePosition, MouseState mouseState)
     {
-        float trueDisplayRadius = _displayRadius * textureManager.BodyTexture.Width;
+        float trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
+        
         RectangleF bodyBounds = new RectangleF(
-            _position.X - trueDisplayRadius / 2,
-            _position.Y - trueDisplayRadius / 2,
-            trueDisplayRadius,
-            trueDisplayRadius);
+            _position.X - trueDisplaySize / 2,
+            _position.Y - trueDisplaySize / 2,
+            trueDisplaySize,
+            trueDisplaySize);
         
         PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         
@@ -91,12 +92,13 @@ public class Body(
 
     public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
     {
-        float trueDisplayRadius = _displayRadius * textureManager.BodyTexture.Width;
+        float trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
+        
         RectangleF bodyBounds = new RectangleF(
-            _position.X - trueDisplayRadius / 2,
-            _position.Y - trueDisplayRadius / 2,
-            trueDisplayRadius,
-            trueDisplayRadius);
+            _position.X - trueDisplaySize / 2,
+            _position.Y - trueDisplaySize / 2,
+            trueDisplaySize,
+            trueDisplaySize);
         
         PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         
@@ -107,7 +109,7 @@ public class Body(
     {
         if (thisBody.Destroyed || otherBody.Destroyed) return;
         
-        float bodySize = thisBody._displayRadius * textureManager.BodyTexture.Width;
+        float bodySize = thisBody._displaySize * textureManager.BodyTexture.Width;
 
         RectangleF bodyBounds = new RectangleF
         {
@@ -117,7 +119,7 @@ public class Body(
             Height = bodySize,
         };
         
-        float otherBodySize = otherBody._displayRadius * textureManager.BodyTexture.Width;
+        float otherBodySize = otherBody._displaySize * textureManager.BodyTexture.Width;
 
         RectangleF otherBodyBounds = new RectangleF
         {
@@ -138,13 +140,13 @@ public class Body(
         if (thisBody._mass >= otherBody._mass)
         {
             thisBody._mass += otherBody._mass;
-            thisBody._displayRadius += otherBody._displayRadius / 10.0f;
+            thisBody._displaySize += otherBody._displaySize / 10.0f;
             otherBody.Destroyed = true;
         }
         else
         {
             otherBody._mass += thisBody._mass;
-            otherBody._displayRadius += thisBody._displayRadius / 10.0f;
+            otherBody._displaySize += thisBody._displaySize / 10.0f;
             thisBody.Destroyed = true;
         }
     }
@@ -207,13 +209,13 @@ public class Body(
     {
         if (Selected && simData.EditMode)
         {
-            float trueDisplayRadius = _displayRadius * textureManager.BodyTexture.Width / 2;
-            float selectorOffset = trueDisplayRadius / 5;
+            float displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
+            float selectorOffset = displayRadius / 5;
             const float miniMumOffset = 8.0f;
             
             if (selectorOffset < miniMumOffset) selectorOffset = miniMumOffset;
             
-            float radius = trueDisplayRadius + selectorOffset;
+            float radius = displayRadius + selectorOffset;
             
             shapeBatch.Begin();
             shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 3f);
@@ -228,7 +230,7 @@ public class Body(
             for (int i = 0; i < 100; i++)
             {
                 float glowOpacity = 0.07f - (i * 0.002f);
-                float glowRadius = 1.0f + (i * 0.02f);
+                float glowSize = 1.0f + (i * 0.02f);
             
                 spriteBatch.Draw(textureManager.BodyTexture,
                     _position,
@@ -236,7 +238,7 @@ public class Body(
                     _color * glowOpacity,
                     0f,
                     new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-                    new Vector2(_displayRadius * glowRadius, _displayRadius * glowRadius),
+                    new Vector2(_displaySize * glowSize, _displaySize * glowSize),
                     SpriteEffects.None,
                     0f);
             }   
@@ -257,7 +259,7 @@ public class Body(
             _color,
             0f,
             new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-            new Vector2(_displayRadius, _displayRadius),
+            new Vector2(_displaySize, _displaySize),
             SpriteEffects.None,
             0f);
     }
@@ -276,7 +278,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2((_displayRadius * 600) + padding, -textSize.Y / 2),
+                        new Vector2((_displaySize * 600) + padding, -textSize.Y / 2),
                         _color);
                 break;
             case Position.Left:
@@ -284,7 +286,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2((-_displayRadius * 600) - padding - textSize.X, -textSize.Y / 2),
+                        new Vector2((-_displaySize * 600) - padding - textSize.X, -textSize.Y / 2),
                         _color);
                 break;
             case Position.Bottom:
@@ -292,7 +294,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2(-textSize.X / 2, (_displayRadius * 600) + padding),
+                        new Vector2(-textSize.X / 2, (_displaySize * 600) + padding),
                         _color);
                 break;
             case Position.Top:
@@ -300,7 +302,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2(-textSize.X / 2, -(_displayRadius * 600) - padding - textSize.Y),
+                        new Vector2(-textSize.X / 2, -(_displaySize * 600) - padding - textSize.Y),
                         _color);
                 break;
         }
