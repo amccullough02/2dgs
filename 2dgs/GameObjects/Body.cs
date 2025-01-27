@@ -20,6 +20,7 @@ public class Body(
     TextureManager textureManager)
 {
     public bool Selected;
+    public bool Destroyed;
     private string _name = name;
     private float _displayRadius = displayRadius;
     private float _mass = mass;
@@ -27,9 +28,9 @@ public class Body(
     private readonly List<Vector2> _orbitTrail = [];
     private Vector2 _velocity = velocity;
     private Vector2 _position = position;
-    private const float FadeValue = 0.4f;
-    private const int MaxTrailLength = 2000;
-    private const int FontSize = 24;
+    private const float DefaultFadeValue = 0.4f;
+    private const int DefaultTrailLength = 2000;
+    private const int DefaultFontSize = 24;
 
     private Vector2 CalculateGravity(Body otherBody)
     {
@@ -102,6 +103,52 @@ public class Body(
         if (mouseState.RightButton == ButtonState.Pressed && !bodyBounds.Contains(mousePositionF)) Selected = false; 
     }
 
+    private void CheckForCollisions(Body thisBody, Body otherBody)
+    {
+        if (thisBody.Destroyed || otherBody.Destroyed) return;
+        
+        float bodySize = thisBody._displayRadius * textureManager.BodyTexture.Width;
+
+        RectangleF bodyBounds = new RectangleF
+        {
+            X = thisBody._position.X - bodySize / 2,
+            Y = thisBody._position.Y - bodySize / 2,
+            Width = bodySize,
+            Height = bodySize,
+        };
+        
+        float otherBodySize = otherBody._displayRadius * textureManager.BodyTexture.Width;
+
+        RectangleF otherBodyBounds = new RectangleF
+        {
+            X = otherBody._position.X - otherBodySize / 2,
+            Y = otherBody._position.Y - otherBodySize / 2,
+            Width = otherBodySize,
+            Height = otherBodySize,
+        };
+
+        if (bodyBounds.Contains(otherBodyBounds))
+        {
+            HandleCollision(thisBody, otherBody);
+        }
+    }
+
+    private void HandleCollision(Body thisBody, Body otherBody)
+    {
+        if (thisBody._mass >= otherBody._mass)
+        {
+            thisBody._mass += otherBody._mass;
+            thisBody._displayRadius += otherBody._displayRadius / 10.0f;
+            otherBody.Destroyed = true;
+        }
+        else
+        {
+            otherBody._mass += thisBody._mass;
+            otherBody._displayRadius += thisBody._displayRadius / 10.0f;
+            thisBody.Destroyed = true;
+        }
+    }
+
     public void Update(List<Body> bodies, int userTimeStep, GameTime gameTime)
     {
         float timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -115,6 +162,7 @@ public class Body(
                 continue;
             }
             
+            CheckForCollisions(this, body);
             Vector2 force = CalculateGravity(body);
             totalForce += force;
         }
@@ -123,7 +171,7 @@ public class Body(
         _position += _velocity * timeStep;
         _orbitTrail.Add(_position);
 
-        if (_orbitTrail.Count >= MaxTrailLength)
+        if (_orbitTrail.Count >= DefaultTrailLength)
         {
             _orbitTrail.RemoveAt(0);
         }
@@ -144,7 +192,7 @@ public class Body(
                 spriteBatch.Draw(textureManager.OrbitTexture,
                     _orbitTrail[i + 1],
                     null,
-                    _color * FadeValue,
+                    _color * DefaultFadeValue,
                     angle,
                     Vector2.Zero,
                     new Vector2(length,
@@ -218,13 +266,13 @@ public class Body(
     {
         if (!simData.ToggleNames) return;
 
-        Vector2 textSize = FontManager.MediumFont(FontSize).MeasureString(_name);
+        Vector2 textSize = FontManager.MediumFont(DefaultFontSize).MeasureString(_name);
         float padding = 10f;
         
         switch (simData.Position)
         {
             case Position.Right:
-                FontManager.MediumFont(FontSize)
+                FontManager.MediumFont(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -232,7 +280,7 @@ public class Body(
                         _color);
                 break;
             case Position.Left:
-                FontManager.MediumFont(FontSize)
+                FontManager.MediumFont(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -240,7 +288,7 @@ public class Body(
                         _color);
                 break;
             case Position.Bottom:
-                FontManager.MediumFont(FontSize)
+                FontManager.MediumFont(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -248,7 +296,7 @@ public class Body(
                         _color);
                 break;
             case Position.Top:
-                FontManager.MediumFont(FontSize)
+                FontManager.MediumFont(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +

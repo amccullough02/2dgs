@@ -1,0 +1,35 @@
+{
+  "Title": "default",
+  "IsLesson": false,
+  "Bodies": [
+    {
+      "Name": "Body #1",
+      "Position": {
+        "X": 0,
+        "Y": 0
+      },
+      "Velocity": {
+        "X": 0,
+        "Y": 0
+      },
+      "Mass": 1E+09,
+      "DisplayRadius": 0.2,
+      "Color": "#FFCC01"
+    },
+    {
+      "Name": "Body #2",
+      "Position": {
+        "X": 400,
+        "Y": 0
+      },
+      "Velocity": {
+        "X": 0,
+        "Y": 0
+      },
+      "Mass": 1000000.0,
+      "DisplayRadius": 0.05,
+      "Color": "#2A81FA"
+    }
+  ],
+  "LessonPages": []
+}

@@ -203,6 +203,21 @@ public class Simulation : GameState
             game.GameStateManager.ChangeState(new Simulation(game, _simulationData.FilePath));
         }
     }
+
+    private void RemoveDestroyedBodies()
+    {
+        var destroyedBodies = new List<Body>();
+            
+        foreach (Body body in _bodies)
+        {
+            if (body.Destroyed) destroyedBodies.Add(body);
+        }
+
+        foreach (Body body in destroyedBodies)
+        {
+            _bodies.Remove(body);
+        }
+    }
     
     public override void Update(GameTime gameTime)
     {
@@ -212,6 +227,7 @@ public class Simulation : GameState
      
         ResetSimulation(_game);
         CheckForDeselections();
+        RemoveDestroyedBodies();
         CreateBody();
         SaveSimulation();
 
