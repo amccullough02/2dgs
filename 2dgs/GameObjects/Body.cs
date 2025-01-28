@@ -61,6 +61,19 @@ public class Body(
         };
     }
 
+    private RectangleF GetBoundingBox()
+    {
+        float trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
+
+        return new RectangleF
+        {
+            X = _position.X - trueDisplaySize / 2,
+            Y = _position.Y - trueDisplaySize / 2,
+            Width = trueDisplaySize,
+            Height = trueDisplaySize
+        };
+    }
+
     public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize)
     {
         _name = name;
@@ -70,64 +83,30 @@ public class Body(
         _displaySize = displaySize;
     }
 
-    public void ChangeColor(Color color)
+    public void SetColor(Color color)
     {
         _color = color;
     }
 
     public void CheckIfSelected(Point mousePosition, MouseState mouseState)
     {
-        float trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
-        
-        RectangleF bodyBounds = new RectangleF(
-            _position.X - trueDisplaySize / 2,
-            _position.Y - trueDisplaySize / 2,
-            trueDisplaySize,
-            trueDisplaySize);
-        
         PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
-        
-        if (mouseState.LeftButton == ButtonState.Pressed && bodyBounds.Contains(mousePositionF)) Selected = true;
+        if (mouseState.LeftButton == ButtonState.Pressed && GetBoundingBox().Contains(mousePositionF)) Selected = true;
     }
 
     public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
     {
-        float trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
-        
-        RectangleF bodyBounds = new RectangleF(
-            _position.X - trueDisplaySize / 2,
-            _position.Y - trueDisplaySize / 2,
-            trueDisplaySize,
-            trueDisplaySize);
-        
         PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
-        
-        if (mouseState.RightButton == ButtonState.Pressed && !bodyBounds.Contains(mousePositionF)) Selected = false; 
+        if (mouseState.LeftButton == ButtonState.Pressed && !GetBoundingBox().Contains(mousePositionF)) Selected = false;
     }
 
     private void CheckForCollisions(Body thisBody, Body otherBody)
     {
         if (thisBody.Destroyed || otherBody.Destroyed) return;
-        
-        float bodySize = thisBody._displaySize * textureManager.BodyTexture.Width;
 
-        RectangleF bodyBounds = new RectangleF
-        {
-            X = thisBody._position.X - bodySize / 2,
-            Y = thisBody._position.Y - bodySize / 2,
-            Width = bodySize,
-            Height = bodySize,
-        };
-        
-        float otherBodySize = otherBody._displaySize * textureManager.BodyTexture.Width;
+        RectangleF bodyBounds = thisBody.GetBoundingBox();
 
-        RectangleF otherBodyBounds = new RectangleF
-        {
-            X = otherBody._position.X - otherBodySize / 2,
-            Y = otherBody._position.Y - otherBodySize / 2,
-            Width = otherBodySize,
-            Height = otherBodySize,
-        };
+        RectangleF otherBodyBounds = otherBody.GetBoundingBox();
 
         if (bodyBounds.Contains(otherBodyBounds))
         {

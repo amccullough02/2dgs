@@ -152,7 +152,7 @@ public class Simulation : GameState
     {
         if (_simulationData.ColorSelectedBody)
         {
-            GetSelectedBody().ChangeColor(_simulationData.NewBodyColor);
+            GetSelectedBody().SetColor(_simulationData.NewBodyColor);
         }
         _simulationData.ColorSelectedBody = false;
     }
