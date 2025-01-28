@@ -17,6 +17,7 @@ public class Simulation : GameState
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
     private MouseState _mouseState;
+    private KeyboardState _keyboardState;
     private Test _test;
     private GhostBody _ghostBody;
     private ShapeBatch _shapeBatch;
@@ -182,7 +183,7 @@ public class Simulation : GameState
         foreach (Body body in _bodies) { body.Selected = false; }
     }
     
-    private void CheckForDeselections()
+    private void DeselectBodies()
     {
         foreach (Body body in _bodies)
         {
@@ -218,15 +219,29 @@ public class Simulation : GameState
             _bodies.Remove(body);
         }
     }
+
+    private void ListenForKeystrokes()
+    {
+        _keyboardState = Keyboard.GetState();
+
+        if (_keyboardState.IsKeyDown(Keys.P) && _keyboardState.IsKeyDown(Keys.LeftControl) && !_simulationData.WasKeyPressed)
+        {
+            _simulationData.IsPaused = !_simulationData.IsPaused;
+            _simulationData.WasKeyPressed = true;
+        } else if (_keyboardState.IsKeyUp(Keys.P) && _keyboardState.IsKeyDown(Keys.LeftControl))
+        {
+            _simulationData.WasKeyPressed = false;
+        }
+    }
     
     public override void Update(GameTime gameTime)
     {
         _simulationData.IsABodySelected = IsABodySelected();
         _mouseState = Mouse.GetState();
         _ghostBody.Update(_simulationData);
-     
+        ListenForKeystrokes();
         ResetSimulation(_game);
-        CheckForDeselections();
+        DeselectBodies();
         RemoveDestroyedBodies();
         CreateBody();
         SaveSimulation();
