@@ -240,9 +240,7 @@ public class Simulation : GameState
         
         KeyboardShortcut(Keys.LeftControl, Keys.P, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationData.IsPaused = !_simulationData.IsPaused;
-            Button pauseButton = (Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "pause_button");
-            ((Label)pauseButton.Content).Text = _simulationData.IsPaused ? "Resume Simulation" : "Pause Simulation";
+            ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "pause_button")).DoClick();
         });
         
         KeyboardShortcut(Keys.LeftControl, Keys.Right, _keyboardState, _previousKeyboardState, () =>
@@ -280,7 +278,7 @@ public class Simulation : GameState
         
         KeyboardShortcut(Keys.LeftControl, Keys.E, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationData.EditMode = !_simulationData.EditMode;
+            ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "edit_mode")).DoClick();
         });
         
         _previousKeyboardState = _keyboardState;

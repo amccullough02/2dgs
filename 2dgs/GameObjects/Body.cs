@@ -97,7 +97,7 @@ public class Body(
     public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
     {
         PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
-        if (mouseState.LeftButton == ButtonState.Pressed && !GetBoundingBox().Contains(mousePositionF)) Selected = false;
+        if (mouseState.RightButton == ButtonState.Pressed && !GetBoundingBox().Contains(mousePositionF)) Selected = false;
     }
 
     private void CheckForCollisions(Body thisBody, Body otherBody)

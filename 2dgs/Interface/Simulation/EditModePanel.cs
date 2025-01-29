@@ -53,21 +53,10 @@ public static class EditModePanel
         editModeButton.Click += (sender, args) =>
         {
             ((Label)editModeButton.Content).Text = simulationData.EditMode ? "Enter Edit Mode" : "Exit Edit Mode";
-            simulationData.IsPaused = !simulationData.IsPaused;
             simulationData.EditMode = !simulationData.EditMode;
             deleteBodyButton.Visible = simulationData.EditMode;
             colorBodyButton.Visible = simulationData.EditMode;
             editBodyButton.Visible = simulationData.EditMode;
-
-            switch (simulationData.EditMode)
-            {
-                case true:
-                    FindWidget.DisableWidgets(desktop.Root, ["pause_button"]);
-                    break;
-                case false:
-                    FindWidget.EnableWidgets(desktop.Root, ["pause_button"]);
-                    break;
-            }
         };
         
         var createBodyDialog = CreateBodyDialog.Create(simulationData, desktop);
