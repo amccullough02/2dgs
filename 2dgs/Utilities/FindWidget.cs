@@ -7,7 +7,7 @@ namespace _2dgs;
 
 public static class FindWidget
 {
-    private static Widget GetWidgetById(Widget parent, string widgetId)
+    public static Widget GetWidgetById(Widget parent, string widgetId)
     {
         if (parent.Id == widgetId)
         {

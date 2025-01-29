@@ -12,6 +12,7 @@ public static class SettingsPanel
                 new Thickness(UiConstants.DefaultMargin, 0, 0, UiConstants.DefaultMargin));
 
         var timeStepLabel = UiComponents.LightLabel($"Time step: {simulationData.TimeStep}");
+        timeStepLabel.Id = "speed_label";
 
         var timeStepSlider = UiComponents.HorizontalSlider(simulationData.TimeStep, 10, 400);
         timeStepSlider.Id = "speed_slider";

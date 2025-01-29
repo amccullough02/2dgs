@@ -5,7 +5,7 @@ using Myra.Graphics2D.UI.ColorPicker;
 
 namespace _2dgs;
 
-public static class EditPanel
+public static class EditModePanel
 {
     public static VerticalStackPanel Create(SimulationData simulationData, Desktop desktop)
     {

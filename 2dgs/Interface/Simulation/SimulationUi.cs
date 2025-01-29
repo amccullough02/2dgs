@@ -14,7 +14,7 @@ public class SimulationUi
         var rootContainer = new Panel();
         
         rootContainer.Widgets.Add(SettingsPanel.Create(simulationData));
-        rootContainer.Widgets.Add(EditPanel.Create(simulationData, _desktop));
+        rootContainer.Widgets.Add(EditModePanel.Create(simulationData, _desktop));
         rootContainer.Widgets.Add(SaveQuitPanel.Create(simulationData, game, _desktop));
         
         _desktop.Root = rootContainer;

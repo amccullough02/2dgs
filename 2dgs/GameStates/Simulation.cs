@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D.UI;
+using Label = Myra.Graphics2D.UI.Label;
 
 namespace _2dgs;
 
@@ -238,16 +241,26 @@ public class Simulation : GameState
         KeyboardShortcut(Keys.LeftControl, Keys.P, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.IsPaused = !_simulationData.IsPaused;
+            Button pauseButton = (Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "pause_button");
+            ((Label)pauseButton.Content).Text = _simulationData.IsPaused ? "Resume Simulation" : "Pause Simulation";
         });
         
         KeyboardShortcut(Keys.LeftControl, Keys.Right, _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep < 400) _simulationData.TimeStep += 10;
+            Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
+            timeStepLabel.Text = $"Time step: {_simulationData.TimeStep}";
+            HorizontalSlider timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
+            timeStepSlider.Value = _simulationData.TimeStep;
         });
         
         KeyboardShortcut(Keys.LeftControl, Keys.Left, _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep > 10) _simulationData.TimeStep -= 10;
+            Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
+            timeStepLabel.Text = $"Time step: {_simulationData.TimeStep}";
+            HorizontalSlider timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
+            timeStepSlider.Value = _simulationData.TimeStep;
         });
         
         KeyboardShortcut(Keys.LeftControl, Keys.T, _keyboardState, _previousKeyboardState, () =>
