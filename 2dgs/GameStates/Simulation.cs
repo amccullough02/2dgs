@@ -18,6 +18,7 @@ public class Simulation : GameState
     private TextureManager _textureManager;
     private MouseState _mouseState;
     private KeyboardState _keyboardState;
+    private KeyboardState _previousKeyboardState;
     private Test _test;
     private GhostBody _ghostBody;
     private ShapeBatch _shapeBatch;
@@ -220,18 +221,56 @@ public class Simulation : GameState
         }
     }
 
-    private void ListenForKeystrokes()
+    private void KeyboardShortcut(Keys key1, Keys key2, KeyboardState current, KeyboardState previous, Action action)
+    {
+        bool isPressed = current.IsKeyDown(key1) && current.IsKeyDown(key2);
+        bool wasPPressed = previous.IsKeyDown(key1) && previous.IsKeyDown(key2);
+        
+        if (isPressed && !wasPPressed) {
+            action();
+        }
+    }
+
+    private void ListenForShortcuts()
     {
         _keyboardState = Keyboard.GetState();
-
-        if (_keyboardState.IsKeyDown(Keys.P) && _keyboardState.IsKeyDown(Keys.LeftControl) && !_simulationData.WasKeyPressed)
+        
+        KeyboardShortcut(Keys.LeftControl, Keys.P, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.IsPaused = !_simulationData.IsPaused;
-            _simulationData.WasKeyPressed = true;
-        } else if (_keyboardState.IsKeyUp(Keys.P) && _keyboardState.IsKeyDown(Keys.LeftControl))
+        });
+        
+        KeyboardShortcut(Keys.LeftControl, Keys.Right, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationData.WasKeyPressed = false;
-        }
+            if (_simulationData.TimeStep < 400) _simulationData.TimeStep += 10;
+        });
+        
+        KeyboardShortcut(Keys.LeftControl, Keys.Left, _keyboardState, _previousKeyboardState, () =>
+        {
+            if (_simulationData.TimeStep > 10) _simulationData.TimeStep -= 10;
+        });
+        
+        KeyboardShortcut(Keys.LeftControl, Keys.T, _keyboardState, _previousKeyboardState, () =>
+        {
+            _simulationData.ToggleTrails = !_simulationData.ToggleTrails;
+        });
+        
+        KeyboardShortcut(Keys.LeftControl, Keys.N, _keyboardState, _previousKeyboardState, () =>
+        {
+            _simulationData.ToggleNames = !_simulationData.ToggleNames;
+        });
+        
+        KeyboardShortcut(Keys.LeftControl, Keys.G, _keyboardState, _previousKeyboardState, () =>
+        {
+            _simulationData.ToggleGlow = !_simulationData.ToggleGlow;
+        });
+        
+        KeyboardShortcut(Keys.LeftControl, Keys.E, _keyboardState, _previousKeyboardState, () =>
+        {
+            _simulationData.EditMode = !_simulationData.EditMode;
+        });
+        
+        _previousKeyboardState = _keyboardState;
     }
     
     public override void Update(GameTime gameTime)
@@ -239,7 +278,7 @@ public class Simulation : GameState
         _simulationData.IsABodySelected = IsABodySelected();
         _mouseState = Mouse.GetState();
         _ghostBody.Update(_simulationData);
-        ListenForKeystrokes();
+        ListenForShortcuts();
         ResetSimulation(_game);
         DeselectBodies();
         RemoveDestroyedBodies();

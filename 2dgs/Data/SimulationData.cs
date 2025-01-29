@@ -18,7 +18,6 @@ public class SimulationData
     public bool EditMode { get; set; }
     public bool IsLesson { get; set; }
     public bool ResetSimulation { get; set; }
-    public bool WasKeyPressed { get; set; }
     public string FilePath { get; set; }
     public string SimulationTitle { get; set; }
     public int TimeStep { get; set; } = 50;
