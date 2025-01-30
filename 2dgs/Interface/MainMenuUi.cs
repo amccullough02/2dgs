@@ -14,10 +14,8 @@ public class MainMenuUi
         MyraEnvironment.Game = game;
         
         var rootContainer = new Panel();
-        var menuTitle = UiComponents.TitleLabel("2D Gravity Simulator");
         
         rootContainer.Widgets.Add(CreateMainMenu(game));
-        rootContainer.Widgets.Add(menuTitle);
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
