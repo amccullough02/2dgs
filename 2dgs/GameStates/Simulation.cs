@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
-using Label = Myra.Graphics2D.UI.Label;
 
 namespace _2dgs;
 
@@ -223,27 +221,17 @@ public class Simulation : GameState
             _bodies.Remove(body);
         }
     }
-
-    private void KeyboardShortcut(Keys key1, Keys key2, KeyboardState current, KeyboardState previous, Action action)
-    {
-        bool isPressed = current.IsKeyDown(key1) && current.IsKeyDown(key2);
-        bool wasPPressed = previous.IsKeyDown(key1) && previous.IsKeyDown(key2);
-        
-        if (isPressed && !wasPPressed) {
-            action();
-        }
-    }
-
+    
     private void ListenForShortcuts()
     {
         _keyboardState = Keyboard.GetState();
         
-        KeyboardShortcut(Keys.LeftControl, Keys.P, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(Keys.LeftControl, Keys.P, _keyboardState, _previousKeyboardState, () =>
         {
             ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "pause_button")).DoClick();
         });
         
-        KeyboardShortcut(Keys.LeftControl, Keys.Right, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(Keys.LeftControl, Keys.Right, _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep < 400) _simulationData.TimeStep += 10;
             Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
@@ -252,7 +240,7 @@ public class Simulation : GameState
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
-        KeyboardShortcut(Keys.LeftControl, Keys.Left, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(Keys.LeftControl, Keys.Left, _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep > 10) _simulationData.TimeStep -= 10;
             Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
@@ -261,22 +249,22 @@ public class Simulation : GameState
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
-        KeyboardShortcut(Keys.LeftControl, Keys.T, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(Keys.LeftControl, Keys.T, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleTrails = !_simulationData.ToggleTrails;
         });
         
-        KeyboardShortcut(Keys.LeftControl, Keys.N, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(Keys.LeftControl, Keys.N, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleNames = !_simulationData.ToggleNames;
         });
         
-        KeyboardShortcut(Keys.LeftControl, Keys.G, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(Keys.LeftControl, Keys.G, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleGlow = !_simulationData.ToggleGlow;
         });
         
-        KeyboardShortcut(Keys.LeftControl, Keys.E, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(Keys.LeftControl, Keys.E, _keyboardState, _previousKeyboardState, () =>
         {
             ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "edit_mode")).DoClick();
         });
