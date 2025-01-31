@@ -23,9 +23,9 @@ public class BodyData
 
     private static Color ParseHexColor(string hex)
     {
-        int r = Convert.ToInt32(hex.Substring(1, 2), 16);
-        int g = Convert.ToInt32(hex.Substring(3, 2), 16);
-        int b = Convert.ToInt32(hex.Substring(5, 2), 16);
+        var r = Convert.ToInt32(hex.Substring(1, 2), 16);
+        var g = Convert.ToInt32(hex.Substring(3, 2), 16);
+        var b = Convert.ToInt32(hex.Substring(5, 2), 16);
         
         return new Color(r, g, b);
     }

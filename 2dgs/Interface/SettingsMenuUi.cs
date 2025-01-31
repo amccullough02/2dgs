@@ -200,7 +200,7 @@ public class SettingsMenuUi
         volumeSlider.ValueChanged += (s, e) =>
         {
             volumeSliderLabel.Text = $"Music Volume ({(int)volumeSlider.Value}%)";
-            float volume = volumeSlider.Value / 100;
+            var volume = volumeSlider.Value / 100;
             MediaPlayer.Volume = volume;
         };
         

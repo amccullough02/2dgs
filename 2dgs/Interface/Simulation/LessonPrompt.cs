@@ -55,7 +55,7 @@ public class LessonPrompt
             Padding = new Thickness(10)
         };
 
-        TextBox textBox = LessonContent();
+        var textBox = LessonContent();
         
         verticalStackPanel.Widgets.Add(textBox);
         verticalStackPanel.Widgets.Add(PaginationControls(textBox));

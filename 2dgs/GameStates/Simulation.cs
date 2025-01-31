@@ -54,7 +54,7 @@ public class Simulation : GameState
         _test = new Test();
         #endregion
         
-        _bodies = new List<Body>();
+        _bodies = [];
         _ghostBody = new GhostBody();
     }
 
@@ -79,7 +79,7 @@ public class Simulation : GameState
             }
         }
         
-        foreach (Body body in _bodies)
+        foreach (var body in _bodies)
         {
             body.OffsetPosition(_simulationData);
         }
@@ -89,7 +89,7 @@ public class Simulation : GameState
 
     private void SaveSimulation()
     {
-        SaveData dataToSave = new SaveData
+        var dataToSave = new SaveData
         {
             Title = _saveData.Title,
             IsLesson = _saveData.IsLesson,
@@ -99,7 +99,7 @@ public class Simulation : GameState
         {
             Console.WriteLine("DEBUG: Saving simulation to " + _simulationData.FilePath);
 
-            foreach (Body body in _bodies)
+            foreach (var body in _bodies)
             {
                 dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationData));
             }
@@ -164,7 +164,7 @@ public class Simulation : GameState
     {
         var bodiesToRemove = new List<Body>();
             
-        foreach (Body body in _bodies)
+        foreach (var body in _bodies)
         {
             if (_simulationData.DeleteSelectedBody && body.Selected)
             {
@@ -172,7 +172,7 @@ public class Simulation : GameState
             }
         }
 
-        foreach (Body body in bodiesToRemove)
+        foreach (var body in bodiesToRemove)
         {
             _bodies.Remove(body);
         }
@@ -182,12 +182,12 @@ public class Simulation : GameState
     
     private void ForgetSelections()
     {
-        foreach (Body body in _bodies) { body.Selected = false; }
+        foreach (var body in _bodies) { body.Selected = false; }
     }
     
     private void DeselectBodies()
     {
-        foreach (Body body in _bodies)
+        foreach (var body in _bodies)
         {
             body.CheckIfDeselected(_mouseState.Position, _mouseState);
         }
@@ -211,12 +211,12 @@ public class Simulation : GameState
     {
         var destroyedBodies = new List<Body>();
             
-        foreach (Body body in _bodies)
+        foreach (var body in _bodies)
         {
             if (body.Destroyed) destroyedBodies.Add(body);
         }
 
-        foreach (Body body in destroyedBodies)
+        foreach (var body in destroyedBodies)
         {
             _bodies.Remove(body);
         }
@@ -234,18 +234,18 @@ public class Simulation : GameState
         KeyManager.Shortcut([Keys.LeftControl, Keys.Right], _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep < 400) _simulationData.TimeStep += 10;
-            Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
+            var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
             timeStepLabel.Text = $"Time step: {_simulationData.TimeStep}";
-            HorizontalSlider timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
+            var timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
         KeyManager.Shortcut([Keys.LeftControl, Keys.Left], _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep > 10) _simulationData.TimeStep -= 10;
-            Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
+            var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
             timeStepLabel.Text = $"Time step: {_simulationData.TimeStep}";
-            HorizontalSlider timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
+            var timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
@@ -296,7 +296,7 @@ public class Simulation : GameState
         
         if (!_simulationData.IsPaused)
         {
-            foreach (Body body in _bodies)
+            foreach (var body in _bodies)
             {
                 body.Update(_bodies, _simulationData.TimeStep, gameTime);
             }
@@ -304,7 +304,7 @@ public class Simulation : GameState
 
         if (_simulationData.EditMode && !IsABodySelected())
         {
-            foreach (Body body in _bodies)
+            foreach (var body in _bodies)
             {
                 body.CheckIfSelected(_mouseState.Position, _mouseState);
             }
@@ -329,7 +329,7 @@ public class Simulation : GameState
     {
         spriteBatch.Begin();
         
-        foreach (Body body in _bodies)
+        foreach (var body in _bodies)
         {
             body.Draw(spriteBatch, _simulationData, _shapeBatch);
         }

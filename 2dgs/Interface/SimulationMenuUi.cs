@@ -60,7 +60,7 @@ public class SimulationMenuUi
             var fontSize = int.Parse(args[1].Trim());
             var fontPath = "../../../assets/fonts/" + fontName + ".ttf";
 
-            FontSystem fontSystem = new FontSystem();
+            var fontSystem = new FontSystem();
             fontSystem.AddFont(File.ReadAllBytes(fontPath));
             return fontSystem.GetFont(fontSize);
         };
@@ -108,7 +108,7 @@ public class SimulationMenuUi
         newSimulationDialog.Content = grid;
         newSimulationDialog.ButtonOk.Click += (sender, e) =>
         {
-            string newFilePath = "../../../sims/my_simulations/" + nameSimulationTextbox.Text + ".json";
+            var newFilePath = "../../../sims/my_simulations/" + nameSimulationTextbox.Text + ".json";
             saveSystem.CreateBlankSimulation(newFilePath);
             game.GameStateManager.ChangeState(new Simulation(game, newFilePath));
         };

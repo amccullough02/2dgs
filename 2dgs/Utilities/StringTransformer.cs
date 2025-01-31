@@ -7,7 +7,7 @@ public static class StringTransformer
 {
     public static string FileNamePrettier(string filename)
     {
-        TextInfo textInfo = CultureInfo.InvariantCulture.TextInfo;
+        var textInfo = CultureInfo.InvariantCulture.TextInfo;
         return string.Join(" ", filename.Split('_'))
             .ToLowerInvariant()
             .Split(' ')

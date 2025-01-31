@@ -22,8 +22,8 @@ public class Vector2Converter : JsonConverter<Vector2>
     {
         var obj = JObject.Load(reader);
         
-        float x = obj["X"].Value<float>();
-        float y = obj["Y"].Value<float>();
+        var x = obj["X"].Value<float>();
+        var y = obj["Y"].Value<float>();
 
         return new Vector2(x, y);
     }

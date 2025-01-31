@@ -8,14 +8,14 @@ public class SaveSystem
 {
     public void CreateBlankSimulation(string saveFilePath)
     {
-        SaveData saveData = new SaveData();
+        var saveData = new SaveData();
         
         try
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings();
+            var settings = new JsonSerializerSettings();
             settings.Converters.Add(new Vector2Converter());
             settings.Formatting = Formatting.Indented;
-            string jsonData = JsonConvert.SerializeObject(saveData, settings);
+            var jsonData = JsonConvert.SerializeObject(saveData, settings);
 
             File.WriteAllText(saveFilePath, jsonData);
         }
@@ -29,10 +29,10 @@ public class SaveSystem
     {
         try
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings();
+            var settings = new JsonSerializerSettings();
             settings.Converters.Add(new Vector2Converter());
             settings.Formatting = Formatting.Indented;
-            string jsonData = JsonConvert.SerializeObject(saveData, settings);
+            var jsonData = JsonConvert.SerializeObject(saveData, settings);
 
             File.WriteAllText(saveFilePath, jsonData);
         }
@@ -46,8 +46,8 @@ public class SaveSystem
     {
         if (File.Exists(saveFilePath))
         {
-            string jsonData = File.ReadAllText(saveFilePath);
-            JsonSerializerSettings settings = new JsonSerializerSettings();
+            var jsonData = File.ReadAllText(saveFilePath);
+            var settings = new JsonSerializerSettings();
             settings.Converters.Add(new Vector2Converter());
             
             return JsonConvert.DeserializeObject<SaveData>(jsonData, settings);

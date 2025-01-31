@@ -57,8 +57,8 @@ public static class CreateBodyDialog
     
         createBodyDialog.ButtonOk.Click += (sender, e) =>
         {
-            bool valid = true;
-            string errorMessage = "";
+            var valid = true;
+            var errorMessage = "";
     
             if (bodyNameTextbox.Text.Length < 2)
             {
@@ -92,10 +92,10 @@ public static class CreateBodyDialog
     
             if (valid)
             {
-                string name = bodyNameTextbox.Text;
-                Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
-                float mass = float.Parse(bodyMassTextbox.Text);
-                float size = float.Parse(bodyDisplaySizeTextbox.Text);
+                var name = bodyNameTextbox.Text;
+                var velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
+                var mass = float.Parse(bodyMassTextbox.Text);
+                var size = float.Parse(bodyDisplaySizeTextbox.Text);
     
                 simulationData.CreateBodyData.Name = name;
                 simulationData.CreateBodyData.Velocity = velocity;

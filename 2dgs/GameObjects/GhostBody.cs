@@ -26,10 +26,10 @@ public class GhostBody
         {
             if (simulationData.ToggleGlow)
             {
-                for (int i = 0; i < 100; i++)
+                for (var i = 0; i < 100; i++)
                 {
-                    float glowOpacity = 0.07f - (i * 0.002f);
-                    float glowRadius = 1.0f + (i * 0.02f);
+                    var glowOpacity = 0.07f - (i * 0.002f);
+                    var glowRadius = 1.0f + (i * 0.02f);
             
                     spriteBatch.Draw(textureManager.BodyTexture,
                         Position,

@@ -34,11 +34,11 @@ public class Body(
 
     private Vector2 CalculateGravity(Body otherBody)
     {
-        Vector2 componentDistance = otherBody._position - _position;
-        float distance = componentDistance.Length();
-        double forceOfGravity = 6.6743e-11 * _mass * otherBody._mass / distance * distance;
-        Vector2 unitVector = componentDistance / distance;
-        Vector2 forceVector = unitVector * (float)forceOfGravity;
+        var componentDistance = otherBody._position - _position;
+        var distance = componentDistance.Length();
+        var forceOfGravity = 6.6743e-11 * _mass * otherBody._mass / distance * distance;
+        var unitVector = componentDistance / distance;
+        var forceVector = unitVector * (float)forceOfGravity;
         
         return forceVector;
     }
@@ -63,7 +63,7 @@ public class Body(
 
     private RectangleF GetBoundingBox()
     {
-        float trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
+        var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
 
         return new RectangleF
         {
@@ -90,13 +90,13 @@ public class Body(
 
     public void CheckIfSelected(Point mousePosition, MouseState mouseState)
     {
-        PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
+        var mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         if (mouseState.LeftButton == ButtonState.Pressed && GetBoundingBox().Contains(mousePositionF)) Selected = true;
     }
 
     public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
     {
-        PointF mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
+        var mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         if (mouseState.RightButton == ButtonState.Pressed && !GetBoundingBox().Contains(mousePositionF)) Selected = false;
     }
 
@@ -104,9 +104,9 @@ public class Body(
     {
         if (thisBody.Destroyed || otherBody.Destroyed) return;
 
-        RectangleF bodyBounds = thisBody.GetBoundingBox();
+        var bodyBounds = thisBody.GetBoundingBox();
 
-        RectangleF otherBodyBounds = otherBody.GetBoundingBox();
+        var otherBodyBounds = otherBody.GetBoundingBox();
 
         if (bodyBounds.Contains(otherBodyBounds))
         {
@@ -132,11 +132,11 @@ public class Body(
 
     public void Update(List<Body> bodies, int userTimeStep, GameTime gameTime)
     {
-        float timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        var timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
         
-        Vector2 totalForce = Vector2.Zero;
+        var totalForce = Vector2.Zero;
 
-        foreach (Body body in bodies)
+        foreach (var body in bodies)
         {
             if (this == body)
             {
@@ -144,7 +144,7 @@ public class Body(
             }
             
             CheckForCollisions(this, body);
-            Vector2 force = CalculateGravity(body);
+            var force = CalculateGravity(body);
             totalForce += force;
         }
         
@@ -163,12 +163,12 @@ public class Body(
         if (_orbitTrail.Count > 1 && simData.ToggleTrails)
         {
 
-            int trailLength = Math.Min(simData.TrailLength, _orbitTrail.Count);
-            for (int i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
+            var trailLength = Math.Min(simData.TrailLength, _orbitTrail.Count);
+            for (var i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
             {
-                Vector2 direction = _orbitTrail[i] - _orbitTrail[i + 1];
-                float length = direction.Length();
-                float angle = (float)Math.Atan2(direction.Y, direction.X);
+                var direction = _orbitTrail[i] - _orbitTrail[i + 1];
+                var length = direction.Length();
+                var angle = (float)Math.Atan2(direction.Y, direction.X);
 
                 spriteBatch.Draw(textureManager.OrbitTexture,
                     _orbitTrail[i + 1],
@@ -188,13 +188,13 @@ public class Body(
     {
         if (Selected && simData.EditMode)
         {
-            float displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
-            float selectorOffset = displayRadius / 5;
+            var displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
+            var selectorOffset = displayRadius / 5;
             const float miniMumOffset = 8.0f;
             
             if (selectorOffset < miniMumOffset) selectorOffset = miniMumOffset;
             
-            float radius = displayRadius + selectorOffset;
+            var radius = displayRadius + selectorOffset;
             
             shapeBatch.Begin();
             shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 3f);
@@ -206,10 +206,10 @@ public class Body(
     {
         if (simulationData.ToggleGlow)
         {
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
-                float glowOpacity = 0.07f - (i * 0.002f);
-                float glowSize = 1.0f + (i * 0.02f);
+                var glowOpacity = 0.07f - (i * 0.002f);
+                var glowSize = 1.0f + (i * 0.02f);
             
                 spriteBatch.Draw(textureManager.BodyTexture,
                     _position,
@@ -247,8 +247,8 @@ public class Body(
     {
         if (!simData.ToggleNames) return;
 
-        Vector2 textSize = FontManager.MediumFont(DefaultFontSize).MeasureString(_name);
-        float padding = 10f;
+        var textSize = FontManager.MediumFont(DefaultFontSize).MeasureString(_name);
+        var padding = 10f;
         
         switch (simData.Position)
         {

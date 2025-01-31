@@ -62,10 +62,7 @@ public class Test
     
     public void TestSimulationLoading(int serialized, int loaded)
     {
-        int serializedBodiesCount = serialized;
-        int loadedBodiesCount = loaded;
-        
-        if (serializedBodiesCount == loadedBodiesCount)
+        if (serialized == loaded)
         {
             Console.WriteLine("Test - Loading of simulation file... PASS!");
         }

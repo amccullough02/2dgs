@@ -18,7 +18,7 @@ public static class FindWidget
         {
             foreach (var child in parentContainer.GetChildren())
             {
-                Widget widget = GetWidgetById(child, widgetId);
+                var widget = GetWidgetById(child, widgetId);
 
                 if (widget != null)
                 {

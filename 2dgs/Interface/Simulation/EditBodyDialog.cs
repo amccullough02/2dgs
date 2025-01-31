@@ -79,8 +79,8 @@ public static class EditBodyDialog
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
         {
-            bool valid = true;
-            string errorMessage = "";
+            var valid = true;
+            var errorMessage = "";
 
             if (bodyNameTextbox.Text.Length < 2)
             {
@@ -127,11 +127,11 @@ public static class EditBodyDialog
             if (valid)
             {
 
-                string name = bodyNameTextbox.Text;
-                Vector2 position = new Vector2(float.Parse(bodyPosXTextbox.Text), float.Parse(bodyPosYTextbox.Text));
-                Vector2 velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
-                float mass = float.Parse(bodyMassTextbox.Text);
-                float size = float.Parse(bodyDisplaySizeTextbox.Text);
+                var name = bodyNameTextbox.Text;
+                var position = new Vector2(float.Parse(bodyPosXTextbox.Text), float.Parse(bodyPosYTextbox.Text));
+                var velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
+                var mass = float.Parse(bodyMassTextbox.Text);
+                var size = float.Parse(bodyDisplaySizeTextbox.Text);
 
                 simulationData.EditBodyData.Name = name;
                 simulationData.EditBodyData.Position = position;
