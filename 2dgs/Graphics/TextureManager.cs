@@ -15,10 +15,10 @@ public class TextureManager
 
     public TextureManager(ContentManager content, GraphicsDevice graphicsDevice)
     {
-        BackgroundTexture = content.Load<Texture2D>("main_menu_background");
-        Gradient = content.Load<Texture2D>("gradient");
-        AppTitle = content.Load<Texture2D>("title");
-        BodyTexture = content.Load<Texture2D>("blank_circle");
+        BackgroundTexture = content.Load<Texture2D>("images/main_menu_background");
+        Gradient = content.Load<Texture2D>("images/gradient");
+        AppTitle = content.Load<Texture2D>("images/title");
+        BodyTexture = content.Load<Texture2D>("images/blank_circle");
         OrbitTexture = new Texture2D(graphicsDevice, 1, 1);
         OrbitTexture.SetData([Color.White]);
     }

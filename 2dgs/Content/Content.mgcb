@@ -19,7 +19,7 @@
 /processorParam:Quality=Best
 /build:audio/perfect_beauty_zakhar_valaha.mp3
 
-#begin blank_circle.png
+#begin images/blank_circle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -29,9 +29,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:blank_circle.png
+/build:images/blank_circle.png
 
-#begin gradient.png
+#begin images/gradient.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -41,9 +41,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gradient.png
+/build:images/gradient.png
 
-#begin main_menu_background.jpg
+#begin images/main_menu_background.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -53,9 +53,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:main_menu_background.jpg
+/build:images/main_menu_background.jpg
 
-#begin title.png
+#begin images/title.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -65,5 +65,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:title.png
+/build:images/title.png
 
