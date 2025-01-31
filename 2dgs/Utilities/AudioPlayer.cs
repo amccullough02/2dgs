@@ -10,6 +10,7 @@ public class AudioPlayer(ContentManager contentManager)
     public void PlayBgm()
     {
         if (MediaPlayer.State != MediaState.Stopped) MediaPlayer.Stop();
+        MediaPlayer.Volume = 0.2f;
         MediaPlayer.Play(_bgm);
     }
 

@@ -269,6 +269,11 @@ public class Simulation : GameState
             ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "edit_mode")).DoClick();
         });
         
+        KeyManager.Shortcut([Keys.F11], _keyboardState, _previousKeyboardState, () =>
+        {
+            ScreenshotManager.Capture(_game.GraphicsDevice);
+        });
+        
         _previousKeyboardState = _keyboardState;
     }
     
