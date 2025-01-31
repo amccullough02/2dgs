@@ -26,8 +26,8 @@ public static class SettingsPanel
         pauseButton.Id = "pause_button";
         pauseButton.Click += (s, e) =>
         {
-            ((Label)pauseButton.Content).Text = simulationData.IsPaused ? "Pause Simulation" : "Resume Simulation";
-            simulationData.IsPaused = !simulationData.IsPaused;
+            ((Label)pauseButton.Content).Text = simulationData.Paused ? "Pause Simulation" : "Resume Simulation";
+            simulationData.Paused = !simulationData.Paused;
         };
 
         var firstDivider = UiComponents.HorizontalSeparator();

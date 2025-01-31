@@ -13,7 +13,7 @@ public static class EditModePanel
         deleteBodyButton.Id = "delete_body_button";
         deleteBodyButton.Click += (sender, args) =>
         {
-            if (simulationData.EditMode && simulationData.IsABodySelected)
+            if (simulationData.EditMode && simulationData.ABodySelected)
             {
                 simulationData.DeleteSelectedBody = true;
             }
@@ -30,7 +30,7 @@ public static class EditModePanel
         colorBodyButton.Id = "body_color_button";
         colorBodyButton.Click += (sender, args) =>
         {
-            if (simulationData.EditMode && simulationData.IsABodySelected)
+            if (simulationData.EditMode && simulationData.ABodySelected)
             {
                 colorBodyDialog.Show(desktop);
             }
@@ -41,7 +41,7 @@ public static class EditModePanel
         editBodyButton.Id = "edit_body_button";
         editBodyButton.Click += (sender, args) =>
         {
-            if (simulationData.EditMode && simulationData.IsABodySelected)
+            if (simulationData.EditMode && simulationData.ABodySelected)
             {
                 PopulateFormData(editBodyDialog, simulationData);
                 editBodyDialog.Show(desktop);

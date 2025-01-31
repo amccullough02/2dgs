@@ -25,7 +25,7 @@ public static class SaveQuitPanel
         saveAndQuitPanel.Widgets.Add(returnButton);
         saveAndQuitPanel.Widgets.Add(saveButton);
 
-        if (!simulationData.IsLesson) return saveAndQuitPanel;
+        if (!simulationData.Lesson) return saveAndQuitPanel;
         {
             var prompt = new LessonPrompt(simulationData);
         

@@ -17,7 +17,6 @@ public class Simulation : GameState
     private SimulationData _simulationData;
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
-    private MouseState _mouseState;
     private KeyboardState _keyboardState;
     private KeyboardState _previousKeyboardState;
     private Test _test;
@@ -40,7 +39,7 @@ public class Simulation : GameState
         _saveData = _saveSystem.Load(filePath);
         _simulationData = new SimulationData
         {
-            IsLesson = _saveData.IsLesson,
+            Lesson = _saveData.IsLesson,
             SimulationTitle = _saveData.Title,
             ScreenDimensions = new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height),
             LessonPages = _saveData.LessonPages
@@ -95,6 +94,7 @@ public class Simulation : GameState
             IsLesson = _saveData.IsLesson,
             LessonPages = _saveData.LessonPages
         };
+        
         if (_simulationData.AttemptToSaveFile)
         {
             Console.WriteLine("DEBUG: Saving simulation to " + _simulationData.FilePath);
@@ -109,17 +109,17 @@ public class Simulation : GameState
         }
     }
 
-    private bool IsABodySelected()
+    private bool IsBodySelected()
     {
         return _bodies.Any(body => body.Selected);
     }
     
-    private Body GetSelectedBody() { return _bodies.FirstOrDefault(body => body.Selected); }
+    private Body SelectedBody() { return _bodies.FirstOrDefault(body => body.Selected); }
 
-    private void CreateBody()
+    private void CreateBody(MouseState mouseState)
     {
         if (!_simulationData.ToggleBodyGhost) return;
-        if (_mouseState.LeftButton != ButtonState.Pressed) return;
+        if (mouseState.LeftButton != ButtonState.Pressed) return;
         var body = new Body(
             _simulationData.CreateBodyData.Name,
             _ghostBody.Position, 
@@ -137,7 +137,7 @@ public class Simulation : GameState
     {
         if (_simulationData.EditSelectedBody)
         {
-            GetSelectedBody()
+            SelectedBody()
                 .Edit(_simulationData.EditBodyData.Name,
                     _simulationData.EditBodyData.Position + _simulationData.ScreenDimensions / 2,
                     _simulationData.EditBodyData.Velocity,
@@ -151,7 +151,7 @@ public class Simulation : GameState
     {
         if (_simulationData.ColorSelectedBody)
         {
-            GetSelectedBody().SetColor(_simulationData.NewBodyColor);
+            SelectedBody().SetColor(_simulationData.NewBodyColor);
         }
         _simulationData.ColorSelectedBody = false;
     }
@@ -181,17 +181,17 @@ public class Simulation : GameState
         foreach (var body in _bodies) { body.Selected = false; }
     }
     
-    private void DeselectBodies()
+    private void CheckIfBodiesDeselected(MouseState mouseState)
     {
         foreach (var body in _bodies)
         {
-            body.CheckIfDeselected(_mouseState.Position, _mouseState);
+            body.CheckIfDeselected(mouseState.Position, mouseState);
         }
     }
 
     private void StoreSelectedBodyData()
     {
-        _simulationData.SelectedBodyData = GetSelectedBody().ConvertToBodyData(_simulationData);
+        _simulationData.SelectedBodyData = SelectedBody().ConvertToBodyData(_simulationData);
     }
 
     private void ResetSimulation(Game game)
@@ -218,7 +218,7 @@ public class Simulation : GameState
         }
     }
     
-    private void ListenForShortcuts()
+    private void KeyboardShortcuts()
     {
         _keyboardState = Keyboard.GetState();
         
@@ -272,53 +272,63 @@ public class Simulation : GameState
         
         _previousKeyboardState = _keyboardState;
     }
-    
-    public override void Update(GameTime gameTime)
-    {
-        _simulationData.IsABodySelected = IsABodySelected();
-        _mouseState = Mouse.GetState();
-        _ghostBody.Update(_simulationData);
-        ListenForShortcuts();
-        ResetSimulation(_game);
-        DeselectBodies();
-        RemoveDestroyedBodies();
-        CreateBody();
-        SaveSimulation();
 
-        if (!_simulationData.EditMode)
+    private void Simulate(GameTime gameTime, MouseState mouseState)
+    {
+        if (_simulationData.Paused) return;
+        
+        _ghostBody.Update(_simulationData);
+        
+        foreach (var body in _bodies)
         {
-            ForgetSelections();
+            body.Update(_bodies, _simulationData.TimeStep, gameTime);
         }
         
-        if (!_simulationData.IsPaused)
-        {
-            foreach (var body in _bodies)
-            {
-                body.Update(_bodies, _simulationData.TimeStep, gameTime);
-            }
-        }
+        CreateBody(mouseState);
+        RemoveDestroyedBodies();
+        ResetSimulation(_game);
+        SaveSimulation();
+    }
 
-        if (_simulationData.EditMode && !IsABodySelected())
+    private void EditMode(MouseState mouseState)
+    {
+        _simulationData.ABodySelected = IsBodySelected();
+        CheckIfBodiesDeselected(mouseState);
+        
+        if (_simulationData.EditMode && !IsBodySelected())
         {
             foreach (var body in _bodies)
             {
-                body.CheckIfSelected(_mouseState.Position, _mouseState);
+                body.CheckIfSelected(mouseState.Position, mouseState);
             }
             
             FindWidget.DisableWidgets(_simulationUi.GetRoot(), 
                 ["delete_body_button", "body_color_button", "edit_body_button"]);
         }
-
-        if (_simulationData.EditMode && IsABodySelected())
+        
+        if (_simulationData.EditMode && IsBodySelected())
         {
             FindWidget.EnableWidgets(_simulationUi.GetRoot(), 
                 ["delete_body_button", "body_color_button", "edit_body_button"]);
             
             StoreSelectedBodyData();
-            DeleteBody();
             ColorBody();
             EditBody();
+            DeleteBody();
         }
+        
+        if (!_simulationData.EditMode)
+        {
+            ForgetSelections();
+        }
+    }
+    
+    public override void Update(GameTime gameTime)
+    {
+        var mouseState = Mouse.GetState();
+        KeyboardShortcuts();
+        Simulate(gameTime, mouseState);
+        EditMode(mouseState);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
