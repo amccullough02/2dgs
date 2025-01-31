@@ -226,12 +226,12 @@ public class Simulation : GameState
     {
         _keyboardState = Keyboard.GetState();
         
-        KeyManager.Shortcut(Keys.LeftControl, Keys.P, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut([Keys.LeftControl, Keys.P], _keyboardState, _previousKeyboardState, () =>
         {
             ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "pause_button")).DoClick();
         });
         
-        KeyManager.Shortcut(Keys.LeftControl, Keys.Right, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut([Keys.LeftControl, Keys.Right], _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep < 400) _simulationData.TimeStep += 10;
             Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
@@ -240,7 +240,7 @@ public class Simulation : GameState
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
-        KeyManager.Shortcut(Keys.LeftControl, Keys.Left, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut([Keys.LeftControl, Keys.Left], _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep > 10) _simulationData.TimeStep -= 10;
             Label timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
@@ -249,22 +249,22 @@ public class Simulation : GameState
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
-        KeyManager.Shortcut(Keys.LeftControl, Keys.T, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut([Keys.LeftControl, Keys.T], _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleTrails = !_simulationData.ToggleTrails;
         });
         
-        KeyManager.Shortcut(Keys.LeftControl, Keys.N, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut([Keys.LeftControl, Keys.N], _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleNames = !_simulationData.ToggleNames;
         });
         
-        KeyManager.Shortcut(Keys.LeftControl, Keys.G, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut([Keys.LeftControl, Keys.G], _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleGlow = !_simulationData.ToggleGlow;
         });
         
-        KeyManager.Shortcut(Keys.LeftControl, Keys.E, _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut([Keys.LeftControl, Keys.E], _keyboardState, _previousKeyboardState, () =>
         {
             ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "edit_mode")).DoClick();
         });
