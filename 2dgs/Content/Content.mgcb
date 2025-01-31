@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin audio/perfect_beauty_zakhar_valaha.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:audio/perfect_beauty_zakhar_valaha.mp3
+
 #begin blank_circle.png
 /importer:TextureImporter
 /processor:TextureProcessor

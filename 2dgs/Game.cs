@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace _2dgs;
 
@@ -8,6 +9,7 @@ public class Game : Microsoft.Xna.Framework.Game
     
     private SpriteBatch _spriteBatch;
     private readonly Test _test;
+    private readonly AudioPlayer _audioPlayer;
     public GraphicsDeviceManager Graphics { get; }
     public FpsCounter FpsCounter { get; private set; }
     public GameStateManager GameStateManager { get; private set; }
@@ -23,6 +25,7 @@ public class Game : Microsoft.Xna.Framework.Game
         IsMouseVisible = true;
         IsFixedTimeStep = false;
         Content.RootDirectory = "Content";
+        _audioPlayer = new AudioPlayer(Content);
         _test = new Test();
     }
 
@@ -33,6 +36,7 @@ public class Game : Microsoft.Xna.Framework.Game
         GameStateManager = new GameStateManager();
         GameStateManager.PushState(new MainMenu(this));
         // GameStateManager.PushState(new Simulation(this, "../../../sims/lessons/tutorial.json"));
+        _audioPlayer.PlayBgm();
         base.Initialize();
     }
 
@@ -55,5 +59,11 @@ public class Game : Microsoft.Xna.Framework.Game
         FpsCounter.Draw(_spriteBatch);
         GameStateManager.Draw(gameTime, _spriteBatch);
         base.Draw(gameTime);
+    }
+
+    protected override void OnExiting(object sender, ExitingEventArgs args)
+    {
+        _audioPlayer.Dispose();
+        base.OnExiting(sender, args);
     }
 }

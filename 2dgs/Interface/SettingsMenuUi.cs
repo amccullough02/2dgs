@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Media;
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
@@ -35,6 +36,7 @@ public class SettingsMenuUi
         settingsPanel.Widgets.Add(settingsTitle);
         settingsPanel.Widgets.Add(DisplaySettings(game));
         settingsPanel.Widgets.Add(MiscSettings(game));
+        settingsPanel.Widgets.Add(AudioPanel());
         
         return settingsPanel;
     }
@@ -185,6 +187,38 @@ public class SettingsMenuUi
         panel.Widgets.Add(divider);
         panel.Widgets.Add(grid);
         
+        return panel;
+    }
+
+    private VerticalStackPanel AudioPanel()
+    {
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 2);
+        var volumeSliderLabel = UiComponents.LightLabel("Music Volume (50%)");
+        var volumeSlider = UiComponents.HorizontalSlider(50, 0, 100);
+        volumeSlider.Width = 150;
+
+        volumeSlider.ValueChanged += (s, e) =>
+        {
+            volumeSliderLabel.Text = $"Music Volume ({(int)volumeSlider.Value}%)";
+            float volume = volumeSlider.Value / 100;
+            MediaPlayer.Volume = volume;
+        };
+        
+        Grid.SetColumn(volumeSliderLabel, 0);
+        Grid.SetColumn(volumeSlider, 1);
+        
+        grid.Widgets.Add(volumeSliderLabel);
+        grid.Widgets.Add(volumeSlider);
+        
+        var sectionTitle = UiComponents.LightLabel("Audio Settings");
+        sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
+        var divider = UiComponents.HorizontalSeparator();
+        var panel = new VerticalStackPanel();
+        
+        panel.Widgets.Add(sectionTitle);
+        panel.Widgets.Add(divider);
+        panel.Widgets.Add(grid);
+
         return panel;
     }
 
