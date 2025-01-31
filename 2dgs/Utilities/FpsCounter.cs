@@ -13,17 +13,15 @@ public class FpsCounter
 
     public void Update(GameTime gameTime)
     {
-        if (_showFps)
-        {
-            _elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _frameCount++;
+        if (!_showFps) return;
+        _elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        _frameCount++;
 
-            if (_elapsedTime >= 1.0f)
-            {
-                _fps = _frameCount;
-                _frameCount = 0;
-                _elapsedTime = 0;
-            }
+        if (_elapsedTime >= 1.0f)
+        {
+            _fps = _frameCount;
+            _frameCount = 0;
+            _elapsedTime = 0;
         }
     }
 

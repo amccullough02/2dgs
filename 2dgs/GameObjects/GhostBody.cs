@@ -22,36 +22,34 @@ public class GhostBody
 
     public void Draw(SpriteBatch spriteBatch, TextureManager textureManager, SimulationData simulationData)
     {
-        if (simulationData.ToggleBodyGhost)
+        if (!simulationData.ToggleBodyGhost) return;
+        if (simulationData.ToggleGlow)
         {
-            if (simulationData.ToggleGlow)
+            for (var i = 0; i < 100; i++)
             {
-                for (var i = 0; i < 100; i++)
-                {
-                    var glowOpacity = 0.07f - (i * 0.002f);
-                    var glowRadius = 1.0f + (i * 0.02f);
+                var glowOpacity = 0.07f - (i * 0.002f);
+                var glowRadius = 1.0f + (i * 0.02f);
             
-                    spriteBatch.Draw(textureManager.BodyTexture,
-                        Position,
-                        null,
-                        Color.White * glowOpacity,
-                        0f,
-                        new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-                        new Vector2(DisplaySize * glowRadius, DisplaySize * glowRadius),
-                        SpriteEffects.None,
-                        0f);
-                } 
-            }
-            
-            spriteBatch.Draw(textureManager.BodyTexture,
-                Position,
-                null,
-                Color.White * 0.5f,
-                0f,
-                new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-                new Vector2(DisplaySize, DisplaySize),
-                SpriteEffects.None,
-                0f);
+                spriteBatch.Draw(textureManager.BodyTexture,
+                    Position,
+                    null,
+                    Color.White * glowOpacity,
+                    0f,
+                    new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
+                    new Vector2(DisplaySize * glowRadius, DisplaySize * glowRadius),
+                    SpriteEffects.None,
+                    0f);
+            } 
         }
+            
+        spriteBatch.Draw(textureManager.BodyTexture,
+            Position,
+            null,
+            Color.White * 0.5f,
+            0f,
+            new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
+            new Vector2(DisplaySize, DisplaySize),
+            SpriteEffects.None,
+            0f);
     }
 }

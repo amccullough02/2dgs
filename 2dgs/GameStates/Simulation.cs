@@ -118,23 +118,19 @@ public class Simulation : GameState
 
     private void CreateBody()
     {
-        if (_simulationData.ToggleBodyGhost)
-        {
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-                var body = new Body(
-                    _simulationData.CreateBodyData.Name,
-                    _ghostBody.Position, 
-                    _simulationData.CreateBodyData.Velocity, 
-                    _simulationData.CreateBodyData.Mass, 
-                    _simulationData.CreateBodyData.DisplaySize,
-                    Color.White,
-                    _textureManager);
+        if (!_simulationData.ToggleBodyGhost) return;
+        if (_mouseState.LeftButton != ButtonState.Pressed) return;
+        var body = new Body(
+            _simulationData.CreateBodyData.Name,
+            _ghostBody.Position, 
+            _simulationData.CreateBodyData.Velocity, 
+            _simulationData.CreateBodyData.Mass, 
+            _simulationData.CreateBodyData.DisplaySize,
+            Color.White,
+            _textureManager);
                 
-                _bodies.Add(body);
-                _simulationData.ToggleBodyGhost = !_simulationData.ToggleBodyGhost;
-            }
-        }
+        _bodies.Add(body);
+        _simulationData.ToggleBodyGhost = !_simulationData.ToggleBodyGhost;
     }
 
     private void EditBody()
