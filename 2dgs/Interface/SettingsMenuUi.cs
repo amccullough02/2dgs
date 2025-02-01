@@ -43,7 +43,7 @@ public class SettingsMenuUi
 
     private VerticalStackPanel DisplaySettings(Game game)
     {
-        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 3);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 4);
         
         var vsyncToggleLabel = UiComponents.LightLabel("Toggle VSync");
         Grid.SetRow(vsyncToggleLabel, 0);
@@ -61,8 +61,12 @@ public class SettingsMenuUi
             Console.WriteLine("Actual status of V-sync: " + game.Graphics.SynchronizeWithVerticalRetrace);
         };
         
+        var resolutionLabel = UiComponents.LightLabel("Resolution");
+        Grid.SetRow(resolutionLabel, 1);
+        
         var resolutionOptions = UiComponents.ComboView();
         Grid.SetRow(resolutionOptions, 1);
+        Grid.SetColumn(resolutionOptions, 1);
         resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("1920 x 1080"));
         resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("2560 x 1080"));
         resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("2560 x 1440"));
@@ -70,12 +74,26 @@ public class SettingsMenuUi
         resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("3840 x 2160"));
         resolutionOptions.SelectedIndex = 0;
         resolutionOptions.Width = 150;
-
-        var resolutionOptionButton = UiComponents.Button("Select", width: 150, height: 40);
-        Grid.SetRow(resolutionOptionButton, 1);
-        Grid.SetColumn(resolutionOptionButton, 1);
         
-        resolutionOptionButton.Click += (s, e) =>
+        var windowLabel = UiComponents.LightLabel("Window Mode");
+        Grid.SetRow(windowLabel, 2);
+        
+        var windowOptions = UiComponents.ComboView();
+        windowOptions.Widgets.Add(UiComponents.DropdownLabel("Windowed"));
+        windowOptions.Widgets.Add(UiComponents.DropdownLabel("Fullscreen"));
+        windowOptions.SelectedIndex = 0;
+        windowOptions.Width = 150;
+        Grid.SetRow(windowOptions, 2);
+        Grid.SetColumn(windowOptions, 1);
+
+        var confirmLabel = UiComponents.LightLabel("Confirm Selection");
+        Grid.SetRow(confirmLabel, 3);
+        
+        var confirmButton = UiComponents.Button("Apply Settings", width: 150, height: 40);
+        Grid.SetRow(confirmButton, 3);
+        Grid.SetColumn(confirmButton, 1);
+
+        confirmButton.Click += (s, e) =>
         {
             switch (resolutionOptions.SelectedIndex)
             {
@@ -110,20 +128,7 @@ public class SettingsMenuUi
                     game.Graphics.ApplyChanges();
                     break;
             }
-        };
-        
-        var windowOptions = UiComponents.ComboView();
-        windowOptions.Widgets.Add(UiComponents.DropdownLabel("Windowed"));
-        windowOptions.Widgets.Add(UiComponents.DropdownLabel("Fullscreen"));
-        windowOptions.SelectedIndex = 0;
-        windowOptions.Width = 150;
-        Grid.SetRow(windowOptions, 2);
-        
-        var windowOptionButton = UiComponents.Button("Select", width: 150, height: 40);
-        Grid.SetRow(windowOptionButton, 2);
-        Grid.SetColumn(windowOptionButton, 1);
-        windowOptionButton.Click += (s, e) =>
-        {
+            
             switch (windowOptions.SelectedIndex)
             {
                 case 0:
@@ -142,10 +147,12 @@ public class SettingsMenuUi
         
         grid.Widgets.Add(vsyncToggleLabel);
         grid.Widgets.Add(vsyncToggleButton);
+        grid.Widgets.Add(resolutionLabel);
         grid.Widgets.Add(resolutionOptions);
-        grid.Widgets.Add(resolutionOptionButton);
+        grid.Widgets.Add(windowLabel);
         grid.Widgets.Add(windowOptions);
-        grid.Widgets.Add(windowOptionButton);
+        grid.Widgets.Add(confirmLabel);
+        grid.Widgets.Add(confirmButton);
         
         var sectionTitle = UiComponents.LightLabel("Display Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
