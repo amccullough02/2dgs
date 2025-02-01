@@ -10,11 +10,14 @@ namespace _2dgs;
 public class SettingsMenuUi
 {
     private readonly Desktop _desktop;
+    private readonly SettingsSaveData _settingsSaveData;
 
     public SettingsMenuUi(Game game)
     {
+        _settingsSaveData = new SettingsSaveData();
+        _settingsSaveData = game.SaveSystem.LoadSettings();
+        
         MyraEnvironment.Game = game;
-
         var rootContainer = new Panel();
         
         rootContainer.Widgets.Add(Settings(game));
@@ -72,7 +75,17 @@ public class SettingsMenuUi
         resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("2560 x 1440"));
         resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("3440 x 1440"));
         resolutionOptions.Widgets.Add(UiComponents.DropdownLabel("3840 x 2160"));
-        resolutionOptions.SelectedIndex = 0;
+
+        resolutionOptions.SelectedIndex = _settingsSaveData.VerticalResolution switch
+        {
+            1080 when (_settingsSaveData.HorizontalResolution == 1920) => 0,
+            1080 when (_settingsSaveData.HorizontalResolution == 2560) => 1,
+            1440 when (_settingsSaveData.HorizontalResolution == 2560) => 2,
+            1440 when (_settingsSaveData.HorizontalResolution == 3440) => 3,
+            2160 when (_settingsSaveData.HorizontalResolution == 3840) => 4,
+            _ => 0
+        };
+        
         resolutionOptions.Width = 150;
         
         var windowLabel = UiComponents.LightLabel("Window Mode");
@@ -81,7 +94,13 @@ public class SettingsMenuUi
         var windowOptions = UiComponents.ComboView();
         windowOptions.Widgets.Add(UiComponents.DropdownLabel("Windowed"));
         windowOptions.Widgets.Add(UiComponents.DropdownLabel("Fullscreen"));
-        windowOptions.SelectedIndex = 0;
+
+        windowOptions.SelectedIndex = _settingsSaveData.Fullscreen switch
+        {
+            false => 0,
+            true => 1,
+        };
+        
         windowOptions.Width = 150;
         Grid.SetRow(windowOptions, 2);
         Grid.SetColumn(windowOptions, 1);
@@ -143,6 +162,11 @@ public class SettingsMenuUi
                     Console.WriteLine("DEBUG: Switching to fullscreen mode");
                     break;
             }
+
+            _settingsSaveData.VerticalResolution = game.Graphics.PreferredBackBufferHeight;
+            _settingsSaveData.HorizontalResolution = game.Graphics.PreferredBackBufferWidth;
+            _settingsSaveData.Fullscreen = game.Graphics.IsFullScreen;
+            game.SaveSystem.SaveSettings(_settingsSaveData);
         };
         
         grid.Widgets.Add(vsyncToggleLabel);

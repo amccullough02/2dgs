@@ -2,7 +2,7 @@
 
 namespace _2dgs;
 
-public class SaveData
+public class SimulationSaveData
 {
     public string Title = "default";
     public bool IsLesson = false;

@@ -77,8 +77,8 @@ public class SimulationMenuUi
         tabControl.Items.Add(lessonsTab);
         tabControl.Items.Add(userSimsTab);
         
-        PopulateList(lessonsListView, "../../../sims/lessons", game);
-        PopulateList(sandboxListView, "../../../sims/my_simulations", game);
+        PopulateList(lessonsListView, "../../../savedata/lessons", game);
+        PopulateList(sandboxListView, "../../../savedata/my_simulations", game);
 
         var buttonPanel = new HorizontalStackPanel { HorizontalAlignment = HorizontalAlignment.Center, Spacing = 780 };
         buttonPanel.Widgets.Add(mainMenuButton);
@@ -87,7 +87,7 @@ public class SimulationMenuUi
         verticalStackPanel.Widgets.Add(tabControl);
         verticalStackPanel.Widgets.Add(buttonPanel);
         
-        UiTests.TestSimFileLoading(lessonsListView, "../../../sims/lessons");
+        UiTests.TestSimFileLoading(lessonsListView, "../../../savedata/lessons");
 
         return verticalStackPanel;
     }
@@ -108,7 +108,7 @@ public class SimulationMenuUi
         newSimulationDialog.Content = grid;
         newSimulationDialog.ButtonOk.Click += (sender, e) =>
         {
-            var newFilePath = "../../../sims/my_simulations/" + nameSimulationTextbox.Text + ".json";
+            var newFilePath = "../../../savedata/my_simulations/" + nameSimulationTextbox.Text + ".json";
             saveSystem.CreateBlankSimulation(newFilePath);
             game.GameStateManager.ChangeState(new Simulation(game, newFilePath));
         };

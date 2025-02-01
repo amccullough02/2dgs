@@ -13,7 +13,7 @@ public class Simulation : GameState
 {
     private List<Body> _bodies;
     private SaveSystem _saveSystem;
-    private SaveData _saveData;
+    private SimulationSaveData _simulationSaveData;
     private SimulationData _simulationData;
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
@@ -36,13 +36,13 @@ public class Simulation : GameState
     {
         #region Loading Data
         _saveSystem = new SaveSystem();
-        _saveData = _saveSystem.Load(filePath);
+        _simulationSaveData = _saveSystem.LoadSimulation(filePath);
         _simulationData = new SimulationData
         {
-            Lesson = _saveData.IsLesson,
-            SimulationTitle = _saveData.Title,
+            Lesson = _simulationSaveData.IsLesson,
+            SimulationTitle = _simulationSaveData.Title,
             ScreenDimensions = new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height),
-            LessonPages = _saveData.LessonPages
+            LessonPages = _simulationSaveData.LessonPages
         };
         #endregion
         
@@ -59,14 +59,14 @@ public class Simulation : GameState
 
     private void RunTests()
     {
-        _test.TestSimulationLoading(_saveData.Bodies.Count, _bodies.Count);
+        _test.TestSimulationLoading(_simulationSaveData.Bodies.Count, _bodies.Count);
     }
 
     private void SetupSimulation(string filePath)
     {
-        if (_saveData?.Bodies != null)
+        if (_simulationSaveData?.Bodies != null)
         {
-            foreach (var bodyData in _saveData.Bodies)
+            foreach (var bodyData in _simulationSaveData.Bodies)
             {
                 _bodies.Add(new Body(bodyData.Name,
                     bodyData.Position,
@@ -88,11 +88,11 @@ public class Simulation : GameState
 
     private void SaveSimulation()
     {
-        var dataToSave = new SaveData
+        var dataToSave = new SimulationSaveData
         {
-            Title = _saveData.Title,
-            IsLesson = _saveData.IsLesson,
-            LessonPages = _saveData.LessonPages
+            Title = _simulationSaveData.Title,
+            IsLesson = _simulationSaveData.IsLesson,
+            LessonPages = _simulationSaveData.LessonPages
         };
         
         if (_simulationData.AttemptToSaveFile)
@@ -104,7 +104,7 @@ public class Simulation : GameState
                 dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationData));
             }
             
-            _saveSystem.Save(_simulationData.FilePath, dataToSave);
+            _saveSystem.SaveSimulation(_simulationData.FilePath, dataToSave);
             _simulationData.AttemptToSaveFile = false;
         }
     }

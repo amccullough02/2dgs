@@ -6,9 +6,11 @@ namespace _2dgs;
 
 public class SaveSystem
 {
+    private string userSettings = "../../../savedata/user_settings.json";
+    
     public void CreateBlankSimulation(string saveFilePath)
     {
-        var saveData = new SaveData();
+        var saveData = new SimulationSaveData();
         
         try
         {
@@ -25,34 +27,56 @@ public class SaveSystem
         }
     }
     
-    public void Save(string saveFilePath, SaveData saveData)
+    public SimulationSaveData LoadSimulation(string path)
+    {
+        if (File.Exists(path))
+        {
+            var jsonData = File.ReadAllText(path);
+            var settings = new JsonSerializerSettings();
+            settings.Converters.Add(new Vector2Converter());
+            
+            return JsonConvert.DeserializeObject<SimulationSaveData>(jsonData, settings);
+        }
+
+        return null;
+    }
+
+    public SettingsSaveData LoadSettings()
+    {
+        var jsonData = File.ReadAllText(userSettings);
+        return JsonConvert.DeserializeObject<SettingsSaveData>(jsonData);
+    }
+    
+    public void SaveSimulation(string path, SimulationSaveData simulationSaveData)
     {
         try
         {
             var settings = new JsonSerializerSettings();
             settings.Converters.Add(new Vector2Converter());
             settings.Formatting = Formatting.Indented;
-            var jsonData = JsonConvert.SerializeObject(saveData, settings);
+            var jsonData = JsonConvert.SerializeObject(simulationSaveData, settings);
 
-            File.WriteAllText(saveFilePath, jsonData);
+            File.WriteAllText(path, jsonData);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
         }
     }
-    
-    public SaveData Load(string saveFilePath)
-    {
-        if (File.Exists(saveFilePath))
-        {
-            var jsonData = File.ReadAllText(saveFilePath);
-            var settings = new JsonSerializerSettings();
-            settings.Converters.Add(new Vector2Converter());
-            
-            return JsonConvert.DeserializeObject<SaveData>(jsonData, settings);
-        }
 
-        return null;
+    public void SaveSettings(SettingsSaveData settingsSaveData)
+    {
+        try
+        {
+            var settings = new JsonSerializerSettings();
+            settings.Formatting = Formatting.Indented;
+            var jsonData = JsonConvert.SerializeObject(settingsSaveData, settings);
+
+            File.WriteAllText(userSettings, jsonData);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }

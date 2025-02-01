@@ -31,7 +31,7 @@ public class Test
         }
     }
 
-    private string filePath = "../../../sims/lessons/test.json";
+    private string filePath = "../../../savedata/lessons/test.json";
     private FileManager fm = new FileManager();
 
     private void CreateDummyJsonFile()
@@ -48,7 +48,7 @@ public class Test
     public void TestRenameJsonFile()
     {
         CreateDummyJsonFile();
-        var newPath = "../../../sims/lessons/testy.json";
+        var newPath = "../../../savedata/lessons/testy.json";
         fm.RenameFile(filePath, newPath);
         Console.WriteLine("TEST - Rename JSON file... PASS!");
         TestDeleteJsonFile(newPath);
