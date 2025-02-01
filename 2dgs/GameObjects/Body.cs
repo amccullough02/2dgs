@@ -108,7 +108,7 @@ public class Body(
 
         var otherBodyBounds = otherBody.GetBoundingBox();
 
-        if (bodyBounds.Contains(otherBodyBounds))
+        if (bodyBounds.IntersectsWith(otherBodyBounds))
         {
             HandleCollision(thisBody, otherBody);
         }
