@@ -58,7 +58,7 @@ public class SimulationMenuUi
             var args = p.Split(',');
             var fontName = args[0].Trim();
             var fontSize = int.Parse(args[1].Trim());
-            var fontPath = "../../../assets/fonts/" + fontName + ".ttf";
+            var fontPath = "../../../Content/fonts/" + fontName + ".ttf";
 
             var fontSystem = new FontSystem();
             fontSystem.AddFont(File.ReadAllBytes(fontPath));

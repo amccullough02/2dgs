@@ -12,11 +12,11 @@ public static class FontManager
     static FontManager()
     {
         LightFontSystem = new FontSystem();
-        LightFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Light.ttf"));
+        LightFontSystem.AddFont(File.ReadAllBytes("../../../Content/fonts/LeagueSpartan-Light.ttf"));
         MediumFontSystem = new FontSystem();
-        MediumFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Medium.ttf"));
+        MediumFontSystem.AddFont(File.ReadAllBytes("../../../Content/fonts/LeagueSpartan-Medium.ttf"));
         BoldFontSystem = new FontSystem();
-        BoldFontSystem.AddFont(File.ReadAllBytes("../../../assets/fonts/LeagueSpartan-Bold.ttf"));
+        BoldFontSystem.AddFont(File.ReadAllBytes("../../../Content/fonts/LeagueSpartan-Bold.ttf"));
     }
 
     public static SpriteFontBase LightFont(int size)
