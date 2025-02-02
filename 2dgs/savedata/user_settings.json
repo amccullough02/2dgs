@@ -1,5 +1,13 @@
 {
   "VerticalResolution": 1080,
   "HorizontalResolution": 1920,
-  "Fullscreen": false
+  "Fullscreen": false,
+  "PauseShortcut": ["LeftControl", "P"],
+  "SpeedUpShortcut": ["LeftControl", "Right"],
+  "SpeedDownShortcut": ["LeftControl", "Left"],
+  "TrailsShortcut": ["LeftControl", "T"],
+  "NamesShortcut": ["LeftControl", "N"],
+  "GlowShortcut": ["LeftControl", "G"],
+  "EditShortcut": ["LeftControl", "E"],
+  "ScreenshotShortcut": ["F11"]
 }

@@ -14,6 +14,7 @@ public class Simulation : GameState
     private List<Body> _bodies;
     private SaveSystem _saveSystem;
     private SimulationSaveData _simulationSaveData;
+    private SettingsSaveData _settingsSaveData;
     private SimulationData _simulationData;
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
@@ -36,6 +37,7 @@ public class Simulation : GameState
     {
         #region Loading Data
         _saveSystem = new SaveSystem();
+        _settingsSaveData = _saveSystem.LoadSettings();
         _simulationSaveData = _saveSystem.LoadSimulation(filePath);
         _simulationData = new SimulationData
         {
@@ -222,12 +224,12 @@ public class Simulation : GameState
     {
         _keyboardState = Keyboard.GetState();
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.P], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.PauseShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "pause_button")).DoClick();
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.Right], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.SpeedUpShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep < 400) _simulationData.TimeStep += 10;
             var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
@@ -236,7 +238,7 @@ public class Simulation : GameState
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.Left], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.SpeedDownShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             if (_simulationData.TimeStep > 10) _simulationData.TimeStep -= 10;
             var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
@@ -245,27 +247,27 @@ public class Simulation : GameState
             timeStepSlider.Value = _simulationData.TimeStep;
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.T], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.TrailsShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleTrails = !_simulationData.ToggleTrails;
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.N], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.NamesShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleNames = !_simulationData.ToggleNames;
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.G], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.GlowShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationData.ToggleGlow = !_simulationData.ToggleGlow;
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.E], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.EditShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             ((Button)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "edit_mode")).DoClick();
         });
         
-        KeyManager.Shortcut([Keys.F11], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.ScreenshotShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             ScreenshotManager.Capture(_game.GraphicsDevice);
         });
