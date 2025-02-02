@@ -13,11 +13,23 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin audio/perfect_beauty_zakhar_valaha.mp3
-/importer:Mp3Importer
+#begin audio/long_way_down.ogg
+/importer:OggImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:audio/perfect_beauty_zakhar_valaha.mp3
+/build:audio/long_way_down.ogg
+
+#begin audio/origami_hairball.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:audio/origami_hairball.ogg
+
+#begin audio/suspended_in_air.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:audio/suspended_in_air.ogg
 
 #begin images/blank_circle.png
 /importer:TextureImporter

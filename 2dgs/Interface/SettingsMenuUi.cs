@@ -224,8 +224,9 @@ public class SettingsMenuUi
     private VerticalStackPanel AudioPanel()
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 2);
-        var volumeSliderLabel = UiComponents.LightLabel("Music Volume (20%)");
-        var volumeSlider = UiComponents.HorizontalSlider(20, 0, 100);
+        var sliderVolume = (int)(MediaPlayer.Volume * 100.0f);
+        var volumeSliderLabel = UiComponents.LightLabel($"Music Volume ({sliderVolume}%)");
+        var volumeSlider = UiComponents.HorizontalSlider(sliderVolume, 0, 100);
         volumeSlider.Width = 150;
 
         volumeSlider.ValueChanged += (s, e) =>

@@ -38,7 +38,7 @@ public class Game : Microsoft.Xna.Framework.Game
         GameStateManager = new GameStateManager();
         GameStateManager.PushState(new MainMenu(this));
         // GameStateManager.PushState(new Simulation(this, "../../../savedata/lessons/tutorial.json"));
-        _audioPlayer.PlayBgm();
+        _audioPlayer.Initialize();
         base.Initialize();
     }
 
@@ -58,8 +58,8 @@ public class Game : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        FpsCounter.Draw(_spriteBatch);
         GameStateManager.Draw(gameTime, _spriteBatch);
+        FpsCounter.Draw(_spriteBatch);
         base.Draw(gameTime);
     }
 
