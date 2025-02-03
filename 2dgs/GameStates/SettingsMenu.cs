@@ -1,13 +1,27 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace _2dgs;
 
-public class SettingsMenu(Game game) : GameState
+public class SettingsMenu : GameState
 {
-    private readonly SettingsMenuUi _settingsMenuUi = new(game);
+    private SettingsMenuData _settingsMenuData;
+    private KeyboardState _keyboardState;
+    private KeyboardState _previousKeyboardState;
+    private bool _remappingComplete = true;
+    private readonly SettingsMenuUi _settingsMenuUi;
 
-    public override void Update(GameTime gameTime) {}
+    public SettingsMenu(Game game)
+    {
+        _settingsMenuData = new SettingsMenuData();
+        _settingsMenuUi = new SettingsMenuUi(game, _settingsMenuData);
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        
+    }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

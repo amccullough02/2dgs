@@ -1,7 +1,9 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using Myra;
 using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
 using Point = Microsoft.Xna.Framework.Point;
 
@@ -12,7 +14,7 @@ public class SettingsMenuUi
     private readonly Desktop _desktop;
     private readonly SettingsSaveData _settingsSaveData;
 
-    public SettingsMenuUi(Game game)
+    public SettingsMenuUi(Game game, SettingsMenuData settingsMenuData)
     {
         _settingsSaveData = new SettingsSaveData();
         _settingsSaveData = game.SaveSystem.LoadSettings();
@@ -20,14 +22,14 @@ public class SettingsMenuUi
         MyraEnvironment.Game = game;
         var rootContainer = new Panel();
         
-        rootContainer.Widgets.Add(Settings(game));
+        rootContainer.Widgets.Add(Settings(game, settingsMenuData));
         rootContainer.Widgets.Add(ExitPanel(game));
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
-    private VerticalStackPanel Settings(Game game)
+    private VerticalStackPanel Settings(Game game, SettingsMenuData settingsMenuData)
     {
         var settingsTitle = UiComponents.TitleLabel("Settings Menu");
         
@@ -38,8 +40,8 @@ public class SettingsMenuUi
         
         settingsPanel.Widgets.Add(settingsTitle);
         settingsPanel.Widgets.Add(DisplaySettings(game));
-        settingsPanel.Widgets.Add(MiscSettings(game));
         settingsPanel.Widgets.Add(AudioPanel());
+        settingsPanel.Widgets.Add(MiscSettings(game, settingsMenuData));
         
         return settingsPanel;
     }
@@ -191,9 +193,9 @@ public class SettingsMenuUi
         return panel;
     }
 
-    private VerticalStackPanel MiscSettings(Game game)
+    private VerticalStackPanel MiscSettings(Game game, SettingsMenuData settingsMenuData)
     {
-        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 2);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 2);
         
         var showFpsLabel = UiComponents.LightLabel("Toggle FPS Counter");
         
@@ -205,9 +207,24 @@ public class SettingsMenuUi
             ((Label)showFpsToggleButton.Content).Text = showFpsToggleButton.IsToggled ? "FPS Enabled" : "FPS Disabled";
         };
         Grid.SetColumn(showFpsToggleButton, 1);
+
+        var dialog = RemapShortcutsDialog(game, settingsMenuData);
+        
+        var keyBindLabel = UiComponents.LightLabel("Keyboard Shortcuts");
+        Grid.SetRow(keyBindLabel, 1);
+        
+        var keyBindDialogButton = UiComponents.Button("Configure", width: 150, height: 40);
+        keyBindDialogButton.Click += (s, e) =>
+        {
+            dialog.Show(_desktop);
+        };
+        Grid.SetColumn(keyBindDialogButton, 1);
+        Grid.SetRow(keyBindDialogButton, 1);
         
         grid.Widgets.Add(showFpsLabel);
         grid.Widgets.Add(showFpsToggleButton);
+        grid.Widgets.Add(keyBindLabel);
+        grid.Widgets.Add(keyBindDialogButton);
 
         var sectionTitle = UiComponents.LightLabel("Miscellaneous Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
@@ -253,7 +270,7 @@ public class SettingsMenuUi
 
         return panel;
     }
-
+    
     private VerticalStackPanel ExitPanel(Game game)
     {
         var button = UiComponents.Button("Return to Main Menu");
@@ -270,6 +287,44 @@ public class SettingsMenuUi
         return verticalStackPanel;
     }
 
+    private Dialog RemapShortcutsDialog(Game game , SettingsMenuData settingsMenuData)
+    {
+        var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");
+        
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 3, 1);
+
+        var pauseKeybindLabel = UiComponents.LightLabel("Pause Shortcut");
+        Grid.SetColumn(pauseKeybindLabel, 0);
+
+        var firstKeybindText = StringTransformer.KeybindString(_settingsSaveData.PauseShortcut);
+        var currentKeybind = UiComponents.LightLabel(firstKeybindText, fontSize: UiConstants.DialogFontSize);
+        currentKeybind.Border = new SolidBrush(Color.White);
+        currentKeybind.BorderThickness = new Thickness(1);
+        currentKeybind.Padding = new Thickness(4);
+        Grid.SetColumn(currentKeybind, 1);
+        
+        var changeKeybind = UiComponents.Button("Start", width: 100, height: 30);
+        changeKeybind.Click += (s, e) =>
+        {
+            settingsMenuData.Remapping = !settingsMenuData.Remapping;
+            ((Label)changeKeybind.Content).Text = settingsMenuData.Remapping ? "Finish" : "Start";
+        };
+        Grid.SetColumn(changeKeybind, 2);
+        
+        grid.Widgets.Add(pauseKeybindLabel);
+        grid.Widgets.Add(currentKeybind);
+        grid.Widgets.Add(changeKeybind);
+
+        dialog.Content = grid;
+
+        dialog.ButtonOk.Click += (s, e) =>
+        {
+            game.SaveSystem.SaveSettings(_settingsSaveData);
+        };
+
+        return dialog;
+    }
+    
     public void Draw()
     {
         _desktop.Render();

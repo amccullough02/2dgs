@@ -1,5 +1,7 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Microsoft.Xna.Framework.Input;
 
 namespace _2dgs;
 
@@ -13,5 +15,22 @@ public static class StringTransformer
             .Split(' ')
             .Select(word => textInfo.ToTitleCase(word))
             .Aggregate((x, y) => $"{x} {y}");
+    }
+
+    public static string KeybindString(List<Keys> keys)
+    {
+        var keybindString = "";
+
+        for (var i = 0; i < keys.Count; i++)
+        {
+            keybindString += keys[i].ToString();
+
+            if (i != keys.Count - 1)
+            {
+                keybindString += ", ";
+            }
+        }
+        
+        return keybindString;
     }
 }

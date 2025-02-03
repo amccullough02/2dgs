@@ -53,11 +53,11 @@ public static class UiComponents
           };
      }
 
-     public static ComboView ComboView()
+     public static ComboView ComboView(int width = UiConstants.DefaultElementWidth)
      {
           return new ComboView()
           {
-               Width = UiConstants.DefaultElementWidth,
+               Width = width,
           };
      }
 
