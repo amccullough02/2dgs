@@ -15,7 +15,7 @@ public class AudioPlayer(ContentManager contentManager)
     public void Initialize()
     {
         _currentSongIndex = 0;
-        MediaPlayer.Volume = 0.5f;
+        MediaPlayer.Volume = 0.1f;
         MediaPlayer.MediaStateChanged += (_, _) =>
         {
             if (MediaPlayer.State == MediaState.Stopped)

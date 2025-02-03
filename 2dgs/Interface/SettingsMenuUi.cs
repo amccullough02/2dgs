@@ -296,49 +296,198 @@ public class SettingsMenuUi
     {
         var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");
         
-        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 3, 1);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 3, 8);
 
-        var pauseKeybindLabel = UiComponents.LightLabel("Pause Shortcut");
-        Grid.SetColumn(pauseKeybindLabel, 0);
+        // PAUSE
+        var pauseKeyBindLabel = UiComponents.LightLabel("Pause Shortcut");
+        Grid.SetColumn(pauseKeyBindLabel, 0);
 
-        var firstKeybindText = StringTransformer.KeybindString(_settingsSaveData.PauseShortcut);
-        var currentKeybind = UiComponents.LightLabel(firstKeybindText, fontSize: UiConstants.DialogFontSize);
-        currentKeybind.Border = new SolidBrush(Color.White);
-        currentKeybind.BorderThickness = new Thickness(1);
-        currentKeybind.Padding = new Thickness(4);
-        Grid.SetColumn(currentKeybind, 1);
+        var pauseKeyBindPreview =
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.PauseShortcut));
+        Grid.SetColumn(pauseKeyBindPreview, 1);
         
-        var changeKeybind = UiComponents.Button("Start", width: 100, height: 30);
-        changeKeybind.Click += (s, e) =>
+        var changePauseKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changePauseKeyBind.Click += (s, e) =>
         {
-            settingsMenuData.Remapping = !settingsMenuData.Remapping;
-            ((Label)changeKeybind.Content).Text = settingsMenuData.Remapping ? "Finish" : "Start";
-            if (settingsMenuData.Remapping)
-            {
-                settingsMenuData.ClearShortcut = true;
-                currentKeybind.Text = "Working...";
-            }
-            if (!settingsMenuData.Remapping)
-            {
-                currentKeybind.Text = settingsMenuData.ShortcutPreview;
-            }
+            RemapShortcut(settingsMenuData, changePauseKeyBind, pauseKeyBindPreview);
         };
-        Grid.SetColumn(changeKeybind, 2);
+        Grid.SetColumn(changePauseKeyBind, 2);
         
-        grid.Widgets.Add(pauseKeybindLabel);
-        grid.Widgets.Add(currentKeybind);
-        grid.Widgets.Add(changeKeybind);
+        // SPEED UP
+        var speedUpKeyBindLabel = UiComponents.LightLabel("Sim Speed+");
+        Grid.SetColumn(speedUpKeyBindLabel, 0);
+        Grid.SetRow(speedUpKeyBindLabel, 1);
+        
+        var speedUpKeyBindPreview = 
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.SpeedUpShortcut));
+        Grid.SetColumn(speedUpKeyBindPreview, 1);
+        Grid.SetRow(speedUpKeyBindPreview, 1);
+        
+        var changeSpeedUpKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changeSpeedUpKeyBind.Click += (s, e) =>
+        {
+            RemapShortcut(settingsMenuData, changeSpeedUpKeyBind, speedUpKeyBindPreview);
+        };
+        Grid.SetColumn(changeSpeedUpKeyBind, 2);
+        Grid.SetRow(changeSpeedUpKeyBind, 1);
+        
+        // SLOW DOWN
+        var slowDownKeyBindLabel = UiComponents.LightLabel("Sim Speed-");
+        Grid.SetColumn(slowDownKeyBindLabel, 0);
+        Grid.SetRow(slowDownKeyBindLabel, 2);
+        
+        var slowDownKeyBindPreview = 
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.SpeedDownShortcut));
+        Grid.SetColumn(slowDownKeyBindPreview, 1);
+        Grid.SetRow(slowDownKeyBindPreview, 2);
+        
+        var changeSpeedDownKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changeSpeedDownKeyBind.Click += (s, e) =>
+        {
+            RemapShortcut(settingsMenuData, changeSpeedDownKeyBind, slowDownKeyBindPreview);
+        };
+        Grid.SetColumn(changeSpeedDownKeyBind, 2);
+        Grid.SetRow(changeSpeedDownKeyBind, 2);
+        
+        // TOGGLE TRAILS
+        var toggleTrailsKeyBindLabel = UiComponents.LightLabel("Toggle Trails");
+        Grid.SetColumn(toggleTrailsKeyBindLabel, 0);
+        Grid.SetRow(toggleTrailsKeyBindLabel, 3);
 
+        var toggleTrailsKeyBindPreview = 
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.TrailsShortcut));
+        Grid.SetColumn(toggleTrailsKeyBindPreview, 1);
+        Grid.SetRow(toggleTrailsKeyBindPreview, 3);
+        
+        var changeToggleTrailsKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changeToggleTrailsKeyBind.Click += (s, e) =>
+        {
+            RemapShortcut(settingsMenuData, changeToggleTrailsKeyBind, toggleTrailsKeyBindPreview);
+        };
+        Grid.SetColumn(changeToggleTrailsKeyBind, 2);
+        Grid.SetRow(changeToggleTrailsKeyBind, 3);
+        
+        // TOGGLE NAMES
+        var toggleNamesKeyBindLabel = UiComponents.LightLabel("Toggle Names");
+        Grid.SetColumn(toggleNamesKeyBindLabel, 0);
+        Grid.SetRow(toggleNamesKeyBindLabel, 4);
+        
+        var toggleNamesKeyBindPreview = 
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.NamesShortcut));
+        Grid.SetColumn(toggleNamesKeyBindPreview, 1);
+        Grid.SetRow(toggleNamesKeyBindPreview, 4);
+        
+        var changeToggleNamesKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changeToggleNamesKeyBind.Click += (s, e) =>
+        {
+            RemapShortcut(settingsMenuData, changeToggleNamesKeyBind, toggleNamesKeyBindPreview);
+        };
+        Grid.SetColumn(changeToggleNamesKeyBind, 2);
+        Grid.SetRow(changeToggleNamesKeyBind, 4);
+        
+        // TOGGLE GLOW
+        var toggleGlowKeyBindLabel = UiComponents.LightLabel("Toggle Glow");
+        Grid.SetColumn(toggleGlowKeyBindLabel, 0);
+        Grid.SetRow(toggleGlowKeyBindLabel, 5);
+        
+        var toggleGlowKeyBindPreview = 
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.GlowShortcut));
+        Grid.SetColumn(toggleGlowKeyBindPreview, 1);
+        Grid.SetRow(toggleGlowKeyBindPreview, 5);
+        
+        var changeToggleGlowKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changeToggleGlowKeyBind.Click += (s, e) =>
+        {
+            RemapShortcut(settingsMenuData, changeToggleGlowKeyBind, toggleGlowKeyBindPreview);
+        };
+        Grid.SetColumn(changeToggleGlowKeyBind, 2);
+        Grid.SetRow(changeToggleGlowKeyBind, 5);
+        
+        // EDIT MODE
+        var toggleEditModeKeyBindLabel = UiComponents.LightLabel("Edit Mode");
+        Grid.SetColumn(toggleEditModeKeyBindLabel, 0);
+        Grid.SetRow(toggleEditModeKeyBindLabel, 6);
+        
+        var toggleEditModeKeyBindPreview = 
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.EditShortcut));
+        Grid.SetColumn(toggleEditModeKeyBindPreview, 1);
+        Grid.SetRow(toggleEditModeKeyBindPreview, 6);
+        
+        var changeToggleEditModeKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changeToggleEditModeKeyBind.Click += (s, e) =>
+        {
+            RemapShortcut(settingsMenuData, changeToggleEditModeKeyBind, toggleEditModeKeyBindPreview);
+        };
+        Grid.SetColumn(changeToggleEditModeKeyBind, 2);
+        Grid.SetRow(changeToggleEditModeKeyBind, 6);
+        
+        // SCREENSHOT
+        var screenshotKeyBindLabel = UiComponents.LightLabel("Screenshot");
+        Grid.SetColumn(screenshotKeyBindLabel, 0);
+        Grid.SetRow(screenshotKeyBindLabel, 7);
+        
+        var screenshotKeyBindPreview = 
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.ScreenshotShortcut));
+        Grid.SetColumn(screenshotKeyBindPreview, 1);
+        Grid.SetRow(screenshotKeyBindPreview, 7);
+        
+        var changeScreenShotKeyBind = UiComponents.Button("Start", width: 100, height: 30);
+        changeScreenShotKeyBind.Click += (s, e) =>
+        {
+            RemapShortcut(settingsMenuData, changeScreenShotKeyBind, screenshotKeyBindPreview);
+        };
+        Grid.SetColumn(changeScreenShotKeyBind, 2);
+        Grid.SetRow(changeScreenShotKeyBind, 7);
+        
+        grid.Widgets.Add(pauseKeyBindLabel);
+        grid.Widgets.Add(pauseKeyBindPreview);
+        grid.Widgets.Add(changePauseKeyBind);
+        grid.Widgets.Add(speedUpKeyBindLabel);
+        grid.Widgets.Add(speedUpKeyBindPreview);
+        grid.Widgets.Add(changeSpeedUpKeyBind);
+        grid.Widgets.Add(slowDownKeyBindLabel);
+        grid.Widgets.Add(slowDownKeyBindPreview);
+        grid.Widgets.Add(changeSpeedDownKeyBind);
+        grid.Widgets.Add(toggleTrailsKeyBindLabel);
+        grid.Widgets.Add(toggleTrailsKeyBindPreview);
+        grid.Widgets.Add(changeToggleTrailsKeyBind);
+        grid.Widgets.Add(toggleNamesKeyBindLabel);
+        grid.Widgets.Add(toggleNamesKeyBindPreview);
+        grid.Widgets.Add(changeToggleNamesKeyBind);
+        grid.Widgets.Add(toggleGlowKeyBindLabel);
+        grid.Widgets.Add(toggleGlowKeyBindPreview);
+        grid.Widgets.Add(changeToggleGlowKeyBind);
+        grid.Widgets.Add(toggleEditModeKeyBindLabel);
+        grid.Widgets.Add(toggleEditModeKeyBindPreview);
+        grid.Widgets.Add(changeToggleEditModeKeyBind);
+        grid.Widgets.Add(screenshotKeyBindLabel);
+        grid.Widgets.Add(screenshotKeyBindPreview);
+        grid.Widgets.Add(changeScreenShotKeyBind);
+        
         dialog.Content = grid;
 
         dialog.ButtonOk.Click += (s, e) =>
         {
             _settingsSaveData.PauseShortcut = settingsMenuData.NewShortcut;
             game.SaveSystem.SaveSettings(_settingsSaveData);
-            Console.WriteLine($"New pause shortcut: {StringTransformer.KeybindString(_settingsSaveData.PauseShortcut)}");
         };
 
         return dialog;
+    }
+    
+    private void RemapShortcut(SettingsMenuData settingsMenuData, Button button, Label label)
+    {
+        settingsMenuData.Remapping = !settingsMenuData.Remapping;
+        ((Label)button.Content).Text = settingsMenuData.Remapping ? "Finish" : "Start";
+        if (settingsMenuData.Remapping)
+        {
+            settingsMenuData.ClearShortcut = true;
+            label.Text = "Working...";
+        }
+        if (!settingsMenuData.Remapping)
+        {
+            label.Text = settingsMenuData.ShortcutPreview;
+        }
     }
     
     public void Draw()

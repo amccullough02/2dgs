@@ -95,6 +95,19 @@ public static class UiComponents
           return grid;
      }
 
+     public static Label KeyBindLabel(string text)
+     {
+          return new Label
+          {
+               Text = text,
+               Font = FontManager.LightFont(UiConstants.DialogFontSize),
+               VerticalAlignment = VerticalAlignment.Center,
+               Border = new SolidBrush(Color.White),
+               BorderThickness = new Thickness(1),
+               Padding = new Thickness(4)
+          };
+     }
+
      public static Label LightLabel(string text, int fontSize = UiConstants.DefaultFontSize)
      {
           return new Label
