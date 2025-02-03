@@ -6,5 +6,7 @@ namespace _2dgs;
 public class SettingsMenuData
 {
     public bool Remapping { get; set; }
-    public List<Keys> NewShortcut { get; set; }
+    public bool ClearShortcut { get; set; }
+    public string ShortcutPreview = "";
+    public List<Keys> NewShortcut = [];
 }

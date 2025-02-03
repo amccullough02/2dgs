@@ -46,6 +46,11 @@ public class SettingsMenuUi
         return settingsPanel;
     }
 
+    public Widget GetRoot()
+    {
+        return _desktop.Root;
+    }
+
     private VerticalStackPanel DisplaySettings(Game game)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 4);
@@ -287,7 +292,7 @@ public class SettingsMenuUi
         return verticalStackPanel;
     }
 
-    private Dialog RemapShortcutsDialog(Game game , SettingsMenuData settingsMenuData)
+    private Dialog RemapShortcutsDialog(Game game, SettingsMenuData settingsMenuData)
     {
         var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");
         
@@ -308,6 +313,15 @@ public class SettingsMenuUi
         {
             settingsMenuData.Remapping = !settingsMenuData.Remapping;
             ((Label)changeKeybind.Content).Text = settingsMenuData.Remapping ? "Finish" : "Start";
+            if (settingsMenuData.Remapping)
+            {
+                settingsMenuData.ClearShortcut = true;
+                currentKeybind.Text = "Working...";
+            }
+            if (!settingsMenuData.Remapping)
+            {
+                currentKeybind.Text = settingsMenuData.ShortcutPreview;
+            }
         };
         Grid.SetColumn(changeKeybind, 2);
         
@@ -319,7 +333,9 @@ public class SettingsMenuUi
 
         dialog.ButtonOk.Click += (s, e) =>
         {
+            _settingsSaveData.PauseShortcut = settingsMenuData.NewShortcut;
             game.SaveSystem.SaveSettings(_settingsSaveData);
+            Console.WriteLine($"New pause shortcut: {StringTransformer.KeybindString(_settingsSaveData.PauseShortcut)}");
         };
 
         return dialog;
