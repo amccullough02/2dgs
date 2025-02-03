@@ -6,7 +6,7 @@ namespace _2dgs;
 
 public class SaveSystem
 {
-    private string userSettings = "../../../savedata/user_settings.json";
+    private const string DefaultUserSettings = "../../../savedata/user_settings.json";
     
     public void CreateBlankSimulation(string saveFilePath)
     {
@@ -43,8 +43,10 @@ public class SaveSystem
 
     public SettingsSaveData LoadSettings()
     {
-        var jsonData = File.ReadAllText(userSettings);
-        return JsonConvert.DeserializeObject<SettingsSaveData>(jsonData);
+        var jsonData = File.ReadAllText(DefaultUserSettings);
+        var settings = new JsonSerializerSettings();
+        settings.Converters.Add(new KeyEnumConvertor());
+        return JsonConvert.DeserializeObject<SettingsSaveData>(jsonData, settings);
     }
     
     public void SaveSimulation(string path, SimulationSaveData simulationSaveData)
@@ -70,9 +72,10 @@ public class SaveSystem
         {
             var settings = new JsonSerializerSettings();
             settings.Formatting = Formatting.Indented;
+            settings.Converters.Add(new KeyEnumConvertor());
             var jsonData = JsonConvert.SerializeObject(settingsSaveData, settings);
 
-            File.WriteAllText(userSettings, jsonData);
+            File.WriteAllText(DefaultUserSettings, jsonData);
         }
         catch (Exception e)
         {
