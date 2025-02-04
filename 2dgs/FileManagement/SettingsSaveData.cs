@@ -5,15 +5,15 @@ namespace _2dgs;
 
 public class SettingsSaveData
 {
-    public int VerticalResolution = 1080;
-    public int HorizontalResolution = 1920;
-    public bool Fullscreen = false;
-    public List<Keys> PauseShortcut = [];
-    public List<Keys> SpeedUpShortcut = [];
-    public List<Keys> SpeedDownShortcut = [];
-    public List<Keys> TrailsShortcut = [];
-    public List<Keys> NamesShortcut = [];
-    public List<Keys> GlowShortcut = [];
-    public List<Keys> EditShortcut = [];
-    public List<Keys> ScreenshotShortcut = [];
+    public int VerticalResolution { get; set; } = 1080;
+    public int HorizontalResolution { get; set; } = 1920;
+    public bool Fullscreen { get; set; }
+    public List<Keys> PauseShortcut { get; set; } = [];
+    public List<Keys> SpeedUpShortcut { get; set; } = [];
+    public List<Keys> SpeedDownShortcut { get; set; } = [];
+    public List<Keys> TrailsShortcut { get; set; } = [];
+    public List<Keys> NamesShortcut { get; set; } = [];
+    public List<Keys> GlowShortcut { get; set; } = [];
+    public List<Keys> EditShortcut { get; set; } = [];
+    public List<Keys> ScreenshotShortcut { get; set; } = [];
 }
