@@ -1,9 +1,9 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Myra;
 using Myra.Graphics2D;
-using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
 using Point = Microsoft.Xna.Framework.Point;
 
@@ -309,7 +309,7 @@ public class SettingsMenuUi
         var changePauseKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changePauseKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changePauseKeyBind, pauseKeyBindPreview);
+            RemapShortcut(settingsMenuData, changePauseKeyBind, pauseKeyBindPreview, "PauseShortcut");
         };
         Grid.SetColumn(changePauseKeyBind, 2);
         
@@ -326,7 +326,7 @@ public class SettingsMenuUi
         var changeSpeedUpKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeSpeedUpKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changeSpeedUpKeyBind, speedUpKeyBindPreview);
+            RemapShortcut(settingsMenuData, changeSpeedUpKeyBind, speedUpKeyBindPreview, "SpeedUpShortcut");
         };
         Grid.SetColumn(changeSpeedUpKeyBind, 2);
         Grid.SetRow(changeSpeedUpKeyBind, 1);
@@ -344,7 +344,7 @@ public class SettingsMenuUi
         var changeSpeedDownKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeSpeedDownKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changeSpeedDownKeyBind, slowDownKeyBindPreview);
+            RemapShortcut(settingsMenuData, changeSpeedDownKeyBind, slowDownKeyBindPreview, "SpeedDownShortcut");
         };
         Grid.SetColumn(changeSpeedDownKeyBind, 2);
         Grid.SetRow(changeSpeedDownKeyBind, 2);
@@ -362,7 +362,7 @@ public class SettingsMenuUi
         var changeToggleTrailsKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleTrailsKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleTrailsKeyBind, toggleTrailsKeyBindPreview);
+            RemapShortcut(settingsMenuData, changeToggleTrailsKeyBind, toggleTrailsKeyBindPreview, "TrailsShortcut");
         };
         Grid.SetColumn(changeToggleTrailsKeyBind, 2);
         Grid.SetRow(changeToggleTrailsKeyBind, 3);
@@ -380,7 +380,7 @@ public class SettingsMenuUi
         var changeToggleNamesKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleNamesKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleNamesKeyBind, toggleNamesKeyBindPreview);
+            RemapShortcut(settingsMenuData, changeToggleNamesKeyBind, toggleNamesKeyBindPreview, "NamesShortcut");
         };
         Grid.SetColumn(changeToggleNamesKeyBind, 2);
         Grid.SetRow(changeToggleNamesKeyBind, 4);
@@ -398,7 +398,7 @@ public class SettingsMenuUi
         var changeToggleGlowKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleGlowKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleGlowKeyBind, toggleGlowKeyBindPreview);
+            RemapShortcut(settingsMenuData, changeToggleGlowKeyBind, toggleGlowKeyBindPreview, "GlowShortcut");
         };
         Grid.SetColumn(changeToggleGlowKeyBind, 2);
         Grid.SetRow(changeToggleGlowKeyBind, 5);
@@ -416,7 +416,7 @@ public class SettingsMenuUi
         var changeToggleEditModeKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleEditModeKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleEditModeKeyBind, toggleEditModeKeyBindPreview);
+            RemapShortcut(settingsMenuData, changeToggleEditModeKeyBind, toggleEditModeKeyBindPreview, "EditShortcut");
         };
         Grid.SetColumn(changeToggleEditModeKeyBind, 2);
         Grid.SetRow(changeToggleEditModeKeyBind, 6);
@@ -434,7 +434,7 @@ public class SettingsMenuUi
         var changeScreenShotKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeScreenShotKeyBind.Click += (s, e) =>
         {
-            RemapShortcut(settingsMenuData, changeScreenShotKeyBind, screenshotKeyBindPreview);
+            RemapShortcut(settingsMenuData, changeScreenShotKeyBind, screenshotKeyBindPreview, "ScreenshotShortcut");
         };
         Grid.SetColumn(changeScreenShotKeyBind, 2);
         Grid.SetRow(changeScreenShotKeyBind, 7);
@@ -468,16 +468,49 @@ public class SettingsMenuUi
 
         dialog.ButtonOk.Click += (s, e) =>
         {
-            _settingsSaveData.PauseShortcut = settingsMenuData.NewShortcut;
+            if (settingsMenuData.NewShortcuts.TryGetValue("PauseShortcut", out List<Keys> newPauseShortcut) && newPauseShortcut.Count > 0)
+            {
+                _settingsSaveData.PauseShortcut = newPauseShortcut;
+            }
+            if (settingsMenuData.NewShortcuts.TryGetValue("SpeedUpShortcut", out List<Keys> newSpeedUpShortcut) && newSpeedUpShortcut.Count > 0)
+            {
+                _settingsSaveData.SpeedUpShortcut = newSpeedUpShortcut;
+            }
+            if (settingsMenuData.NewShortcuts.TryGetValue("SpeedDownShortcut", out List<Keys> newSpeedDownShortcut) && newSpeedDownShortcut.Count > 0)
+            {
+                _settingsSaveData.SpeedDownShortcut = newSpeedDownShortcut;
+            }
+            if (settingsMenuData.NewShortcuts.TryGetValue("TrailsShortcut", out List<Keys> newTrailsShortcut) && newTrailsShortcut.Count > 0)
+            {
+                _settingsSaveData.TrailsShortcut = newTrailsShortcut;
+            }
+            if (settingsMenuData.NewShortcuts.TryGetValue("NamesShortcut", out List<Keys> newNamesShortcut) && newNamesShortcut.Count > 0)
+            {
+                _settingsSaveData.NamesShortcut = newNamesShortcut;
+            }
+            if (settingsMenuData.NewShortcuts.TryGetValue("GlowShortcut", out List<Keys> newGlowShortcut) && newGlowShortcut.Count > 0)
+            {
+                _settingsSaveData.GlowShortcut = newGlowShortcut;
+            }
+            if (settingsMenuData.NewShortcuts.TryGetValue("EditShortcut", out List<Keys> newEditShortcut) && newEditShortcut.Count > 0)
+            {
+                _settingsSaveData.EditShortcut = newEditShortcut;
+            }
+            if (settingsMenuData.NewShortcuts.TryGetValue("ScreenshotShortcut", out List<Keys> newScreenshotShortcut) && newScreenshotShortcut.Count > 0)
+            {
+                _settingsSaveData.ScreenshotShortcut = newScreenshotShortcut;
+            }
+
             game.SaveSystem.SaveSettings(_settingsSaveData);
         };
 
         return dialog;
     }
     
-    private void RemapShortcut(SettingsMenuData settingsMenuData, Button button, Label label)
+    private void RemapShortcut(SettingsMenuData settingsMenuData, Button button, Label label, string whichShortcut)
     {
         settingsMenuData.Remapping = !settingsMenuData.Remapping;
+        settingsMenuData.WhichShortcut = whichShortcut;
         ((Label)button.Content).Text = settingsMenuData.Remapping ? "Finish" : "Start";
         if (settingsMenuData.Remapping)
         {

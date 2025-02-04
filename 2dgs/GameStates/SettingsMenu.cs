@@ -14,6 +14,15 @@ public class SettingsMenu : GameState
     public SettingsMenu(Game game)
     {
         _settingsMenuData = new SettingsMenuData();
+        _settingsMenuData.NewShortcuts.Add("PauseShortcut", []);
+        _settingsMenuData.NewShortcuts.Add("SpeedUpShortcut", []);
+        _settingsMenuData.NewShortcuts.Add("SpeedDownShortcut", []);
+        _settingsMenuData.NewShortcuts.Add("TrailsShortcut", []);
+        _settingsMenuData.NewShortcuts.Add("NamesShortcut", []);
+        _settingsMenuData.NewShortcuts.Add("GlowShortcut", []);
+        _settingsMenuData.NewShortcuts.Add("EditShortcut", []);
+        _settingsMenuData.NewShortcuts.Add("ScreenshotShortcut", []);
+        
         _settingsMenuUi = new SettingsMenuUi(game, _settingsMenuData);
     }
 
@@ -25,20 +34,22 @@ public class SettingsMenu : GameState
 
             foreach (var key in _keyboardState.GetPressedKeys())
             {
-                if (!_previousKeyboardState.IsKeyDown(key))
+                if (_previousKeyboardState.IsKeyDown(key)) continue;
+                
+                if (_settingsMenuData.NewShortcuts.ContainsKey(_settingsMenuData.WhichShortcut))
                 {
-                    _settingsMenuData.NewShortcut.Add(key);
+                    _settingsMenuData.NewShortcuts[_settingsMenuData.WhichShortcut].Add(key);
                 }
             }
             
             _previousKeyboardState = _keyboardState;
 
-            _settingsMenuData.ShortcutPreview  = StringTransformer.KeybindString(_settingsMenuData.NewShortcut);
+            _settingsMenuData.ShortcutPreview  = StringTransformer.KeybindString(_settingsMenuData.NewShortcuts[_settingsMenuData.WhichShortcut]);
         }
 
         if (_settingsMenuData.ClearShortcut)
         {
-            _settingsMenuData.NewShortcut.Clear();
+            _settingsMenuData.NewShortcuts[_settingsMenuData.WhichShortcut].Clear();
             _settingsMenuData.ClearShortcut = false;
         }
     }
