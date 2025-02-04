@@ -297,8 +297,7 @@ public class SettingsMenuUi
         var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");
         
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 3, 8);
-
-        // PAUSE
+        
         var pauseKeyBindLabel = UiComponents.LightLabel("Pause Shortcut");
         Grid.SetColumn(pauseKeyBindLabel, 0);
 
@@ -313,7 +312,6 @@ public class SettingsMenuUi
         };
         Grid.SetColumn(changePauseKeyBind, 2);
         
-        // SPEED UP
         var speedUpKeyBindLabel = UiComponents.LightLabel("Sim Speed+");
         Grid.SetColumn(speedUpKeyBindLabel, 0);
         Grid.SetRow(speedUpKeyBindLabel, 1);
@@ -331,7 +329,6 @@ public class SettingsMenuUi
         Grid.SetColumn(changeSpeedUpKeyBind, 2);
         Grid.SetRow(changeSpeedUpKeyBind, 1);
         
-        // SLOW DOWN
         var slowDownKeyBindLabel = UiComponents.LightLabel("Sim Speed-");
         Grid.SetColumn(slowDownKeyBindLabel, 0);
         Grid.SetRow(slowDownKeyBindLabel, 2);
@@ -349,7 +346,6 @@ public class SettingsMenuUi
         Grid.SetColumn(changeSpeedDownKeyBind, 2);
         Grid.SetRow(changeSpeedDownKeyBind, 2);
         
-        // TOGGLE TRAILS
         var toggleTrailsKeyBindLabel = UiComponents.LightLabel("Toggle Trails");
         Grid.SetColumn(toggleTrailsKeyBindLabel, 0);
         Grid.SetRow(toggleTrailsKeyBindLabel, 3);
@@ -367,7 +363,6 @@ public class SettingsMenuUi
         Grid.SetColumn(changeToggleTrailsKeyBind, 2);
         Grid.SetRow(changeToggleTrailsKeyBind, 3);
         
-        // TOGGLE NAMES
         var toggleNamesKeyBindLabel = UiComponents.LightLabel("Toggle Names");
         Grid.SetColumn(toggleNamesKeyBindLabel, 0);
         Grid.SetRow(toggleNamesKeyBindLabel, 4);
@@ -385,7 +380,6 @@ public class SettingsMenuUi
         Grid.SetColumn(changeToggleNamesKeyBind, 2);
         Grid.SetRow(changeToggleNamesKeyBind, 4);
         
-        // TOGGLE GLOW
         var toggleGlowKeyBindLabel = UiComponents.LightLabel("Toggle Glow");
         Grid.SetColumn(toggleGlowKeyBindLabel, 0);
         Grid.SetRow(toggleGlowKeyBindLabel, 5);
@@ -403,7 +397,6 @@ public class SettingsMenuUi
         Grid.SetColumn(changeToggleGlowKeyBind, 2);
         Grid.SetRow(changeToggleGlowKeyBind, 5);
         
-        // EDIT MODE
         var toggleEditModeKeyBindLabel = UiComponents.LightLabel("Edit Mode");
         Grid.SetColumn(toggleEditModeKeyBindLabel, 0);
         Grid.SetRow(toggleEditModeKeyBindLabel, 6);
@@ -420,8 +413,7 @@ public class SettingsMenuUi
         };
         Grid.SetColumn(changeToggleEditModeKeyBind, 2);
         Grid.SetRow(changeToggleEditModeKeyBind, 6);
-        
-        // SCREENSHOT
+
         var screenshotKeyBindLabel = UiComponents.LightLabel("Screenshot");
         Grid.SetColumn(screenshotKeyBindLabel, 0);
         Grid.SetRow(screenshotKeyBindLabel, 7);
@@ -468,38 +460,22 @@ public class SettingsMenuUi
 
         dialog.ButtonOk.Click += (s, e) =>
         {
-            if (settingsMenuData.NewShortcuts.TryGetValue("PauseShortcut", out List<Keys> newPauseShortcut) && newPauseShortcut.Count > 0)
-            {
-                _settingsSaveData.PauseShortcut = newPauseShortcut;
-            }
-            if (settingsMenuData.NewShortcuts.TryGetValue("SpeedUpShortcut", out List<Keys> newSpeedUpShortcut) && newSpeedUpShortcut.Count > 0)
-            {
-                _settingsSaveData.SpeedUpShortcut = newSpeedUpShortcut;
-            }
-            if (settingsMenuData.NewShortcuts.TryGetValue("SpeedDownShortcut", out List<Keys> newSpeedDownShortcut) && newSpeedDownShortcut.Count > 0)
-            {
-                _settingsSaveData.SpeedDownShortcut = newSpeedDownShortcut;
-            }
-            if (settingsMenuData.NewShortcuts.TryGetValue("TrailsShortcut", out List<Keys> newTrailsShortcut) && newTrailsShortcut.Count > 0)
-            {
-                _settingsSaveData.TrailsShortcut = newTrailsShortcut;
-            }
-            if (settingsMenuData.NewShortcuts.TryGetValue("NamesShortcut", out List<Keys> newNamesShortcut) && newNamesShortcut.Count > 0)
-            {
-                _settingsSaveData.NamesShortcut = newNamesShortcut;
-            }
-            if (settingsMenuData.NewShortcuts.TryGetValue("GlowShortcut", out List<Keys> newGlowShortcut) && newGlowShortcut.Count > 0)
-            {
-                _settingsSaveData.GlowShortcut = newGlowShortcut;
-            }
-            if (settingsMenuData.NewShortcuts.TryGetValue("EditShortcut", out List<Keys> newEditShortcut) && newEditShortcut.Count > 0)
-            {
-                _settingsSaveData.EditShortcut = newEditShortcut;
-            }
-            if (settingsMenuData.NewShortcuts.TryGetValue("ScreenshotShortcut", out List<Keys> newScreenshotShortcut) && newScreenshotShortcut.Count > 0)
-            {
-                _settingsSaveData.ScreenshotShortcut = newScreenshotShortcut;
-            }
+            _settingsSaveData.PauseShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.PauseShortcut, "PauseShortcut");
+            _settingsSaveData.SpeedUpShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.SpeedUpShortcut, "SpeedUpShortcut");
+            _settingsSaveData.SpeedDownShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.SpeedDownShortcut, "SpeedDownShortcut");
+            _settingsSaveData.TrailsShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.TrailsShortcut, "TrailsShortcut");
+            _settingsSaveData.NamesShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.NamesShortcut, "NamesShortcut");
+            _settingsSaveData.GlowShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.GlowShortcut, "GlowShortcut");
+            _settingsSaveData.EditShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.EditShortcut, "EditShortcut");
+            _settingsSaveData.ScreenshotShortcut = 
+                UpdateShortcut(settingsMenuData, _settingsSaveData.ScreenshotShortcut, "ScreenshotShortcut");
 
             game.SaveSystem.SaveSettings(_settingsSaveData);
         };
@@ -521,6 +497,16 @@ public class SettingsMenuUi
         {
             label.Text = settingsMenuData.ShortcutPreview;
         }
+    }
+
+    private List<Keys> UpdateShortcut(SettingsMenuData settingsMenuData, List<Keys> oldShortcut, string shortcutName)
+    {
+        if (settingsMenuData.NewShortcuts.TryGetValue(shortcutName, out List<Keys> shortcut) && shortcut.Count > 0)
+        {
+            return shortcut;
+        }
+        
+        return oldShortcut;
     }
     
     public void Draw()
