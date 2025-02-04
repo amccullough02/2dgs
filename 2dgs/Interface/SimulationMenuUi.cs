@@ -8,6 +8,8 @@ using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.File;
+using Myra.Graphics2D.UI.Styles;
 
 namespace _2dgs;
 
@@ -49,6 +51,85 @@ public class SimulationMenuUi
         {
             createNewSimulationDialog.Show(_desktop);
         };
+
+        var currentDirectory = Directory.GetCurrentDirectory();
+        var saveDataDirectory = Path.Combine(currentDirectory, "../../../savedata/my_simulations");
+        
+        var importSimulationDialog = new FileDialog(FileDialogMode.OpenFile)
+        {
+            Filter = "*.json",
+            Folder = saveDataDirectory,
+        };
+
+        importSimulationDialog.ButtonOk.Click += (s, e) =>
+        {
+            var selectedFilePath = importSimulationDialog.FilePath;
+
+            if (selectedFilePath.Length == 0) return;
+
+            var destinationFilePath = Path.Combine(saveDataDirectory, Path.GetFileName(selectedFilePath));
+
+            try
+            {
+                File.Copy(importSimulationDialog.FilePath, destinationFilePath, true);
+            }
+            catch (IOException exception)
+            {
+                Console.WriteLine(exception);
+            }
+            
+        };
+
+        var importSimulationButton = UiComponents.Button("Import Simulation");
+        importSimulationButton.Click += (s, e) =>
+        {
+            importSimulationDialog.Show(_desktop);
+        };
+        
+        var exportSimulationDialog = new FileDialog(FileDialogMode.OpenFile)
+        {
+            Filter = "*.json",
+            Folder = saveDataDirectory,
+        };
+
+        exportSimulationDialog.ButtonOk.Click += (_, _) =>
+        {
+            var selectedFilePath = exportSimulationDialog.FilePath;
+            Console.WriteLine(selectedFilePath);
+
+            if (selectedFilePath.Length == 0) return;
+
+            var folderSelectionDialog = new FileDialog(FileDialogMode.ChooseFolder)
+            {
+                Folder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
+
+            folderSelectionDialog.ButtonOk.Click += (_, _) =>
+            {
+                if (string.IsNullOrEmpty(folderSelectionDialog.FilePath)) return;
+                
+                string destinationFilePath = Path.Combine(folderSelectionDialog.Folder, Path.GetFileName(selectedFilePath));
+                
+                Console.WriteLine(destinationFilePath);
+
+                try
+                {
+                    File.Copy(selectedFilePath, destinationFilePath, true);
+                }
+                catch (IOException exception)
+                {
+                    Console.WriteLine(exception);
+                }
+            };
+            
+            folderSelectionDialog.Show(_desktop);
+        };
+        
+        var exportSimulationButton = UiComponents.Button("Export Simulation");
+        exportSimulationButton.Click += (s, e) =>
+        {
+            exportSimulationDialog.Show(_desktop);
+        };
         
         var mainMenuButton = UiComponents.Button("Return to Main Menu");
         mainMenuButton.Click += (s, e) => { game.GameStateManager.ChangeState(new MainMenu(game)); };
@@ -80,8 +161,10 @@ public class SimulationMenuUi
         PopulateList(lessonsListView, "../../../savedata/lessons", game);
         PopulateList(sandboxListView, "../../../savedata/my_simulations", game);
 
-        var buttonPanel = new HorizontalStackPanel { HorizontalAlignment = HorizontalAlignment.Center, Spacing = 780 };
+        var buttonPanel = new HorizontalStackPanel { HorizontalAlignment = HorizontalAlignment.Center, Spacing = 90 };
         buttonPanel.Widgets.Add(mainMenuButton);
+        buttonPanel.Widgets.Add(importSimulationButton);
+        buttonPanel.Widgets.Add(exportSimulationButton);
         buttonPanel.Widgets.Add(createNewSimulationButton);
         
         verticalStackPanel.Widgets.Add(tabControl);

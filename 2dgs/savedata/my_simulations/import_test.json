@@ -1,0 +1,35 @@
+{
+  "Title": "default",
+  "IsLesson": false,
+  "Bodies": [
+    {
+      "Name": "Imported Sol",
+      "Position": {
+        "X": 18.30304,
+        "Y": -13.548584
+      },
+      "Velocity": {
+        "X": -0.004934885,
+        "Y": 0.0044254144
+      },
+      "Mass": 1e9,
+      "DisplaySize": 0.2,
+      "Color": "#FFCC01"
+    },
+    {
+      "Name": "Imported Terra",
+      "Position": {
+        "X": 71.28357,
+        "Y": -368.73395
+      },
+      "Velocity": {
+        "X": 4.9349155,
+        "Y": 0.57491386
+      },
+      "Mass": 1000000.0,
+      "DisplaySize": 0.05,
+      "Color": "#2A81FA"
+    }
+  ],
+  "LessonPages": []
+}
