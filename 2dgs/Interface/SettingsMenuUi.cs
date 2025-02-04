@@ -493,14 +493,12 @@ public class SettingsMenuUi
         {
             var keys = settingsMenuData.NewShortcuts[shortcut];
             shortcutsToUpdate.Add(shortcut, keys);
-            
         }
         
         var type = _settingsSaveData.GetType();
         
         foreach (var shortcut in shortcutsToUpdate)
         {
-            Console.WriteLine(shortcut.Key);
             var property = type.GetProperty(shortcut.Key);
             if (property != null && property.CanWrite && property.PropertyType == typeof(List<Keys>))
             {
