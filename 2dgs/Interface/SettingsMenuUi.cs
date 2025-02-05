@@ -46,11 +46,6 @@ public class SettingsMenuUi
         return settingsPanel;
     }
 
-    public Widget GetRoot()
-    {
-        return _desktop.Root;
-    }
-
     private VerticalStackPanel DisplaySettings(Game game)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 4);

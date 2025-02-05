@@ -1,6 +1,8 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -27,26 +29,34 @@ public class MainMenuUi
             VerticalAlignment.Center, new Thickness(UiConstants.DefaultMargin));
 
         var simulationMenuButton = UiComponents.Button("Simulation Menu");
-        simulationMenuButton.Click += (s, e) =>
+        simulationMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation menu...");
             game.GameStateManager.ChangeState(new SimulationMenu(game));
         };
         
+        var attributionsButton = UiComponents.Button("Attributions");
+        attributionsButton.Click += (_, _) =>
+        {
+            Console.WriteLine("DEBUG: Navigating to attributions menu...");
+            game.GameStateManager.ChangeState(new Attributions(game));
+        };
+        
         var settingsMenuButton = UiComponents.Button("Settings");
-        settingsMenuButton.Click += (s, a) =>
+        settingsMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to settings menu...");
             game.GameStateManager.ChangeState(new SettingsMenu(game));
         };
         
         var quitButton = UiComponents.Button("Quit");
-        quitButton.Click += (s, a) =>
+        quitButton.Click += (_, _) =>
         {
             MyraEnvironment.Game.Exit();
         };
         
         mainMenuStackPanel.Widgets.Add(simulationMenuButton);
+        mainMenuStackPanel.Widgets.Add(attributionsButton);
         mainMenuStackPanel.Widgets.Add(settingsMenuButton);
         mainMenuStackPanel.Widgets.Add(quitButton);
         
