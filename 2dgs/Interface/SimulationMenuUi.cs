@@ -39,8 +39,13 @@ public class SimulationMenuUi
 
     private VerticalStackPanel CreateSimulationMenu(Game game, SaveSystem saveSystem)
     {
-        var verticalStackPanel = UiComponents.VerticalStackPanel(20, HorizontalAlignment.Center, 
-            VerticalAlignment.Center, new Thickness(0, 40, 0, 0));
+        var verticalStackPanel = new VerticalStackPanel
+        {
+            Spacing = 20,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 40, 0, 0),
+        };
         
         var createNewSimulationButton = UiComponents.Button("Create New Simulation");
         

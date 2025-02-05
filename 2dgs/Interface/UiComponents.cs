@@ -149,20 +149,6 @@ public static class UiComponents
                Border = new SolidBrush(Color.Gray)
           };
      }
-     
-     // TODO Serves no real purpose -- remove or provide default values.
-     public static VerticalStackPanel VerticalStackPanel(int spacing,
-          HorizontalAlignment horizontalAlignment,
-          VerticalAlignment verticalAlignment, Thickness thickness)
-     {
-          return new VerticalStackPanel
-          {
-               Spacing = spacing,
-               Margin = thickness,
-               HorizontalAlignment = horizontalAlignment,
-               VerticalAlignment = verticalAlignment,
-          };
-     }
 
      public static ToggleButton ToggleButton(string text, bool toggled)
      {

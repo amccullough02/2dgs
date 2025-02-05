@@ -67,10 +67,14 @@ public static class EditModePanel
         {
             createBodyDialog.Show(desktop);
         };
-        
-        var editPanel = 
-            UiComponents.VerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Bottom,
-                new Thickness(0, 0, UiConstants.DefaultMargin, UiConstants.DefaultMargin));
+
+        var editPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(0, 0, UiConstants.DefaultMargin, UiConstants.DefaultMargin),
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Bottom,
+        };
         
         editPanel.Widgets.Add(deleteBodyButton);
         editPanel.Widgets.Add(colorBodyButton);

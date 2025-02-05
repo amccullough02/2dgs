@@ -32,11 +32,14 @@ public class SettingsMenuUi
     private VerticalStackPanel Settings(Game game, SettingsMenuData settingsMenuData)
     {
         var settingsTitle = UiComponents.TitleLabel("Settings Menu");
-        
-        var settingsPanel = UiComponents.VerticalStackPanel(8,
-            HorizontalAlignment.Center,
-            VerticalAlignment.Top,
-            new Thickness(0));
+
+        var settingsPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(0),
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Top,
+        };
         
         settingsPanel.Widgets.Add(settingsTitle);
         settingsPanel.Widgets.Add(DisplaySettings(game));
@@ -279,8 +282,13 @@ public class SettingsMenuUi
             game.GameStateManager.ChangeState(new MainMenu(game));
         };
 
-        var verticalStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, 
-            VerticalAlignment.Bottom, new Thickness(UiConstants.DefaultMargin));
+        var verticalStackPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(UiConstants.DefaultMargin),
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Bottom,
+        };
         
         verticalStackPanel.Widgets.Add(button);
         

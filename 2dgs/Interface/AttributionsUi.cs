@@ -63,8 +63,13 @@ public class AttributionsUi
             game.GameStateManager.ChangeState(new MainMenu(game));
         };
 
-        var verticalStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, 
-            VerticalAlignment.Bottom, new Thickness(UiConstants.DefaultMargin));
+        var verticalStackPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(UiConstants.DefaultMargin),
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Bottom,
+        };
         
         verticalStackPanel.Widgets.Add(button);
         

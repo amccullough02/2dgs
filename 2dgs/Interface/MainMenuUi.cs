@@ -25,8 +25,13 @@ public class MainMenuUi
 
     private VerticalStackPanel CreateMainMenu(Game game)
     {
-        var mainMenuStackPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Center,
-            VerticalAlignment.Center, new Thickness(UiConstants.DefaultMargin));
+        var mainMenuStackPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(8),
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
 
         var simulationMenuButton = UiComponents.Button("Simulation Menu");
         simulationMenuButton.Click += (_, _) =>

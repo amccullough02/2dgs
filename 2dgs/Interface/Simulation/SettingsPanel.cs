@@ -7,9 +7,13 @@ public static class SettingsPanel
 {
     public static VerticalStackPanel Create(SimulationData simulationData)
     {
-        var settingsPanel =
-            UiComponents.VerticalStackPanel(8, HorizontalAlignment.Left, VerticalAlignment.Bottom,
-                new Thickness(UiConstants.DefaultMargin, 0, 0, UiConstants.DefaultMargin));
+        var settingsPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(UiConstants.DefaultMargin, 0, 0, UiConstants.DefaultMargin),
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Bottom
+        };
 
         var timeStepLabel = UiComponents.LightLabel($"Time step: {simulationData.TimeStep}");
         timeStepLabel.Id = "speed_label";

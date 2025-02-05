@@ -7,8 +7,13 @@ public static class SaveQuitPanel
 {
     public static VerticalStackPanel Create(SimulationData simulationData, Game game, Desktop desktop)
     {
-        var saveAndQuitPanel = UiComponents.VerticalStackPanel(8, HorizontalAlignment.Right, VerticalAlignment.Top,
-            new Thickness(0, UiConstants.DefaultMargin, UiConstants.DefaultMargin, 0));
+        var saveAndQuitPanel = new VerticalStackPanel
+        {
+            Spacing = 8,
+            Margin = new Thickness(0, UiConstants.DefaultMargin, UiConstants.DefaultMargin, 0),
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Top
+        };
         
         var returnButton = UiComponents.Button("Exit Simulation");
         returnButton.Click += (s, e) =>
