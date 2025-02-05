@@ -9,6 +9,5 @@ public class SettingsMenuData
     public bool ClearShortcut { get; set; }
     public string ShortcutPreview = "";
     public string WhichShortcut = "";
-    public List<string> ShortcutsRemapped = [];
     public Dictionary<string, List<Keys>> NewShortcuts = new();
 }

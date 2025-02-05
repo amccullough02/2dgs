@@ -462,7 +462,6 @@ public class SettingsMenuUi
         {
             UpdateShortcuts(settingsMenuData);
             game.SaveSystem.SaveSettings(_settingsSaveData);
-            settingsMenuData.ShortcutsRemapped.Clear();
         };
 
         return dialog;
@@ -480,26 +479,20 @@ public class SettingsMenuUi
         }
         if (!settingsMenuData.Remapping)
         {
-            settingsMenuData.ShortcutsRemapped.Add(whichShortcut);
             label.Text = settingsMenuData.ShortcutPreview;
         }
     }
 
     private void UpdateShortcuts(SettingsMenuData settingsMenuData)
     {
-        var shortcutsToUpdate = new Dictionary<string, List<Keys>>(); 
-
-        foreach (var shortcut in settingsMenuData.ShortcutsRemapped)
-        {
-            var keys = settingsMenuData.NewShortcuts[shortcut];
-            shortcutsToUpdate.Add(shortcut, keys);
-        }
-        
         var type = _settingsSaveData.GetType();
         
-        foreach (var shortcut in shortcutsToUpdate)
+        foreach (var shortcut in settingsMenuData.NewShortcuts)
         {
+            if (shortcut.Value.Count == 0) continue;
+            
             var property = type.GetProperty(shortcut.Key);
+            
             if (property != null && property.CanWrite && property.PropertyType == typeof(List<Keys>))
             {
                 property.SetValue(_settingsSaveData, shortcut.Value);    
