@@ -35,8 +35,9 @@ public class AttributionsUi
         music.Margin = new Thickness(0, 0, 0, 10);
         
         var imageSection = UiComponents.MediumLabel("Images:", 24);
-        var image = UiComponents.LightLabel("Main Menu image by Bryan Goff\n" +
-                                            "Attribution image by NASA");
+        var image = UiComponents.LightLabel("Main Menu image by Bryan Goff on Unsplash\n" +
+                                            "Attribution image by NASA on Unsplash\n" +
+                                            "Settings image by Alexander Andrews on Unsplash");
         
         var panel = new VerticalStackPanel
         {

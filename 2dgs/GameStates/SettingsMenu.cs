@@ -6,10 +6,14 @@ namespace _2dgs;
 
 public class SettingsMenu : GameState
 {
-    private SettingsMenuData _settingsMenuData;
+    private readonly SettingsMenuData _settingsMenuData;
+    private readonly TextureManager _textureManager;
     private KeyboardState _keyboardState;
     private KeyboardState _previousKeyboardState;
+    private readonly float _screenWidth;
+    private readonly float _screenHeight;
     private readonly SettingsMenuUi _settingsMenuUi;
+    
 
     public SettingsMenu(Game game)
     {
@@ -23,6 +27,9 @@ public class SettingsMenu : GameState
         _settingsMenuData.NewShortcuts.Add("EditShortcut", []);
         _settingsMenuData.NewShortcuts.Add("ScreenshotShortcut", []);
         
+        _screenHeight = game.GraphicsDevice.Viewport.Height;
+        _screenWidth = game.GraphicsDevice.Viewport.Width;
+        _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _settingsMenuUi = new SettingsMenuUi(game, _settingsMenuData);
     }
 
@@ -56,6 +63,12 @@ public class SettingsMenu : GameState
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        spriteBatch.Begin();
+        spriteBatch.Draw(_textureManager.SettingsBackground, _textureManager.PositionAtCenter(_screenWidth, _screenHeight, 
+            _textureManager.SettingsBackground), Color.White);
+        spriteBatch.Draw(_textureManager.Gradient,
+            _textureManager.PositionAtCenter(_screenWidth, _screenHeight, _textureManager.Gradient), Color.White);
+        spriteBatch.End();
         _settingsMenuUi.Draw();
     }
 }

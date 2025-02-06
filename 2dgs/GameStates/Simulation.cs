@@ -18,6 +18,7 @@ public class Simulation : GameState
     private SimulationData _simulationData;
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
+    private SoundEffectPlayer _soundEffectPlayer;
     private KeyboardState _keyboardState;
     private KeyboardState _previousKeyboardState;
     private Test _test;
@@ -50,6 +51,7 @@ public class Simulation : GameState
         
         #region Initializing Systems
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
+        _soundEffectPlayer = new SoundEffectPlayer(game.Content);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
         _simulationUi = new SimulationUi(game, _simulationData);
         _test = new Test();
@@ -217,6 +219,7 @@ public class Simulation : GameState
         foreach (var body in destroyedBodies)
         {
             _bodies.Remove(body);
+            _soundEffectPlayer.PlayCollisionSfx();
         }
     }
     

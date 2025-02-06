@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Myra;
 using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
 using Point = Microsoft.Xna.Framework.Point;
 
@@ -21,7 +23,9 @@ public class SettingsMenuUi
         
         MyraEnvironment.Game = game;
         var rootContainer = new Panel();
+        var settingsTitle = UiComponents.TitleLabel("Settings Menu");
         
+        rootContainer.Widgets.Add(settingsTitle);
         rootContainer.Widgets.Add(Settings(game, settingsMenuData));
         rootContainer.Widgets.Add(ExitPanel(game));
         
@@ -31,17 +35,19 @@ public class SettingsMenuUi
 
     private VerticalStackPanel Settings(Game game, SettingsMenuData settingsMenuData)
     {
-        var settingsTitle = UiComponents.TitleLabel("Settings Menu");
-
+        
         var settingsPanel = new VerticalStackPanel
         {
             Spacing = 8,
             Margin = new Thickness(0),
+            Padding = new Thickness(10),
             HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Top,
+            VerticalAlignment = VerticalAlignment.Center,
+            Background = new SolidBrush(Color.Black * 0.5f),
+            BorderThickness = new Thickness(1),
+            Border = new SolidBrush(Color.White),
         };
         
-        settingsPanel.Widgets.Add(settingsTitle);
         settingsPanel.Widgets.Add(DisplaySettings(game));
         settingsPanel.Widgets.Add(AudioPanel());
         settingsPanel.Widgets.Add(MiscSettings(game, settingsMenuData));
@@ -52,6 +58,7 @@ public class SettingsMenuUi
     private VerticalStackPanel DisplaySettings(Game game)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 4);
+        grid.ColumnSpacing = 40;
         
         var vsyncToggleLabel = UiComponents.LightLabel("Toggle VSync");
         Grid.SetRow(vsyncToggleLabel, 0);
@@ -183,7 +190,7 @@ public class SettingsMenuUi
         grid.Widgets.Add(confirmLabel);
         grid.Widgets.Add(confirmButton);
         
-        var sectionTitle = UiComponents.LightLabel("Display Settings");
+        var sectionTitle = UiComponents.MediumLabel("Display Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
         var divider = UiComponents.HorizontalSeparator();
         
@@ -199,11 +206,12 @@ public class SettingsMenuUi
     private VerticalStackPanel MiscSettings(Game game, SettingsMenuData settingsMenuData)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 2);
+        grid.ColumnSpacing = 40;
         
         var showFpsLabel = UiComponents.LightLabel("Toggle FPS Counter");
         
         var showFpsToggleButton = UiComponents.ToggleButton("FPS Enabled", true);
-        showFpsToggleButton.HorizontalAlignment = HorizontalAlignment.Right;
+        showFpsToggleButton.Width = 150;
         showFpsToggleButton.Click += (_, _) =>
         {
             game.FpsCounter.ToggleFps();
@@ -229,7 +237,7 @@ public class SettingsMenuUi
         grid.Widgets.Add(keyBindLabel);
         grid.Widgets.Add(keyBindDialogButton);
 
-        var sectionTitle = UiComponents.LightLabel("Miscellaneous Settings");
+        var sectionTitle = UiComponents.MediumLabel("Miscellaneous Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
         var divider = UiComponents.HorizontalSeparator();
         
@@ -243,26 +251,47 @@ public class SettingsMenuUi
 
     private VerticalStackPanel AudioPanel()
     {
-        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 1, 2);
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 2);
+        grid.ColumnSpacing = 40;
+        
         var sliderVolume = (int)(MediaPlayer.Volume * 100.0f);
-        var volumeSliderLabel = UiComponents.LightLabel($"Music Volume ({sliderVolume}%)");
-        var volumeSlider = UiComponents.HorizontalSlider(sliderVolume, 0, 100);
-        volumeSlider.Width = 150;
+        var musicVolumeLabel = UiComponents.LightLabel($"Music Volume ({sliderVolume}%)");
+        musicVolumeLabel.Width = 150;
+        var musicVolumeSlider = UiComponents.HorizontalSlider(sliderVolume, 0, 100);
+        musicVolumeSlider.Width = 150;
 
-        volumeSlider.ValueChanged += (_, _) =>
+        musicVolumeSlider.ValueChanged += (_, _) =>
         {
-            volumeSliderLabel.Text = $"Music Volume ({(int)volumeSlider.Value}%)";
-            var volume = volumeSlider.Value / 100;
+            musicVolumeLabel.Text = $"Music Volume ({(int)musicVolumeSlider.Value}%)";
+            var volume = musicVolumeSlider.Value / 100;
             MediaPlayer.Volume = volume;
         };
         
-        Grid.SetColumn(volumeSliderLabel, 0);
-        Grid.SetColumn(volumeSlider, 1);
+        Grid.SetColumn(musicVolumeLabel, 0);
+        Grid.SetColumn(musicVolumeSlider, 1);
         
-        grid.Widgets.Add(volumeSliderLabel);
-        grid.Widgets.Add(volumeSlider);
+        var sfxVolumeLabel = UiComponents.LightLabel($"SFX Volume ({sliderVolume}%)");
+        var sfxVolumeSlider = UiComponents.HorizontalSlider(sliderVolume, 0, 100);
+        sfxVolumeSlider.Width = 150;
+
+        sfxVolumeSlider.ValueChanged += (_, _) =>
+        {
+            sfxVolumeLabel.Text = $"SFX Volume ({(int)sfxVolumeSlider.Value}%)";
+            var volume = sfxVolumeSlider.Value / 100;
+            GlobalGameData.SfxVolume = volume;
+        };
         
-        var sectionTitle = UiComponents.LightLabel("Audio Settings");
+        Grid.SetColumn(sfxVolumeLabel, 0);
+        Grid.SetRow(sfxVolumeLabel, 1);
+        Grid.SetColumn(sfxVolumeSlider, 1);
+        Grid.SetRow(sfxVolumeSlider, 1);
+        
+        grid.Widgets.Add(musicVolumeLabel);
+        grid.Widgets.Add(musicVolumeSlider);
+        grid.Widgets.Add(sfxVolumeLabel);
+        grid.Widgets.Add(sfxVolumeSlider);
+        
+        var sectionTitle = UiComponents.MediumLabel("Audio Settings");
         sectionTitle.HorizontalAlignment = HorizontalAlignment.Center;
         var divider = UiComponents.HorizontalSeparator();
         var panel = new VerticalStackPanel();

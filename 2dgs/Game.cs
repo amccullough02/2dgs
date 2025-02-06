@@ -11,7 +11,7 @@ public class Game : Microsoft.Xna.Framework.Game
     public readonly SaveSystem SaveSystem;
     private SpriteBatch _spriteBatch;
     private readonly Test _test;
-    private readonly AudioPlayer _audioPlayer;
+    private readonly MusicPlayer _musicPlayer;
 
     public Game()
     {
@@ -27,7 +27,7 @@ public class Game : Microsoft.Xna.Framework.Game
         IsMouseVisible = true;
         IsFixedTimeStep = false;
         Content.RootDirectory = "Content";
-        _audioPlayer = new AudioPlayer(Content);
+        _musicPlayer = new MusicPlayer(Content);
         _test = new Test();
     }
 
@@ -38,7 +38,7 @@ public class Game : Microsoft.Xna.Framework.Game
         GameStateManager = new GameStateManager();
         GameStateManager.PushState(new MainMenu(this));
         // GameStateManager.PushState(new Simulation(this, "../../../savedata/lessons/tutorial.json"));
-        _audioPlayer.Initialize();
+        _musicPlayer.Initialize();
         base.Initialize();
     }
 
@@ -65,7 +65,7 @@ public class Game : Microsoft.Xna.Framework.Game
 
     protected override void OnExiting(object sender, ExitingEventArgs args)
     {
-        _audioPlayer.Dispose();
+        _musicPlayer.Dispose();
         base.OnExiting(sender, args);
     }
 }
