@@ -12,7 +12,7 @@ namespace _2dgs;
 public class SettingsMenuUi
 {
     private readonly Desktop _desktop;
-    private readonly SettingsSaveData _settingsSaveData;
+    private SettingsSaveData _settingsSaveData;
 
     public SettingsMenuUi(Game game, SettingsMenuData settingsMenuData)
     {
@@ -217,7 +217,8 @@ public class SettingsMenuUi
         };
         Grid.SetColumn(showFpsToggleButton, 1);
 
-        var dialog = RemapShortcutsDialog.Create(game, settingsMenuData, _settingsSaveData);
+        var remapShortcutsDialog = new RemapShortcutsDialog(_settingsSaveData);
+        var dialogWindow = remapShortcutsDialog.Create(game, settingsMenuData);
         
         var keyBindLabel = UiComponents.LightLabel("Keyboard Shortcuts");
         Grid.SetRow(keyBindLabel, 1);
@@ -225,7 +226,10 @@ public class SettingsMenuUi
         var keyBindDialogButton = UiComponents.Button("Configure", width: 150, height: 40);
         keyBindDialogButton.Click += (_, _) =>
         {
-            dialog.Show(_desktop);
+            RefreshSaveData(game.SaveSystem.LoadSettings());
+            settingsMenuData.ResetNewShortcuts();
+            remapShortcutsDialog.RefreshSaveData(_settingsSaveData);
+            dialogWindow.Show(_desktop);
         };
         Grid.SetColumn(keyBindDialogButton, 1);
         Grid.SetRow(keyBindDialogButton, 1);
@@ -320,6 +324,11 @@ public class SettingsMenuUi
         verticalStackPanel.Widgets.Add(button);
         
         return verticalStackPanel;
+    }
+
+    private void RefreshSaveData(SettingsSaveData saveData)
+    {
+        _settingsSaveData = saveData;
     }
     
     public void Draw()

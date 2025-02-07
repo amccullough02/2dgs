@@ -12,4 +12,12 @@ public class SettingsMenuData
     public string WhichShortcut = "";
     public Dictionary<string, List<Keys>> NewShortcuts = new();
     public Dictionary<string, List<Keys>> DefaultShortcuts = new();
+
+    public void ResetNewShortcuts()
+    {
+        foreach (var key in NewShortcuts.Keys)
+        {
+            NewShortcuts[key].Clear();
+        }
+    }
 }
