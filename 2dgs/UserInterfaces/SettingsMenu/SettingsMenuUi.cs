@@ -216,9 +216,8 @@ public class SettingsMenuUi
             ((Label)showFpsToggleButton.Content).Text = showFpsToggleButton.IsToggled ? "FPS Enabled" : "FPS Disabled";
         };
         Grid.SetColumn(showFpsToggleButton, 1);
-
-        var remapShortcutsDialog = new RemapShortcutsDialog(_settingsSaveData);
-        var dialogWindow = remapShortcutsDialog.Create(game, settingsMenuData);
+        
+        var dialog = RemapShortcutsDialog.Create(game, settingsMenuData, _settingsSaveData);
         
         var keyBindLabel = UiComponents.LightLabel("Keyboard Shortcuts");
         Grid.SetRow(keyBindLabel, 1);
@@ -226,10 +225,9 @@ public class SettingsMenuUi
         var keyBindDialogButton = UiComponents.Button("Configure", width: 150, height: 40);
         keyBindDialogButton.Click += (_, _) =>
         {
-            RefreshSaveData(game.SaveSystem.LoadSettings());
+            _settingsSaveData.Refresh(game.SaveSystem);
             settingsMenuData.ResetNewShortcuts();
-            remapShortcutsDialog.RefreshSaveData(_settingsSaveData);
-            dialogWindow.Show(_desktop);
+            dialog.Show(_desktop);
         };
         Grid.SetColumn(keyBindDialogButton, 1);
         Grid.SetRow(keyBindDialogButton, 1);
@@ -324,11 +322,6 @@ public class SettingsMenuUi
         verticalStackPanel.Widgets.Add(button);
         
         return verticalStackPanel;
-    }
-
-    private void RefreshSaveData(SettingsSaveData saveData)
-    {
-        _settingsSaveData = saveData;
     }
     
     public void Draw()

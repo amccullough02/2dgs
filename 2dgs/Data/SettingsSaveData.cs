@@ -16,4 +16,21 @@ public class SettingsSaveData
     public List<Keys> GlowShortcut { get; set; } = [];
     public List<Keys> EditShortcut { get; set; } = [];
     public List<Keys> ScreenshotShortcut { get; set; } = [];
+
+    public void Refresh(SaveSystem saveSystem)
+    {
+        var newSaveData = saveSystem.LoadSettings();
+        
+        VerticalResolution = newSaveData.VerticalResolution;
+        HorizontalResolution = newSaveData.HorizontalResolution;
+        Fullscreen = newSaveData.Fullscreen;
+        PauseShortcut = newSaveData.PauseShortcut;
+        SpeedUpShortcut = newSaveData.SpeedUpShortcut;
+        SpeedDownShortcut = newSaveData.SpeedDownShortcut;
+        TrailsShortcut = newSaveData.TrailsShortcut;
+        NamesShortcut = newSaveData.NamesShortcut;
+        GlowShortcut = newSaveData.GlowShortcut;
+        EditShortcut = newSaveData.EditShortcut;
+        ScreenshotShortcut = newSaveData.ScreenshotShortcut;
+    }
 }

@@ -4,11 +4,9 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
-public class RemapShortcutsDialog(SettingsSaveData saveData)
+public static class RemapShortcutsDialog
 {
-    private SettingsSaveData _settingsSaveData = saveData;
-
-    public Dialog Create(Game game, SettingsMenuData settingsMenuData)
+    public static Dialog Create(Game game, SettingsMenuData settingsMenuData, SettingsSaveData settingsSaveData)
     {
         var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");
         
@@ -18,7 +16,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetColumn(pauseKeyBindLabel, 0);
 
         var pauseKeyBindPreview =
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.PauseShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.PauseShortcut));
         Grid.SetColumn(pauseKeyBindPreview, 1);
         
         var changePauseKeyBind = UiComponents.Button("Start", width: 100, height: 30);
@@ -33,7 +31,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetRow(speedUpKeyBindLabel, 1);
         
         var speedUpKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.SpeedUpShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.SpeedUpShortcut));
         Grid.SetColumn(speedUpKeyBindPreview, 1);
         Grid.SetRow(speedUpKeyBindPreview, 1);
         
@@ -50,7 +48,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetRow(slowDownKeyBindLabel, 2);
         
         var slowDownKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.SpeedDownShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.SpeedDownShortcut));
         Grid.SetColumn(slowDownKeyBindPreview, 1);
         Grid.SetRow(slowDownKeyBindPreview, 2);
         
@@ -67,7 +65,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetRow(toggleTrailsKeyBindLabel, 3);
 
         var toggleTrailsKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.TrailsShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.TrailsShortcut));
         Grid.SetColumn(toggleTrailsKeyBindPreview, 1);
         Grid.SetRow(toggleTrailsKeyBindPreview, 3);
         
@@ -84,7 +82,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetRow(toggleNamesKeyBindLabel, 4);
         
         var toggleNamesKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.NamesShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.NamesShortcut));
         Grid.SetColumn(toggleNamesKeyBindPreview, 1);
         Grid.SetRow(toggleNamesKeyBindPreview, 4);
         
@@ -101,7 +99,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetRow(toggleGlowKeyBindLabel, 5);
         
         var toggleGlowKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.GlowShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.GlowShortcut));
         Grid.SetColumn(toggleGlowKeyBindPreview, 1);
         Grid.SetRow(toggleGlowKeyBindPreview, 5);
         
@@ -118,7 +116,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetRow(toggleEditModeKeyBindLabel, 6);
         
         var toggleEditModeKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.EditShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.EditShortcut));
         Grid.SetColumn(toggleEditModeKeyBindPreview, 1);
         Grid.SetRow(toggleEditModeKeyBindPreview, 6);
         
@@ -135,7 +133,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         Grid.SetRow(screenshotKeyBindLabel, 7);
         
         var screenshotKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(_settingsSaveData.ScreenshotShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.ScreenshotShortcut));
         Grid.SetColumn(screenshotKeyBindPreview, 1);
         Grid.SetRow(screenshotKeyBindPreview, 7);
         
@@ -213,27 +211,22 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         {
             if (settingsMenuData.ResetShortcuts)
             {
-                UpdateShortcuts(settingsMenuData.DefaultShortcuts, _settingsSaveData);
-                game.SaveSystem.SaveSettings(_settingsSaveData);
+                UpdateShortcuts(settingsMenuData.DefaultShortcuts, settingsSaveData);
+                game.SaveSystem.SaveSettings(settingsSaveData);
                 settingsMenuData.ResetShortcuts = false;
                 resetButton.Enabled = true;
             }
             else
             {
-                UpdateShortcuts(settingsMenuData.NewShortcuts, _settingsSaveData);
-                game.SaveSystem.SaveSettings(_settingsSaveData);
+                UpdateShortcuts(settingsMenuData.NewShortcuts, settingsSaveData);
+                game.SaveSystem.SaveSettings(settingsSaveData);
             }
         };
 
         return dialog;
     }
-
-    public void RefreshSaveData(SettingsSaveData settingsSaveData)
-    {
-        _settingsSaveData = settingsSaveData;
-    }
     
-    private void RemapShortcut(SettingsMenuData settingsMenuData, Button button, Label label, string whichShortcut)
+    private static void RemapShortcut(SettingsMenuData settingsMenuData, Button button, Label label, string whichShortcut)
     {
         settingsMenuData.Remapping = !settingsMenuData.Remapping;
         settingsMenuData.WhichShortcut = whichShortcut;
@@ -249,7 +242,7 @@ public class RemapShortcutsDialog(SettingsSaveData saveData)
         }
     }
 
-    private void UpdateShortcuts(Dictionary<string, List<Keys>> dictionary, SettingsSaveData settingsSaveData)
+    private static void UpdateShortcuts(Dictionary<string, List<Keys>> dictionary, SettingsSaveData settingsSaveData)
     {
         var type = settingsSaveData.GetType();
         
