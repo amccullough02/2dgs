@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace _2dgs;
 
-public class SettingsMenu : GameState
+public class SettingScene : Scene
 {
     private readonly SettingsMenuData _settingsMenuData;
     private readonly TextureManager _textureManager;
@@ -15,7 +15,7 @@ public class SettingsMenu : GameState
     private readonly SettingsMenuUi _settingsMenuUi;
     
 
-    public SettingsMenu(Game game)
+    public SettingScene(Game game)
     {
         _settingsMenuData = new SettingsMenuData();
         _settingsMenuData.NewShortcuts.Add("PauseShortcut", []);

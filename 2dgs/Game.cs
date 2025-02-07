@@ -7,26 +7,36 @@ public class Game : Microsoft.Xna.Framework.Game
 {
     public GraphicsDeviceManager Graphics { get; }
     public FpsCounter FpsCounter { get; private set; }
-    public GameStateManager GameStateManager { get; private set; }
+    public SceneManager SceneManager { get; private set; }
     public readonly SaveSystem SaveSystem;
+    private Test _test;
+    private MusicPlayer _musicPlayer;
     private SpriteBatch _spriteBatch;
-    private readonly Test _test;
-    private readonly MusicPlayer _musicPlayer;
 
     public Game()
     {
-        SaveSystem = new SaveSystem();
-        var settingsSaveData = SaveSystem.LoadSettings();
-        Graphics = new GraphicsDeviceManager(this);
-        Graphics.PreferredBackBufferHeight = settingsSaveData.VerticalResolution;
-        Graphics.PreferredBackBufferWidth = settingsSaveData.HorizontalResolution;
-        Graphics.IsFullScreen = settingsSaveData.Fullscreen;
-        Graphics.SynchronizeWithVerticalRetrace = true;
-        Graphics.GraphicsProfile = GraphicsProfile.HiDef;
-        Graphics.ApplyChanges();
         IsMouseVisible = true;
         IsFixedTimeStep = false;
         Content.RootDirectory = "Content";
+        SaveSystem = new SaveSystem();
+        var settingsSaveData = SaveSystem.LoadSettings();
+        Graphics = new GraphicsDeviceManager(this);
+        SetupGraphics(Graphics, settingsSaveData);
+        SetupGlobalComponents();
+    }
+
+    private void SetupGraphics(GraphicsDeviceManager graphics, SettingsSaveData settingsSaveData)
+    {
+        graphics.PreferredBackBufferHeight = settingsSaveData.VerticalResolution;
+        graphics.PreferredBackBufferWidth = settingsSaveData.HorizontalResolution;
+        graphics.IsFullScreen = settingsSaveData.Fullscreen;
+        graphics.SynchronizeWithVerticalRetrace = true;
+        graphics.GraphicsProfile = GraphicsProfile.HiDef;
+        graphics.ApplyChanges();
+    }
+
+    private void SetupGlobalComponents()
+    {
         _musicPlayer = new MusicPlayer(Content);
         _test = new Test();
     }
@@ -35,9 +45,8 @@ public class Game : Microsoft.Xna.Framework.Game
     {
         Window.Title = "2DGS - Alpha";
         _test.RunAllTests(Graphics, Window.Title);
-        GameStateManager = new GameStateManager();
-        GameStateManager.PushState(new MainMenu(this));
-        // GameStateManager.PushState(new Simulation(this, "../../../savedata/lessons/tutorial.json"));
+        SceneManager = new SceneManager();
+        SceneManager.PushScene(new MainMenuScene(this));
         _musicPlayer.Initialize();
         base.Initialize();
     }
@@ -51,14 +60,14 @@ public class Game : Microsoft.Xna.Framework.Game
     protected override void Update(GameTime gameTime)
     {
         FpsCounter.Update(gameTime);
-        GameStateManager.Update(gameTime);
+        SceneManager.Update(gameTime);
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        GameStateManager.Draw(gameTime, _spriteBatch);
+        SceneManager.Draw(gameTime, _spriteBatch);
         FpsCounter.Draw(_spriteBatch);
         base.Draw(gameTime);
     }

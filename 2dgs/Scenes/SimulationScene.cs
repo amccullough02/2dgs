@@ -9,7 +9,7 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
-public class Simulation : GameState
+public class SimulationScene : Scene
 {
     private List<Body> _bodies;
     private SaveSystem _saveSystem;
@@ -26,7 +26,7 @@ public class Simulation : GameState
     private ShapeBatch _shapeBatch;
     private readonly Game _game;
     
-    public Simulation(Game game, string filePath)
+    public SimulationScene(Game game, string filePath)
     {
         _game = game;
         InitializeComponents(game, filePath);
@@ -203,7 +203,7 @@ public class Simulation : GameState
         if (_simulationData.ResetSimulation)
         {
             Console.WriteLine("DEBUG: Resetting simulation");
-            game.GameStateManager.ChangeState(new Simulation(game, _simulationData.FilePath));
+            game.SceneManager.ChangeScene(new SimulationScene(game, _simulationData.FilePath));
         }
     }
 

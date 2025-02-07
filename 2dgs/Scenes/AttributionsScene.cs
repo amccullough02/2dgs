@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
 
-public class Attributions(Game game) : GameState
+public class AttributionsScene(Game game) : Scene
 {
     private readonly AttributionsUi _attributionsUi = new(game);
     private readonly TextureManager _textureManager = new(game.Content, game.GraphicsDevice);

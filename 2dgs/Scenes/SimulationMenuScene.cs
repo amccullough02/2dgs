@@ -3,12 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
 
-public class SimulationMenu : GameState
+public class SimulationMenuScene : Scene
 {
     private readonly SimulationMenuUi _simulationMenuUi;
     private readonly SaveSystem _saveSystem = new();
 
-    public SimulationMenu(Game game)
+    public SimulationMenuScene(Game game)
     {
         _simulationMenuUi = new SimulationMenuUi(game, _saveSystem);
     }

@@ -37,21 +37,21 @@ public class MainMenuUi
         simulationMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation menu...");
-            game.GameStateManager.ChangeState(new SimulationMenu(game));
+            game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
         
         var attributionsButton = UiComponents.Button("Attributions");
         attributionsButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to attributions menu...");
-            game.GameStateManager.ChangeState(new Attributions(game));
+            game.SceneManager.ChangeScene(new AttributionsScene(game));
         };
         
         var settingsMenuButton = UiComponents.Button("Settings");
         settingsMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to settings menu...");
-            game.GameStateManager.ChangeState(new SettingsMenu(game));
+            game.SceneManager.ChangeScene(new SettingScene(game));
         };
         
         var quitButton = UiComponents.Button("Quit");

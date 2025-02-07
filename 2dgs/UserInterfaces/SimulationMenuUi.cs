@@ -136,7 +136,7 @@ public class SimulationMenuUi
         };
         
         var mainMenuButton = UiComponents.Button("Return to Main Menu");
-        mainMenuButton.Click += (s, e) => { game.GameStateManager.ChangeState(new MainMenu(game)); };
+        mainMenuButton.Click += (s, e) => { game.SceneManager.ChangeScene(new MainMenuScene(game)); };
 
         RichTextDefaults.FontResolver = p =>
         {
@@ -197,7 +197,7 @@ public class SimulationMenuUi
         {
             var newFilePath = "../../../savedata/my_simulations/" + nameSimulationTextbox.Text + ".json";
             saveSystem.CreateBlankSimulation(newFilePath);
-            game.GameStateManager.ChangeState(new Simulation(game, newFilePath));
+            game.SceneManager.ChangeScene(new SimulationScene(game, newFilePath));
         };
         
         return newSimulationDialog;
@@ -308,7 +308,7 @@ public class SimulationMenuUi
         loadButton.Click += (s, a) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation...");
-            game.GameStateManager.ChangeState(new Simulation(game, file));
+            game.SceneManager.ChangeScene(new SimulationScene(game, file));
         };
 
         renameButton.Click += (s, a) =>

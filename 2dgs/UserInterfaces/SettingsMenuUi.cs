@@ -308,7 +308,7 @@ public class SettingsMenuUi
         var button = UiComponents.Button("Return to Main Menu");
         button.Click += (_, _) =>
         {
-            game.GameStateManager.ChangeState(new MainMenu(game));
+            game.SceneManager.ChangeScene(new MainMenuScene(game));
         };
 
         var verticalStackPanel = new VerticalStackPanel

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
 
-public class MainMenu(Game game) : GameState
+public class MainMenuScene(Game game) : Scene
 {
     private readonly MainMenuUi _mainMenuUi = new(game);
     private readonly TextureManager _textureManager = new(game.Content, game.GraphicsDevice);
