@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace _2dgs;
 
-public class SimulationData
+public class SimulationSceneData
 {
     public bool Paused { get; set; }
     public bool ToggleTrails { get; set; } = true;

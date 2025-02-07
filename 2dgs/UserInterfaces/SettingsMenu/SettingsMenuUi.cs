@@ -12,9 +12,9 @@ namespace _2dgs;
 public class SettingsMenuUi
 {
     private readonly Desktop _desktop;
-    private SettingsSaveData _settingsSaveData;
+    private readonly SettingsSaveData _settingsSaveData;
 
-    public SettingsMenuUi(Game game, SettingsMenuData settingsMenuData)
+    public SettingsMenuUi(Game game, SettingsSceneData settingsSceneData)
     {
         _settingsSaveData = new SettingsSaveData();
         _settingsSaveData = game.SaveSystem.LoadSettings();
@@ -24,14 +24,14 @@ public class SettingsMenuUi
         var settingsTitle = UiComponents.TitleLabel("Settings Menu");
         
         rootContainer.Widgets.Add(settingsTitle);
-        rootContainer.Widgets.Add(Settings(game, settingsMenuData));
+        rootContainer.Widgets.Add(Settings(game, settingsSceneData));
         rootContainer.Widgets.Add(ExitPanel(game));
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
-    private VerticalStackPanel Settings(Game game, SettingsMenuData settingsMenuData)
+    private VerticalStackPanel Settings(Game game, SettingsSceneData settingsSceneData)
     {
         
         var settingsPanel = new VerticalStackPanel
@@ -48,7 +48,7 @@ public class SettingsMenuUi
         
         settingsPanel.Widgets.Add(DisplaySettings(game));
         settingsPanel.Widgets.Add(AudioPanel());
-        settingsPanel.Widgets.Add(MiscSettings(game, settingsMenuData));
+        settingsPanel.Widgets.Add(MiscSettings(game, settingsSceneData));
         
         return settingsPanel;
     }
@@ -201,7 +201,7 @@ public class SettingsMenuUi
         return panel;
     }
 
-    private VerticalStackPanel MiscSettings(Game game, SettingsMenuData settingsMenuData)
+    private VerticalStackPanel MiscSettings(Game game, SettingsSceneData settingsSceneData)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 2);
         grid.ColumnSpacing = 40;
@@ -217,7 +217,7 @@ public class SettingsMenuUi
         };
         Grid.SetColumn(showFpsToggleButton, 1);
         
-        var dialog = RemapShortcutsDialog.Create(game, settingsMenuData, _settingsSaveData);
+        var dialog = RemapShortcutsDialog.Create(game, settingsSceneData, _settingsSaveData);
         
         var keyBindLabel = UiComponents.LightLabel("Keyboard Shortcuts");
         Grid.SetRow(keyBindLabel, 1);
@@ -226,7 +226,7 @@ public class SettingsMenuUi
         keyBindDialogButton.Click += (_, _) =>
         {
             _settingsSaveData.Refresh(game.SaveSystem);
-            settingsMenuData.ResetNewShortcuts();
+            settingsSceneData.ResetNewShortcuts();
             dialog.Show(_desktop);
         };
         Grid.SetColumn(keyBindDialogButton, 1);

@@ -5,7 +5,7 @@ namespace _2dgs;
 
 public static class SettingsPanel
 {
-    public static VerticalStackPanel Create(SimulationData simulationData)
+    public static VerticalStackPanel Create(SimulationSceneData simulationSceneData)
     {
         var settingsPanel = new VerticalStackPanel
         {
@@ -15,40 +15,40 @@ public static class SettingsPanel
             VerticalAlignment = VerticalAlignment.Bottom
         };
 
-        var timeStepLabel = UiComponents.LightLabel($"Time step: {simulationData.TimeStep}");
+        var timeStepLabel = UiComponents.LightLabel($"Time step: {simulationSceneData.TimeStep}");
         timeStepLabel.Id = "speed_label";
 
-        var timeStepSlider = UiComponents.HorizontalSlider(simulationData.TimeStep, 10, 400);
+        var timeStepSlider = UiComponents.HorizontalSlider(simulationSceneData.TimeStep, 10, 400);
         timeStepSlider.Id = "speed_slider";
         timeStepSlider.ValueChanged += (s, e) =>
         {
             timeStepLabel.Text = $"Time step: {(int)timeStepSlider.Value}";
-            simulationData.TimeStep = (int)timeStepSlider.Value;
+            simulationSceneData.TimeStep = (int)timeStepSlider.Value;
         };
 
         var pauseButton = UiComponents.Button("Pause Simulation");
         pauseButton.Id = "pause_button";
         pauseButton.Click += (s, e) =>
         {
-            ((Label)pauseButton.Content).Text = simulationData.Paused ? "Pause Simulation" : "Resume Simulation";
-            simulationData.Paused = !simulationData.Paused;
+            ((Label)pauseButton.Content).Text = simulationSceneData.Paused ? "Pause Simulation" : "Resume Simulation";
+            simulationSceneData.Paused = !simulationSceneData.Paused;
         };
 
         var firstDivider = UiComponents.HorizontalSeparator();
         
-        var trailLengthLabel = UiComponents.LightLabel($"Trail length: {simulationData.TrailLength}");
+        var trailLengthLabel = UiComponents.LightLabel($"Trail length: {simulationSceneData.TrailLength}");
 
         var trailLengthSlider = UiComponents.HorizontalSlider(250, 250, 2000);
         trailLengthSlider.ValueChanged += (s, e) =>
         {
             trailLengthLabel.Text = $"Trail length: {(int)trailLengthSlider.Value}";
-            simulationData.TrailLength = (int)trailLengthSlider.Value;
+            simulationSceneData.TrailLength = (int)trailLengthSlider.Value;
         };
         
         var trailsButton = UiComponents.Button("Toggle Trails");
         trailsButton.Click += (s, e) =>
         {
-            simulationData.ToggleTrails = !simulationData.ToggleTrails;
+            simulationSceneData.ToggleTrails = !simulationSceneData.ToggleTrails;
         };
         
         var secondDivider = UiComponents.HorizontalSeparator();
@@ -56,7 +56,7 @@ public static class SettingsPanel
         var namesButton = UiComponents.Button("Toggle Names");
         namesButton.Click += (s, e) =>
         {
-            simulationData.ToggleNames = !simulationData.ToggleNames;
+            simulationSceneData.ToggleNames = !simulationSceneData.ToggleNames;
         };
 
         var namesDropdown = UiComponents.ComboView();
@@ -68,13 +68,13 @@ public static class SettingsPanel
         namesDropdown.SelectedIndex = 0;
         namesDropdown.SelectedIndexChanged += (s, e) =>
         {
-            simulationData.Position = namesDropdown.SelectedIndex switch
+            simulationSceneData.Position = namesDropdown.SelectedIndex switch
             {
                 0 => Position.Right,
                 1 => Position.Left,
                 2 => Position.Top,
                 3 => Position.Bottom,
-                _ => simulationData.Position
+                _ => simulationSceneData.Position
             };
         };
         
@@ -82,7 +82,7 @@ public static class SettingsPanel
         var glowButton = UiComponents.Button("Toggle Glow");
         glowButton.Click += (s, e) =>
         {
-            simulationData.ToggleGlow = !simulationData.ToggleGlow;
+            simulationSceneData.ToggleGlow = !simulationSceneData.ToggleGlow;
         };
         
         settingsPanel.Widgets.Add(timeStepLabel);

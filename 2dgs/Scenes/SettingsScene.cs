@@ -6,7 +6,7 @@ namespace _2dgs;
 
 public class SettingsScene : Scene
 {
-    private readonly SettingsMenuData _settingsMenuData;
+    private readonly SettingsSceneData _settingsSceneData;
     private readonly TextureManager _textureManager;
     private KeyboardState _keyboardState;
     private KeyboardState _previousKeyboardState;
@@ -16,38 +16,38 @@ public class SettingsScene : Scene
     
     public SettingsScene(Game game)
     {
-        _settingsMenuData = new SettingsMenuData();
-        SetupDictionaries(_settingsMenuData);
+        _settingsSceneData = new SettingsSceneData();
+        SetupDictionaries(_settingsSceneData);
         _screenHeight = game.GraphicsDevice.Viewport.Height;
         _screenWidth = game.GraphicsDevice.Viewport.Width;
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
-        _settingsMenuUi = new SettingsMenuUi(game, _settingsMenuData);
+        _settingsMenuUi = new SettingsMenuUi(game, _settingsSceneData);
     }
     
-    private static void SetupDictionaries(SettingsMenuData settingsMenuData)
+    private static void SetupDictionaries(SettingsSceneData settingsSceneData)
     {
-        settingsMenuData.NewShortcuts.Add("PauseShortcut", []);
-        settingsMenuData.NewShortcuts.Add("SpeedUpShortcut", []);
-        settingsMenuData.NewShortcuts.Add("SpeedDownShortcut", []);
-        settingsMenuData.NewShortcuts.Add("TrailsShortcut", []);
-        settingsMenuData.NewShortcuts.Add("NamesShortcut", []);
-        settingsMenuData.NewShortcuts.Add("GlowShortcut", []);
-        settingsMenuData.NewShortcuts.Add("EditShortcut", []);
-        settingsMenuData.NewShortcuts.Add("ScreenshotShortcut", []);
+        settingsSceneData.NewShortcuts.Add("PauseShortcut", []);
+        settingsSceneData.NewShortcuts.Add("SpeedUpShortcut", []);
+        settingsSceneData.NewShortcuts.Add("SpeedDownShortcut", []);
+        settingsSceneData.NewShortcuts.Add("TrailsShortcut", []);
+        settingsSceneData.NewShortcuts.Add("NamesShortcut", []);
+        settingsSceneData.NewShortcuts.Add("GlowShortcut", []);
+        settingsSceneData.NewShortcuts.Add("EditShortcut", []);
+        settingsSceneData.NewShortcuts.Add("ScreenshotShortcut", []);
         
-        settingsMenuData.DefaultShortcuts.Add("PauseShortcut", [Keys.LeftControl, Keys.P]);
-        settingsMenuData.DefaultShortcuts.Add("SpeedUpShortcut", [Keys.LeftControl, Keys.Right]);
-        settingsMenuData.DefaultShortcuts.Add("SpeedDownShortcut", [Keys.LeftControl, Keys.Left]);
-        settingsMenuData.DefaultShortcuts.Add("TrailsShortcut", [Keys.LeftControl, Keys.T]);
-        settingsMenuData.DefaultShortcuts.Add("NamesShortcut", [Keys.LeftControl, Keys.N]);
-        settingsMenuData.DefaultShortcuts.Add("GlowShortcut", [Keys.LeftControl, Keys.G]);
-        settingsMenuData.DefaultShortcuts.Add("EditShortcut", [Keys.LeftControl, Keys.E]);
-        settingsMenuData.DefaultShortcuts.Add("ScreenshotShortcut", [Keys.F11]);
+        settingsSceneData.DefaultShortcuts.Add("PauseShortcut", [Keys.LeftControl, Keys.P]);
+        settingsSceneData.DefaultShortcuts.Add("SpeedUpShortcut", [Keys.LeftControl, Keys.Right]);
+        settingsSceneData.DefaultShortcuts.Add("SpeedDownShortcut", [Keys.LeftControl, Keys.Left]);
+        settingsSceneData.DefaultShortcuts.Add("TrailsShortcut", [Keys.LeftControl, Keys.T]);
+        settingsSceneData.DefaultShortcuts.Add("NamesShortcut", [Keys.LeftControl, Keys.N]);
+        settingsSceneData.DefaultShortcuts.Add("GlowShortcut", [Keys.LeftControl, Keys.G]);
+        settingsSceneData.DefaultShortcuts.Add("EditShortcut", [Keys.LeftControl, Keys.E]);
+        settingsSceneData.DefaultShortcuts.Add("ScreenshotShortcut", [Keys.F11]);
     }
 
     public override void Update(GameTime gameTime)
     {
-        if (_settingsMenuData.Remapping)
+        if (_settingsSceneData.Remapping)
         {
             _keyboardState = Keyboard.GetState();
 
@@ -55,21 +55,21 @@ public class SettingsScene : Scene
             {
                 if (_previousKeyboardState.IsKeyDown(key)) continue;
                 
-                if (_settingsMenuData.NewShortcuts.ContainsKey(_settingsMenuData.WhichShortcut))
+                if (_settingsSceneData.NewShortcuts.ContainsKey(_settingsSceneData.WhichShortcut))
                 {
-                    _settingsMenuData.NewShortcuts[_settingsMenuData.WhichShortcut].Add(key);
+                    _settingsSceneData.NewShortcuts[_settingsSceneData.WhichShortcut].Add(key);
                 }
             }
             
             _previousKeyboardState = _keyboardState;
 
-            _settingsMenuData.ShortcutPreview  = StringTransformer.KeybindString(_settingsMenuData.NewShortcuts[_settingsMenuData.WhichShortcut]);
+            _settingsSceneData.ShortcutPreview  = StringTransformer.KeybindString(_settingsSceneData.NewShortcuts[_settingsSceneData.WhichShortcut]);
         }
 
-        if (_settingsMenuData.ClearShortcut)
+        if (_settingsSceneData.ClearShortcut)
         {
-            _settingsMenuData.NewShortcuts[_settingsMenuData.WhichShortcut].Clear();
-            _settingsMenuData.ClearShortcut = false;
+            _settingsSceneData.NewShortcuts[_settingsSceneData.WhichShortcut].Clear();
+            _settingsSceneData.ClearShortcut = false;
         }
     }
 

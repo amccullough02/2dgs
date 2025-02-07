@@ -7,18 +7,18 @@ namespace _2dgs;
 public class LessonPrompt
 {
     private Desktop _desktop;
-    private SimulationData _simulationData;
+    private SimulationSceneData _simulationSceneData;
     private readonly Window _window;
     private readonly List<LessonPage> _lessonPages;
     private readonly string _title;
     private int _index;
     private readonly int _numPages;
     
-    public LessonPrompt(SimulationData simulationData)
+    public LessonPrompt(SimulationSceneData simulationSceneData)
     {
-        _title = simulationData.SimulationTitle;
-        _lessonPages = simulationData.LessonPages;
-        _numPages = simulationData.LessonPages.Count;
+        _title = simulationSceneData.SimulationTitle;
+        _lessonPages = simulationSceneData.LessonPages;
+        _numPages = simulationSceneData.LessonPages.Count;
         _window = LessonWindow();
     }
     
@@ -92,7 +92,7 @@ public class LessonPrompt
         
         confirmReset.ButtonOk.Click += (_, __) =>
         {
-            _simulationData.ResetSimulation = true;
+            _simulationSceneData.ResetSimulation = true;
         };
         
         var resetButton = UiComponents.Button("Reset Simulation", visible: false, width: 175, height: 50);
@@ -150,9 +150,9 @@ public class LessonPrompt
         return grid;
     }
 
-    public void Show(Desktop desktop, SimulationData simulationData)
+    public void Show(Desktop desktop, SimulationSceneData simulationSceneData)
     {
-        _simulationData = simulationData;
+        _simulationSceneData = simulationSceneData;
         _desktop = desktop;
         _window.Show(desktop);
     }

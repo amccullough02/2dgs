@@ -5,7 +5,7 @@ namespace _2dgs;
 
 public static class EditBodyDialog
 {
-    public static Dialog Create(SimulationData simulationData, Desktop desktop)
+    public static Dialog Create(SimulationSceneData simulationSceneData, Desktop desktop)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 7);
         
@@ -133,12 +133,12 @@ public static class EditBodyDialog
                 var mass = float.Parse(bodyMassTextbox.Text);
                 var size = float.Parse(bodyDisplaySizeTextbox.Text);
 
-                simulationData.EditBodyData.Name = name;
-                simulationData.EditBodyData.Position = position;
-                simulationData.EditBodyData.Velocity = velocity;
-                simulationData.EditBodyData.Mass = mass;
-                simulationData.EditBodyData.DisplaySize = size;
-                simulationData.EditSelectedBody = true;
+                simulationSceneData.EditBodyData.Name = name;
+                simulationSceneData.EditBodyData.Position = position;
+                simulationSceneData.EditBodyData.Velocity = velocity;
+                simulationSceneData.EditBodyData.Mass = mass;
+                simulationSceneData.EditBodyData.DisplaySize = size;
+                simulationSceneData.EditSelectedBody = true;
                 
                 editBodyDialog.Close();
             }

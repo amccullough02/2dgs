@@ -6,7 +6,7 @@ namespace _2dgs;
 
 public static class RemapShortcutsDialog
 {
-    public static Dialog Create(Game game, SettingsMenuData settingsMenuData, SettingsSaveData settingsSaveData)
+    public static Dialog Create(Game game, SettingsSceneData settingsSceneData, SettingsSaveData settingsSaveData)
     {
         var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");
         
@@ -22,7 +22,7 @@ public static class RemapShortcutsDialog
         var changePauseKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changePauseKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changePauseKeyBind, pauseKeyBindPreview, "PauseShortcut");
+            RemapShortcut(settingsSceneData, changePauseKeyBind, pauseKeyBindPreview, "PauseShortcut");
         };
         Grid.SetColumn(changePauseKeyBind, 2);
         
@@ -38,7 +38,7 @@ public static class RemapShortcutsDialog
         var changeSpeedUpKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeSpeedUpKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changeSpeedUpKeyBind, speedUpKeyBindPreview, "SpeedUpShortcut");
+            RemapShortcut(settingsSceneData, changeSpeedUpKeyBind, speedUpKeyBindPreview, "SpeedUpShortcut");
         };
         Grid.SetColumn(changeSpeedUpKeyBind, 2);
         Grid.SetRow(changeSpeedUpKeyBind, 1);
@@ -55,7 +55,7 @@ public static class RemapShortcutsDialog
         var changeSpeedDownKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeSpeedDownKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changeSpeedDownKeyBind, slowDownKeyBindPreview, "SpeedDownShortcut");
+            RemapShortcut(settingsSceneData, changeSpeedDownKeyBind, slowDownKeyBindPreview, "SpeedDownShortcut");
         };
         Grid.SetColumn(changeSpeedDownKeyBind, 2);
         Grid.SetRow(changeSpeedDownKeyBind, 2);
@@ -72,7 +72,7 @@ public static class RemapShortcutsDialog
         var changeToggleTrailsKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleTrailsKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleTrailsKeyBind, toggleTrailsKeyBindPreview, "TrailsShortcut");
+            RemapShortcut(settingsSceneData, changeToggleTrailsKeyBind, toggleTrailsKeyBindPreview, "TrailsShortcut");
         };
         Grid.SetColumn(changeToggleTrailsKeyBind, 2);
         Grid.SetRow(changeToggleTrailsKeyBind, 3);
@@ -89,7 +89,7 @@ public static class RemapShortcutsDialog
         var changeToggleNamesKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleNamesKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleNamesKeyBind, toggleNamesKeyBindPreview, "NamesShortcut");
+            RemapShortcut(settingsSceneData, changeToggleNamesKeyBind, toggleNamesKeyBindPreview, "NamesShortcut");
         };
         Grid.SetColumn(changeToggleNamesKeyBind, 2);
         Grid.SetRow(changeToggleNamesKeyBind, 4);
@@ -106,7 +106,7 @@ public static class RemapShortcutsDialog
         var changeToggleGlowKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleGlowKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleGlowKeyBind, toggleGlowKeyBindPreview, "GlowShortcut");
+            RemapShortcut(settingsSceneData, changeToggleGlowKeyBind, toggleGlowKeyBindPreview, "GlowShortcut");
         };
         Grid.SetColumn(changeToggleGlowKeyBind, 2);
         Grid.SetRow(changeToggleGlowKeyBind, 5);
@@ -123,7 +123,7 @@ public static class RemapShortcutsDialog
         var changeToggleEditModeKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeToggleEditModeKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changeToggleEditModeKeyBind, toggleEditModeKeyBindPreview, "EditShortcut");
+            RemapShortcut(settingsSceneData, changeToggleEditModeKeyBind, toggleEditModeKeyBindPreview, "EditShortcut");
         };
         Grid.SetColumn(changeToggleEditModeKeyBind, 2);
         Grid.SetRow(changeToggleEditModeKeyBind, 6);
@@ -140,7 +140,7 @@ public static class RemapShortcutsDialog
         var changeScreenShotKeyBind = UiComponents.Button("Start", width: 100, height: 30);
         changeScreenShotKeyBind.Click += (_, _) =>
         {
-            RemapShortcut(settingsMenuData, changeScreenShotKeyBind, screenshotKeyBindPreview, "ScreenshotShortcut");
+            RemapShortcut(settingsSceneData, changeScreenShotKeyBind, screenshotKeyBindPreview, "ScreenshotShortcut");
         };
         Grid.SetColumn(changeScreenShotKeyBind, 2);
         Grid.SetRow(changeScreenShotKeyBind, 7);
@@ -183,7 +183,7 @@ public static class RemapShortcutsDialog
         var resetButton = UiComponents.Button("Reset", width: 100, height: 30);
         resetButton.Click += (_, _) =>
         {
-            string GetPreview(string preview) => StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts[preview]);
+            string GetPreview(string preview) => StringTransformer.KeybindString(settingsSceneData.DefaultShortcuts[preview]);
 
             pauseKeyBindPreview.Text = GetPreview("PauseShortcut");
             speedUpKeyBindPreview.Text = GetPreview("SpeedUpShortcut");
@@ -193,7 +193,7 @@ public static class RemapShortcutsDialog
             toggleGlowKeyBindPreview.Text = GetPreview("GlowShortcut");
             toggleEditModeKeyBindPreview.Text = GetPreview("EditShortcut");
             screenshotKeyBindPreview.Text = GetPreview("ScreenshotShortcut");
-            settingsMenuData.ResetShortcuts = true;
+            settingsSceneData.ResetShortcuts = true;
             resetButton.Enabled = false;
         };
         Grid.SetColumn(resetButton, 1);
@@ -209,16 +209,16 @@ public static class RemapShortcutsDialog
 
         dialog.ButtonOk.Click += (_, _) =>
         {
-            if (settingsMenuData.ResetShortcuts)
+            if (settingsSceneData.ResetShortcuts)
             {
-                UpdateShortcuts(settingsMenuData.DefaultShortcuts, settingsSaveData);
+                UpdateShortcuts(settingsSceneData.DefaultShortcuts, settingsSaveData);
                 game.SaveSystem.SaveSettings(settingsSaveData);
-                settingsMenuData.ResetShortcuts = false;
+                settingsSceneData.ResetShortcuts = false;
                 resetButton.Enabled = true;
             }
             else
             {
-                UpdateShortcuts(settingsMenuData.NewShortcuts, settingsSaveData);
+                UpdateShortcuts(settingsSceneData.NewShortcuts, settingsSaveData);
                 game.SaveSystem.SaveSettings(settingsSaveData);
             }
         };
@@ -226,19 +226,19 @@ public static class RemapShortcutsDialog
         return dialog;
     }
     
-    private static void RemapShortcut(SettingsMenuData settingsMenuData, Button button, Label label, string whichShortcut)
+    private static void RemapShortcut(SettingsSceneData settingsSceneData, Button button, Label label, string whichShortcut)
     {
-        settingsMenuData.Remapping = !settingsMenuData.Remapping;
-        settingsMenuData.WhichShortcut = whichShortcut;
-        ((Label)button.Content).Text = settingsMenuData.Remapping ? "Finish" : "Start";
-        if (settingsMenuData.Remapping)
+        settingsSceneData.Remapping = !settingsSceneData.Remapping;
+        settingsSceneData.WhichShortcut = whichShortcut;
+        ((Label)button.Content).Text = settingsSceneData.Remapping ? "Finish" : "Start";
+        if (settingsSceneData.Remapping)
         {
-            settingsMenuData.ClearShortcut = true;
+            settingsSceneData.ClearShortcut = true;
             label.Text = "Working...";
         }
-        if (!settingsMenuData.Remapping)
+        if (!settingsSceneData.Remapping)
         {
-            label.Text = settingsMenuData.ShortcutPreview;
+            label.Text = settingsSceneData.ShortcutPreview;
         }
     }
 

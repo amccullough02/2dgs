@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace _2dgs;
 
-public class SettingsMenuData
+public class SettingsSceneData
 {
     public bool Remapping { get; set; }
     public bool ClearShortcut { get; set; }

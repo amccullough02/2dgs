@@ -5,7 +5,7 @@ namespace _2dgs;
 
 public static class SaveQuitPanel
 {
-    public static VerticalStackPanel Create(SimulationData simulationData, Game game, Desktop desktop)
+    public static VerticalStackPanel Create(SimulationSceneData simulationSceneData, Game game, Desktop desktop)
     {
         var saveAndQuitPanel = new VerticalStackPanel
         {
@@ -24,22 +24,22 @@ public static class SaveQuitPanel
         var saveButton = UiComponents.Button("Save Simulation");
         saveButton.Click += (s, e) =>
         {
-            simulationData.AttemptToSaveFile = true;
+            simulationSceneData.AttemptToSaveFile = true;
         };
         
         saveAndQuitPanel.Widgets.Add(returnButton);
         saveAndQuitPanel.Widgets.Add(saveButton);
 
-        if (!simulationData.Lesson) return saveAndQuitPanel;
+        if (!simulationSceneData.Lesson) return saveAndQuitPanel;
         {
-            var prompt = new LessonPrompt(simulationData);
+            var prompt = new LessonPrompt(simulationSceneData);
         
-            UiTests.TestLessonPrompt(simulationData.LessonPages, prompt.GetLessons);
+            UiTests.TestLessonPrompt(simulationSceneData.LessonPages, prompt.GetLessons);
         
             var promptButton = UiComponents.Button("Show Lesson Prompt");
             promptButton.Click += (s, e) =>
             {
-                prompt.Show(desktop, simulationData);
+                prompt.Show(desktop, simulationSceneData);
             };
             
             saveAndQuitPanel.Widgets.Add(promptButton);

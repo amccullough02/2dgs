@@ -15,7 +15,7 @@ public class SimulationScene : Scene
     private SaveSystem _saveSystem;
     private SimulationSaveData _simulationSaveData;
     private SettingsSaveData _settingsSaveData;
-    private SimulationData _simulationData;
+    private SimulationSceneData _simulationSceneData;
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
     private SoundEffectPlayer _soundEffectPlayer;
@@ -40,7 +40,7 @@ public class SimulationScene : Scene
         _saveSystem = new SaveSystem();
         _settingsSaveData = _saveSystem.LoadSettings();
         _simulationSaveData = _saveSystem.LoadSimulation(filePath);
-        _simulationData = new SimulationData
+        _simulationSceneData = new SimulationSceneData
         {
             Lesson = _simulationSaveData.IsLesson,
             SimulationTitle = _simulationSaveData.Title,
@@ -53,7 +53,7 @@ public class SimulationScene : Scene
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _soundEffectPlayer = new SoundEffectPlayer(game.Content);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
-        _simulationUi = new SimulationUi(game, _simulationData);
+        _simulationUi = new SimulationUi(game, _simulationSceneData);
         _test = new Test();
         #endregion
         
@@ -84,10 +84,10 @@ public class SimulationScene : Scene
         
         foreach (var body in _bodies)
         {
-            body.OffsetPosition(_simulationData);
+            body.OffsetPosition(_simulationSceneData);
         }
 
-        _simulationData.FilePath = filePath;
+        _simulationSceneData.FilePath = filePath;
     }
 
     private void SaveSimulation()
@@ -99,17 +99,17 @@ public class SimulationScene : Scene
             LessonPages = _simulationSaveData.LessonPages
         };
         
-        if (_simulationData.AttemptToSaveFile)
+        if (_simulationSceneData.AttemptToSaveFile)
         {
-            Console.WriteLine("DEBUG: Saving simulation to " + _simulationData.FilePath);
+            Console.WriteLine("DEBUG: Saving simulation to " + _simulationSceneData.FilePath);
 
             foreach (var body in _bodies)
             {
-                dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationData));
+                dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationSceneData));
             }
             
-            _saveSystem.SaveSimulation(_simulationData.FilePath, dataToSave);
-            _simulationData.AttemptToSaveFile = false;
+            _saveSystem.SaveSimulation(_simulationSceneData.FilePath, dataToSave);
+            _simulationSceneData.AttemptToSaveFile = false;
         }
     }
 
@@ -122,42 +122,42 @@ public class SimulationScene : Scene
 
     private void CreateBody(MouseState mouseState)
     {
-        if (!_simulationData.ToggleBodyGhost) return;
+        if (!_simulationSceneData.ToggleBodyGhost) return;
         if (mouseState.LeftButton != ButtonState.Pressed) return;
         var body = new Body(
-            _simulationData.CreateBodyData.Name,
+            _simulationSceneData.CreateBodyData.Name,
             _ghostBody.Position, 
-            _simulationData.CreateBodyData.Velocity, 
-            _simulationData.CreateBodyData.Mass, 
-            _simulationData.CreateBodyData.DisplaySize,
+            _simulationSceneData.CreateBodyData.Velocity, 
+            _simulationSceneData.CreateBodyData.Mass, 
+            _simulationSceneData.CreateBodyData.DisplaySize,
             Color.White,
             _textureManager);
                 
         _bodies.Add(body);
-        _simulationData.ToggleBodyGhost = !_simulationData.ToggleBodyGhost;
+        _simulationSceneData.ToggleBodyGhost = !_simulationSceneData.ToggleBodyGhost;
     }
 
     private void EditBody()
     {
-        if (_simulationData.EditSelectedBody)
+        if (_simulationSceneData.EditSelectedBody)
         {
             SelectedBody()
-                .Edit(_simulationData.EditBodyData.Name,
-                    _simulationData.EditBodyData.Position + _simulationData.ScreenDimensions / 2,
-                    _simulationData.EditBodyData.Velocity,
-                    _simulationData.EditBodyData.Mass,
-                    _simulationData.EditBodyData.DisplaySize);
+                .Edit(_simulationSceneData.EditBodyData.Name,
+                    _simulationSceneData.EditBodyData.Position + _simulationSceneData.ScreenDimensions / 2,
+                    _simulationSceneData.EditBodyData.Velocity,
+                    _simulationSceneData.EditBodyData.Mass,
+                    _simulationSceneData.EditBodyData.DisplaySize);
         }
-        _simulationData.EditSelectedBody = false;
+        _simulationSceneData.EditSelectedBody = false;
     }
 
     private void ColorBody()
     {
-        if (_simulationData.ColorSelectedBody)
+        if (_simulationSceneData.ColorSelectedBody)
         {
-            SelectedBody().SetColor(_simulationData.NewBodyColor);
+            SelectedBody().SetColor(_simulationSceneData.NewBodyColor);
         }
-        _simulationData.ColorSelectedBody = false;
+        _simulationSceneData.ColorSelectedBody = false;
     }
 
     private void DeleteBody()
@@ -166,7 +166,7 @@ public class SimulationScene : Scene
             
         foreach (var body in _bodies)
         {
-            if (_simulationData.DeleteSelectedBody && body.Selected)
+            if (_simulationSceneData.DeleteSelectedBody && body.Selected)
             {
                 bodiesToRemove.Add(body);
             }
@@ -177,7 +177,7 @@ public class SimulationScene : Scene
             _bodies.Remove(body);
         }
         
-        _simulationData.DeleteSelectedBody = false;
+        _simulationSceneData.DeleteSelectedBody = false;
     }
     
     private void ForgetSelections()
@@ -195,15 +195,15 @@ public class SimulationScene : Scene
 
     private void StoreSelectedBodyData()
     {
-        _simulationData.SelectedBodyData = SelectedBody().ConvertToBodyData(_simulationData);
+        _simulationSceneData.SelectedBodyData = SelectedBody().ConvertToBodyData(_simulationSceneData);
     }
 
     private void ResetSimulation(Game game)
     {
-        if (_simulationData.ResetSimulation)
+        if (_simulationSceneData.ResetSimulation)
         {
             Console.WriteLine("DEBUG: Resetting simulation");
-            game.SceneManager.ChangeScene(new SimulationScene(game, _simulationData.FilePath));
+            game.SceneManager.ChangeScene(new SimulationScene(game, _simulationSceneData.FilePath));
         }
     }
 
@@ -234,35 +234,35 @@ public class SimulationScene : Scene
         
         KeyManager.Shortcut(_settingsSaveData.SpeedUpShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            if (_simulationData.TimeStep < 400) _simulationData.TimeStep += 10;
+            if (_simulationSceneData.TimeStep < 400) _simulationSceneData.TimeStep += 10;
             var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
-            timeStepLabel.Text = $"Time step: {_simulationData.TimeStep}";
+            timeStepLabel.Text = $"Time step: {_simulationSceneData.TimeStep}";
             var timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
-            timeStepSlider.Value = _simulationData.TimeStep;
+            timeStepSlider.Value = _simulationSceneData.TimeStep;
         });
         
         KeyManager.Shortcut(_settingsSaveData.SpeedDownShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            if (_simulationData.TimeStep > 10) _simulationData.TimeStep -= 10;
+            if (_simulationSceneData.TimeStep > 10) _simulationSceneData.TimeStep -= 10;
             var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
-            timeStepLabel.Text = $"Time step: {_simulationData.TimeStep}";
+            timeStepLabel.Text = $"Time step: {_simulationSceneData.TimeStep}";
             var timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
-            timeStepSlider.Value = _simulationData.TimeStep;
+            timeStepSlider.Value = _simulationSceneData.TimeStep;
         });
         
         KeyManager.Shortcut(_settingsSaveData.TrailsShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationData.ToggleTrails = !_simulationData.ToggleTrails;
+            _simulationSceneData.ToggleTrails = !_simulationSceneData.ToggleTrails;
         });
         
         KeyManager.Shortcut(_settingsSaveData.NamesShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationData.ToggleNames = !_simulationData.ToggleNames;
+            _simulationSceneData.ToggleNames = !_simulationSceneData.ToggleNames;
         });
         
         KeyManager.Shortcut(_settingsSaveData.GlowShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationData.ToggleGlow = !_simulationData.ToggleGlow;
+            _simulationSceneData.ToggleGlow = !_simulationSceneData.ToggleGlow;
         });
         
         KeyManager.Shortcut(_settingsSaveData.EditShortcut, _keyboardState, _previousKeyboardState, () =>
@@ -280,13 +280,13 @@ public class SimulationScene : Scene
 
     private void Simulate(GameTime gameTime, MouseState mouseState)
     {
-        if (_simulationData.Paused) return;
+        if (_simulationSceneData.Paused) return;
         
-        _ghostBody.Update(_simulationData);
+        _ghostBody.Update(_simulationSceneData);
         
         foreach (var body in _bodies)
         {
-            body.Update(_bodies, _simulationData.TimeStep, gameTime);
+            body.Update(_bodies, _simulationSceneData.TimeStep, gameTime);
         }
         
         CreateBody(mouseState);
@@ -297,10 +297,10 @@ public class SimulationScene : Scene
 
     private void EditMode(MouseState mouseState)
     {
-        _simulationData.ABodySelected = IsBodySelected();
+        _simulationSceneData.ABodySelected = IsBodySelected();
         CheckIfBodiesDeselected(mouseState);
         
-        if (_simulationData.EditMode && !IsBodySelected())
+        if (_simulationSceneData.EditMode && !IsBodySelected())
         {
             foreach (var body in _bodies)
             {
@@ -311,7 +311,7 @@ public class SimulationScene : Scene
                 ["delete_body_button", "body_color_button", "edit_body_button"]);
         }
         
-        if (_simulationData.EditMode && IsBodySelected())
+        if (_simulationSceneData.EditMode && IsBodySelected())
         {
             FindWidget.EnableWidgets(_simulationUi.GetRoot(), 
                 ["delete_body_button", "body_color_button", "edit_body_button"]);
@@ -322,7 +322,7 @@ public class SimulationScene : Scene
             DeleteBody();
         }
         
-        if (!_simulationData.EditMode)
+        if (!_simulationSceneData.EditMode)
         {
             ForgetSelections();
         }
@@ -342,10 +342,10 @@ public class SimulationScene : Scene
         
         foreach (var body in _bodies)
         {
-            body.Draw(spriteBatch, _simulationData, _shapeBatch);
+            body.Draw(spriteBatch, _simulationSceneData, _shapeBatch);
         }
 
-        _ghostBody.Draw(spriteBatch, _textureManager, _simulationData);
+        _ghostBody.Draw(spriteBatch, _textureManager, _simulationSceneData);
         spriteBatch.End();
         _simulationUi.Draw();
     }

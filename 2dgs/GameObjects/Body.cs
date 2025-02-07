@@ -43,17 +43,17 @@ public class Body(
         return forceVector;
     }
 
-    public void OffsetPosition(SimulationData simulationData)
+    public void OffsetPosition(SimulationSceneData simulationSceneData)
     {
-        _position += simulationData.ScreenDimensions / 2;
+        _position += simulationSceneData.ScreenDimensions / 2;
     }
 
-    public BodyData ConvertToBodyData(SimulationData simulationData)
+    public BodyData ConvertToBodyData(SimulationSceneData simulationSceneData)
     {
         return new BodyData
         {
             Name = _name,
-            Position = _position - simulationData.ScreenDimensions / 2,
+            Position = _position - simulationSceneData.ScreenDimensions / 2,
             Velocity = _velocity,
             Mass = _mass,
             DisplaySize = _displaySize,
@@ -158,12 +158,12 @@ public class Body(
         }
     }
 
-    private void DrawOrbit(SpriteBatch spriteBatch, SimulationData simData, float thickness)
+    private void DrawOrbit(SpriteBatch spriteBatch, SimulationSceneData simSceneData, float thickness)
     {
-        if (_orbitTrail.Count > 1 && simData.ToggleTrails)
+        if (_orbitTrail.Count > 1 && simSceneData.ToggleTrails)
         {
 
-            var trailLength = Math.Min(simData.TrailLength, _orbitTrail.Count);
+            var trailLength = Math.Min(simSceneData.TrailLength, _orbitTrail.Count);
             for (var i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
             {
                 var direction = _orbitTrail[i] - _orbitTrail[i + 1];
@@ -184,9 +184,9 @@ public class Body(
         }
     }
 
-    private void DrawSelector(SimulationData simData, ShapeBatch shapeBatch)
+    private void DrawSelector(SimulationSceneData simSceneData, ShapeBatch shapeBatch)
     {
-        if (Selected && simData.EditMode)
+        if (Selected && simSceneData.EditMode)
         {
             var displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
             var selectorOffset = displayRadius / 5;
@@ -202,9 +202,9 @@ public class Body(
         }
     }
 
-    private void DrawGlow(SpriteBatch spriteBatch, SimulationData simulationData)
+    private void DrawGlow(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData)
     {
-        if (simulationData.ToggleGlow)
+        if (simulationSceneData.ToggleGlow)
         {
             for (var i = 0; i < 100; i++)
             {
@@ -243,14 +243,14 @@ public class Body(
             0f);
     }
 
-    private void DrawNames(SimulationData simData, SpriteBatch spriteBatch)
+    private void DrawNames(SimulationSceneData simSceneData, SpriteBatch spriteBatch)
     {
-        if (!simData.ToggleNames) return;
+        if (!simSceneData.ToggleNames) return;
 
         var textSize = FontManager.MediumFont(DefaultFontSize).MeasureString(_name);
         var padding = 10f;
         
-        switch (simData.Position)
+        switch (simSceneData.Position)
         {
             case Position.Right:
                 FontManager.MediumFont(DefaultFontSize)
@@ -287,12 +287,12 @@ public class Body(
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, SimulationData simulationData, ShapeBatch shapeBatch)
+    public void Draw(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, ShapeBatch shapeBatch)
     {
-        DrawOrbit(spriteBatch, simulationData, 2f);
+        DrawOrbit(spriteBatch, simulationSceneData, 2f);
         DrawBody(spriteBatch);
-        DrawGlow(spriteBatch, simulationData);
-        DrawSelector(simulationData, shapeBatch);
-        DrawNames(simulationData, spriteBatch);
+        DrawGlow(spriteBatch, simulationSceneData);
+        DrawSelector(simulationSceneData, shapeBatch);
+        DrawNames(simulationSceneData, spriteBatch);
     }
 }
