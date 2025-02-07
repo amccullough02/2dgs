@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
-using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -188,14 +183,18 @@ public static class RemapShortcutsDialog
         var resetButton = UiComponents.Button("Reset", width: 100, height: 30);
         resetButton.Click += (_, _) =>
         {
-            pauseKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["PauseShortcut"]);
-            speedUpKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["SpeedUpShortcut"]);
-            slowDownKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["SpeedDownShortcut"]);
-            toggleTrailsKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["TrailsShortcut"]);
-            toggleNamesKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["NamesShortcut"]);
-            toggleGlowKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["GlowShortcut"]);
-            toggleEditModeKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["EditShortcut"]);
-            screenshotKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["ScreenshotShortcut"]);
+            string GetPreview(string preview) => StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts[preview]);
+
+            pauseKeyBindPreview.Text = GetPreview("PauseShortcut");
+            speedUpKeyBindPreview.Text = GetPreview("SpeedUpShortcut");
+            slowDownKeyBindPreview.Text = GetPreview("SpeedDownShortcut");
+            toggleTrailsKeyBindPreview.Text = GetPreview("TrailsShortcut");
+            toggleNamesKeyBindPreview.Text = GetPreview("NamesShortcut");
+            toggleGlowKeyBindPreview.Text = GetPreview("GlowShortcut");
+            toggleEditModeKeyBindPreview.Text = GetPreview("EditShortcut");
+            screenshotKeyBindPreview.Text = GetPreview("ScreenshotShortcut");
+            settingsMenuData.ResetShortcuts = true;
+            resetButton.Enabled = false;
         };
         Grid.SetColumn(resetButton, 1);
         
@@ -210,8 +209,18 @@ public static class RemapShortcutsDialog
 
         dialog.ButtonOk.Click += (_, _) =>
         {
-            UpdateShortcuts(settingsMenuData.NewShortcuts, settingsSaveData);
-            game.SaveSystem.SaveSettings(settingsSaveData);
+            if (settingsMenuData.ResetShortcuts)
+            {
+                UpdateShortcuts(settingsMenuData.DefaultShortcuts, settingsSaveData);
+                game.SaveSystem.SaveSettings(settingsSaveData);
+                settingsMenuData.ResetShortcuts = false;
+                resetButton.Enabled = true;
+            }
+            else
+            {
+                UpdateShortcuts(settingsMenuData.NewShortcuts, settingsSaveData);
+                game.SaveSystem.SaveSettings(settingsSaveData);
+            }
         };
 
         return dialog;
