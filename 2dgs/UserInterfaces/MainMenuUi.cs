@@ -51,7 +51,7 @@ public class MainMenuUi
         settingsMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to settings menu...");
-            game.SceneManager.ChangeScene(new SettingScene(game));
+            game.SceneManager.ChangeScene(new SettingsScene(game));
         };
         
         var quitButton = UiComponents.Button("Quit");

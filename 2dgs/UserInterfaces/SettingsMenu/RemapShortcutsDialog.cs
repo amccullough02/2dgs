@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mail;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -170,11 +175,42 @@ public static class RemapShortcutsDialog
         grid.Widgets.Add(screenshotKeyBindPreview);
         grid.Widgets.Add(changeScreenShotKeyBind);
         
-        dialog.Content = grid;
+        var verticalStackPanel = new VerticalStackPanel();
+
+        var horizontalSeperator = UiComponents.HorizontalSeparator();
+        
+        var resetGrid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
+        resetGrid.ColumnSpacing = 70;
+
+        var resetLabel = UiComponents.MediumLabel("Reset to Default Bindings");
+        Grid.SetColumn(resetLabel, 0);
+        
+        var resetButton = UiComponents.Button("Reset", width: 100, height: 30);
+        resetButton.Click += (_, _) =>
+        {
+            pauseKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["PauseShortcut"]);
+            speedUpKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["SpeedUpShortcut"]);
+            slowDownKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["SpeedDownShortcut"]);
+            toggleTrailsKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["TrailsShortcut"]);
+            toggleNamesKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["NamesShortcut"]);
+            toggleGlowKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["GlowShortcut"]);
+            toggleEditModeKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["EditShortcut"]);
+            screenshotKeyBindPreview.Text = StringTransformer.KeybindString(settingsMenuData.DefaultShortcuts["ScreenshotShortcut"]);
+        };
+        Grid.SetColumn(resetButton, 1);
+        
+        resetGrid.Widgets.Add(resetLabel);
+        resetGrid.Widgets.Add(resetButton);
+        
+        verticalStackPanel.Widgets.Add(grid);
+        verticalStackPanel.Widgets.Add(horizontalSeperator);
+        verticalStackPanel.Widgets.Add(resetGrid);
+        
+        dialog.Content = verticalStackPanel;
 
         dialog.ButtonOk.Click += (_, _) =>
         {
-            UpdateShortcuts(settingsMenuData, settingsSaveData);
+            UpdateShortcuts(settingsMenuData.NewShortcuts, settingsSaveData);
             game.SaveSystem.SaveSettings(settingsSaveData);
         };
 
@@ -197,11 +233,11 @@ public static class RemapShortcutsDialog
         }
     }
 
-    private static void UpdateShortcuts(SettingsMenuData settingsMenuData, SettingsSaveData settingsSaveData)
+    private static void UpdateShortcuts(Dictionary<string, List<Keys>> dictionary, SettingsSaveData settingsSaveData)
     {
         var type = settingsSaveData.GetType();
         
-        foreach (var shortcut in settingsMenuData.NewShortcuts)
+        foreach (var shortcut in dictionary)
         {
             if (shortcut.Value.Count == 0) continue;
             

@@ -10,4 +10,5 @@ public class SettingsMenuData
     public string ShortcutPreview = "";
     public string WhichShortcut = "";
     public Dictionary<string, List<Keys>> NewShortcuts = new();
+    public Dictionary<string, List<Keys>> DefaultShortcuts = new();
 }
