@@ -31,7 +31,7 @@ public class FpsCounter
         {
             spriteBatch.Begin();
             var fpsText = $"FPS: {_fps}";
-            FontManager.MediumFont(FontSize).
+            FontManager.MediumText(FontSize).
                 DrawText(spriteBatch, fpsText, new Vector2(10, 10), Color.White);
             spriteBatch.End();
         }

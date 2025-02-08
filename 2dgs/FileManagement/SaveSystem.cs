@@ -38,7 +38,7 @@ public class SaveSystem
             return JsonConvert.DeserializeObject<SimulationSaveData>(jsonData, settings);
         }
 
-        return null;
+        return new SimulationSaveData();
     }
 
     public SettingsSaveData LoadSettings()

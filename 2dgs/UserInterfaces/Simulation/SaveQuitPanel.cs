@@ -16,15 +16,18 @@ public static class SaveQuitPanel
         };
         
         var returnButton = UiComponents.Button("Exit Simulation");
-        returnButton.Click += (s, e) =>
+        returnButton.Click += (_, _) =>
         {
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
         
+        var saveDialog = NameSimulationDialog(simulationSceneData);
+        
         var saveButton = UiComponents.Button("Save Simulation");
-        saveButton.Click += (s, e) =>
+        saveButton.Click += (_, _) =>
         {
-            simulationSceneData.AttemptToSaveFile = true;
+            if (!string.IsNullOrEmpty(simulationSceneData.FilePath)) simulationSceneData.AttemptToSaveFile = true;
+            else saveDialog.Show(desktop);
         };
         
         saveAndQuitPanel.Widgets.Add(returnButton);
@@ -37,7 +40,7 @@ public static class SaveQuitPanel
             UiTests.TestLessonPrompt(simulationSceneData.LessonPages, prompt.GetLessons);
         
             var promptButton = UiComponents.Button("Show Lesson Prompt");
-            promptButton.Click += (s, e) =>
+            promptButton.Click += (_, _) =>
             {
                 prompt.Show(desktop, simulationSceneData);
             };
@@ -46,5 +49,29 @@ public static class SaveQuitPanel
         }
 
         return saveAndQuitPanel;
+    }
+    
+    private static Dialog NameSimulationDialog(SimulationSceneData simulationSceneData)
+    {
+        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
+        var nameSimulationLabel = UiComponents.MediumLabel("Simulation Name: ");
+        Grid.SetColumn(nameSimulationLabel, 0);
+
+        var nameSimulationTextbox = UiComponents.TextBox("new_simulation");
+        Grid.SetColumn(nameSimulationTextbox, 1);
+        
+        grid.Widgets.Add(nameSimulationLabel);
+        grid.Widgets.Add(nameSimulationTextbox);
+        
+        var newSimulationDialog = UiComponents.StyledDialog("Save Simulation As");
+        newSimulationDialog.Content = grid;
+        newSimulationDialog.ButtonOk.Click += (_, _) =>
+        {
+            var newFilePath = "../../../savedata/my_simulations/" + nameSimulationTextbox.Text + ".json";
+            simulationSceneData.FilePath = newFilePath;
+            simulationSceneData.AttemptToSaveFile = true;
+        };
+        
+        return newSimulationDialog;
     }
 }

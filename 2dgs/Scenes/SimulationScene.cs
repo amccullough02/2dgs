@@ -92,25 +92,24 @@ public class SimulationScene : Scene
 
     private void SaveSimulation()
     {
+        if (!_simulationSceneData.AttemptToSaveFile) return;
+        
+        Console.WriteLine("DEBUG: Saving simulation to " + _simulationSceneData.FilePath);
+            
         var dataToSave = new SimulationSaveData
         {
             Title = _simulationSaveData.Title,
             IsLesson = _simulationSaveData.IsLesson,
             LessonPages = _simulationSaveData.LessonPages
         };
-        
-        if (_simulationSceneData.AttemptToSaveFile)
-        {
-            Console.WriteLine("DEBUG: Saving simulation to " + _simulationSceneData.FilePath);
 
-            foreach (var body in _bodies)
-            {
-                dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationSceneData));
-            }
-            
-            _saveSystem.SaveSimulation(_simulationSceneData.FilePath, dataToSave);
-            _simulationSceneData.AttemptToSaveFile = false;
+        foreach (var body in _bodies)
+        {
+            dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationSceneData));
         }
+            
+        _saveSystem.SaveSimulation(_simulationSceneData.FilePath, dataToSave);
+        _simulationSceneData.AttemptToSaveFile = false;
     }
 
     private bool IsBodySelected()

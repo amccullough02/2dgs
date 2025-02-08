@@ -247,13 +247,13 @@ public class Body(
     {
         if (!simSceneData.ToggleNames) return;
 
-        var textSize = FontManager.MediumFont(DefaultFontSize).MeasureString(_name);
+        var textSize = FontManager.MediumText(DefaultFontSize).MeasureString(_name);
         var padding = 10f;
         
         switch (simSceneData.Position)
         {
             case Position.Right:
-                FontManager.MediumFont(DefaultFontSize)
+                FontManager.MediumText(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -261,7 +261,7 @@ public class Body(
                         _color);
                 break;
             case Position.Left:
-                FontManager.MediumFont(DefaultFontSize)
+                FontManager.MediumText(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -269,7 +269,7 @@ public class Body(
                         _color);
                 break;
             case Position.Bottom:
-                FontManager.MediumFont(DefaultFontSize)
+                FontManager.MediumText(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -277,7 +277,7 @@ public class Body(
                         _color);
                 break;
             case Position.Top:
-                FontManager.MediumFont(DefaultFontSize)
+                FontManager.MediumText(DefaultFontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +

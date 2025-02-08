@@ -1,8 +1,6 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Myra;
 using Myra.Graphics2D;
-using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -32,34 +30,42 @@ public class MainMenuUi
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
+        
+        var newSimulationButton = UiComponents.MenuButton("New Simulation", width: UiConstants.DefaultMenuButtonWidth);
+        newSimulationButton.Click += (_, _) =>
+        {
+            Console.WriteLine("DEBUG: Creating a blank simulation...");
+            game.SceneManager.ChangeScene(new SimulationScene(game, null));
+        };
 
-        var simulationMenuButton = UiComponents.Button("Simulation Menu");
+        var simulationMenuButton = UiComponents.MenuButton("Browse Simulations", width: UiConstants.DefaultMenuButtonWidth);
         simulationMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation menu...");
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
         
-        var attributionsButton = UiComponents.Button("Attributions");
+        var attributionsButton = UiComponents.MenuButton("Attributions", width: UiConstants.DefaultMenuButtonWidth);
         attributionsButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to attributions menu...");
             game.SceneManager.ChangeScene(new AttributionsScene(game));
         };
         
-        var settingsMenuButton = UiComponents.Button("Settings");
+        var settingsMenuButton = UiComponents.MenuButton("Settings", width: UiConstants.DefaultMenuButtonWidth);
         settingsMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to settings menu...");
             game.SceneManager.ChangeScene(new SettingsScene(game));
         };
         
-        var quitButton = UiComponents.Button("Quit");
+        var quitButton = UiComponents.MenuButton("Quit", width: UiConstants.DefaultMenuButtonWidth);
         quitButton.Click += (_, _) =>
         {
             MyraEnvironment.Game.Exit();
         };
         
+        mainMenuStackPanel.Widgets.Add(newSimulationButton);
         mainMenuStackPanel.Widgets.Add(simulationMenuButton);
         mainMenuStackPanel.Widgets.Add(attributionsButton);
         mainMenuStackPanel.Widgets.Add(settingsMenuButton);

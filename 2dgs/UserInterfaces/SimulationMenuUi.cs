@@ -22,7 +22,7 @@ public class SimulationMenuUi
         "velocities (or momenta) of three point masses that orbit each other in space and calculate their subsequent " +
         "trajectories using Newton's laws of motion and Newton's law of universal gravitation.";
 
-    public SimulationMenuUi(Game game, SaveSystem saveSystem)
+    public SimulationMenuUi(Game game)
     {
         MyraEnvironment.Game = game;
         
@@ -30,14 +30,14 @@ public class SimulationMenuUi
         var simMenuTitle = UiComponents.TitleLabel("Simulation Menu");
         
         rootContainer.Widgets.Add(simMenuTitle);
-        rootContainer.Widgets.Add(CreateSimulationMenu(game, saveSystem));
+        rootContainer.Widgets.Add(CreateSimulationMenu(game));
         
         _fileManager = new FileManager();
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
-    private VerticalStackPanel CreateSimulationMenu(Game game, SaveSystem saveSystem)
+    private VerticalStackPanel CreateSimulationMenu(Game game)
     {
         var verticalStackPanel = new VerticalStackPanel
         {
@@ -45,15 +45,6 @@ public class SimulationMenuUi
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 40, 0, 0),
-        };
-        
-        var createNewSimulationButton = UiComponents.Button("Create New Simulation");
-        
-        var createNewSimulationDialog = NameSimulationDialog(game, saveSystem);
-        
-        createNewSimulationButton.Click += (s, e) =>
-        {
-            createNewSimulationDialog.Show(_desktop);
         };
 
         var currentDirectory = Directory.GetCurrentDirectory();
@@ -65,7 +56,7 @@ public class SimulationMenuUi
             Folder = saveDataDirectory,
         };
 
-        importSimulationDialog.ButtonOk.Click += (s, e) =>
+        importSimulationDialog.ButtonOk.Click += (_, _) =>
         {
             var selectedFilePath = importSimulationDialog.FilePath;
 
@@ -85,7 +76,7 @@ public class SimulationMenuUi
         };
 
         var importSimulationButton = UiComponents.Button("Import Simulation");
-        importSimulationButton.Click += (s, e) =>
+        importSimulationButton.Click += (_, _) =>
         {
             importSimulationDialog.Show(_desktop);
         };
@@ -130,13 +121,13 @@ public class SimulationMenuUi
         };
         
         var exportSimulationButton = UiComponents.Button("Export Simulation");
-        exportSimulationButton.Click += (s, e) =>
+        exportSimulationButton.Click += (_, _) =>
         {
             exportSimulationDialog.Show(_desktop);
         };
         
         var mainMenuButton = UiComponents.Button("Return to Main Menu");
-        mainMenuButton.Click += (s, e) => { game.SceneManager.ChangeScene(new MainMenuScene(game)); };
+        mainMenuButton.Click += (_, _) => { game.SceneManager.ChangeScene(new MainMenuScene(game)); };
 
         RichTextDefaults.FontResolver = p =>
         {
@@ -165,11 +156,10 @@ public class SimulationMenuUi
         PopulateList(lessonsListView, "../../../savedata/lessons", game);
         PopulateList(sandboxListView, "../../../savedata/my_simulations", game);
 
-        var buttonPanel = new HorizontalStackPanel { HorizontalAlignment = HorizontalAlignment.Center, Spacing = 90 };
+        var buttonPanel = new HorizontalStackPanel { HorizontalAlignment = HorizontalAlignment.Center, Spacing = 265 };
         buttonPanel.Widgets.Add(mainMenuButton);
         buttonPanel.Widgets.Add(importSimulationButton);
         buttonPanel.Widgets.Add(exportSimulationButton);
-        buttonPanel.Widgets.Add(createNewSimulationButton);
         
         verticalStackPanel.Widgets.Add(tabControl);
         verticalStackPanel.Widgets.Add(buttonPanel);
@@ -177,30 +167,6 @@ public class SimulationMenuUi
         UiTests.TestSimFileLoading(lessonsListView, "../../../savedata/lessons");
 
         return verticalStackPanel;
-    }
-    
-    private Dialog NameSimulationDialog(Game game, SaveSystem saveSystem)
-    {
-        var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
-        var nameSimulationLabel = UiComponents.MediumLabel("Name simulation: ");
-        Grid.SetColumn(nameSimulationLabel, 0);
-
-        var nameSimulationTextbox = UiComponents.TextBox("new_simulation");
-        Grid.SetColumn(nameSimulationTextbox, 1);
-        
-        grid.Widgets.Add(nameSimulationLabel);
-        grid.Widgets.Add(nameSimulationTextbox);
-        
-        var newSimulationDialog = UiComponents.StyledDialog("New simulation");
-        newSimulationDialog.Content = grid;
-        newSimulationDialog.ButtonOk.Click += (sender, e) =>
-        {
-            var newFilePath = "../../../savedata/my_simulations/" + nameSimulationTextbox.Text + ".json";
-            saveSystem.CreateBlankSimulation(newFilePath);
-            game.SceneManager.ChangeScene(new SimulationScene(game, newFilePath));
-        };
-        
-        return newSimulationDialog;
     }
     
     private Dialog RenameButtonDialog(string fileName, string path, string file)
@@ -218,14 +184,14 @@ public class SimulationMenuUi
         
         renameButtonDialog.Content = grid;
                     
-        renameButtonDialog.ButtonOk.Click += (sender, result) =>
+        renameButtonDialog.ButtonOk.Click += (_, _) =>
         {
             Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
             var newPath = path + "/" + textbox.Text + ".json";
             _fileManager.RenameFile(file, newPath);
         };
 
-        renameButtonDialog.ButtonCancel.Click += (sender, result) =>
+        renameButtonDialog.ButtonCancel.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: File rename cancelled");
         };
@@ -238,13 +204,13 @@ public class SimulationMenuUi
         var deleteButtonDialog = UiComponents.StyledDialog("Delete");
         deleteButtonDialog.Content = UiComponents.LightLabel("Are you sure you want to delete this simulation?");
 
-        deleteButtonDialog.ButtonOk.Click += (sender, result) =>
+        deleteButtonDialog.ButtonOk.Click += (_, _) =>
         {
             Console.WriteLine($"DEBUG: {fileName} deleted");
             _fileManager.DeleteFile(path + "/" + fileName + ".json");
         };
 
-        deleteButtonDialog.ButtonCancel.Click += (sender, result) =>
+        deleteButtonDialog.ButtonCancel.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Delete operation cancelled");
         };
@@ -305,18 +271,18 @@ public class SimulationMenuUi
         var deleteButton = UiComponents.Button("Delete", true, 200, 50);
         var deleteDialog = DeleteButtonDialog(fileName, path);
 
-        loadButton.Click += (s, a) =>
+        loadButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation...");
             game.SceneManager.ChangeScene(new SimulationScene(game, file));
         };
 
-        renameButton.Click += (s, a) =>
+        renameButton.Click += (_, _) =>
         {
             renameDialog.Show(_desktop);
         };
         
-        deleteButton.Click += (s, a) =>
+        deleteButton.Click += (_, _) =>
         {
             deleteDialog.Show(_desktop);
         };

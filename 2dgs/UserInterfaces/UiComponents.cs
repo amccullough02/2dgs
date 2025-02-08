@@ -22,7 +22,32 @@ public static class UiComponents
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Text = text,
-                    Font = FontManager.LightFont(UiConstants.DefaultFontSize)
+                    Font = FontManager.LightText(UiConstants.DefaultFontSize)
+               }
+          };
+     }
+     
+     public static Button MenuButton(string text,
+          bool visible = true,
+          int width = UiConstants.DefaultButtonWidth,
+          int height = UiConstants.DefaultButtonHeight)
+     {
+          return new Button
+          {
+               Width = width,
+               Height = height,
+               Visible = visible,
+               Background = new SolidBrush(Color.Black * 0.66f),
+               PressedBackground = new SolidBrush(Color.DarkBlue * 0.33f),
+               OverBackground = new SolidBrush(Color.Cyan * 0.33f),
+               Border = new SolidBrush(Color.White),
+               BorderThickness = new Thickness(1),
+               Content = new Label
+               {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Text = text,
+                    Font = FontManager.ButtonText(UiConstants.DefaultMainMenuFontSize)
                }
           };
      }
@@ -65,7 +90,7 @@ public static class UiComponents
           {
                Text = text,
                HorizontalAlignment = HorizontalAlignment.Center,
-               Font = FontManager.LightFont(16),
+               Font = FontManager.LightText(16),
                Padding = new Thickness(0, 5, 0, 5),
           };
      }
@@ -98,7 +123,7 @@ public static class UiComponents
           return new Label
           {
                Text = text,
-               Font = FontManager.LightFont(UiConstants.DialogFontSize),
+               Font = FontManager.LightText(UiConstants.DialogFontSize),
                VerticalAlignment = VerticalAlignment.Center,
                Border = new SolidBrush(Color.White),
                BorderThickness = new Thickness(1),
@@ -111,7 +136,7 @@ public static class UiComponents
           return new Label
           {
                Text = text,
-               Font = FontManager.LightFont(fontSize),
+               Font = FontManager.LightText(fontSize),
                VerticalAlignment = VerticalAlignment.Center,
           };
      }
@@ -121,7 +146,7 @@ public static class UiComponents
           return new Label
           {
                Text = text,
-               Font = FontManager.MediumFont(fontSize),
+               Font = FontManager.MediumText(fontSize),
                VerticalAlignment = VerticalAlignment.Center,
           };
      }
@@ -131,7 +156,7 @@ public static class UiComponents
           return new Label
           {
                Text = text,
-               Font = FontManager.TitleFont(UiConstants.TitleFontSize),
+               Font = FontManager.TitleText(UiConstants.TitleFontSize),
                HorizontalAlignment = HorizontalAlignment.Center,
                Padding = new Thickness(UiConstants.DefaultTitleMargin),
           };
@@ -143,7 +168,7 @@ public static class UiComponents
           {
                MinWidth = UiConstants.DefaultTextboxWidth,
                Text = text,
-               Font = FontManager.LightFont(UiConstants.DialogFontSize),
+               Font = FontManager.LightText(UiConstants.DialogFontSize),
                Padding = new Thickness(4),
                BorderThickness = new Thickness(1),
                Border = new SolidBrush(Color.Gray)
@@ -159,7 +184,7 @@ public static class UiComponents
                IsToggled = toggled,
                Content = new Label
                {
-                    Font = FontManager.LightFont(UiConstants.DefaultFontSize),
+                    Font = FontManager.LightText(UiConstants.DefaultFontSize),
                     Text = text,
                     Padding = new Thickness(8),
                     HorizontalAlignment = HorizontalAlignment.Center,
@@ -173,7 +198,7 @@ public static class UiComponents
           return new Window
           {
                Title = "Validation Error",
-               TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
+               TitleFont = FontManager.MediumText(UiConstants.DefaultFontSize),
                Content = label
           };
      }
@@ -183,8 +208,10 @@ public static class UiComponents
           return new Dialog
           {
                Title = title,
-               TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
-               Opacity = UiConstants.DefaultDialogOpacity,
+               TitleFont = FontManager.MediumText(UiConstants.DefaultFontSize),
+               Background = new SolidBrush(Color.Black * UiConstants.DefaultDialogOpacity),
+               BorderThickness = new Thickness(1),
+               Border = new SolidBrush(Color.White),
                TitlePanel =
                {
                     HorizontalAlignment = HorizontalAlignment.Center, Padding = new Thickness(0,
@@ -196,7 +223,7 @@ public static class UiComponents
                {
                     Content = new Label
                     {
-                         Font = FontManager.MediumFont(18),
+                         Font = FontManager.MediumText(18),
                          Text = "Ok",
                          Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
                     }
@@ -205,7 +232,7 @@ public static class UiComponents
                {
                     Content = new Label
                     {
-                         Font = FontManager.MediumFont(18),
+                         Font = FontManager.MediumText(18),
                          Text = "Cancel",
                          Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
                     }
@@ -218,7 +245,7 @@ public static class UiComponents
           return new TextBox
           {
                Text = text,
-               Font = FontManager.LightFont(UiConstants.DefaultFontSize),
+               Font = FontManager.LightText(UiConstants.DefaultFontSize),
                Padding = new Thickness(10),
                Multiline = true,
                Readonly = true,

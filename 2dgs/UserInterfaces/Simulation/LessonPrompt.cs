@@ -29,7 +29,7 @@ public class LessonPrompt
         var window = new Window
         {
             Title = _title,
-            TitleFont = FontManager.MediumFont(UiConstants.DefaultFontSize),
+            TitleFont = FontManager.MediumText(UiConstants.DefaultFontSize),
             TitlePanel =
             {
                 HorizontalAlignment = HorizontalAlignment.Center, Padding = new Thickness(0,

@@ -3,15 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
 
-public class SimulationMenuScene : Scene
+public class SimulationMenuScene(Game game) : Scene
 {
-    private readonly SimulationMenuUi _simulationMenuUi;
-    private readonly SaveSystem _saveSystem = new();
-
-    public SimulationMenuScene(Game game)
-    {
-        _simulationMenuUi = new SimulationMenuUi(game, _saveSystem);
-    }
+    private readonly SimulationMenuUi _simulationMenuUi = new(game);
 
     public override void Update(GameTime gameTime) {}
 
