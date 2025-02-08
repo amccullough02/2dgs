@@ -38,7 +38,7 @@ public class AttributionsUi
         var image = UiComponents.LightLabel("Main Menu image by Bryan Goff on Unsplash\n" +
                                             "Attribution image by NASA on Unsplash\n" +
                                             "Settings image by Alexander Andrews on Unsplash\n" +
-                                            "Simulation Menu image by Steve Busch on Unplash");
+                                            "Simulation Menu image by Steve Busch on Unsplash");
         
         var panel = new VerticalStackPanel
         {
