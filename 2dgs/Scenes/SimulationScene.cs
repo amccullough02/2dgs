@@ -174,6 +174,7 @@ public class SimulationScene : Scene
         foreach (var body in bodiesToRemove)
         {
             _bodies.Remove(body);
+            _soundEffectPlayer.PlayCollisionSfx();
         }
         
         _simulationSceneData.DeleteSelectedBody = false;
