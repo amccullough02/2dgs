@@ -15,5 +15,6 @@ public static class UiConstants
     public const int DefaultSeparatorHeight = 5;
     public const int TitleFontSize = 100;
     public const int DefaultGridSpacing = 10;
+    public const float DefaultLessonOpacity = 0.8f;
     public const float DefaultDialogOpacity = 0.5f;
 }

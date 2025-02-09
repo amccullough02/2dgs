@@ -253,7 +253,7 @@ public static class UiComponents
                HorizontalAlignment = HorizontalAlignment.Stretch,
                VerticalAlignment = VerticalAlignment.Stretch,
                BlinkIntervalInMs = 2000,
-               Background = new SolidBrush(new Color(32, 32, 32)),
+               Background = new SolidBrush(new Color(32, 32, 32) * UiConstants.DefaultLessonOpacity),
                BorderThickness = new Thickness(1),
                Border = new SolidBrush(Color.Gray)
           };

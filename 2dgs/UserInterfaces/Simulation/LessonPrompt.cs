@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Myra.Graphics2D;
+using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -39,7 +41,9 @@ public class LessonPrompt
             },
             Width = 600,
             Height = 400,
-            Opacity = UiConstants.DefaultDialogOpacity,
+            Background = new SolidBrush(Color.Black * UiConstants.DefaultLessonOpacity),
+            Border = new SolidBrush(Color.White),
+            BorderThickness = new Thickness(1),
             Content = LessonLayout()
         };
 
