@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Numerics;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -32,7 +31,8 @@ public class Body(
     private readonly List<Vector2> _futureOrbit = [];
     private Vector2 _velocity = velocity;
     private Vector2 _position = position;
-    private const float DefaultFadeValue = 0.4f;
+    private const float DefaultFadeValue = 0.8f;
+    private const float DefaultTrailThickness = 2f;
     private const float G = 6.6743e-11f;
     private const int FutureOrbitCalculations = 1000;
     private const int DefaultTrailLength = 2000;
@@ -223,16 +223,21 @@ public class Body(
         if (_orbitTrail.Count <= 1 || !simulationSceneData.ToggleTrails) return;
         
         var trailLength = Math.Min(simulationSceneData.TrailLength, _orbitTrail.Count);
+        var startIndex = _orbitTrail.Count - trailLength;
+        
         for (var i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
         {
             var direction = _orbitTrail[i] - _orbitTrail[i + 1];
             var length = direction.Length();
             var angle = (float)Math.Atan2(direction.Y, direction.X);
 
+            var fadeValue = (float)(i - startIndex) / (trailLength - 1);      
+            var alpha = DefaultFadeValue * fadeValue;
+            
             spriteBatch.Draw(textureManager.OrbitTexture,
                 _orbitTrail[i + 1],
                 null,
-                _color * DefaultFadeValue,
+                _color * alpha,
                 angle,
                 Vector2.Zero,
                 new Vector2(length,
@@ -252,10 +257,13 @@ public class Body(
             var length = direction.Length();
             var angle = (float)Math.Atan2(direction.Y, direction.X);
             
+            var fadeValue = 1.0f - (float)i / _futureOrbit.Count;
+            var alpha = DefaultFadeValue * fadeValue;
+            
             spriteBatch.Draw(textureManager.OrbitTexture,
                 _futureOrbit[i + 1],
                 null,
-                _color * DefaultFadeValue,
+                _color * alpha,
                 angle,
                 Vector2.Zero,
                 new Vector2(length, thickness),
@@ -369,8 +377,8 @@ public class Body(
 
     public void Draw(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, ShapeBatch shapeBatch)
     {
-        DrawTrail(spriteBatch, simulationSceneData, 2f);
-        DrawOrbit(spriteBatch, simulationSceneData, 2f);
+        DrawTrail(spriteBatch, simulationSceneData, DefaultTrailThickness);
+        DrawOrbit(spriteBatch, simulationSceneData, DefaultTrailThickness);
         DrawBody(spriteBatch);
         DrawGlow(spriteBatch, simulationSceneData);
         DrawSelector(simulationSceneData, shapeBatch);
