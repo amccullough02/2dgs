@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Numerics;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Color = Microsoft.Xna.Framework.Color;
 using Point = Microsoft.Xna.Framework.Point;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2dgs;
 
@@ -26,22 +29,14 @@ public class Body(
     private float _mass = mass;
     private Color _color = color;
     private readonly List<Vector2> _orbitTrail = [];
+    private readonly List<Vector2> _futureOrbit = [];
     private Vector2 _velocity = velocity;
     private Vector2 _position = position;
     private const float DefaultFadeValue = 0.4f;
+    private const float G = 6.6743e-11f;
+    private const int FutureOrbitCalculations = 1000;
     private const int DefaultTrailLength = 2000;
     private const int DefaultFontSize = 24;
-
-    private Vector2 CalculateGravity(Body otherBody)
-    {
-        var componentDistance = otherBody._position - _position;
-        var distance = componentDistance.Length();
-        var forceOfGravity = 6.6743e-11 * _mass * otherBody._mass / distance * distance;
-        var unitVector = componentDistance / distance;
-        var forceVector = unitVector * (float)forceOfGravity;
-        
-        return forceVector;
-    }
 
     public void OffsetPosition(SimulationSceneData simulationSceneData)
     {
@@ -130,10 +125,19 @@ public class Body(
         }
     }
 
-    public void Update(List<Body> bodies, int userTimeStep, GameTime gameTime)
+    private Vector2 CalculateGravity(Body otherBody)
     {
-        var timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        var componentDistance = otherBody._position - _position;
+        var distance = componentDistance.Length();
+        var forceOfGravity = G * _mass * otherBody._mass / distance * distance;
+        var unitVector = componentDistance / distance;
+        var forceVector = unitVector * forceOfGravity;
         
+        return forceVector;
+    }
+
+    private void UpdateOrbits(List<Body> bodies, float timeStep)
+    {
         var totalForce = Vector2.Zero;
 
         foreach (var body in bodies)
@@ -151,36 +155,112 @@ public class Body(
         _velocity += totalForce / _mass * timeStep;
         _position += _velocity * timeStep;
         _orbitTrail.Add(_position);
+    }
 
+    private void PruneTrails()
+    {
         if (_orbitTrail.Count >= DefaultTrailLength)
         {
             _orbitTrail.RemoveAt(0);
         }
     }
 
-    private void DrawOrbit(SpriteBatch spriteBatch, SimulationSceneData simSceneData, float thickness)
+    private void CalculateFutureOrbits(List<Body> bodies, float timeStep)
     {
-        if (_orbitTrail.Count > 1 && simSceneData.ToggleTrails)
+        var virtualBodies = bodies.Select(b => new
+        { Position = b._position, Mass = b._mass }).ToList();
+
+        var virtualVelocity = _velocity;
+        var virtualPosition = _position;
+
+        var thisBodyIndex = bodies.IndexOf(this);
+
+        for (var i = 0; i < FutureOrbitCalculations; i++)
         {
+            var totalForce = Vector2.Zero;
 
-            var trailLength = Math.Min(simSceneData.TrailLength, _orbitTrail.Count);
-            for (var i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
+            for (var j = 0; j < virtualBodies.Count; j++)
             {
-                var direction = _orbitTrail[i] - _orbitTrail[i + 1];
-                var length = direction.Length();
-                var angle = (float)Math.Atan2(direction.Y, direction.X);
-
-                spriteBatch.Draw(textureManager.OrbitTexture,
-                    _orbitTrail[i + 1],
-                    null,
-                    _color * DefaultFadeValue,
-                    angle,
-                    Vector2.Zero,
-                    new Vector2(length,
-                        thickness),
-                    SpriteEffects.None,
-                    0f);
+                if (j == thisBodyIndex) continue;
+                
+                var body = virtualBodies[j];
+                
+                var componentDistance = body.Position - virtualPosition;
+                var distance = componentDistance.Length();
+                var forceOfGravity = G * _mass * body.Mass / distance * distance;
+                var unitVector = componentDistance / distance;
+                var forceVector = unitVector * forceOfGravity;
+                
+                totalForce += forceVector;
             }
+        
+            virtualVelocity += totalForce / _mass * timeStep;
+            virtualPosition += virtualVelocity * timeStep;
+            _futureOrbit.Add(virtualPosition);   
+        }
+    }
+
+    private void PruneOrbits()
+    {
+        if (_futureOrbit.Count > FutureOrbitCalculations)
+        {
+            _futureOrbit.RemoveRange(0, FutureOrbitCalculations);
+        }
+    }
+    
+    public void Update(List<Body> bodies, int userTimeStep, GameTime gameTime)
+    {
+        var timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        
+        UpdateOrbits(bodies, timeStep);
+        CalculateFutureOrbits(bodies, timeStep);
+        PruneTrails();
+        PruneOrbits();
+    }
+
+    private void DrawTrail(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, float thickness)
+    {
+        if (_orbitTrail.Count <= 1 || !simulationSceneData.ToggleTrails) return;
+        
+        var trailLength = Math.Min(simulationSceneData.TrailLength, _orbitTrail.Count);
+        for (var i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
+        {
+            var direction = _orbitTrail[i] - _orbitTrail[i + 1];
+            var length = direction.Length();
+            var angle = (float)Math.Atan2(direction.Y, direction.X);
+
+            spriteBatch.Draw(textureManager.OrbitTexture,
+                _orbitTrail[i + 1],
+                null,
+                _color * DefaultFadeValue,
+                angle,
+                Vector2.Zero,
+                new Vector2(length,
+                    thickness),
+                SpriteEffects.None,
+                0f);
+        }
+    }
+
+    private void DrawOrbit(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, float thickness)
+    {
+        if (_futureOrbit.Count <= 1 || !simulationSceneData.ToggleOrbits) return;
+        
+        for (var i = 0; i < _futureOrbit.Count - 1; i++)
+        {
+            var direction = _futureOrbit[i] - _futureOrbit[i + 1];
+            var length = direction.Length();
+            var angle = (float)Math.Atan2(direction.Y, direction.X);
+            
+            spriteBatch.Draw(textureManager.OrbitTexture,
+                _futureOrbit[i + 1],
+                null,
+                _color * DefaultFadeValue,
+                angle,
+                Vector2.Zero,
+                new Vector2(length, thickness),
+                SpriteEffects.None,
+                0f);
         }
     }
 
@@ -289,6 +369,7 @@ public class Body(
 
     public void Draw(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, ShapeBatch shapeBatch)
     {
+        DrawTrail(spriteBatch, simulationSceneData, 2f);
         DrawOrbit(spriteBatch, simulationSceneData, 2f);
         DrawBody(spriteBatch);
         DrawGlow(spriteBatch, simulationSceneData);

@@ -255,6 +255,11 @@ public class SimulationScene : Scene
             _simulationSceneData.ToggleTrails = !_simulationSceneData.ToggleTrails;
         });
         
+        KeyManager.Shortcut([Keys.LeftControl, Keys.O], _keyboardState, _previousKeyboardState, () =>
+        {
+            _simulationSceneData.ToggleOrbits = !_simulationSceneData.ToggleOrbits;
+        });
+        
         KeyManager.Shortcut(_settingsSaveData.NamesShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationSceneData.ToggleNames = !_simulationSceneData.ToggleNames;

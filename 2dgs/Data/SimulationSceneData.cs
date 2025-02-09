@@ -7,6 +7,7 @@ public class SimulationSceneData
 {
     public bool Paused { get; set; }
     public bool ToggleTrails { get; set; } = true;
+    public bool ToggleOrbits { get; set; }
     public bool ToggleNames { get; set; } = true;
     public bool ToggleGlow { get; set; }
     public bool ToggleBodyGhost { get; set; }
