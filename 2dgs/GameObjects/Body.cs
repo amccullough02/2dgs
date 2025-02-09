@@ -165,7 +165,7 @@ public class Body(
         }
     }
 
-    private void CalculateFutureOrbits(List<Body> bodies, float timeStep)
+    private void CalculateFutureOrbits(List<Body> bodies)
     {
         var virtualBodies = bodies.Select(b => new
         { Position = b._position, Mass = b._mass }).ToList();
@@ -194,8 +194,8 @@ public class Body(
                 totalForce += forceVector;
             }
         
-            virtualVelocity += totalForce / _mass * timeStep;
-            virtualPosition += virtualVelocity * timeStep;
+            virtualVelocity += totalForce / _mass;
+            virtualPosition += virtualVelocity;
             _futureOrbit.Add(virtualPosition);   
         }
     }
@@ -213,7 +213,7 @@ public class Body(
         var timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
         
         UpdateOrbits(bodies, timeStep);
-        CalculateFutureOrbits(bodies, timeStep);
+        CalculateFutureOrbits(bodies);
         PruneTrails();
         PruneOrbits();
     }
