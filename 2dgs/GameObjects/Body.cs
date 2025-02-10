@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Numerics;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -281,7 +280,7 @@ public class Body(
             float cos = MathF.Cos(angle);
             float sin = MathF.Sin(angle);
             
-            return new Vector2(vector.X - cos - vector.Y * sin, vector.X + sin + vector.Y * cos);
+            return new Vector2(vector.X * cos - vector.Y * sin, vector.X * sin + vector.Y * cos);
         }
         
         var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
