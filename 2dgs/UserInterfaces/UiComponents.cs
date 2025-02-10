@@ -123,7 +123,7 @@ public static class UiComponents
           return new Label
           {
                Text = text,
-               Font = FontManager.LightText(UiConstants.DialogFontSize),
+               Font = FontManager.LightText(UiConstants.DefaultDialogFontSize),
                VerticalAlignment = VerticalAlignment.Center,
                Border = new SolidBrush(Color.White),
                BorderThickness = new Thickness(1),
@@ -156,7 +156,7 @@ public static class UiComponents
           return new Label
           {
                Text = text,
-               Font = FontManager.TitleText(UiConstants.TitleFontSize),
+               Font = FontManager.TitleText(UiConstants.DefaultTitleFontSize),
                HorizontalAlignment = HorizontalAlignment.Center,
                Padding = new Thickness(UiConstants.DefaultTitleMargin),
           };
@@ -168,7 +168,7 @@ public static class UiComponents
           {
                MinWidth = UiConstants.DefaultTextboxWidth,
                Text = text,
-               Font = FontManager.LightText(UiConstants.DialogFontSize),
+               Font = FontManager.LightText(UiConstants.DefaultDialogFontSize),
                Padding = new Thickness(4),
                BorderThickness = new Thickness(1),
                Border = new SolidBrush(Color.Gray)

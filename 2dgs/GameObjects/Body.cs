@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -32,12 +33,12 @@ public class Body(
     private readonly List<Vector2> _futureOrbit = [];
     private Vector2 _velocity = velocity;
     private Vector2 _position = position;
-    private const float DefaultFadeValue = 0.8f;
-    private const float DefaultTrailThickness = 2f;
+    private const float FadeValue = 0.8f;
+    private const float TrailThickness = 2f;
     private const float G = 6.6743e-11f;
-    private const int FutureOrbitCalculations = 1000;
-    private const int DefaultTrailLength = 2000;
-    private const int DefaultFontSize = 24;
+    private const int OrbitCalculations = 1000;
+    private const int MaximumTrailLength = 2000;
+    private const int FontSize = 24;
 
     public void OffsetPosition(SimulationSceneData simulationSceneData)
     {
@@ -160,7 +161,7 @@ public class Body(
 
     private void PruneTrails()
     {
-        if (_orbitTrail.Count >= DefaultTrailLength)
+        if (_orbitTrail.Count >= MaximumTrailLength)
         {
             _orbitTrail.RemoveAt(0);
         }
@@ -176,7 +177,7 @@ public class Body(
 
         var thisBodyIndex = bodies.IndexOf(this);
 
-        for (var i = 0; i < FutureOrbitCalculations; i++)
+        for (var i = 0; i < OrbitCalculations; i++)
         {
             var totalForce = Vector2.Zero;
 
@@ -203,9 +204,9 @@ public class Body(
 
     private void PruneOrbits()
     {
-        if (_futureOrbit.Count > FutureOrbitCalculations)
+        if (_futureOrbit.Count > OrbitCalculations)
         {
-            _futureOrbit.RemoveRange(0, FutureOrbitCalculations);
+            _futureOrbit.RemoveRange(0, OrbitCalculations);
         }
     }
     
@@ -230,10 +231,10 @@ public class Body(
         {
             var direction = _orbitTrail[i] - _orbitTrail[i + 1];
             var length = direction.Length();
-            var angle = (float)Math.Atan2(direction.Y, direction.X);
+            var angle = MathF.Atan2(direction.Y, direction.X);
 
             var fadeValue = (float)(i - startIndex) / (trailLength - 1);      
-            var alpha = DefaultFadeValue * fadeValue;
+            var alpha = FadeValue * fadeValue;
             
             spriteBatch.Draw(textureManager.BaseTexture,
                 _orbitTrail[i + 1],
@@ -256,10 +257,10 @@ public class Body(
         {
             var direction = _futureOrbit[i] - _futureOrbit[i + 1];
             var length = direction.Length();
-            var angle = (float)Math.Atan2(direction.Y, direction.X);
+            var angle = MathF.Atan2(direction.Y, direction.X);
             
             var fadeValue = 1.0f - (float)i / _futureOrbit.Count;
-            var alpha = DefaultFadeValue * fadeValue;
+            var alpha = FadeValue * fadeValue;
             
             spriteBatch.Draw(textureManager.BaseTexture,
                 _futureOrbit[i + 1],
@@ -273,22 +274,42 @@ public class Body(
         }
     }
 
-    private void DrawArrow(SpriteBatch spriteBatch, Color color, int length, int width)
+    private void DrawArrow(SpriteBatch spriteBatch, Color color, int length, int width, float rotation)
     {
+        Vector2 RotateVector(Vector2 vector, float angle)
+        {
+            float cos = MathF.Cos(angle);
+            float sin = MathF.Sin(angle);
+            
+            return new Vector2(vector.X - cos - vector.Y * sin, vector.X + sin + vector.Y * cos);
+        }
+        
+        var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
         var bodyCenter = new Vector2(_position.X - _displaySize / 2, _position.Y - _displaySize / 2);
-        var arrowStem = new Rectangle((int)bodyCenter.X, (int)bodyCenter.Y, width, (int)(length + _displaySize / 2));
-        var arrowTipLocation = new Vector2(arrowStem.X, arrowStem.Y + arrowStem.Height);
-        var rotation = (float)Math.Atan2(_velocity.Y, _velocity.X) - (float)Math.PI / 2;
-        var arrowRotation = rotation + (float)Math.PI;
-        spriteBatch.Draw(textureManager.BaseTexture, arrowStem, null, color, rotation, Vector2.Zero, SpriteEffects.None, 0f);
-        spriteBatch.Draw(textureManager.ArrowTip, arrowTipLocation, null, color, arrowRotation, Vector2.Zero, new Vector2(0.2f), SpriteEffects.None, 0f);
+        var arrowStemLength = (int)(length + trueDisplaySize / 2);
+        var arrowStem = new Rectangle((int)bodyCenter.X, (int)bodyCenter.Y, width, arrowStemLength);
+        var arrowTipSize = new Vector2(textureManager.ArrowTip.Width + 10, textureManager.ArrowTip.Height);
+        var arrowTipLocation = bodyCenter + RotateVector(new Vector2(0, arrowStemLength), rotation);
+        var arrowRotation = rotation + MathF.PI;
+        
+        spriteBatch.Draw(textureManager.BaseTexture, arrowStem, null, color, rotation, Vector2.Zero, SpriteEffects.None,
+            0f);
+        spriteBatch.Draw(textureManager.ArrowTip, arrowTipLocation, null, color, arrowRotation, arrowTipSize / 2,
+            new Vector2(0.3f), SpriteEffects.None, 0f);
     }
 
     private void DrawVelocityVectors(SimulationSceneData simulationSceneData, SpriteBatch spriteBatch)
     {
         if (!simulationSceneData.ToggleVectors) return;
         
-        DrawArrow(spriteBatch, Color.White, 150, 2);
+        var tangentVelocityAngle = MathF.Atan2(_velocity.Y, _velocity.X) - MathF.PI / 2;
+        DrawArrow(spriteBatch, Color.White, 100, 2, tangentVelocityAngle);
+        
+        var xComponentVelocityAngle = MathF.PI * 1.5f;
+        DrawArrow(spriteBatch, Color.Red, 80, 2, xComponentVelocityAngle);
+
+        var yComponentVelocityAngle = MathF.PI;
+        DrawArrow(spriteBatch, Color.Green, 80, 2, yComponentVelocityAngle);
     }
 
     private void DrawSelector(SimulationSceneData simSceneData, ShapeBatch shapeBatch)
@@ -352,13 +373,13 @@ public class Body(
     {
         if (!simSceneData.ToggleNames) return;
 
-        var textSize = FontManager.MediumText(DefaultFontSize).MeasureString(_name);
+        var textSize = FontManager.MediumText(FontSize).MeasureString(_name);
         var padding = 10f;
         
         switch (simSceneData.Position)
         {
             case Position.Right:
-                FontManager.MediumText(DefaultFontSize)
+                FontManager.MediumText(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -366,7 +387,7 @@ public class Body(
                         _color);
                 break;
             case Position.Left:
-                FontManager.MediumText(DefaultFontSize)
+                FontManager.MediumText(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -374,7 +395,7 @@ public class Body(
                         _color);
                 break;
             case Position.Bottom:
-                FontManager.MediumText(DefaultFontSize)
+                FontManager.MediumText(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -382,7 +403,7 @@ public class Body(
                         _color);
                 break;
             case Position.Top:
-                FontManager.MediumText(DefaultFontSize)
+                FontManager.MediumText(FontSize)
                     .DrawText(spriteBatch,
                         _name,
                         _position +
@@ -394,8 +415,8 @@ public class Body(
 
     public void Draw(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, ShapeBatch shapeBatch)
     {
-        DrawTrail(spriteBatch, simulationSceneData, DefaultTrailThickness);
-        DrawOrbit(spriteBatch, simulationSceneData, DefaultTrailThickness);
+        DrawTrail(spriteBatch, simulationSceneData, TrailThickness);
+        DrawOrbit(spriteBatch, simulationSceneData, TrailThickness);
         DrawVelocityVectors(simulationSceneData, spriteBatch);
         DrawBody(spriteBatch);
         DrawGlow(spriteBatch, simulationSceneData);
