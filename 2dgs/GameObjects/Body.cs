@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Color = Microsoft.Xna.Framework.Color;
 using Point = Microsoft.Xna.Framework.Point;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2dgs;
@@ -234,7 +235,7 @@ public class Body(
             var fadeValue = (float)(i - startIndex) / (trailLength - 1);      
             var alpha = DefaultFadeValue * fadeValue;
             
-            spriteBatch.Draw(textureManager.OrbitTexture,
+            spriteBatch.Draw(textureManager.BaseTexture,
                 _orbitTrail[i + 1],
                 null,
                 _color * alpha,
@@ -260,7 +261,7 @@ public class Body(
             var fadeValue = 1.0f - (float)i / _futureOrbit.Count;
             var alpha = DefaultFadeValue * fadeValue;
             
-            spriteBatch.Draw(textureManager.OrbitTexture,
+            spriteBatch.Draw(textureManager.BaseTexture,
                 _futureOrbit[i + 1],
                 null,
                 _color * alpha,
@@ -272,43 +273,59 @@ public class Body(
         }
     }
 
+    private void DrawArrow(SpriteBatch spriteBatch, Color color, int length, int width)
+    {
+        var bodyCenter = new Vector2(_position.X - _displaySize / 2, _position.Y - _displaySize / 2);
+        var arrowStem = new Rectangle((int)bodyCenter.X, (int)bodyCenter.Y, width, (int)(length + _displaySize / 2));
+        var arrowTipLocation = new Vector2(arrowStem.X, arrowStem.Y + arrowStem.Height);
+        var rotation = (float)Math.Atan2(_velocity.Y, _velocity.X) - (float)Math.PI / 2;
+        var arrowRotation = rotation + (float)Math.PI;
+        spriteBatch.Draw(textureManager.BaseTexture, arrowStem, null, color, rotation, Vector2.Zero, SpriteEffects.None, 0f);
+        spriteBatch.Draw(textureManager.ArrowTip, arrowTipLocation, null, color, arrowRotation, Vector2.Zero, new Vector2(0.2f), SpriteEffects.None, 0f);
+    }
+
+    private void DrawVelocityVectors(SimulationSceneData simulationSceneData, SpriteBatch spriteBatch)
+    {
+        if (!simulationSceneData.ToggleVectors) return;
+        
+        DrawArrow(spriteBatch, Color.White, 150, 2);
+    }
+
     private void DrawSelector(SimulationSceneData simSceneData, ShapeBatch shapeBatch)
     {
-        if (Selected && simSceneData.EditMode)
-        {
-            var displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
-            var selectorOffset = displayRadius / 5;
-            const float miniMumOffset = 8.0f;
+        if (!Selected || !simSceneData.EditMode) return;
+        
+        var displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
+        var selectorOffset = displayRadius / 5;
+        const float miniMumOffset = 8.0f;
             
-            if (selectorOffset < miniMumOffset) selectorOffset = miniMumOffset;
+        if (selectorOffset < miniMumOffset) selectorOffset = miniMumOffset;
             
-            var radius = displayRadius + selectorOffset;
+        var radius = displayRadius + selectorOffset;
             
-            shapeBatch.Begin();
-            shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 3f);
-            shapeBatch.End();
-        }
+        shapeBatch.Begin();
+        shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 3f);
+        shapeBatch.End();
     }
 
     private void DrawGlow(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData)
     {
-        if (simulationSceneData.ToggleGlow)
+        if (!simulationSceneData.ToggleGlow) return;
+        
+        for (var i = 0; i < 100; i++)
         {
-            for (var i = 0; i < 100; i++)
-            {
-                var glowOpacity = 0.07f - (i * 0.002f);
-                var glowSize = 1.0f + (i * 0.02f);
+            var glowOpacity = 0.07f - (i * 0.002f);
+            var glowSize = 1.0f + (i * 0.02f);
             
-                spriteBatch.Draw(textureManager.BodyTexture,
-                    _position,
-                    null,
-                    _color * glowOpacity,
-                    0f,
-                    new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-                    new Vector2(_displaySize * glowSize, _displaySize * glowSize),
-                    SpriteEffects.None,
-                    0f);
-            }   
+            spriteBatch.Draw(textureManager.BodyTexture,
+                _position,
+                null,
+                _color * glowOpacity,
+                0f,
+                new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
+                new Vector2(_displaySize * glowSize, _displaySize * glowSize),
+                SpriteEffects.None,
+                0f);
         }
     }
 
@@ -379,6 +396,7 @@ public class Body(
     {
         DrawTrail(spriteBatch, simulationSceneData, DefaultTrailThickness);
         DrawOrbit(spriteBatch, simulationSceneData, DefaultTrailThickness);
+        DrawVelocityVectors(simulationSceneData, spriteBatch);
         DrawBody(spriteBatch);
         DrawGlow(spriteBatch, simulationSceneData);
         DrawSelector(simulationSceneData, shapeBatch);

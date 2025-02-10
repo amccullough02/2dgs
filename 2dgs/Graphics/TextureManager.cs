@@ -13,7 +13,8 @@ public class TextureManager
     public Texture2D Gradient { get; private set; }
     public Texture2D AppTitle  { get; private set; }
     public Texture2D BodyTexture { get; private set; }
-    public Texture2D OrbitTexture { get; }
+    public Texture2D ArrowTip { get; private set; }
+    public Texture2D BaseTexture { get; }
 
     public TextureManager(ContentManager content, GraphicsDevice graphicsDevice)
     {
@@ -24,8 +25,9 @@ public class TextureManager
         Gradient = content.Load<Texture2D>("images/gradient");
         AppTitle = content.Load<Texture2D>("images/title");
         BodyTexture = content.Load<Texture2D>("images/blank_circle");
-        OrbitTexture = new Texture2D(graphicsDevice, 1, 1);
-        OrbitTexture.SetData([Color.White]);
+        ArrowTip = content.Load<Texture2D>("images/arrow_tip");
+        BaseTexture = new Texture2D(graphicsDevice, 1, 1);
+        BaseTexture.SetData([Color.White]);
     }
     
     public Vector2 PositionAtCenter(float screenWidth, float screenHeight, Texture2D texture)
