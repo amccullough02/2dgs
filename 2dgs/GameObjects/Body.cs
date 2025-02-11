@@ -280,7 +280,7 @@ public class Body(
             var cos = MathF.Cos(angle);
             var sin = MathF.Sin(angle);
             
-            return new Vector2(vector.X - cos - vector.Y * sin, vector.X + sin + vector.Y * cos);
+            return new Vector2(vector.X * cos - vector.Y * sin, vector.X * sin + vector.Y * cos);
         }
         
         var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
