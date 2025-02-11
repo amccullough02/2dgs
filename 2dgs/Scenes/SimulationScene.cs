@@ -291,19 +291,21 @@ public class SimulationScene : Scene
 
     private void Simulate(GameTime gameTime, MouseState mouseState)
     {
-        if (_simulationSceneData.Paused) return;
-        
+        #region Should function regardless of pause state.
         _ghostBody.Update(_simulationSceneData);
+        ResetSimulation(_game);
+        SaveSimulation();
+        CreateBody(mouseState);
+        #endregion
+        
+        if (_simulationSceneData.Paused) return;
         
         foreach (var body in _bodies)
         {
             body.Update(_bodies, _simulationSceneData.TimeStep, gameTime);
         }
         
-        CreateBody(mouseState);
         RemoveDestroyedBodies();
-        ResetSimulation(_game);
-        SaveSimulation();
     }
 
     private void EditMode(MouseState mouseState)
