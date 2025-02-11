@@ -274,7 +274,7 @@ public class SimulationMenuUi
         loadButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation...");
-            game.SceneManager.ChangeScene(new SimulationScene(game, file));
+            game.SceneManager.PushScene(new FadeInScene(game, new SimulationScene(game, file)));
         };
 
         renameButton.Click += (_, _) =>
