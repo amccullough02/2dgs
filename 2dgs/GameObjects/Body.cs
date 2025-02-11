@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Numerics;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -274,27 +273,37 @@ public class Body(
         }
     }
 
-    private void DrawArrow(SpriteBatch spriteBatch, Color color, int length, int width, float rotation)
+    private void DrawArrow(SpriteBatch spriteBatch, Color color, float length, int width, float rotation)
     {
         Vector2 RotateVector(Vector2 vector, float angle)
         {
-            float cos = MathF.Cos(angle);
-            float sin = MathF.Sin(angle);
+            var cos = MathF.Cos(angle);
+            var sin = MathF.Sin(angle);
             
             return new Vector2(vector.X - cos - vector.Y * sin, vector.X + sin + vector.Y * cos);
         }
         
         var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
         var bodyCenter = new Vector2(_position.X - _displaySize / 2, _position.Y - _displaySize / 2);
-        var arrowStemLength = (int)(length + trueDisplaySize / 2);
-        var arrowStem = new Rectangle((int)bodyCenter.X, (int)bodyCenter.Y, width, arrowStemLength);
+        
+        var arrowStemLength = (Math.Abs(length) + trueDisplaySize / 2);
+        var arrowStem = new Rectangle((int)bodyCenter.X, (int)bodyCenter.Y, width, (int)arrowStemLength);
+        var arrowStemRotation = rotation;
+        
         var arrowTipSize = new Vector2(textureManager.ArrowTip.Width + 10, textureManager.ArrowTip.Height);
         var arrowTipLocation = bodyCenter + RotateVector(new Vector2(0, arrowStemLength), rotation);
-        var arrowRotation = rotation + MathF.PI;
+        var arrowTipRotation = rotation + MathF.PI;
+
+        if (length < 0)
+        {
+            arrowStemRotation = rotation + MathF.PI;
+            arrowTipLocation = bodyCenter + RotateVector(new Vector2(0, arrowStemLength), arrowStemRotation);
+            arrowTipRotation = rotation;
+        }
         
-        spriteBatch.Draw(textureManager.BaseTexture, arrowStem, null, color, rotation, Vector2.Zero, SpriteEffects.None,
+        spriteBatch.Draw(textureManager.BaseTexture, arrowStem, null, color, arrowStemRotation, Vector2.Zero, SpriteEffects.None,
             0f);
-        spriteBatch.Draw(textureManager.ArrowTip, arrowTipLocation, null, color, arrowRotation, arrowTipSize / 2,
+        spriteBatch.Draw(textureManager.ArrowTip, arrowTipLocation, null, color, arrowTipRotation, arrowTipSize / 2,
             new Vector2(0.3f), SpriteEffects.None, 0f);
     }
 
@@ -306,10 +315,12 @@ public class Body(
         DrawArrow(spriteBatch, Color.White, 100, 2, tangentVelocityAngle);
         
         var xComponentVelocityAngle = MathF.PI * 1.5f;
-        DrawArrow(spriteBatch, Color.Red, 80, 2, xComponentVelocityAngle);
+        var xComponentArrowLength = _velocity.X * 15;
+        DrawArrow(spriteBatch, Color.Red, xComponentArrowLength, 2, xComponentVelocityAngle);
 
-        var yComponentVelocityAngle = MathF.PI;
-        DrawArrow(spriteBatch, Color.Green, 80, 2, yComponentVelocityAngle);
+        var yComponentVelocityAngle = 0f;
+        var yComponentArrowLength = _velocity.Y * 15;
+        DrawArrow(spriteBatch, Color.Green, yComponentArrowLength, 2, yComponentVelocityAngle);
     }
 
     private void DrawSelector(SimulationSceneData simSceneData, ShapeBatch shapeBatch)
