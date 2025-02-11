@@ -70,13 +70,16 @@ public class Body(
         };
     }
 
-    public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize)
+    public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize, List<Body> bodies)
     {
         _name = name;
         _position = position;
         _velocity = velocity;
         _mass = mass;
         _displaySize = displaySize;
+        
+        CalculateFutureOrbits(bodies);
+        PruneOrbits();
     }
 
     public void SetColor(Color color)

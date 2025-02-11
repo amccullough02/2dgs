@@ -145,7 +145,8 @@ public class SimulationScene : Scene
                     _simulationSceneData.EditBodyData.Position + _simulationSceneData.ScreenDimensions / 2,
                     _simulationSceneData.EditBodyData.Velocity,
                     _simulationSceneData.EditBodyData.Mass,
-                    _simulationSceneData.EditBodyData.DisplaySize);
+                    _simulationSceneData.EditBodyData.DisplaySize,
+                    _bodies);
         }
         _simulationSceneData.EditSelectedBody = false;
     }
