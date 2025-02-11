@@ -46,7 +46,8 @@ public class Game : Microsoft.Xna.Framework.Game
         Window.Title = "2DGS - Alpha";
         _test.RunAllTests(Graphics, Window.Title);
         SceneManager = new SceneManager();
-        SceneManager.PushScene(new SimulationScene(this, "../../../savedata/lessons/galilean_system.json"));
+        SceneManager.PushScene(new MainMenuScene(this));
+        // SceneManager.PushScene(new SimulationScene(this, "../../../savedata/lessons/galilean_system.json"));
         _musicPlayer.Initialize();
         base.Initialize();
     }

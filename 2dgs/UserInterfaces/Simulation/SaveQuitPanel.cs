@@ -18,7 +18,7 @@ public static class SaveQuitPanel
         var returnButton = UiComponents.Button("Exit Simulation");
         returnButton.Click += (_, _) =>
         {
-            game.SceneManager.ChangeScene(new SimulationMenuScene(game));
+            game.SceneManager.PushScene(new FadeInScene(game, new SimulationMenuScene(game)));
         };
         
         var saveDialog = NameSimulationDialog(simulationSceneData);

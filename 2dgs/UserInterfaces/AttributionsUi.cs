@@ -62,7 +62,7 @@ public class AttributionsUi
         var button = UiComponents.Button("Return to Main Menu");
         button.Click += (_, _) =>
         {
-            game.SceneManager.ChangeScene(new MainMenuScene(game));
+            game.SceneManager.PushScene(new FadeInScene(game, new MainMenuScene(game)));
         };
 
         var verticalStackPanel = new VerticalStackPanel

@@ -127,7 +127,7 @@ public class SimulationMenuUi
         };
         
         var mainMenuButton = UiComponents.Button("Return to Main Menu");
-        mainMenuButton.Click += (_, _) => { game.SceneManager.ChangeScene(new MainMenuScene(game)); };
+        mainMenuButton.Click += (_, _) => { game.SceneManager.PushScene(new FadeInScene(game, new MainMenuScene(game))); };
 
         RichTextDefaults.FontResolver = p =>
         {

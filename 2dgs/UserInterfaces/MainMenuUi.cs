@@ -35,28 +35,28 @@ public class MainMenuUi
         newSimulationButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Creating a blank simulation...");
-            game.SceneManager.ChangeScene(new SimulationScene(game, null));
+            game.SceneManager.PushScene(new FadeInScene(game, new SimulationScene(game, null)));
         };
 
         var simulationMenuButton = UiComponents.MenuButton("Browse Simulations", width: UiConstants.DefaultMenuButtonWidth);
         simulationMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation menu...");
-            game.SceneManager.ChangeScene(new SimulationMenuScene(game));
+            game.SceneManager.PushScene(new FadeInScene(game, new SimulationMenuScene(game)));
         };
         
         var attributionsButton = UiComponents.MenuButton("Attributions", width: UiConstants.DefaultMenuButtonWidth);
         attributionsButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to attributions menu...");
-            game.SceneManager.ChangeScene(new AttributionsScene(game));
+            game.SceneManager.PushScene(new FadeInScene(game, new AttributionsScene(game)));
         };
         
         var settingsMenuButton = UiComponents.MenuButton("Settings", width: UiConstants.DefaultMenuButtonWidth);
         settingsMenuButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to settings menu...");
-            game.SceneManager.ChangeScene(new SettingsScene(game));
+            game.SceneManager.PushScene(new FadeInScene(game, new SettingsScene(game)));
         };
         
         var quitButton = UiComponents.MenuButton("Quit", width: UiConstants.DefaultMenuButtonWidth);

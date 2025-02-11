@@ -31,6 +31,11 @@ public class SceneManager
         _scenes.Push(scene);
     }
 
+    public void ClearScenes()
+    {
+        _scenes.Clear();
+    }
+
     public void Update(GameTime gameTime)
     {
         if (_scenes.Count > 0)
