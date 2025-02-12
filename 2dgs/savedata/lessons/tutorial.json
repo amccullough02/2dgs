@@ -1,6 +1,7 @@
 {
   "Title": "Tutorial",
   "Description": "This simulation is used for testing!",
+  "ThumbnailPath": "../../../savedata/thumbnails/default.png",
   "IsLesson": true,
   "Bodies": [
     {

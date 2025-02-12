@@ -1,6 +1,7 @@
 {
   "Title": "Galilean System",
   "Description": "This simulation is all about the Galilean system!",
+  "ThumbnailPath": "../../../savedata/thumbnails/galilean_system.png",
   "IsLesson": true,
   "Bodies": [
     {

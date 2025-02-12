@@ -100,6 +100,7 @@ public class SimulationScene : Scene
         {
             Title = _simulationSaveData.Title,
             Description = _simulationSaveData.Description,
+            ThumbnailPath = _simulationSaveData.ThumbnailPath,
             IsLesson = _simulationSaveData.IsLesson,
             LessonPages = _simulationSaveData.LessonPages
         };

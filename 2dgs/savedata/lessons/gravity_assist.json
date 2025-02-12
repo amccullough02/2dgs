@@ -1,6 +1,7 @@
 {
   "Title": "Gravity Assist",
   "Description": "This simulation is all about the gravity assist technique!",
+  "ThumbnailPath": "../../../savedata/thumbnails/gravity_assist.png",
   "IsLesson": true,
   "Bodies": [
     {

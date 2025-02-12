@@ -4,9 +4,11 @@ using System.Linq;
 using FontStashSharp;
 using FontStashSharp.RichText;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Myra;
 using Myra.Graphics2D;
 using Myra.Graphics2D.Brushes;
+using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using Myra.Graphics2D.UI.File;
 
@@ -213,7 +215,7 @@ public class SimulationMenuUi
         return deleteButtonDialog;
     }
     
-    private HorizontalStackPanel CreateFilePanel(string file, string path, string description, Game game)
+    private HorizontalStackPanel CreateFilePanel(Game game, string file, string path, string description, string thumbnail)
     {
         var fileName = Path.GetFileNameWithoutExtension(file);
         
@@ -229,18 +231,26 @@ public class SimulationMenuUi
             Width = 128
         };
 
-        var thumbnailPlaceholderLabel = UiComponents.LightLabel("Fancy Thumbnail!");
-        thumbnailPlaceholderLabel.HorizontalAlignment = HorizontalAlignment.Center;
-        thumbnailPlaceholderLabel.VerticalAlignment = VerticalAlignment.Center;
+        Image LoadThumbnailImage(GraphicsDevice graphicsDevice, string thumbnailPath)
+        {
+            using var stream = File.OpenRead(thumbnailPath);
+            var texture = Texture2D.FromStream(graphicsDevice, stream);
+            var image = new Image
+            {
+                Renderable = new TextureRegion(texture), 
+                BorderThickness = new Thickness(1), 
+                Border = new SolidBrush(Color.Gray)
+            };
+            return image;
+        }
         
-        var thumbnailPlaceholder = new Panel
+        var thumbnailContainer = new Panel
         {
             Width = 192,
             Height = 128,
-            Background = new SolidBrush(Color.Black),
-            Padding = new Thickness(10),
         };
-        thumbnailPlaceholder.Widgets.Add(thumbnailPlaceholderLabel);
+        
+        thumbnailContainer.Widgets.Add(LoadThumbnailImage(game.GraphicsDevice, thumbnail));
         
         var thumbnailPanel = new VerticalStackPanel
         {
@@ -255,7 +265,7 @@ public class SimulationMenuUi
         
         thumbnailPanel.Widgets.Add(simulationLabel);
         thumbnailPanel.Widgets.Add(line);
-        thumbnailPanel.Widgets.Add(thumbnailPlaceholder);
+        thumbnailPanel.Widgets.Add(thumbnailContainer);
         
         var descriptionTextBox = UiComponents.ReadOnlyTextBox(description);
         descriptionTextBox.Width = 790;
@@ -314,6 +324,13 @@ public class SimulationMenuUi
         var data = game.SaveSystem.LoadSimulation(path);
         return string.IsNullOrEmpty(data.Description) ? "No description found." : data.Description;
     }
+
+    private string GetSimulationThumbnailPath(Game game, string path)
+    {
+        const string defaultPath = "../../../savedata/thumbnails/default.png";
+        var data = game.SaveSystem.LoadSimulation(path);
+        return string.IsNullOrEmpty(data.ThumbnailPath) ? defaultPath : data.ThumbnailPath;
+    }
     
     private void PopulateList(ListView listView, string path, Game game)
     {
@@ -322,7 +339,8 @@ public class SimulationMenuUi
             var files = Directory.GetFiles(path, "*.json");
             foreach (var file in files)
             {
-                listView.Widgets.Add(CreateFilePanel(file, path, GetSimulationDescription(game, file), game));
+                listView.Widgets.Add(CreateFilePanel(game, file, path, GetSimulationDescription(game, file),
+                    GetSimulationThumbnailPath(game, file)));
             }
         }
         else
