@@ -34,7 +34,7 @@ public class Body(
     private Vector2 _position = position;
     private const float FadeValue = 0.8f;
     private const float TrailThickness = 2f;
-    private const float G = 6.6743e-11f;
+    private const float G = 6.6743e-6f;
     private const int OrbitCalculations = 1000;
     private const int MaximumTrailLength = 2000;
     private const int FontSize = 24;
@@ -133,7 +133,8 @@ public class Body(
     {
         var componentDistance = otherBody._position - _position;
         var distance = componentDistance.Length();
-        var forceOfGravity = G * _mass * otherBody._mass / distance * distance;
+        var forceOfGravity = G * _mass * otherBody._mass / (distance * distance);
+        Console.WriteLine(forceOfGravity);
         var unitVector = componentDistance / distance;
         var forceVector = unitVector * forceOfGravity;
         
@@ -191,7 +192,7 @@ public class Body(
                 
                 var componentDistance = body.Position - virtualPosition;
                 var distance = componentDistance.Length();
-                var forceOfGravity = G * _mass * body.Mass / distance * distance;
+                var forceOfGravity = G * _mass * body.Mass / (distance * distance);
                 var unitVector = componentDistance / distance;
                 var forceVector = unitVector * forceOfGravity;
                 
