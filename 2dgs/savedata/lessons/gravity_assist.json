@@ -1,5 +1,6 @@
 {
   "Title": "Gravity Assist",
+  "Description": "This simulation is all about the gravity assist technique!",
   "IsLesson": true,
   "Bodies": [
     {

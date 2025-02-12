@@ -99,6 +99,7 @@ public class SimulationScene : Scene
         var dataToSave = new SimulationSaveData
         {
             Title = _simulationSaveData.Title,
+            Description = _simulationSaveData.Description,
             IsLesson = _simulationSaveData.IsLesson,
             LessonPages = _simulationSaveData.LessonPages
         };

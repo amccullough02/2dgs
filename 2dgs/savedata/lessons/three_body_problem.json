@@ -1,5 +1,6 @@
 {
   "Title": "Three Body Problem",
+  "Description": "This simulation is all about the Three Body Problem!",
   "IsLesson": true,
   "Bodies": [
     {

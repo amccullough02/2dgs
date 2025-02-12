@@ -17,11 +17,6 @@ public class SimulationMenuUi
     private readonly Desktop _desktop;
     private readonly FileManager _fileManager;
 
-    private static readonly string DescriptionPlaceholder =
-        "Description: In physics, specifically classical mechanics, the three-body problem is to take the initial positions and " +
-        "velocities (or momenta) of three point masses that orbit each other in space and calculate their subsequent " +
-        "trajectories using Newton's laws of motion and Newton's law of universal gravitation.";
-
     public SimulationMenuUi(Game game)
     {
         MyraEnvironment.Game = game;
@@ -218,7 +213,7 @@ public class SimulationMenuUi
         return deleteButtonDialog;
     }
     
-    private HorizontalStackPanel CreateFilePanel(string file, string path, Game game)
+    private HorizontalStackPanel CreateFilePanel(string file, string path, string description, Game game)
     {
         var fileName = Path.GetFileNameWithoutExtension(file);
         
@@ -262,7 +257,7 @@ public class SimulationMenuUi
         thumbnailPanel.Widgets.Add(line);
         thumbnailPanel.Widgets.Add(thumbnailPlaceholder);
         
-        var descriptionTextBox = UiComponents.ReadOnlyTextBox(DescriptionPlaceholder);
+        var descriptionTextBox = UiComponents.ReadOnlyTextBox(description);
         descriptionTextBox.Width = 790;
         
         var loadButton = UiComponents.Button("Load", true, 200, 50);
@@ -313,6 +308,12 @@ public class SimulationMenuUi
         
         return fileStackPanel;
     }
+
+    private string GetSimulationDescription(Game game, string path)
+    {
+        var data = game.SaveSystem.LoadSimulation(path);
+        return string.IsNullOrEmpty(data.Description) ? "No description found." : data.Description;
+    }
     
     private void PopulateList(ListView listView, string path, Game game)
     {
@@ -321,7 +322,7 @@ public class SimulationMenuUi
             var files = Directory.GetFiles(path, "*.json");
             foreach (var file in files)
             {
-                listView.Widgets.Add(CreateFilePanel(file, path, game));
+                listView.Widgets.Add(CreateFilePanel(file, path, GetSimulationDescription(game, file), game));
             }
         }
         else
