@@ -5,74 +5,28 @@
   "IsLesson": true,
   "Bodies": [
     {
-      "Name": "Jupiter",
-      "Position": {
-        "X": 1.0402222,
-        "Y": 3.6628418
-      },
-      "Velocity": {
-        "X": -0.01181414,
-        "Y": 0.017119007
-      },
-      "Mass": 1E+09,
-      "DisplaySize": 0.15,
-      "Color": "#4BD961"
+      "Name": "Body 1",
+      "Position": { "X": 436.5, "Y": -109.39 },
+      "Velocity": { "X": 0.466203685, "Y": 0.43236573 },
+      "Mass": 60000000.0,
+      "DisplaySize": 0.025,
+      "Color": "#ff6666"
     },
     {
-      "Name": "Io",
-      "Position": {
-        "X": -66.0719,
-        "Y": -222.19919
-      },
-      "Velocity": {
-        "X": 3.8686671,
-        "Y": -0.20446207
-      },
-      "Mass": 2500000.0,
-      "DisplaySize": 0.02,
-      "Color": "#FFCC01"
+      "Name": "Body 2",
+      "Position": { "X": -436.5, "Y": 109.39 },
+      "Velocity": { "X": 0.466203685, "Y": 0.43236573 },
+      "Mass": 60000000.0,
+      "DisplaySize": 0.025,
+      "Color": "#66ff66"
     },
     {
-      "Name": "Europa",
-      "Position": {
-        "X": 113.20581,
-        "Y": -275.3124
-      },
-      "Velocity": {
-        "X": 4.6712394,
-        "Y": 1.7356172
-      },
-      "Mass": 2000000.0,
-      "DisplaySize": 0.02,
-      "Color": "#D62F93"
-    },
-    {
-      "Name": "Ganymede",
-      "Position": {
-        "X": -43.82837,
-        "Y": 393.43707
-      },
-      "Velocity": {
-        "X": -3.955744,
-        "Y": 0.3111959
-      },
-      "Mass": 3500000.0,
-      "DisplaySize": 0.035,
-      "Color": "#5AC5FA"
-    },
-    {
-      "Name": "Callisto",
-      "Position": {
-        "X": -231.8974,
-        "Y": -220.71878
-      },
-      "Velocity": {
-        "X": 2.216014,
-        "Y": -5.743409
-      },
-      "Mass": 3000000.0,
-      "DisplaySize": 0.03,
-      "Color": "#5656D6"
+      "Name": "Body 3",
+      "Position": { "X": 0, "Y": 0 },
+      "Velocity": { "X": -0.93240737, "Y": -0.86473146 },
+      "Mass": 60000000.0,
+      "DisplaySize": 0.025,
+      "Color": "#6666ff"
     }
   ],
   "LessonPages": [
