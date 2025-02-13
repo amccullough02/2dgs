@@ -5,74 +5,32 @@
   "IsLesson": true,
   "Bodies": [
     {
-      "Name": "Jupiter",
+      "Name": "Venus",
       "Position": {
-        "X": 1.0402222,
-        "Y": 3.6628418
+        "X": 0,
+        "Y": 0
       },
       "Velocity": {
-        "X": -0.01181414,
-        "Y": 0.017119007
+        "X": 0,
+        "Y": 0
       },
       "Mass": 1E+09,
       "DisplaySize": 0.15,
-      "Color": "#4BD961"
+      "Color": "#a69565"
     },
     {
-      "Name": "Io",
+      "Name": "Cassini",
       "Position": {
-        "X": -66.0719,
-        "Y": -222.19919
+        "X": -800,
+        "Y": -170
       },
       "Velocity": {
-        "X": 3.8686671,
-        "Y": -0.20446207
+        "X": 10,
+        "Y": 0
       },
-      "Mass": 2500000.0,
-      "DisplaySize": 0.02,
-      "Color": "#FFCC01"
-    },
-    {
-      "Name": "Europa",
-      "Position": {
-        "X": 113.20581,
-        "Y": -275.3124
-      },
-      "Velocity": {
-        "X": 4.6712394,
-        "Y": 1.7356172
-      },
-      "Mass": 2000000.0,
-      "DisplaySize": 0.02,
-      "Color": "#D62F93"
-    },
-    {
-      "Name": "Ganymede",
-      "Position": {
-        "X": -43.82837,
-        "Y": 393.43707
-      },
-      "Velocity": {
-        "X": -3.955744,
-        "Y": 0.3111959
-      },
-      "Mass": 3500000.0,
-      "DisplaySize": 0.035,
-      "Color": "#5AC5FA"
-    },
-    {
-      "Name": "Callisto",
-      "Position": {
-        "X": -231.8974,
-        "Y": -220.71878
-      },
-      "Velocity": {
-        "X": 2.216014,
-        "Y": -5.743409
-      },
-      "Mass": 3000000.0,
-      "DisplaySize": 0.03,
-      "Color": "#5656D6"
+      "Mass": 25.0,
+      "DisplaySize": 0.005,
+      "Color": "#a432a8"
     }
   ],
   "LessonPages": [
