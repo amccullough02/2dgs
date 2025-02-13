@@ -7,72 +7,72 @@
     {
       "Name": "Jupiter",
       "Position": {
-        "X": 0.3470459,
-        "Y": 4.331604
+        "X": 0,
+        "Y": 0
       },
       "Velocity": {
-        "X": 0.0055212816,
-        "Y": 0.0022522272
+        "X": 0,
+        "Y": 0
       },
       "Mass": 1E+09,
-      "DisplaySize": 0.15,
-      "Color": "#4BD961"
+      "DisplaySize": 0.06,
+      "Color": "#e0ae6f"
     },
     {
       "Name": "Io",
       "Position": {
-        "X": -161.8703,
-        "Y": -168.09827
+        "X": 180,
+        "Y": 0
       },
       "Velocity": {
-        "X": 2.1162121,
-        "Y": -3.2506027
+        "X": 0,
+        "Y": 6.10
       },
-      "Mass": 2500000.0,
-      "DisplaySize": 0.02,
-      "Color": "#FFCC01"
+      "Mass": 250000.0,
+      "DisplaySize": 0.008,
+      "Color": "#fff761"
     },
     {
       "Name": "Europa",
       "Position": {
-        "X": -307.44617,
-        "Y": -126.49603
+        "X": -288,
+        "Y": 0
       },
       "Velocity": {
-        "X": 1.2801253,
-        "Y": -4.3267684
+        "X": 0,
+        "Y": -4.81
       },
-      "Mass": 2000000.0,
-      "DisplaySize": 0.02,
-      "Color": "#D62F93"
+      "Mass": 200000.0,
+      "DisplaySize": 0.006,
+      "Color": "#c4a27c"
     },
     {
       "Name": "Ganymede",
       "Position": {
-        "X": 353.9663,
-        "Y": -112.05841
+        "X": 459,
+        "Y": 0
       },
       "Velocity": {
-        "X": 0.14068776,
-        "Y": 4.267877
+        "X": 0,
+        "Y": 3.81
       },
-      "Mass": 3500000.0,
-      "DisplaySize": 0.035,
-      "Color": "#5AC5FA"
+      "Mass": 350000.0,
+      "DisplaySize": 0.015,
+      "Color": "#8b7355"
     },
     {
       "Name": "Callisto",
       "Position": {
-        "X": -104.82898,
-        "Y": 427.89624
+        "X": -808,
+        "Y": 0
       },
       "Velocity": {
-        "X": -4.621185,
-        "Y": 1.1762041
+        "X": 0,
+        "Y": -2.87
       },
-      "Mass": 3000000.0,
-      "DisplaySize": 0.03,
-      "Color": "#5656D6"
+      "Mass": 300000.0,
+      "DisplaySize": 0.013,
+      "Color": "#4a4033"
     }
   ],
   "LessonPages": [

@@ -134,7 +134,6 @@ public class Body(
         var componentDistance = otherBody._position - _position;
         var distance = componentDistance.Length();
         var forceOfGravity = G * _mass * otherBody._mass / (distance * distance);
-        Console.WriteLine(forceOfGravity);
         var unitVector = componentDistance / distance;
         var forceVector = unitVector * forceOfGravity;
         
