@@ -10,16 +10,13 @@ public class SettingsScene : Scene
     private readonly TextureManager _textureManager;
     private KeyboardState _keyboardState;
     private KeyboardState _previousKeyboardState;
-    private readonly float _screenWidth;
-    private readonly float _screenHeight;
     private readonly SettingsMenuUi _settingsMenuUi;
     
     public SettingsScene(Game game)
     {
         _settingsSceneData = new SettingsSceneData();
+        _settingsSceneData.CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, game.Graphics.PreferredBackBufferHeight);
         SetupDictionaries(_settingsSceneData);
-        _screenHeight = game.GraphicsDevice.Viewport.Height;
-        _screenWidth = game.GraphicsDevice.Viewport.Width;
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _settingsMenuUi = new SettingsMenuUi(game, _settingsSceneData);
     }
@@ -79,11 +76,14 @@ public class SettingsScene : Scene
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        var screenWidth = _settingsSceneData.CurrentResolution.X;
+        var screenHeight = _settingsSceneData.CurrentResolution.Y;
+        
         spriteBatch.Begin();
-        spriteBatch.Draw(_textureManager.SettingsBackground, _textureManager.PositionAtCenter(_screenWidth, _screenHeight, 
+        spriteBatch.Draw(_textureManager.SettingsBackground, _textureManager.PositionAtCenter(screenWidth, screenHeight, 
             _textureManager.SettingsBackground), Color.White);
         spriteBatch.Draw(_textureManager.Gradient,
-            _textureManager.PositionAtCenter(_screenWidth, _screenHeight, _textureManager.Gradient), Color.White);
+            _textureManager.PositionAtCenter(screenWidth, screenHeight, _textureManager.Gradient), Color.White);
         spriteBatch.End();
         _settingsMenuUi.Draw();
     }

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace _2dgs;
 
 public class SettingsSceneData
 {
+    public Vector2 CurrentResolution { get; set; }
     public bool Remapping { get; set; }
     public bool ClearShortcut { get; set; }
     public bool ResetShortcuts { get; set; }

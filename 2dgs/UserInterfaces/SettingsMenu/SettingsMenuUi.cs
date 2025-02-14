@@ -46,14 +46,14 @@ public class SettingsMenuUi
             Border = new SolidBrush(Color.White),
         };
         
-        settingsPanel.Widgets.Add(DisplaySettings(game));
+        settingsPanel.Widgets.Add(DisplaySettings(game, settingsSceneData));
         settingsPanel.Widgets.Add(AudioPanel());
         settingsPanel.Widgets.Add(MiscSettings(game, settingsSceneData));
         
         return settingsPanel;
     }
 
-    private VerticalStackPanel DisplaySettings(Game game)
+    private VerticalStackPanel DisplaySettings(Game game, SettingsSceneData settingsSceneData)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 4);
         grid.ColumnSpacing = 40;
@@ -177,6 +177,7 @@ public class SettingsMenuUi
             _settingsSaveData.HorizontalResolution = game.Graphics.PreferredBackBufferWidth;
             _settingsSaveData.Fullscreen = game.Graphics.IsFullScreen;
             game.SaveSystem.SaveSettings(_settingsSaveData);
+            settingsSceneData.CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, game.Graphics.PreferredBackBufferHeight);
         };
         
         grid.Widgets.Add(vsyncToggleLabel);
