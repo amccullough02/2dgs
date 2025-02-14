@@ -12,6 +12,8 @@ public class SettingsSaveData
     public List<Keys> SpeedUpShortcut { get; set; } = [];
     public List<Keys> SpeedDownShortcut { get; set; } = [];
     public List<Keys> TrailsShortcut { get; set; } = [];
+    public List<Keys> OrbitsShortcut { get; set; } = [];
+    public List<Keys> VectorsShortcut { get; set; } = [];
     public List<Keys> NamesShortcut { get; set; } = [];
     public List<Keys> GlowShortcut { get; set; } = [];
     public List<Keys> EditShortcut { get; set; } = [];

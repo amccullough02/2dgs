@@ -262,12 +262,12 @@ public class SimulationScene : Scene
             _simulationSceneData.ToggleTrails = !_simulationSceneData.ToggleTrails;
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.O], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.OrbitsShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationSceneData.ToggleOrbits = !_simulationSceneData.ToggleOrbits;
         });
         
-        KeyManager.Shortcut([Keys.LeftControl, Keys.V], _keyboardState, _previousKeyboardState, () =>
+        KeyManager.Shortcut(_settingsSaveData.VectorsShortcut, _keyboardState, _previousKeyboardState, () =>
         {
             _simulationSceneData.ToggleVectors = !_simulationSceneData.ToggleVectors;
         });

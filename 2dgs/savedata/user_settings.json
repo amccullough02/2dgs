@@ -22,6 +22,14 @@
     "LeftControl",
     "N"
   ],
+  "OrbitsShortcut": [
+    "LeftControl",
+    "O"
+  ],
+  "VectorsShortcut": [
+    "LeftControl",
+    "V"
+  ],
   "GlowShortcut": [
     "LeftControl",
     "G"
