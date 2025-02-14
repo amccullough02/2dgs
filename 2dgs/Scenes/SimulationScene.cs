@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Apos.Shapes;
 using Microsoft.Xna.Framework;
@@ -30,7 +31,7 @@ public class SimulationScene : Scene
     {
         _game = game;
         InitializeComponents(game, filePath);
-        SetupSimulation(filePath);
+        SetupSimulation();
         RunTests();
     }
 
@@ -42,6 +43,8 @@ public class SimulationScene : Scene
         _simulationSaveData = _saveSystem.LoadSimulation(filePath);
         _simulationSceneData = new SimulationSceneData
         {
+            FilePath = filePath,
+            TimeStep = _simulationSaveData.DefaultTimestep,
             Lesson = _simulationSaveData.IsLesson,
             SimulationTitle = _simulationSaveData.Title,
             ScreenDimensions = new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height),
@@ -66,28 +69,28 @@ public class SimulationScene : Scene
         _test.TestSimulationLoading(_simulationSaveData.Bodies.Count, _bodies.Count);
     }
 
-    private void SetupSimulation(string filePath)
+    private void SetupSimulation()
     {
-        if (_simulationSaveData?.Bodies != null)
+        if (_simulationSaveData == null)
         {
-            foreach (var bodyData in _simulationSaveData.Bodies)
-            {
-                _bodies.Add(new Body(bodyData.Name,
-                    bodyData.Position,
-                    bodyData.Velocity,
-                    bodyData.Mass,
-                    bodyData.DisplaySize,
-                    bodyData.Color,
-                    _textureManager));
-            }
+            throw new FileLoadException("Simulation data could not be loaded.");
+        }
+        
+        foreach (var bodyData in _simulationSaveData.Bodies)
+        {
+            _bodies.Add(new Body(bodyData.Name,
+                bodyData.Position,
+                bodyData.Velocity,
+                bodyData.Mass,
+                bodyData.DisplaySize,
+                bodyData.Color,
+                _textureManager));
         }
         
         foreach (var body in _bodies)
         {
             body.OffsetPosition(_simulationSceneData);
         }
-
-        _simulationSceneData.FilePath = filePath;
     }
 
     private void SaveSimulation()
@@ -101,6 +104,7 @@ public class SimulationScene : Scene
             Title = _simulationSaveData.Title,
             Description = _simulationSaveData.Description,
             ThumbnailPath = _simulationSaveData.ThumbnailPath,
+            DefaultTimestep = _simulationSaveData.DefaultTimestep,
             IsLesson = _simulationSaveData.IsLesson,
             LessonPages = _simulationSaveData.LessonPages
         };

@@ -3,6 +3,7 @@
   "Description": "This simulation is all about the Three Body Problem!",
   "ThumbnailPath": "../../../savedata/thumbnails/three_body_problem.png",
   "IsLesson": true,
+  "DefaultTimestep": 200,
   "Bodies": [
     {
       "Name": "Body 1",

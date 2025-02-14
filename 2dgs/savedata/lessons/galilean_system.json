@@ -3,6 +3,7 @@
   "Description": "This simulation is all about the Galilean system!",
   "ThumbnailPath": "../../../savedata/thumbnails/galilean_system.png",
   "IsLesson": true,
+  "DefaultTimestep": 100,
   "Bodies": [
     {
       "Name": "Jupiter",
