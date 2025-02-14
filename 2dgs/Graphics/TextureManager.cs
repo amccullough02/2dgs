@@ -10,6 +10,7 @@ public class TextureManager
     public Texture2D AttributionsBackground { get; private set; }
     public Texture2D SettingsBackground { get; private set; }
     public Texture2D SimulationMenuBackground { get; private set; }
+    public Texture2D SimulationBackground { get; private set; }
     public Texture2D Gradient { get; private set; }
     public Texture2D AppTitle  { get; private set; }
     public Texture2D BodyTexture { get; private set; }
@@ -22,6 +23,7 @@ public class TextureManager
         AttributionsBackground = content.Load<Texture2D>("images/attributions_background");
         SettingsBackground = content.Load<Texture2D>("images/settings_background");
         SimulationMenuBackground = content.Load<Texture2D>("images/sim_menu_background");
+        SimulationBackground = content.Load<Texture2D>("images/simulation_background");
         Gradient = content.Load<Texture2D>("images/gradient");
         AppTitle = content.Load<Texture2D>("images/title");
         BodyTexture = content.Load<Texture2D>("images/blank_circle");

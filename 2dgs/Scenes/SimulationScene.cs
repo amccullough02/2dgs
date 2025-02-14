@@ -353,7 +353,15 @@ public class SimulationScene : Scene
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        var screenWidth = _simulationSceneData.ScreenDimensions.X;
+        var screenHeight = _simulationSceneData.ScreenDimensions.Y;
+        
         spriteBatch.Begin();
+        
+        spriteBatch.Draw(_textureManager.SimulationBackground, _textureManager.PositionAtCenter(screenWidth, 
+            screenHeight, _textureManager.SimulationBackground), Color.White);
+        spriteBatch.Draw(_textureManager.Gradient,
+            _textureManager.PositionAtCenter(screenWidth, screenHeight, _textureManager.Gradient), Color.White);
         
         foreach (var body in _bodies)
         {
