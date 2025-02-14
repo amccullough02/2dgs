@@ -30,6 +30,8 @@ public class SettingsScene : Scene
         settingsSceneData.NewShortcuts.Add("SpeedUpShortcut", []);
         settingsSceneData.NewShortcuts.Add("SpeedDownShortcut", []);
         settingsSceneData.NewShortcuts.Add("TrailsShortcut", []);
+        settingsSceneData.NewShortcuts.Add("OrbitsShortcut", []);
+        settingsSceneData.NewShortcuts.Add("VectorsShortcut", []);
         settingsSceneData.NewShortcuts.Add("NamesShortcut", []);
         settingsSceneData.NewShortcuts.Add("GlowShortcut", []);
         settingsSceneData.NewShortcuts.Add("EditShortcut", []);
@@ -39,6 +41,8 @@ public class SettingsScene : Scene
         settingsSceneData.DefaultShortcuts.Add("SpeedUpShortcut", [Keys.LeftControl, Keys.Right]);
         settingsSceneData.DefaultShortcuts.Add("SpeedDownShortcut", [Keys.LeftControl, Keys.Left]);
         settingsSceneData.DefaultShortcuts.Add("TrailsShortcut", [Keys.LeftControl, Keys.T]);
+        settingsSceneData.DefaultShortcuts.Add("OrbitsShortcut", [Keys.LeftControl, Keys.O]);
+        settingsSceneData.DefaultShortcuts.Add("VectorsShortcut", [Keys.LeftControl, Keys.V]);
         settingsSceneData.DefaultShortcuts.Add("NamesShortcut", [Keys.LeftControl, Keys.N]);
         settingsSceneData.DefaultShortcuts.Add("GlowShortcut", [Keys.LeftControl, Keys.G]);
         settingsSceneData.DefaultShortcuts.Add("EditShortcut", [Keys.LeftControl, Keys.E]);

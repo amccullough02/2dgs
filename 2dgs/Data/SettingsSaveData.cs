@@ -30,6 +30,8 @@ public class SettingsSaveData
         SpeedUpShortcut = newSaveData.SpeedUpShortcut;
         SpeedDownShortcut = newSaveData.SpeedDownShortcut;
         TrailsShortcut = newSaveData.TrailsShortcut;
+        OrbitsShortcut = newSaveData.OrbitsShortcut;
+        VectorsShortcut = newSaveData.VectorsShortcut;
         NamesShortcut = newSaveData.NamesShortcut;
         GlowShortcut = newSaveData.GlowShortcut;
         EditShortcut = newSaveData.EditShortcut;

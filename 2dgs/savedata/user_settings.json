@@ -18,10 +18,6 @@
     "LeftControl",
     "T"
   ],
-  "NamesShortcut": [
-    "LeftControl",
-    "N"
-  ],
   "OrbitsShortcut": [
     "LeftControl",
     "O"
@@ -29,6 +25,10 @@
   "VectorsShortcut": [
     "LeftControl",
     "V"
+  ],
+  "NamesShortcut": [
+    "LeftControl",
+    "N"
   ],
   "GlowShortcut": [
     "LeftControl",
