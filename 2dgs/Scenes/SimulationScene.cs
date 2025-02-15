@@ -355,7 +355,7 @@ public class SimulationScene : Scene
         EditMode(mouseState);
     }
 
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    private void DrawBackground(SpriteBatch spriteBatch)
     {
         var screenWidth = _simulationSceneData.ScreenDimensions.X;
         var screenHeight = _simulationSceneData.ScreenDimensions.Y;
@@ -367,12 +367,21 @@ public class SimulationScene : Scene
         spriteBatch.Draw(_textureManager.Gradient,
             _textureManager.PositionAtCenter(screenWidth, screenHeight, _textureManager.Gradient), Color.White);
         
+        spriteBatch.End();
+    }
+
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        DrawBackground(spriteBatch);
+        spriteBatch.Begin();
+        
         foreach (var body in _bodies)
         {
-            body.Draw(spriteBatch, _simulationSceneData, _shapeBatch);
+            body.Draw(spriteBatch, _shapeBatch, _simulationSceneData);
         }
 
         _ghostBody.Draw(spriteBatch, _textureManager, _simulationSceneData);
+        
         spriteBatch.End();
         _simulationUi.Draw();
     }

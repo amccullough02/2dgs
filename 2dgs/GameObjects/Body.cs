@@ -310,7 +310,7 @@ public class Body(
             new Vector2(0.3f), SpriteEffects.None, 0f);
     }
 
-    private void DrawVelocityVectors(SimulationSceneData simulationSceneData, SpriteBatch spriteBatch)
+    private void DrawVelocityVectors(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData)
     {
         if (!simulationSceneData.ToggleVectors) return;
         
@@ -326,7 +326,7 @@ public class Body(
         DrawArrow(spriteBatch, Color.Green, yComponentArrowLength, 2, yComponentVelocityAngle);
     }
 
-    private void DrawSelector(SimulationSceneData simSceneData, ShapeBatch shapeBatch)
+    private void DrawSelector(ShapeBatch shapeBatch, SimulationSceneData simSceneData)
     {
         if (!Selected || !simSceneData.EditMode) return;
         
@@ -339,7 +339,7 @@ public class Body(
         var radius = displayRadius + selectorOffset;
             
         shapeBatch.Begin();
-        shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 3f);
+        shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 2f);
         shapeBatch.End();
     }
 
@@ -383,7 +383,7 @@ public class Body(
             0f);
     }
 
-    private void DrawNames(SimulationSceneData simSceneData, SpriteBatch spriteBatch)
+    private void DrawNames(SpriteBatch spriteBatch, SimulationSceneData simSceneData)
     {
         if (!simSceneData.ToggleNames) return;
 
@@ -427,14 +427,14 @@ public class Body(
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, ShapeBatch shapeBatch)
+    public void Draw(SpriteBatch spriteBatch, ShapeBatch shapeBatch, SimulationSceneData simulationSceneData)
     {
         DrawTrail(spriteBatch, simulationSceneData, TrailThickness);
         DrawOrbit(spriteBatch, simulationSceneData, TrailThickness);
-        DrawVelocityVectors(simulationSceneData, spriteBatch);
+        DrawVelocityVectors(spriteBatch, simulationSceneData);
         DrawBody(spriteBatch);
         DrawGlow(spriteBatch, simulationSceneData);
-        DrawSelector(simulationSceneData, shapeBatch);
-        DrawNames(simulationSceneData, spriteBatch);
+        DrawSelector(shapeBatch, simulationSceneData);
+        DrawNames(spriteBatch, simulationSceneData);
     }
 }
