@@ -57,16 +57,16 @@ public class Body(
         };
     }
 
-    private RectangleF GetBoundingBox()
+    private RectangleF GetBoundingBox(float marginOfError = 1.0f)
     {
         var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
 
         return new RectangleF
         {
-            X = _position.X - trueDisplaySize / 2,
-            Y = _position.Y - trueDisplaySize / 2,
-            Width = trueDisplaySize,
-            Height = trueDisplaySize
+            X = _position.X - trueDisplaySize * marginOfError / 2,
+            Y = _position.Y - trueDisplaySize * marginOfError / 2,
+            Width = trueDisplaySize * marginOfError,
+            Height = trueDisplaySize * marginOfError,
         };
     }
 
@@ -103,9 +103,11 @@ public class Body(
     {
         if (thisBody.Destroyed || otherBody.Destroyed) return;
 
-        var bodyBounds = thisBody.GetBoundingBox();
+        const float collisionTolerance = 0.8f;
 
-        var otherBodyBounds = otherBody.GetBoundingBox();
+        var bodyBounds = thisBody.GetBoundingBox(collisionTolerance);
+
+        var otherBodyBounds = otherBody.GetBoundingBox(collisionTolerance);
 
         if (bodyBounds.IntersectsWith(otherBodyBounds))
         {
