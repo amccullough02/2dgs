@@ -166,7 +166,7 @@ public class SimulationMenuUi
         return verticalStackPanel;
     }
     
-    private Dialog RenameButtonDialog(string fileName, string path, string file)
+    private Dialog RenameButtonDialog(Game game, string fileName, string path, string file)
     {
         var renameButtonDialog = UiComponents.StyledDialog("Rename");
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
@@ -186,6 +186,7 @@ public class SimulationMenuUi
             Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
             var newPath = path + "/" + textbox.Text + ".json";
             _fileManager.RenameFile(file, newPath);
+            game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
 
         renameButtonDialog.ButtonCancel.Click += (_, _) =>
@@ -196,7 +197,7 @@ public class SimulationMenuUi
         return renameButtonDialog;
     }
     
-    private Dialog DeleteButtonDialog(string fileName, string path)
+    private Dialog DeleteButtonDialog(Game game, string fileName, string path)
     {
         var deleteButtonDialog = UiComponents.StyledDialog("Delete");
         deleteButtonDialog.Content = UiComponents.LightLabel("Are you sure you want to delete this simulation?");
@@ -205,6 +206,7 @@ public class SimulationMenuUi
         {
             Console.WriteLine($"DEBUG: {fileName} deleted");
             _fileManager.DeleteFile(path + "/" + fileName + ".json");
+            game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
 
         deleteButtonDialog.ButtonCancel.Click += (_, _) =>
@@ -272,9 +274,9 @@ public class SimulationMenuUi
         
         var loadButton = UiComponents.Button("Load", true, 200, 50);
         var renameButton = UiComponents.Button("Rename", true, 200, 50);
-        var renameDialog = RenameButtonDialog(fileName, path, file);
+        var renameDialog = RenameButtonDialog(game, fileName, path, file);
         var deleteButton = UiComponents.Button("Delete", true, 200, 50);
-        var deleteDialog = DeleteButtonDialog(fileName, path);
+        var deleteDialog = DeleteButtonDialog(game, fileName, path);
 
         loadButton.Click += (_, _) =>
         {
