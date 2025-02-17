@@ -99,7 +99,7 @@ public class LessonPrompt
         var confirmReset = UiComponents.StyledDialog("Confirm Action");
         confirmReset.Content = UiComponents.LightLabel("Are you sure you want to reset the simulation?");
         
-        confirmReset.ButtonOk.Click += (_, __) =>
+        confirmReset.ButtonOk.Click += (_, _) =>
         {
             _simulationMediator.ResetSimulation = true;
         };
@@ -107,7 +107,7 @@ public class LessonPrompt
         var resetButton = UiComponents.Button("Reset Simulation", visible: false, width: 175, height: 50);
         Grid.SetColumn(resetButton, 3);
         
-        nextButton.Click += (s, e) =>
+        nextButton.Click += (_, _) =>
         {
             if (_index < _numPages - 1)
             {
@@ -129,7 +129,7 @@ public class LessonPrompt
             }
         };
         
-        previousButton.Click += (s, e) =>
+        previousButton.Click += (_, _) =>
         {
             if (_index > 0)
             {
@@ -146,7 +146,7 @@ public class LessonPrompt
             pageLabel.Text = $"Page {_index + 1} of {_numPages}";
         };
         
-        resetButton.Click += (s, e) =>
+        resetButton.Click += (_, _) =>
         {
             confirmReset.Show(_desktop);
         };
