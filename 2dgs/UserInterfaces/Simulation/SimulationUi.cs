@@ -7,15 +7,15 @@ public class SimulationUi
 {
     private readonly Desktop _desktop;
     
-    public SimulationUi(Game game, SimulationSceneData simulationSceneData)
+    public SimulationUi(Game game, SimulationMediator simulationMediator)
     {
         MyraEnvironment.Game = game;
         _desktop = new Desktop();
         var rootContainer = new Panel();
         
-        rootContainer.Widgets.Add(SettingsPanel.Create(simulationSceneData));
-        rootContainer.Widgets.Add(EditModePanel.Create(simulationSceneData, _desktop));
-        rootContainer.Widgets.Add(SaveQuitPanel.Create(simulationSceneData, game, _desktop));
+        rootContainer.Widgets.Add(SettingsPanel.Create(simulationMediator));
+        rootContainer.Widgets.Add(EditModePanel.Create(simulationMediator, _desktop));
+        rootContainer.Widgets.Add(SaveQuitPanel.Create(simulationMediator, game, _desktop));
         
         _desktop.Root = rootContainer;
     }

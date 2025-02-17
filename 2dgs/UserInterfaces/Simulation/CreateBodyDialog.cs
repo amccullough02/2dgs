@@ -5,7 +5,7 @@ namespace _2dgs;
 
 public static class CreateBodyDialog
 {
-    public static Dialog Create(SimulationSceneData simulationSceneData, Desktop desktop)
+    public static Dialog Create(SimulationMediator simulationMediator, Desktop desktop)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 5);
         
@@ -97,11 +97,11 @@ public static class CreateBodyDialog
                 var mass = float.Parse(bodyMassTextbox.Text);
                 var size = float.Parse(bodyDisplaySizeTextbox.Text);
     
-                simulationSceneData.CreateBodyData.Name = name;
-                simulationSceneData.CreateBodyData.Velocity = velocity;
-                simulationSceneData.CreateBodyData.Mass = mass;
-                simulationSceneData.CreateBodyData.DisplaySize = size;
-                simulationSceneData.ToggleBodyGhost = true;
+                simulationMediator.CreateBodyData.Name = name;
+                simulationMediator.CreateBodyData.Velocity = velocity;
+                simulationMediator.CreateBodyData.Mass = mass;
+                simulationMediator.CreateBodyData.DisplaySize = size;
+                simulationMediator.ToggleBodyGhost = true;
                 
                 createBodyDialog.Close();
             }

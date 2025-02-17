@@ -16,7 +16,7 @@ public class SimulationScene : Scene
     private SaveSystem _saveSystem;
     private SimulationSaveData _simulationSaveData;
     private SettingsSaveData _settingsSaveData;
-    private SimulationSceneData _simulationSceneData;
+    private SimulationMediator _simulationMediator;
     private SimulationUi _simulationUi;
     private TextureManager _textureManager;
     private SoundEffectPlayer _soundEffectPlayer;
@@ -41,7 +41,7 @@ public class SimulationScene : Scene
         _saveSystem = new SaveSystem();
         _settingsSaveData = _saveSystem.LoadSettings();
         _simulationSaveData = _saveSystem.LoadSimulation(filePath);
-        _simulationSceneData = new SimulationSceneData
+        _simulationMediator = new SimulationMediator
         {
             FilePath = filePath,
             TimeStep = _simulationSaveData.DefaultTimestep,
@@ -56,7 +56,7 @@ public class SimulationScene : Scene
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _soundEffectPlayer = new SoundEffectPlayer(game.Content);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
-        _simulationUi = new SimulationUi(game, _simulationSceneData);
+        _simulationUi = new SimulationUi(game, _simulationMediator);
         _test = new Test();
         #endregion
         
@@ -89,15 +89,15 @@ public class SimulationScene : Scene
         
         foreach (var body in _bodies)
         {
-            body.OffsetPosition(_simulationSceneData);
+            body.OffsetPosition(_simulationMediator);
         }
     }
 
     private void SaveSimulation()
     {
-        if (!_simulationSceneData.AttemptToSaveFile) return;
+        if (!_simulationMediator.AttemptToSaveFile) return;
         
-        Console.WriteLine("DEBUG: Saving simulation to " + _simulationSceneData.FilePath);
+        Console.WriteLine("DEBUG: Saving simulation to " + _simulationMediator.FilePath);
             
         var dataToSave = new SimulationSaveData
         {
@@ -111,11 +111,11 @@ public class SimulationScene : Scene
 
         foreach (var body in _bodies)
         {
-            dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationSceneData));
+            dataToSave.Bodies.Add(body.ConvertToBodyData(_simulationMediator));
         }
             
-        _saveSystem.SaveSimulation(_simulationSceneData.FilePath, dataToSave);
-        _simulationSceneData.AttemptToSaveFile = false;
+        _saveSystem.SaveSimulation(_simulationMediator.FilePath, dataToSave);
+        _simulationMediator.AttemptToSaveFile = false;
     }
 
     private bool IsBodySelected()
@@ -127,43 +127,43 @@ public class SimulationScene : Scene
 
     private void CreateBody(MouseState mouseState)
     {
-        if (!_simulationSceneData.ToggleBodyGhost) return;
+        if (!_simulationMediator.ToggleBodyGhost) return;
         if (mouseState.LeftButton != ButtonState.Pressed) return;
         var body = new Body(
-            _simulationSceneData.CreateBodyData.Name,
+            _simulationMediator.CreateBodyData.Name,
             _ghostBody.Position, 
-            _simulationSceneData.CreateBodyData.Velocity, 
-            _simulationSceneData.CreateBodyData.Mass, 
-            _simulationSceneData.CreateBodyData.DisplaySize,
+            _simulationMediator.CreateBodyData.Velocity, 
+            _simulationMediator.CreateBodyData.Mass, 
+            _simulationMediator.CreateBodyData.DisplaySize,
             Color.White,
             _textureManager);
                 
         _bodies.Add(body);
-        _simulationSceneData.ToggleBodyGhost = !_simulationSceneData.ToggleBodyGhost;
+        _simulationMediator.ToggleBodyGhost = !_simulationMediator.ToggleBodyGhost;
     }
 
     private void EditBody()
     {
-        if (_simulationSceneData.EditSelectedBody)
+        if (_simulationMediator.EditSelectedBody)
         {
             SelectedBody()
-                .Edit(_simulationSceneData.EditBodyData.Name,
-                    _simulationSceneData.EditBodyData.Position + _simulationSceneData.ScreenDimensions / 2,
-                    _simulationSceneData.EditBodyData.Velocity,
-                    _simulationSceneData.EditBodyData.Mass,
-                    _simulationSceneData.EditBodyData.DisplaySize,
+                .Edit(_simulationMediator.EditBodyData.Name,
+                    _simulationMediator.EditBodyData.Position + _simulationMediator.ScreenDimensions / 2,
+                    _simulationMediator.EditBodyData.Velocity,
+                    _simulationMediator.EditBodyData.Mass,
+                    _simulationMediator.EditBodyData.DisplaySize,
                     _bodies);
         }
-        _simulationSceneData.EditSelectedBody = false;
+        _simulationMediator.EditSelectedBody = false;
     }
 
     private void ColorBody()
     {
-        if (_simulationSceneData.ColorSelectedBody)
+        if (_simulationMediator.ColorSelectedBody)
         {
-            SelectedBody().SetColor(_simulationSceneData.NewBodyColor);
+            SelectedBody().SetColor(_simulationMediator.NewBodyColor);
         }
-        _simulationSceneData.ColorSelectedBody = false;
+        _simulationMediator.ColorSelectedBody = false;
     }
 
     private void DeleteBody()
@@ -172,7 +172,7 @@ public class SimulationScene : Scene
             
         foreach (var body in _bodies)
         {
-            if (_simulationSceneData.DeleteSelectedBody && body.Selected)
+            if (_simulationMediator.DeleteSelectedBody && body.Selected)
             {
                 bodiesToRemove.Add(body);
             }
@@ -184,7 +184,7 @@ public class SimulationScene : Scene
             _soundEffectPlayer.PlayCollisionSfx();
         }
         
-        _simulationSceneData.DeleteSelectedBody = false;
+        _simulationMediator.DeleteSelectedBody = false;
     }
     
     private void ForgetSelections()
@@ -202,15 +202,15 @@ public class SimulationScene : Scene
 
     private void StoreSelectedBodyData()
     {
-        _simulationSceneData.SelectedBodyData = SelectedBody().ConvertToBodyData(_simulationSceneData);
+        _simulationMediator.SelectedBodyData = SelectedBody().ConvertToBodyData(_simulationMediator);
     }
 
     private void ResetSimulation(Game game)
     {
-        if (_simulationSceneData.ResetSimulation)
+        if (_simulationMediator.ResetSimulation)
         {
             Console.WriteLine("DEBUG: Resetting simulation");
-            game.SceneManager.ChangeScene(new SimulationScene(game, _simulationSceneData.FilePath));
+            game.SceneManager.ChangeScene(new SimulationScene(game, _simulationMediator.FilePath));
         }
     }
 
@@ -241,45 +241,45 @@ public class SimulationScene : Scene
         
         KeyManager.Shortcut(_settingsSaveData.SpeedUpShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            if (_simulationSceneData.TimeStep < 400) _simulationSceneData.TimeStep += 10;
+            if (_simulationMediator.TimeStep < 400) _simulationMediator.TimeStep += 10;
             var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
-            timeStepLabel.Text = $"Time step: {_simulationSceneData.TimeStep}";
+            timeStepLabel.Text = $"Time step: {_simulationMediator.TimeStep}";
             var timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
-            timeStepSlider.Value = _simulationSceneData.TimeStep;
+            timeStepSlider.Value = _simulationMediator.TimeStep;
         });
         
         KeyManager.Shortcut(_settingsSaveData.SpeedDownShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            if (_simulationSceneData.TimeStep > 10) _simulationSceneData.TimeStep -= 10;
+            if (_simulationMediator.TimeStep > 10) _simulationMediator.TimeStep -= 10;
             var timeStepLabel = (Label)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_label");
-            timeStepLabel.Text = $"Time step: {_simulationSceneData.TimeStep}";
+            timeStepLabel.Text = $"Time step: {_simulationMediator.TimeStep}";
             var timeStepSlider = (HorizontalSlider)FindWidget.GetWidgetById(_simulationUi.GetRoot(), "speed_slider");
-            timeStepSlider.Value = _simulationSceneData.TimeStep;
+            timeStepSlider.Value = _simulationMediator.TimeStep;
         });
         
         KeyManager.Shortcut(_settingsSaveData.TrailsShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationSceneData.ToggleTrails = !_simulationSceneData.ToggleTrails;
+            _simulationMediator.ToggleTrails = !_simulationMediator.ToggleTrails;
         });
         
         KeyManager.Shortcut(_settingsSaveData.OrbitsShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationSceneData.ToggleOrbits = !_simulationSceneData.ToggleOrbits;
+            _simulationMediator.ToggleOrbits = !_simulationMediator.ToggleOrbits;
         });
         
         KeyManager.Shortcut(_settingsSaveData.VectorsShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationSceneData.ToggleVectors = !_simulationSceneData.ToggleVectors;
+            _simulationMediator.ToggleVectors = !_simulationMediator.ToggleVectors;
         });
         
         KeyManager.Shortcut(_settingsSaveData.NamesShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationSceneData.ToggleNames = !_simulationSceneData.ToggleNames;
+            _simulationMediator.ToggleNames = !_simulationMediator.ToggleNames;
         });
         
         KeyManager.Shortcut(_settingsSaveData.GlowShortcut, _keyboardState, _previousKeyboardState, () =>
         {
-            _simulationSceneData.ToggleGlow = !_simulationSceneData.ToggleGlow;
+            _simulationMediator.ToggleGlow = !_simulationMediator.ToggleGlow;
         });
         
         KeyManager.Shortcut(_settingsSaveData.EditShortcut, _keyboardState, _previousKeyboardState, () =>
@@ -298,17 +298,17 @@ public class SimulationScene : Scene
     private void Simulate(GameTime gameTime, MouseState mouseState)
     {
         #region Should function regardless of pause state.
-        _ghostBody.Update(_simulationSceneData);
+        _ghostBody.Update(_simulationMediator);
         ResetSimulation(_game);
         SaveSimulation();
         CreateBody(mouseState);
         #endregion
         
-        if (_simulationSceneData.Paused) return;
+        if (_simulationMediator.Paused) return;
         
         foreach (var body in _bodies)
         {
-            body.Update(_bodies, _simulationSceneData.TimeStep, gameTime);
+            body.Update(_bodies, _simulationMediator.TimeStep, gameTime);
         }
         
         RemoveDestroyedBodies();
@@ -316,10 +316,10 @@ public class SimulationScene : Scene
 
     private void EditMode(MouseState mouseState)
     {
-        _simulationSceneData.ABodySelected = IsBodySelected();
+        _simulationMediator.ABodySelected = IsBodySelected();
         CheckIfBodiesDeselected(mouseState);
         
-        if (_simulationSceneData.EditMode && !IsBodySelected())
+        if (_simulationMediator.EditMode && !IsBodySelected())
         {
             foreach (var body in _bodies)
             {
@@ -330,7 +330,7 @@ public class SimulationScene : Scene
                 ["delete_body_button", "body_color_button", "edit_body_button"]);
         }
         
-        if (_simulationSceneData.EditMode && IsBodySelected())
+        if (_simulationMediator.EditMode && IsBodySelected())
         {
             FindWidget.EnableWidgets(_simulationUi.GetRoot(), 
                 ["delete_body_button", "body_color_button", "edit_body_button"]);
@@ -341,7 +341,7 @@ public class SimulationScene : Scene
             DeleteBody();
         }
         
-        if (!_simulationSceneData.EditMode)
+        if (!_simulationMediator.EditMode)
         {
             ForgetSelections();
         }
@@ -357,8 +357,8 @@ public class SimulationScene : Scene
 
     private void DrawBackground(SpriteBatch spriteBatch)
     {
-        var screenWidth = _simulationSceneData.ScreenDimensions.X;
-        var screenHeight = _simulationSceneData.ScreenDimensions.Y;
+        var screenWidth = _simulationMediator.ScreenDimensions.X;
+        var screenHeight = _simulationMediator.ScreenDimensions.Y;
         
         spriteBatch.Begin();
         
@@ -377,10 +377,10 @@ public class SimulationScene : Scene
         
         foreach (var body in _bodies)
         {
-            body.Draw(spriteBatch, _shapeBatch, _simulationSceneData);
+            body.Draw(spriteBatch, _shapeBatch, _simulationMediator);
         }
 
-        _ghostBody.Draw(spriteBatch, _textureManager, _simulationSceneData);
+        _ghostBody.Draw(spriteBatch, _textureManager, _simulationMediator);
         
         spriteBatch.End();
         _simulationUi.Draw();

@@ -39,17 +39,17 @@ public class Body(
     private const int MaximumTrailLength = 2000;
     private const int FontSize = 24;
 
-    public void OffsetPosition(SimulationSceneData simulationSceneData)
+    public void OffsetPosition(SimulationMediator simulationMediator)
     {
-        _position += simulationSceneData.ScreenDimensions / 2;
+        _position += simulationMediator.ScreenDimensions / 2;
     }
 
-    public BodyData ConvertToBodyData(SimulationSceneData simulationSceneData)
+    public BodyData ConvertToBodyData(SimulationMediator simulationMediator)
     {
         return new BodyData
         {
             Name = _name,
-            Position = _position - simulationSceneData.ScreenDimensions / 2,
+            Position = _position - simulationMediator.ScreenDimensions / 2,
             Velocity = _velocity,
             Mass = _mass,
             DisplaySize = _displaySize,
@@ -224,11 +224,11 @@ public class Body(
         PruneOrbits();
     }
 
-    private void DrawTrail(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, float thickness)
+    private void DrawTrail(SpriteBatch spriteBatch, SimulationMediator simulationMediator, float thickness)
     {
-        if (_orbitTrail.Count <= 1 || !simulationSceneData.ToggleTrails) return;
+        if (_orbitTrail.Count <= 1 || !simulationMediator.ToggleTrails) return;
         
-        var trailLength = Math.Min(simulationSceneData.TrailLength, _orbitTrail.Count);
+        var trailLength = Math.Min(simulationMediator.TrailLength, _orbitTrail.Count);
         var startIndex = _orbitTrail.Count - trailLength;
         
         for (var i = _orbitTrail.Count - trailLength; i < _orbitTrail.Count - 1; i++)
@@ -253,9 +253,9 @@ public class Body(
         }
     }
 
-    private void DrawOrbit(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData, float thickness)
+    private void DrawOrbit(SpriteBatch spriteBatch, SimulationMediator simulationMediator, float thickness)
     {
-        if (_futureOrbit.Count <= 1 || !simulationSceneData.ToggleOrbits) return;
+        if (_futureOrbit.Count <= 1 || !simulationMediator.ToggleOrbits) return;
         
         for (var i = 0; i < _futureOrbit.Count - 1; i++)
         {
@@ -312,9 +312,9 @@ public class Body(
             new Vector2(0.3f), SpriteEffects.None, 0f);
     }
 
-    private void DrawVelocityVectors(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData)
+    private void DrawVelocityVectors(SpriteBatch spriteBatch, SimulationMediator simulationMediator)
     {
-        if (!simulationSceneData.ToggleVectors) return;
+        if (!simulationMediator.ToggleVectors) return;
         
         var tangentVelocityAngle = MathF.Atan2(_velocity.Y, _velocity.X) - MathF.PI / 2;
         DrawArrow(spriteBatch, Color.White, 100, 2, tangentVelocityAngle);
@@ -328,9 +328,9 @@ public class Body(
         DrawArrow(spriteBatch, Color.Green, yComponentArrowLength, 2, yComponentVelocityAngle);
     }
 
-    private void DrawSelector(ShapeBatch shapeBatch, SimulationSceneData simSceneData)
+    private void DrawSelector(ShapeBatch shapeBatch, SimulationMediator simulationMediator)
     {
-        if (!Selected || !simSceneData.EditMode) return;
+        if (!Selected || !simulationMediator.EditMode) return;
         
         var displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
         var selectorOffset = displayRadius / 5;
@@ -345,9 +345,9 @@ public class Body(
         shapeBatch.End();
     }
 
-    private void DrawGlow(SpriteBatch spriteBatch, SimulationSceneData simulationSceneData)
+    private void DrawGlow(SpriteBatch spriteBatch, SimulationMediator simulationMediator)
     {
-        if (!simulationSceneData.ToggleGlow) return;
+        if (!simulationMediator.ToggleGlow) return;
         
         for (var i = 0; i < 100; i++)
         {
@@ -385,14 +385,14 @@ public class Body(
             0f);
     }
 
-    private void DrawNames(SpriteBatch spriteBatch, SimulationSceneData simSceneData)
+    private void DrawNames(SpriteBatch spriteBatch, SimulationMediator simulationMediator)
     {
-        if (!simSceneData.ToggleNames) return;
+        if (!simulationMediator.ToggleNames) return;
 
         var textSize = FontManager.MediumText(FontSize).MeasureString(_name);
         var padding = 10f;
         
-        switch (simSceneData.Position)
+        switch (simulationMediator.Position)
         {
             case Position.Right:
                 FontManager.MediumText(FontSize)
@@ -429,14 +429,14 @@ public class Body(
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, ShapeBatch shapeBatch, SimulationSceneData simulationSceneData)
+    public void Draw(SpriteBatch spriteBatch, ShapeBatch shapeBatch, SimulationMediator simulationMediator)
     {
-        DrawTrail(spriteBatch, simulationSceneData, TrailThickness);
-        DrawOrbit(spriteBatch, simulationSceneData, TrailThickness);
-        DrawVelocityVectors(spriteBatch, simulationSceneData);
+        DrawTrail(spriteBatch, simulationMediator, TrailThickness);
+        DrawOrbit(spriteBatch, simulationMediator, TrailThickness);
+        DrawVelocityVectors(spriteBatch, simulationMediator);
         DrawBody(spriteBatch);
-        DrawGlow(spriteBatch, simulationSceneData);
-        DrawSelector(shapeBatch, simulationSceneData);
-        DrawNames(spriteBatch, simulationSceneData);
+        DrawGlow(spriteBatch, simulationMediator);
+        DrawSelector(shapeBatch, simulationMediator);
+        DrawNames(spriteBatch, simulationMediator);
     }
 }

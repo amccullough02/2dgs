@@ -14,7 +14,7 @@ public class SettingsMenuUi
     private readonly Desktop _desktop;
     private readonly SettingsSaveData _settingsSaveData;
 
-    public SettingsMenuUi(Game game, SettingsSceneData settingsSceneData)
+    public SettingsMenuUi(Game game, SettingsMediator settingsMediator)
     {
         _settingsSaveData = new SettingsSaveData();
         _settingsSaveData = game.SaveSystem.LoadSettings();
@@ -24,14 +24,14 @@ public class SettingsMenuUi
         var settingsTitle = UiComponents.TitleLabel("Settings Menu");
         
         rootContainer.Widgets.Add(settingsTitle);
-        rootContainer.Widgets.Add(Settings(game, settingsSceneData));
+        rootContainer.Widgets.Add(Settings(game, settingsMediator));
         rootContainer.Widgets.Add(ExitPanel(game));
         
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
 
-    private VerticalStackPanel Settings(Game game, SettingsSceneData settingsSceneData)
+    private VerticalStackPanel Settings(Game game, SettingsMediator settingsMediator)
     {
         
         var settingsPanel = new VerticalStackPanel
@@ -46,14 +46,14 @@ public class SettingsMenuUi
             Border = new SolidBrush(Color.White),
         };
         
-        settingsPanel.Widgets.Add(DisplaySettings(game, settingsSceneData));
+        settingsPanel.Widgets.Add(DisplaySettings(game, settingsMediator));
         settingsPanel.Widgets.Add(AudioPanel());
-        settingsPanel.Widgets.Add(MiscSettings(game, settingsSceneData));
+        settingsPanel.Widgets.Add(MiscSettings(game, settingsMediator));
         
         return settingsPanel;
     }
 
-    private VerticalStackPanel DisplaySettings(Game game, SettingsSceneData settingsSceneData)
+    private VerticalStackPanel DisplaySettings(Game game, SettingsMediator settingsMediator)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 4);
         grid.ColumnSpacing = 40;
@@ -177,7 +177,7 @@ public class SettingsMenuUi
             _settingsSaveData.HorizontalResolution = game.Graphics.PreferredBackBufferWidth;
             _settingsSaveData.Fullscreen = game.Graphics.IsFullScreen;
             game.SaveSystem.SaveSettings(_settingsSaveData);
-            settingsSceneData.CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, game.Graphics.PreferredBackBufferHeight);
+            settingsMediator.CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, game.Graphics.PreferredBackBufferHeight);
         };
         
         grid.Widgets.Add(vsyncToggleLabel);
@@ -202,7 +202,7 @@ public class SettingsMenuUi
         return panel;
     }
 
-    private VerticalStackPanel MiscSettings(Game game, SettingsSceneData settingsSceneData)
+    private VerticalStackPanel MiscSettings(Game game, SettingsMediator settingsMediator)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 2);
         grid.ColumnSpacing = 40;
@@ -218,7 +218,7 @@ public class SettingsMenuUi
         };
         Grid.SetColumn(showFpsToggleButton, 1);
         
-        var dialog = RemapShortcutsDialog.Create(game, settingsSceneData, _settingsSaveData);
+        var dialog = RemapShortcutsDialog.Create(game, settingsMediator, _settingsSaveData);
         
         var keyBindLabel = UiComponents.LightLabel("Keyboard Shortcuts");
         Grid.SetRow(keyBindLabel, 1);
@@ -227,7 +227,7 @@ public class SettingsMenuUi
         keyBindDialogButton.Click += (_, _) =>
         {
             _settingsSaveData.Refresh(game.SaveSystem);
-            settingsSceneData.ResetNewShortcuts();
+            settingsMediator.ResetNewShortcuts();
             dialog.Show(_desktop);
         };
         Grid.SetColumn(keyBindDialogButton, 1);

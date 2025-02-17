@@ -5,7 +5,7 @@ namespace _2dgs;
 
 public static class SaveQuitPanel
 {
-    public static VerticalStackPanel Create(SimulationSceneData simulationSceneData, Game game, Desktop desktop)
+    public static VerticalStackPanel Create(SimulationMediator simulationMediator, Game game, Desktop desktop)
     {
         var saveAndQuitPanel = new VerticalStackPanel
         {
@@ -21,28 +21,28 @@ public static class SaveQuitPanel
             game.SceneManager.PushScene(new FadeInScene(game, new SimulationMenuScene(game)));
         };
         
-        var saveDialog = NameSimulationDialog(simulationSceneData);
+        var saveDialog = NameSimulationDialog(simulationMediator);
         
         var saveButton = UiComponents.Button("Save Simulation");
         saveButton.Click += (_, _) =>
         {
-            if (!string.IsNullOrEmpty(simulationSceneData.FilePath)) simulationSceneData.AttemptToSaveFile = true;
+            if (!string.IsNullOrEmpty(simulationMediator.FilePath)) simulationMediator.AttemptToSaveFile = true;
             else saveDialog.Show(desktop);
         };
         
         saveAndQuitPanel.Widgets.Add(returnButton);
         saveAndQuitPanel.Widgets.Add(saveButton);
 
-        if (!simulationSceneData.Lesson) return saveAndQuitPanel;
+        if (!simulationMediator.Lesson) return saveAndQuitPanel;
         {
-            var prompt = new LessonPrompt(simulationSceneData);
+            var prompt = new LessonPrompt(simulationMediator);
         
-            UiTests.TestLessonPrompt(simulationSceneData.LessonPages, prompt.GetLessons);
+            UiTests.TestLessonPrompt(simulationMediator.LessonPages, prompt.GetLessons);
         
             var promptButton = UiComponents.Button("Show Lesson Prompt");
             promptButton.Click += (_, _) =>
             {
-                prompt.Show(desktop, simulationSceneData);
+                prompt.Show(desktop, simulationMediator);
             };
             
             saveAndQuitPanel.Widgets.Add(promptButton);
@@ -51,7 +51,7 @@ public static class SaveQuitPanel
         return saveAndQuitPanel;
     }
     
-    private static Dialog NameSimulationDialog(SimulationSceneData simulationSceneData)
+    private static Dialog NameSimulationDialog(SimulationMediator simulationMediator)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
         var nameSimulationLabel = UiComponents.MediumLabel("Simulation Name: ");
@@ -68,8 +68,8 @@ public static class SaveQuitPanel
         newSimulationDialog.ButtonOk.Click += (_, _) =>
         {
             var newFilePath = "../../../savedata/my_simulations/" + nameSimulationTextbox.Text + ".json";
-            simulationSceneData.FilePath = newFilePath;
-            simulationSceneData.AttemptToSaveFile = true;
+            simulationMediator.FilePath = newFilePath;
+            simulationMediator.AttemptToSaveFile = true;
         };
         
         return newSimulationDialog;

@@ -6,7 +6,7 @@ namespace _2dgs;
 
 public class SettingsScene : Scene
 {
-    private readonly SettingsSceneData _settingsSceneData;
+    private readonly SettingsMediator _settingsMediator;
     private readonly TextureManager _textureManager;
     private KeyboardState _keyboardState;
     private KeyboardState _previousKeyboardState;
@@ -14,41 +14,41 @@ public class SettingsScene : Scene
     
     public SettingsScene(Game game)
     {
-        _settingsSceneData = new SettingsSceneData();
-        _settingsSceneData.CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, game.Graphics.PreferredBackBufferHeight);
-        SetupDictionaries(_settingsSceneData);
+        _settingsMediator = new SettingsMediator();
+        _settingsMediator.CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, game.Graphics.PreferredBackBufferHeight);
+        SetupDictionaries(_settingsMediator);
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
-        _settingsMenuUi = new SettingsMenuUi(game, _settingsSceneData);
+        _settingsMenuUi = new SettingsMenuUi(game, _settingsMediator);
     }
     
-    private static void SetupDictionaries(SettingsSceneData settingsSceneData)
+    private static void SetupDictionaries(SettingsMediator settingsMediator)
     {
-        settingsSceneData.NewShortcuts.Add("PauseShortcut", []);
-        settingsSceneData.NewShortcuts.Add("SpeedUpShortcut", []);
-        settingsSceneData.NewShortcuts.Add("SpeedDownShortcut", []);
-        settingsSceneData.NewShortcuts.Add("TrailsShortcut", []);
-        settingsSceneData.NewShortcuts.Add("OrbitsShortcut", []);
-        settingsSceneData.NewShortcuts.Add("VectorsShortcut", []);
-        settingsSceneData.NewShortcuts.Add("NamesShortcut", []);
-        settingsSceneData.NewShortcuts.Add("GlowShortcut", []);
-        settingsSceneData.NewShortcuts.Add("EditShortcut", []);
-        settingsSceneData.NewShortcuts.Add("ScreenshotShortcut", []);
+        settingsMediator.NewShortcuts.Add("PauseShortcut", []);
+        settingsMediator.NewShortcuts.Add("SpeedUpShortcut", []);
+        settingsMediator.NewShortcuts.Add("SpeedDownShortcut", []);
+        settingsMediator.NewShortcuts.Add("TrailsShortcut", []);
+        settingsMediator.NewShortcuts.Add("OrbitsShortcut", []);
+        settingsMediator.NewShortcuts.Add("VectorsShortcut", []);
+        settingsMediator.NewShortcuts.Add("NamesShortcut", []);
+        settingsMediator.NewShortcuts.Add("GlowShortcut", []);
+        settingsMediator.NewShortcuts.Add("EditShortcut", []);
+        settingsMediator.NewShortcuts.Add("ScreenshotShortcut", []);
         
-        settingsSceneData.DefaultShortcuts.Add("PauseShortcut", [Keys.LeftControl, Keys.P]);
-        settingsSceneData.DefaultShortcuts.Add("SpeedUpShortcut", [Keys.LeftControl, Keys.Right]);
-        settingsSceneData.DefaultShortcuts.Add("SpeedDownShortcut", [Keys.LeftControl, Keys.Left]);
-        settingsSceneData.DefaultShortcuts.Add("TrailsShortcut", [Keys.LeftControl, Keys.T]);
-        settingsSceneData.DefaultShortcuts.Add("OrbitsShortcut", [Keys.LeftControl, Keys.O]);
-        settingsSceneData.DefaultShortcuts.Add("VectorsShortcut", [Keys.LeftControl, Keys.V]);
-        settingsSceneData.DefaultShortcuts.Add("NamesShortcut", [Keys.LeftControl, Keys.N]);
-        settingsSceneData.DefaultShortcuts.Add("GlowShortcut", [Keys.LeftControl, Keys.G]);
-        settingsSceneData.DefaultShortcuts.Add("EditShortcut", [Keys.LeftControl, Keys.E]);
-        settingsSceneData.DefaultShortcuts.Add("ScreenshotShortcut", [Keys.F11]);
+        settingsMediator.DefaultShortcuts.Add("PauseShortcut", [Keys.LeftControl, Keys.P]);
+        settingsMediator.DefaultShortcuts.Add("SpeedUpShortcut", [Keys.LeftControl, Keys.Right]);
+        settingsMediator.DefaultShortcuts.Add("SpeedDownShortcut", [Keys.LeftControl, Keys.Left]);
+        settingsMediator.DefaultShortcuts.Add("TrailsShortcut", [Keys.LeftControl, Keys.T]);
+        settingsMediator.DefaultShortcuts.Add("OrbitsShortcut", [Keys.LeftControl, Keys.O]);
+        settingsMediator.DefaultShortcuts.Add("VectorsShortcut", [Keys.LeftControl, Keys.V]);
+        settingsMediator.DefaultShortcuts.Add("NamesShortcut", [Keys.LeftControl, Keys.N]);
+        settingsMediator.DefaultShortcuts.Add("GlowShortcut", [Keys.LeftControl, Keys.G]);
+        settingsMediator.DefaultShortcuts.Add("EditShortcut", [Keys.LeftControl, Keys.E]);
+        settingsMediator.DefaultShortcuts.Add("ScreenshotShortcut", [Keys.F11]);
     }
 
     public override void Update(GameTime gameTime)
     {
-        if (_settingsSceneData.Remapping)
+        if (_settingsMediator.Remapping)
         {
             _keyboardState = Keyboard.GetState();
 
@@ -56,28 +56,28 @@ public class SettingsScene : Scene
             {
                 if (_previousKeyboardState.IsKeyDown(key)) continue;
                 
-                if (_settingsSceneData.NewShortcuts.ContainsKey(_settingsSceneData.WhichShortcut))
+                if (_settingsMediator.NewShortcuts.ContainsKey(_settingsMediator.WhichShortcut))
                 {
-                    _settingsSceneData.NewShortcuts[_settingsSceneData.WhichShortcut].Add(key);
+                    _settingsMediator.NewShortcuts[_settingsMediator.WhichShortcut].Add(key);
                 }
             }
             
             _previousKeyboardState = _keyboardState;
 
-            _settingsSceneData.ShortcutPreview  = StringTransformer.KeybindString(_settingsSceneData.NewShortcuts[_settingsSceneData.WhichShortcut]);
+            _settingsMediator.ShortcutPreview  = StringTransformer.KeybindString(_settingsMediator.NewShortcuts[_settingsMediator.WhichShortcut]);
         }
 
-        if (_settingsSceneData.ClearShortcut)
+        if (_settingsMediator.ClearShortcut)
         {
-            _settingsSceneData.NewShortcuts[_settingsSceneData.WhichShortcut].Clear();
-            _settingsSceneData.ClearShortcut = false;
+            _settingsMediator.NewShortcuts[_settingsMediator.WhichShortcut].Clear();
+            _settingsMediator.ClearShortcut = false;
         }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        var screenWidth = _settingsSceneData.CurrentResolution.X;
-        var screenHeight = _settingsSceneData.CurrentResolution.Y;
+        var screenWidth = _settingsMediator.CurrentResolution.X;
+        var screenHeight = _settingsMediator.CurrentResolution.Y;
         
         spriteBatch.Begin();
         spriteBatch.Draw(_textureManager.SettingsBackground, _textureManager.PositionAtCenter(screenWidth, screenHeight, 

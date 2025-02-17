@@ -7,43 +7,43 @@ namespace _2dgs;
 
 public static class EditModePanel
 {
-    public static VerticalStackPanel Create(SimulationSceneData simulationSceneData, Desktop desktop)
+    public static VerticalStackPanel Create(SimulationMediator simulationMediator, Desktop desktop)
     {
         var deleteBodyButton = UiComponents.Button("Delete Body", false);
         deleteBodyButton.Id = "delete_body_button";
         deleteBodyButton.Click += (sender, args) =>
         {
-            if (simulationSceneData.EditMode && simulationSceneData.ABodySelected)
+            if (simulationMediator.EditMode && simulationMediator.ABodySelected)
             {
-                simulationSceneData.DeleteSelectedBody = true;
+                simulationMediator.DeleteSelectedBody = true;
             }
         };
 
         var colorBodyDialog = new ColorPickerDialog();
         colorBodyDialog.ButtonOk.Click += (sender, args) =>
         {
-            simulationSceneData.NewBodyColor = colorBodyDialog.Color;
-            simulationSceneData.ColorSelectedBody = true;
+            simulationMediator.NewBodyColor = colorBodyDialog.Color;
+            simulationMediator.ColorSelectedBody = true;
         };
         
         var colorBodyButton = UiComponents.Button("Change Body Colour", false);
         colorBodyButton.Id = "body_color_button";
         colorBodyButton.Click += (sender, args) =>
         {
-            if (simulationSceneData.EditMode && simulationSceneData.ABodySelected)
+            if (simulationMediator.EditMode && simulationMediator.ABodySelected)
             {
                 colorBodyDialog.Show(desktop);
             }
         };
         
-        var editBodyDialog = EditBodyDialog.Create(simulationSceneData, desktop);
+        var editBodyDialog = EditBodyDialog.Create(simulationMediator, desktop);
         var editBodyButton = UiComponents.Button("Edit Body Properties", false);
         editBodyButton.Id = "edit_body_button";
         editBodyButton.Click += (sender, args) =>
         {
-            if (simulationSceneData.EditMode && simulationSceneData.ABodySelected)
+            if (simulationMediator.EditMode && simulationMediator.ABodySelected)
             {
-                PopulateFormData(editBodyDialog, simulationSceneData);
+                PopulateFormData(editBodyDialog, simulationMediator);
                 editBodyDialog.Show(desktop);
             }
         };
@@ -52,14 +52,14 @@ public static class EditModePanel
         editModeButton.Id = "edit_mode";
         editModeButton.Click += (sender, args) =>
         {
-            ((Label)editModeButton.Content).Text = simulationSceneData.EditMode ? "Enter Edit Mode" : "Exit Edit Mode";
-            simulationSceneData.EditMode = !simulationSceneData.EditMode;
-            deleteBodyButton.Visible = simulationSceneData.EditMode;
-            colorBodyButton.Visible = simulationSceneData.EditMode;
-            editBodyButton.Visible = simulationSceneData.EditMode;
+            ((Label)editModeButton.Content).Text = simulationMediator.EditMode ? "Enter Edit Mode" : "Exit Edit Mode";
+            simulationMediator.EditMode = !simulationMediator.EditMode;
+            deleteBodyButton.Visible = simulationMediator.EditMode;
+            colorBodyButton.Visible = simulationMediator.EditMode;
+            editBodyButton.Visible = simulationMediator.EditMode;
         };
         
-        var createBodyDialog = CreateBodyDialog.Create(simulationSceneData, desktop);
+        var createBodyDialog = CreateBodyDialog.Create(simulationMediator, desktop);
 
         var createBodyButton = UiComponents.Button("Create Body");
         createBodyButton.Id = "create_body";
@@ -85,20 +85,20 @@ public static class EditModePanel
         return editPanel;
     }
     
-    private static void PopulateFormData(Dialog dialog, SimulationSceneData simulationSceneData)
+    private static void PopulateFormData(Dialog dialog, SimulationMediator simulationMediator)
     {
-        ((TextBox)dialog.FindChildById("bodyNameTextbox")).Text = simulationSceneData.SelectedBodyData.Name;
+        ((TextBox)dialog.FindChildById("bodyNameTextbox")).Text = simulationMediator.SelectedBodyData.Name;
         ((TextBox)dialog.FindChildById("bodyPosXTextbox")).Text =
-            simulationSceneData.SelectedBodyData.Position.X.ToString(CultureInfo.CurrentCulture);
+            simulationMediator.SelectedBodyData.Position.X.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyPosYTextbox")).Text =
-            simulationSceneData.SelectedBodyData.Position.Y.ToString(CultureInfo.CurrentCulture);
+            simulationMediator.SelectedBodyData.Position.Y.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyVelXTextbox")).Text =
-            simulationSceneData.SelectedBodyData.Velocity.X.ToString(CultureInfo.CurrentCulture);
+            simulationMediator.SelectedBodyData.Velocity.X.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyVelYTextbox")).Text =
-            simulationSceneData.SelectedBodyData.Velocity.Y.ToString(CultureInfo.CurrentCulture);
+            simulationMediator.SelectedBodyData.Velocity.Y.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyMassTextbox")).Text =
-            simulationSceneData.SelectedBodyData.Mass.ToString(CultureInfo.CurrentCulture);
+            simulationMediator.SelectedBodyData.Mass.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyDisplaySizeTextbox")).Text =
-            simulationSceneData.SelectedBodyData.DisplaySize.ToString(CultureInfo.CurrentCulture);
+            simulationMediator.SelectedBodyData.DisplaySize.ToString(CultureInfo.CurrentCulture);
     }
 }

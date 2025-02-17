@@ -9,21 +9,21 @@ public class GhostBody
     public Vector2 Position { get; set; } = Vector2.Zero;
     private float DisplaySize { get; set; } = 0.1f;
 
-    public void Update(SimulationSceneData simulationSceneData)
+    public void Update(SimulationMediator simulationMediator)
     {
         var mouseState = Mouse.GetState();
         Position = mouseState.Position.ToVector2();
 
-        if (simulationSceneData.ToggleBodyGhost)
+        if (simulationMediator.ToggleBodyGhost)
         {
-            DisplaySize = simulationSceneData.CreateBodyData.DisplaySize;
+            DisplaySize = simulationMediator.CreateBodyData.DisplaySize;
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, TextureManager textureManager, SimulationSceneData simulationSceneData)
+    public void Draw(SpriteBatch spriteBatch, TextureManager textureManager, SimulationMediator simulationMediator)
     {
-        if (!simulationSceneData.ToggleBodyGhost) return;
-        if (simulationSceneData.ToggleGlow)
+        if (!simulationMediator.ToggleBodyGhost) return;
+        if (simulationMediator.ToggleGlow)
         {
             for (var i = 0; i < 100; i++)
             {
