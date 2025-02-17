@@ -32,6 +32,7 @@ public class SimulationScene : Scene
         _game = game;
         InitializeComponents(game, filePath);
         SetupSimulation();
+        SetupLesson();
         RunTests();
     }
 
@@ -64,11 +65,6 @@ public class SimulationScene : Scene
         _ghostBody = new GhostBody();
     }
 
-    private void RunTests()
-    {
-        _test.TestSimulationLoading(_simulationSaveData.Bodies.Count, _bodies.Count);
-    }
-
     private void SetupSimulation()
     {
         if (_simulationSaveData == null)
@@ -91,6 +87,19 @@ public class SimulationScene : Scene
         {
             body.OffsetPosition(_simulationMediator);
         }
+    }
+
+    private void SetupLesson()
+    {
+        if (!_simulationMediator.Lesson) return;
+
+        var restrictedWidgets = _simulationSaveData.LessonPages[0].RestrictWidgets;
+        FindWidget.DisableWidgets(_simulationUi.GetRoot(), restrictedWidgets);
+    }
+    
+    private void RunTests()
+    {
+        _test.TestSimulationLoading(_simulationSaveData.Bodies.Count, _bodies.Count);
     }
 
     private void SaveSimulation()
