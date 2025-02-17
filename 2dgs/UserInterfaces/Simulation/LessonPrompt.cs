@@ -16,17 +16,17 @@ public class LessonPrompt
     private int _index;
     private readonly int _numPages;
     
-    public LessonPrompt(SimulationMediator simulationMediator)
+    public LessonPrompt(SimulationMediator simulationMediator, Button showButton)
     {
         _title = simulationMediator.SimulationTitle;
         _lessonPages = simulationMediator.LessonPages;
         _numPages = simulationMediator.LessonPages.Count;
-        _window = LessonWindow();
+        _window = LessonWindow(showButton);
     }
     
     public List<LessonPage> GetLessons => _lessonPages;
 
-    private Window LessonWindow()
+    private Window LessonWindow(Button showButton)
     {
         var window = new Window
         {
@@ -45,6 +45,11 @@ public class LessonPrompt
             Border = new SolidBrush(Color.White),
             BorderThickness = new Thickness(1),
             Content = LessonLayout()
+        };
+
+        window.CloseButton.Click += (_, _) =>
+        {
+            showButton.Enabled = true;
         };
 
         return window;

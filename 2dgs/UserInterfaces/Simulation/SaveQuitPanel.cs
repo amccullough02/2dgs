@@ -35,14 +35,16 @@ public static class SaveQuitPanel
 
         if (!simulationMediator.Lesson) return saveAndQuitPanel;
         {
-            var prompt = new LessonPrompt(simulationMediator);
+            var promptButton = UiComponents.Button("Show Lesson Prompt");
+            
+            var prompt = new LessonPrompt(simulationMediator, promptButton);
         
             UiTests.TestLessonPrompt(simulationMediator.LessonPages, prompt.GetLessons);
-        
-            var promptButton = UiComponents.Button("Show Lesson Prompt");
+            
             promptButton.Click += (_, _) =>
             {
                 prompt.Show(desktop, simulationMediator);
+                promptButton.Enabled = false;
             };
             
             saveAndQuitPanel.Widgets.Add(promptButton);
