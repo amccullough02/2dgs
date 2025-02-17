@@ -24,6 +24,7 @@ public static class SaveQuitPanel
         var saveDialog = NameSimulationDialog(simulationMediator);
         
         var saveButton = UiComponents.Button("Save Simulation");
+        
         saveButton.Click += (_, _) =>
         {
             if (!string.IsNullOrEmpty(simulationMediator.FilePath)) simulationMediator.AttemptToSaveFile = true;
@@ -31,7 +32,7 @@ public static class SaveQuitPanel
         };
         
         saveAndQuitPanel.Widgets.Add(returnButton);
-        saveAndQuitPanel.Widgets.Add(saveButton);
+        if (!simulationMediator.Lesson) saveAndQuitPanel.Widgets.Add(saveButton);
 
         if (!simulationMediator.Lesson) return saveAndQuitPanel;
         {
