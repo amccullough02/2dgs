@@ -1,6 +1,6 @@
 {
   "Title": "Galilean System",
-  "Description": "This simulation is all about the Galilean system!",
+  "Description": "In this simulation we take a look at a stunning example of orbital resonances in the Galilean system of moons. We will explore the effects and implications of a gravitational resonance before sewing chaos by adding a new moon to the system!",
   "ThumbnailPath": "../../../savedata/thumbnails/galilean_system.png",
   "IsLesson": true,
   "DefaultTimestep": 100,
@@ -78,29 +78,39 @@
   ],
   "LessonPages": [
     {
-      "Text": "This is a test of the UI element highlighting. The next page will highlight the pause button.",
+      "Text": "Aside from our own moon, the moons of Jupiter are some of the most iconic in the solar system. Not only are they of a similar size to Luna but each one of them has a unique quality that sets them apart. With regards to orbital mechanics, the moons of Io, Europa, and Ganymede demonstrate a unique and fascinating example of classical mechanics in action, that being the *Orbital Resonance*.\n\nUse the shortcut Ctrl-O to toggle the predicted orbits of the moons, this will come in handy later!",
       "HighlightWidget": "",
-      "RestrictWidgets": []
+      "RestrictWidgets": ["edit_mode", "create_body"]
     },
     {
-      "Text": "The next page will highlight the create body button.",
-      "HighlightWidget": "pause_button",
-      "RestrictWidgets": []
+      "Text": "An orbital resonance occurs when bodies who orbit a much larger parent body, in this case Jupiter, exert strong, periodic gravitational forces on one another. This pulling and pushing caused by gravity accumulates over time which will often lead to instability. It is believed that an orbital resonance of the gas giants led to the late-heavy bombardment of the Earth over four billion years ago!",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode", "create_body"]
     },
     {
-      "Text": "The next page will highlight the sim speed slider.",
+      "Text": "With regards to Io, Europa, and Ganymede we have a very special orbit resonance. A three-body Laplace resonance with a frequency ration of 1-2-4. In plain English, this means that for every one orbit that Ganymede completes, Europa will have completed two, and Io will have completed four orbits around Jupiter. Unlike with other resonances, this one is self-correcting meaning it will likely last for millions of years into the future.",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode", "create_body"]
+    },
+    {
+      "Text": "Of course, that is until you disrupt this balance. Note that the 'Create Body' button that is currently highlighted, this button will be enabled upon navigating to the next page.\n\nIt is also recommended to set the timestep slider to a value of around 50 so you can properly watch the chaos unfold!",
       "HighlightWidget": "create_body",
-      "RestrictWidgets": []
+      "RestrictWidgets":["edit_mode", "create_body"]
     },
     {
-      "Text": "The next page will highlight the name position dropdown.",
-      "HighlightWidget": "speed_slider",
-      "RestrictWidgets": []
+      "Text": "Click on 'Create Body' and enter the following values.\n\nName: Rogue Moon\nVelocity X: 0\nVelocity Y: -2\nMass: 1e7\nDisplay Size: 0.02\n\nThen place the body somewhere between Ganymede and Callisto!",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode"]
     },
     {
-      "Text": "Test complete.",
-      "HighlightWidget": "name_position",
-      "RestrictWidgets": []
+      "Text": "The orderly resonance now lays in chaos! It is possible that some moons have collided, been thrown into Jupiter or have been ejected from the system. The point to this is that the orbits of Moons and Planets are highly sensitive to gravitational disruption, but when left alone can self-organise into gravitational resonances as shown at the start of this simulation.",
+      "HighlightWidget": "",
+      "RestrictWidgets":["edit_mode", "create_body"]
+    },
+    {
+      "Text": "Click 'Restart Simulation' if you want to go through this lesson again. Otherwise, here is some good reading material if you're hungry to learn more:\n\nhttps://en.wikipedia.org/wiki/Orbital_resonance\nhttps://www.youtube.com/watch?v=Qyn64b4LNJ0",
+      "HighlightWidget": "",
+      "RestrictWidgets":["edit_mode", "create_body"]
     }
   ]
 }
