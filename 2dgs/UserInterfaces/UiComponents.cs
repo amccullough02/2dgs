@@ -224,7 +224,7 @@ public static class UiComponents
                     Content = new Label
                     {
                          Font = FontManager.MediumText(18),
-                         Text = "Ok",
+                         Text = "Confirm",
                          Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
                     }
                },
