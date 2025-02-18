@@ -32,29 +32,34 @@
   ],
   "LessonPages": [
     {
-      "Text": "This is a test of the UI element highlighting. The next page will highlight the pause button.",
+      "Text": "The three-body problem provides a fascinating example of orbital mechanics. The problem arises when trying to come up with a set of velocities and positions for three bodies of equal mass that results in a stable, non-chaotic system. \n\nThe simulation here is a crude-replica of the well-known \"figure of eight\" solution to the three-body problem.",
       "HighlightWidget": "",
-      "RestrictWidgets": []
+      "RestrictWidgets": ["create_body", "edit_mode"]
     },
     {
-      "Text": "The next page will highlight the create body button.",
-      "HighlightWidget": "pause_button",
-      "RestrictWidgets": []
+      "Text": "To better visualize this set the trail length to the maximum setting of '2000'. Additionally, use the shortcut Ctrl-O to toggle the future projected orbits of the three bodies. Note the rough outline of the orbital trails matches that of a figure of eight. Of course, even this system will become unstable over time, but for the sake of fun let's accelerate the process. \n\nSee the next page for instructions.",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["create_body", "edit_mode"]
     },
     {
-      "Text": "The next page will highlight the sim speed slider.",
-      "HighlightWidget": "create_body",
-      "RestrictWidgets": []
+      "Text": "Step #1: pause the simulation via the button or the shortcut Ctrl-P. \nStep #2: activate 'Edit Mode' (the appropriate button is highlighted).\nStep #3: select 'Body 1'.\nStep #4: select 'Edit Body Properties'.\nStep #5: change the mass from 60,000,000 to 80,000,000.\nStep #6: click 'Confirm'.\nStep #7: resume the simulation.",
+      "HighlightWidget": "edit_mode",
+      "RestrictWidgets": ["create_body"]
     },
     {
-      "Text": "The next page will highlight the name position dropdown.",
-      "HighlightWidget": "speed_slider",
-      "RestrictWidgets": []
+      "Text": "Behold as the once delicate arrangement of three bodies has begun to destabilize! \n\nBut, you may be wondering if there are any natural examples of the three body problem: there are, but perhaps not in the way you expect. Rather than finely tuned, deterministic systems, nature solves the three body problem by well, cheating.\n\n(see the next page)",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["create_body", "edit_mode"]
     },
     {
-      "Text": "Test complete.",
-      "HighlightWidget": "name_position",
-      "RestrictWidgets": []
+      "Text": "Essentially, in multi-star systems it is common to find a single star orbiting around two other stars that are much closer together. Due to their relative proximity, these two close stars form a common barycentre which the third star orbits as if it were a single body.",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["create_body", "edit_mode"]
+    },
+    {
+      "Text": "Here are some great resources to enhance your learning further:\n\nhttps://en.wikipedia.org/wiki/Three-body_problem\nhttps://en.wikipedia.org/wiki/Binary_star\nhttps://en.wikipedia.org/wiki/Star_system\n\nClick 'Restart Simulation' to try again if anything confused you!",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["create_body", "edit_mode"]
     }
   ]
 }
