@@ -214,10 +214,8 @@ public static class UiComponents
                Border = new SolidBrush(Color.White),
                TitlePanel =
                {
-                    HorizontalAlignment = HorizontalAlignment.Center, Padding = new Thickness(0,
-                         5,
-                         0,
-                         0)
+                    HorizontalAlignment = HorizontalAlignment.Center, 
+                    Padding = new Thickness(UiConstants.DefaultSmallPadding)
                },
                ButtonOk =
                {
@@ -225,7 +223,7 @@ public static class UiComponents
                     {
                          Font = FontManager.MediumText(18),
                          Text = "Confirm",
-                         Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
+                         Padding = new Thickness(UiConstants.DefaultSmallPadding)
                     }
                },
                ButtonCancel =
@@ -234,7 +232,7 @@ public static class UiComponents
                     {
                          Font = FontManager.MediumText(18),
                          Text = "Cancel",
-                         Padding = new Thickness(UiConstants.DefaultMargin, 5, UiConstants.DefaultMargin, 5)
+                         Padding = new Thickness(UiConstants.DefaultSmallPadding)
                     }
                },
           };

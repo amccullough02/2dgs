@@ -17,6 +17,7 @@ public static class UiConstants
     public const int DefaultGridSpacing = 10;
     public const int DefaultLargePadding = 10;
     public const int DefaultMediumPadding = 8;
+    public const int DefaultSmallPadding = 6;
     public const float DefaultLessonOpacity = 0.8f;
     public const float DefaultDialogOpacity = 0.5f;
 }
