@@ -39,8 +39,6 @@ public static class SaveQuitPanel
             var promptButton = UiComponents.Button("Show Lesson Prompt");
             
             var prompt = new LessonPrompt(simulationMediator, promptButton);
-        
-            UiTests.TestLessonPrompt(simulationMediator.LessonPages, prompt.GetLessons);
             
             promptButton.Click += (_, _) =>
             {

@@ -29,6 +29,9 @@
         <PackageReference Include="Myra" Version="1.5.9" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="savedata\test\" />
+    </ItemGroup>
     <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
         <Message Text="Restoring dotnet tools" Importance="High"/>
         <Exec Command="dotnet tool restore"/>

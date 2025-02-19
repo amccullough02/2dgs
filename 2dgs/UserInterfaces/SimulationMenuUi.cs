@@ -160,8 +160,6 @@ public class SimulationMenuUi
         
         verticalStackPanel.Widgets.Add(tabControl);
         verticalStackPanel.Widgets.Add(buttonPanel);
-        
-        UiTests.TestSimFileLoading(lessonsListView, "../../../savedata/lessons");
 
         return verticalStackPanel;
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2dgs.Test;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
@@ -9,7 +10,6 @@ public class Game : Microsoft.Xna.Framework.Game
     public FpsCounter FpsCounter { get; private set; }
     public SceneManager SceneManager { get; private set; }
     public readonly SaveSystem SaveSystem;
-    private Test _test;
     private MusicPlayer _musicPlayer;
     private SpriteBatch _spriteBatch;
 
@@ -38,17 +38,16 @@ public class Game : Microsoft.Xna.Framework.Game
     private void SetupGlobalComponents()
     {
         _musicPlayer = new MusicPlayer(Content);
-        _test = new Test();
     }
 
     protected override void Initialize()
     {
         Window.Title = "2DGS - Alpha";
-        _test.RunAllTests(Graphics, Window.Title);
         SceneManager = new SceneManager();
         SceneManager.PushScene(new MainMenuScene(this));
         // SceneManager.PushScene(new SimulationScene(this, "../../../savedata/lessons/galilean_system.json"));
         _musicPlayer.Initialize();
+        TestRunner.AssertApplicationName(Window.Title, "2DGS - Alpha");
         base.Initialize();
     }
 
@@ -62,6 +61,7 @@ public class Game : Microsoft.Xna.Framework.Game
     {
         FpsCounter.Update(gameTime);
         SceneManager.Update(gameTime);
+        TestRunner.SaveResults();
         base.Update(gameTime);
     }
 

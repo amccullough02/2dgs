@@ -22,7 +22,6 @@ public class SimulationScene : Scene
     private SoundEffectPlayer _soundEffectPlayer;
     private KeyboardState _keyboardState;
     private KeyboardState _previousKeyboardState;
-    private Test _test;
     private GhostBody _ghostBody;
     private ShapeBatch _shapeBatch;
     private readonly Game _game;
@@ -58,7 +57,6 @@ public class SimulationScene : Scene
         _soundEffectPlayer = new SoundEffectPlayer(game.Content);
         _shapeBatch = new ShapeBatch(game.GraphicsDevice, game.Content);
         _simulationUi = new SimulationUi(game, _simulationMediator);
-        _test = new Test();
         #endregion
         
         _bodies = [];
@@ -97,10 +95,7 @@ public class SimulationScene : Scene
         FindWidget.DisableWidgets(_simulationUi.GetRoot(), restrictedWidgets);
     }
     
-    private void RunTests()
-    {
-        _test.TestSimulationLoading(_simulationSaveData.Bodies.Count, _bodies.Count);
-    }
+    private void RunTests() {}
 
     private void SaveSimulation()
     {
