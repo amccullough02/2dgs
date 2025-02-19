@@ -347,7 +347,8 @@ public class SimulationMenuUi
         }
         else
         {
-            var noFilesLabel = new Label { Text = "No files found" };
+            var noFilesLabel = UiComponents.MediumLabel("No files found.");
+            noFilesLabel.Padding = new Thickness(UiConstants.DefaultMediumPadding);
             listView.Widgets.Add(noFilesLabel);
         }
     }
