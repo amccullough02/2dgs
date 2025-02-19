@@ -11,7 +11,7 @@ public static class EditModePanel
     {
         var deleteBodyButton = UiComponents.Button("Delete Body", false);
         deleteBodyButton.Id = "delete_body_button";
-        deleteBodyButton.Click += (sender, args) =>
+        deleteBodyButton.Click += (_, _) =>
         {
             if (simulationMediator.EditMode && simulationMediator.ABodySelected)
             {
@@ -19,8 +19,8 @@ public static class EditModePanel
             }
         };
 
-        var colorBodyDialog = new ColorPickerDialog();
-        colorBodyDialog.ButtonOk.Click += (sender, args) =>
+        var colorBodyDialog = UiComponents.CustomColorPicker();
+        colorBodyDialog.ButtonOk.Click += (_, _) =>
         {
             simulationMediator.NewBodyColor = colorBodyDialog.Color;
             simulationMediator.ColorSelectedBody = true;
@@ -28,7 +28,7 @@ public static class EditModePanel
         
         var colorBodyButton = UiComponents.Button("Change Body Colour", false);
         colorBodyButton.Id = "body_color_button";
-        colorBodyButton.Click += (sender, args) =>
+        colorBodyButton.Click += (_, _) =>
         {
             if (simulationMediator.EditMode && simulationMediator.ABodySelected)
             {
@@ -39,7 +39,7 @@ public static class EditModePanel
         var editBodyDialog = EditBodyDialog.Create(simulationMediator, desktop);
         var editBodyButton = UiComponents.Button("Edit Body Properties", false);
         editBodyButton.Id = "edit_body_button";
-        editBodyButton.Click += (sender, args) =>
+        editBodyButton.Click += (_, _) =>
         {
             if (simulationMediator.EditMode && simulationMediator.ABodySelected)
             {
@@ -50,7 +50,7 @@ public static class EditModePanel
         
         var editModeButton = UiComponents.Button("Enter Edit Mode");
         editModeButton.Id = "edit_mode";
-        editModeButton.Click += (sender, args) =>
+        editModeButton.Click += (_, _) =>
         {
             ((Label)editModeButton.Content).Text = simulationMediator.EditMode ? "Enter Edit Mode" : "Exit Edit Mode";
             simulationMediator.EditMode = !simulationMediator.EditMode;
@@ -63,7 +63,7 @@ public static class EditModePanel
 
         var createBodyButton = UiComponents.Button("Create Body");
         createBodyButton.Id = "create_body";
-        createBodyButton.Click += (s, e) =>
+        createBodyButton.Click += (_, _) =>
         {
             createBodyDialog.Show(desktop);
         };

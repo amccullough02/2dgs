@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D;
 using Myra.Graphics2D.Brushes;
 using Myra.Graphics2D.UI;
+using Myra.Graphics2D.UI.ColorPicker;
 
 namespace _2dgs;
 
@@ -212,6 +214,43 @@ public static class UiComponents
                Background = new SolidBrush(Color.Black * UiConstants.DefaultDialogOpacity),
                BorderThickness = new Thickness(1),
                Border = new SolidBrush(Color.White),
+               Padding = new Thickness(UiConstants.DefaultMediumPadding),
+               TitlePanel =
+               {
+                    HorizontalAlignment = HorizontalAlignment.Center, 
+                    Padding = new Thickness(UiConstants.DefaultSmallPadding)
+               },
+               ButtonOk =
+               {
+                    Content = new Label
+                    {
+                         Font = FontManager.MediumText(18),
+                         Text = "Confirm",
+                         Padding = new Thickness(UiConstants.DefaultSmallPadding)
+                    }
+               },
+               ButtonCancel =
+               {
+                    Content = new Label
+                    {
+                         Font = FontManager.MediumText(18),
+                         Text = "Cancel",
+                         Padding = new Thickness(UiConstants.DefaultSmallPadding)
+                    }
+               },
+          };
+     }
+
+     public static ColorPickerDialog CustomColorPicker()
+     {
+          return new ColorPickerDialog
+          {
+               Title = "Select Body Colour",
+               TitleFont = FontManager.MediumText(UiConstants.DefaultFontSize),
+               Background = new SolidBrush(Color.Black * UiConstants.DefaultDialogOpacity),
+               BorderThickness = new Thickness(1),
+               Border = new SolidBrush(Color.White),
+               Padding = new Thickness(UiConstants.DefaultMediumPadding),
                TitlePanel =
                {
                     HorizontalAlignment = HorizontalAlignment.Center, 
