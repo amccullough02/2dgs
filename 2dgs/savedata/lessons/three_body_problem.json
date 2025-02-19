@@ -1,6 +1,6 @@
 {
   "Title": "Three Body Problem",
-  "Description": "This simulation is all about the Three Body Problem!",
+  "Description": "In this simulation we take a look at an example of the three body problem! This is fascinating problem within physics that can teach us an awful lot about how nature deals with complex multi-body systems. During this lesson we will discuss one of the most popular solutions to the three body problem which resembles a figure of eight!",
   "ThumbnailPath": "../../../savedata/thumbnails/three_body_problem.png",
   "IsLesson": true,
   "DefaultTimestep": 200,

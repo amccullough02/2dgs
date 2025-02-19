@@ -1,6 +1,6 @@
 {
   "Title": "Gravity Assist",
-  "Description": "This simulation is all about the gravity assist technique!",
+  "Description": "In this simulation we explore the concept of gravity assistance. This technique is what enabled the ground-breaking success of the Pioneer, Voyager, and Cassini programs! Gravity assists provide an intuitive demonstration of the conservation of momentum, a key principle in both classical mechanics and orbital mechanics.",
   "ThumbnailPath": "../../../savedata/thumbnails/gravity_assist.png",
   "IsLesson": true,
   "DefaultTimestep": 4,
