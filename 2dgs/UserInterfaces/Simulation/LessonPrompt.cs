@@ -61,7 +61,7 @@ public class LessonPrompt
         {
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Stretch,
-            Padding = new Thickness(10)
+            Padding = new Thickness(UiConstants.DefaultLargePadding)
         };
 
         var textBox = LessonContent();

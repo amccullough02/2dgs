@@ -309,7 +309,7 @@ public class SimulationMenuUi
         {
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Stretch,
-            Padding = new Thickness(10),
+            Padding = new Thickness(UiConstants.DefaultLargePadding),
             Spacing = 10,
             Background = new SolidBrush(new Color(24, 24, 24))
         };

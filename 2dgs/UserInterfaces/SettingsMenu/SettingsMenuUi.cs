@@ -38,7 +38,7 @@ public class SettingsMenuUi
         {
             Spacing = 8,
             Margin = new Thickness(0),
-            Padding = new Thickness(10),
+            Padding = new Thickness(UiConstants.DefaultLargePadding),
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
             Background = new SolidBrush(Color.Black * 0.5f),

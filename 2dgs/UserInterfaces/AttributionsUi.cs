@@ -44,7 +44,7 @@ public class AttributionsUi
         var panel = new VerticalStackPanel
         {
             Margin = new Thickness(180),
-            Padding = new Thickness(10),
+            Padding = new Thickness(UiConstants.DefaultLargePadding),
             Border = new SolidBrush(Color.White),
             BorderThickness = new Thickness(1),
             Background = new SolidBrush(Color.Black * 0.5f),

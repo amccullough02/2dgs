@@ -102,7 +102,7 @@ public static class UiComponents
                RowSpacing = spacing,
                ColumnSpacing = spacing,
                HorizontalAlignment = HorizontalAlignment.Center,
-               Margin = new Thickness(10, 10, 10, 10),
+               Margin = new Thickness(10),
           };
           
           for (var i = 0; i < columns; i++)
@@ -186,7 +186,7 @@ public static class UiComponents
                {
                     Font = FontManager.LightText(UiConstants.DefaultFontSize),
                     Text = text,
-                    Padding = new Thickness(8),
+                    Padding = new Thickness(UiConstants.DefaultMediumPadding),
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                }
@@ -246,7 +246,7 @@ public static class UiComponents
           {
                Text = text,
                Font = FontManager.LightText(UiConstants.DefaultFontSize),
-               Padding = new Thickness(10),
+               Padding = new Thickness(UiConstants.DefaultLargePadding),
                Multiline = true,
                Readonly = true,
                Wrap = true,
