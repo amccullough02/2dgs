@@ -36,29 +36,34 @@
   ],
   "LessonPages": [
     {
-      "Text": "This is a test of the UI element highlighting. The next page will highlight the pause button.",
+      "Text": "Note: I recommend you pause the simulation for now.\n\nThis simulation provides a look at the gravity assist. This is the name of a real-world technique used by long-range, exploration-focused spacecraft such Pioneer, Voyager, Cassini, and many others.\n\nThe development of the gravity assist was actually possible because of gravity simulators, much like this one! The idea was first developed by Michael Minovitch in 1961 during his tenure at NASA's JPL (Jet Propulsion Laboratory).",
       "HighlightWidget": "",
-      "RestrictWidgets": []
+      "RestrictWidgets": ["edit_mode", "create_body"]
     },
     {
-      "Text": "The next page will highlight the create body button.",
-      "HighlightWidget": "pause_button",
-      "RestrictWidgets": []
+      "Text": "This idea was used by Gary Flandro in 1964 upon noticing a rare alignment of the outer planets that would theoretically allow for a spacecraft to use gravity assists to visit, if not all four, a large amount of the outer planets in the solar system.\n\nIn this simulation we are crudely approximating the gravity assist Cassini used in regards to Venus, a planet that is commonly used in gravity assists due to its high-mass and proximity to Earth.",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode", "create_body"]
     },
     {
-      "Text": "The next page will highlight the sim speed slider.",
-      "HighlightWidget": "create_body",
-      "RestrictWidgets": []
+      "Text": "Use the shortcut Ctrl-O and you may be able to realise how a gravity assist works. Basically, the spacecraft steals some of the momentum from the planet to 'catapult' itself into a deeper region of the solar system. But of course, due to the enormous mass difference the amount of momentum taken from the planet is negligible.\n\nResume the simulation (feel free to adjust the simulation speed) and observe the path Cassini follows as it shoots around Venus.",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode", "create_body"]
     },
     {
-      "Text": "The next page will highlight the name position dropdown.",
-      "HighlightWidget": "speed_slider",
-      "RestrictWidgets": []
+      "Text": "Now it is your turn!\n\nClick the highlighted 'Create Body' button. Your goal is to perform a similar gravity assist with your own fictional spacecraft. It may be prudent to enable the velocity vectors debug option with the shortcut Ctrl-V. This will show which velocity vectors are dominant when tine tuning your body's properties.\n\nOf course, it may take a couple of attempts! (see next page for some recommended values)",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode"]
     },
     {
-      "Text": "Test complete.",
-      "HighlightWidget": "name_position",
-      "RestrictWidgets": []
+      "Text": "Mass: 25\nDisplay Size: 0.005\n\nThe rest of the values are up to you, just bear in mind that negative velocities will head 'away' from the top left corner of the screen. ",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode"]
+    },
+    {
+      "Text": "Don't worry if you haven't managed to perfect your gravity assist, this is difficult technique to get right! Here is some additional reading material:\n\nhttps://en.wikipedia.org/wiki/Gravity_assist\nhttps://science.nasa.gov/learn/basics-of-space-flight/primer/\n\nClick 'Restart Simulation' to try again if anything confused you!",
+      "HighlightWidget": "",
+      "RestrictWidgets": ["edit_mode", "create_body"]
     }
   ]
 }
