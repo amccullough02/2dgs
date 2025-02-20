@@ -4,7 +4,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
-namespace _2dgs.Test;
+namespace _2dgs;
 
 public static class TestRunner
 {
