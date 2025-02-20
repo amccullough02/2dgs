@@ -6,7 +6,7 @@ namespace _2dgs;
 public class SimulationMenuScene(Game game) : Scene
 {
     private readonly SimulationMenuUi _simulationMenuUi = new(game);
-    private readonly TextureManager _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
+    private readonly TextureManager _textureManager = new(game.Content, game.GraphicsDevice);
     private float ScreenWidth => game.GraphicsDevice.Viewport.Width;
     private float ScreenHeight => game.GraphicsDevice.Viewport.Height;
 

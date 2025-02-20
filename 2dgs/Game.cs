@@ -47,8 +47,15 @@ public class Game : Microsoft.Xna.Framework.Game
         SceneManager.PushScene(new MainMenuScene(this));
         // SceneManager.PushScene(new SimulationScene(this, "../../../savedata/lessons/galilean_system.json"));
         _musicPlayer.Initialize();
-        TestRunner.AssertApplicationName(Window.Title, "2DGS - Alpha");
+        RunTests();
         base.Initialize();
+    }
+
+    private void RunTests()
+    {
+        TestRunner.AssertApplicationName(Window.Title, "2DGS - Alpha");
+        TestRunner.AssertApplicationResolution(Graphics, SaveSystem.LoadSettings());
+        TestRunner.AssertApplicationDisplayMode(Graphics, SaveSystem.LoadSettings());
     }
 
     protected override void LoadContent()

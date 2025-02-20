@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using _2dgs.Test;
 using FontStashSharp;
 using FontStashSharp.RichText;
 using Microsoft.Xna.Framework;
@@ -160,6 +161,9 @@ public class SimulationMenuUi
         
         verticalStackPanel.Widgets.Add(tabControl);
         verticalStackPanel.Widgets.Add(buttonPanel);
+        
+        TestRunner.AssertLessonsLoaded(lessonsListView, "../../../savedata/lessons");
+        TestRunner.AssertUserSimsLoaded(sandboxListView, "../../../savedata/my_simulations");
 
         return verticalStackPanel;
     }

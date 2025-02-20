@@ -1,3 +1,6 @@
-=== TESTING RESULTS for 19/02/2025 15:48:52 ===
+=== TESTING RESULTS for 20/02/2025 14:02:19 ===
 TEST #1: Application name is as expected (PASS).
-
+TEST #2: Application resolution is as expected (PASS).
+TEST #3: Application display mode is as expected (PASS).
+Test #4: Lesson files loaded (PASS).
+Test #5: Sandbox files loaded (PASS).
