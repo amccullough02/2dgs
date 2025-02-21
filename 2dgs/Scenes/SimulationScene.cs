@@ -94,8 +94,12 @@ public class SimulationScene : Scene
         var restrictedWidgets = _simulationSaveData.LessonPages[0].RestrictWidgets;
         FindWidget.DisableWidgets(_simulationUi.GetRoot(), restrictedWidgets);
     }
-    
-    private void RunTests() {}
+
+    private void RunTests()
+    {
+        TestRunner.AssertBodiesDataIntegrity(_bodies, _simulationSaveData.Bodies);
+        TestRunner.AssertLessonDataIntegrity(_simulationMediator.LessonPages, _simulationSaveData.LessonPages);
+    }
 
     private void SaveSimulation()
     {
@@ -143,6 +147,7 @@ public class SimulationScene : Scene
             _textureManager);
                 
         _bodies.Add(body);
+        TestRunner.AssertBodyCreated(_bodies, body);
         _simulationMediator.ToggleBodyGhost = !_simulationMediator.ToggleBodyGhost;
     }
 

@@ -163,6 +163,60 @@ public static class TestRunner
             Console.WriteLine(result);
             _results.Add(result);
         }
+    }
+
+    public static void AssertBodiesDataIntegrity(List<Body> bodies, List<BodyData> bodiesData)
+    {
+        var numOfInstanceBodies = bodies.Count;
+        var numOfSavedBodies = bodiesData.Count;
+
+        if (numOfInstanceBodies != numOfSavedBodies)
+        {
+            const string result = "TEST #8: Bodies data integrity is as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+        else
+        {
+            const string result = "TEST #8: Bodies data integrity is as expected (PASS).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+    }
+
+    public static void AssertLessonDataIntegrity(List<LessonPage> lessonPages, List<LessonPage> lessonData)
+    {
+        var numOfInstanceLessons = lessonPages.Count;
+        var numOfSavedLessons = lessonData.Count;
+
+        if (numOfInstanceLessons != numOfSavedLessons)
+        {
+            const string result = "TEST #9: Lesson data integrity is as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+        else
+        {
+            const string result = "TEST #9: Lesson data integrity is as expected (PASS).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+    }
+
+    public static void AssertBodyCreated(List<Body> bodies, Body newBody)
+    {
+        if (bodies.Contains(newBody))
+        {
+            const string result = "TEST #10: Body created as expected (PASS).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+        else
+        {
+            const string result = "TEST #10: Body created as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
         
         _testingComplete = true;
     }
