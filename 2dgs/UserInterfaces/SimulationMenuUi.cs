@@ -187,6 +187,7 @@ public class SimulationMenuUi
             Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
             var newPath = path + "/" + textbox.Text + ".json";
             _fileManager.RenameFile(file, newPath);
+            TestRunner.AssertFileRename(file, newPath);
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
 
@@ -207,6 +208,7 @@ public class SimulationMenuUi
         {
             Console.WriteLine($"DEBUG: {fileName} deleted");
             _fileManager.DeleteFile(path + "/" + fileName + ".json");
+            TestRunner.AssertFileDeletion(path + "/" + fileName + ".json");
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
 

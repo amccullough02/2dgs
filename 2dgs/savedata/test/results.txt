@@ -1,6 +1,8 @@
-=== TESTING RESULTS for 20/02/2025 14:08:26 ===
+=== TESTING RESULTS for 21/02/2025 10:52:21 ===
 TEST #1: Application name is as expected (PASS).
 TEST #2: Application resolution is as expected (PASS).
 TEST #3: Application display mode is as expected (PASS).
 Test #4: Lesson files loaded (PASS).
 Test #5: Sandbox files loaded (PASS).
+TEST #6: File rename is as expected (PASS).
+Test #7: File deletion is as expected (PASS).

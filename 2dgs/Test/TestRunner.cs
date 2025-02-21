@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
@@ -84,13 +85,13 @@ public static class TestRunner
 
         if (numOfWidgets != numOfLessons)
         {
-            const string result = "Test #4: Lesson files loaded (FAIL).";
+            const string result = "TEST #4: Lesson files loaded (FAIL).";
             Console.WriteLine(result);
             _results.Add(result);
         }
         else
         {
-            const string result = "Test #4: Lesson files loaded (PASS).";
+            const string result = "TEST #4: Lesson files loaded (PASS).";
             Console.WriteLine(result);
             _results.Add(result);
         }
@@ -112,13 +113,53 @@ public static class TestRunner
 
         if (numOfWidgets != numOfLessons)
         {
-            const string result = "Test #5: Sandbox files loaded (FAIL).";
+            const string result = "TEST #5: Sandbox files loaded (FAIL).";
             Console.WriteLine(result);
             _results.Add(result);
         }
         else
         {
-            const string result = "Test #5: Sandbox files loaded (PASS).";
+            const string result = "TEST #5: Sandbox files loaded (PASS).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+    }
+
+    public static void AssertFileRename(string oldPath, string newPath)
+    {
+        var oldPathExists = File.Exists(oldPath);
+        var newPathExists = File.Exists(newPath);
+
+        if (oldPathExists)
+        {
+            const string result = "TEST #6: File rename is as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        } else if (!newPathExists)
+        {
+            const string result = "TEST #6: File rename is as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+        else
+        {
+            const string result = "TEST #6: File rename is as expected (PASS).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+    }
+
+    public static void AssertFileDeletion(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            const string result = "TEST #7: File deletion as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+        else
+        {
+            const string result = "TEST #7: File deletion is as expected (PASS).";
             Console.WriteLine(result);
             _results.Add(result);
         }
@@ -130,11 +171,13 @@ public static class TestRunner
     {
         if (!_testingComplete) return;
 
+        var uniqueResults = _results.Distinct().ToList();
+
         try
         {
             using var writer = new StreamWriter(ResultsPath);
             writer.WriteLine($"=== TESTING RESULTS for {DateTime.Now.ToUniversalTime()} ===");
-            foreach (var result in _results)
+            foreach (var result in uniqueResults)
             {
                 writer.WriteLine(result);
             }
