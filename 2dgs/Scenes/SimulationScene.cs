@@ -123,6 +123,7 @@ public class SimulationScene : Scene
         }
             
         _saveSystem.SaveSimulation(_simulationMediator.FilePath, dataToSave);
+        TestRunner.AssertSimulationSaved(_simulationMediator.FilePath, dataToSave, _saveSystem);
         _simulationMediator.AttemptToSaveFile = false;
     }
 

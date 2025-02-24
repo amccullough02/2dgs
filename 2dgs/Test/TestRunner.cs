@@ -249,6 +249,32 @@ public static class TestRunner
             Console.WriteLine(result);
             _results.Add(result);
         }
+    }
+
+    private static bool CompareSaveData(SimulationSaveData instanceData, SimulationSaveData saveData)
+    {
+        var bodies = instanceData.Bodies.Count == saveData.Bodies.Count;
+        var pages = instanceData.LessonPages.Count == saveData.LessonPages.Count;
+            
+        return bodies && pages;
+    }
+
+    public static void AssertSimulationSaved(string filePath, SimulationSaveData instanceData, SaveSystem saveSystem)
+    {
+        var saveData = saveSystem.LoadSimulation(filePath);
+        
+        if (File.Exists(filePath) && CompareSaveData(instanceData, saveData))
+        {
+            const string result = "TEST #13: Simulation file saved as expected (PASS).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+        else
+        {
+            const string result = "TEST #13: Simulation file saved as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
         
         _testingComplete = true;
     }
