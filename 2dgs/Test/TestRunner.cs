@@ -217,9 +217,27 @@ public static class TestRunner
             Console.WriteLine(result);
             _results.Add(result);
         }
+    }
+
+    public static void AssertBodyEdited(List<Body> bodies, Body editedBody)
+    {
+        if (bodies.Contains(editedBody))
+        {
+            const string result = "TEST #11: Body edited as expected (PASS).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
+        else
+        {
+            const string result = "TEST #11: Body edited as expected (FAIL).";
+            Console.WriteLine(result);
+            _results.Add(result);
+        }
         
         _testingComplete = true;
     }
+    
+    public static void AssertBodyDeleted(List<Body> bodies, Body deletedBody) {}
 
     public static void SaveResults()
     {

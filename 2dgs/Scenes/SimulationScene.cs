@@ -162,6 +162,7 @@ public class SimulationScene : Scene
                     _simulationMediator.EditBodyData.Mass,
                     _simulationMediator.EditBodyData.DisplaySize,
                     _bodies);
+            TestRunner.AssertBodyEdited(_bodies, SelectedBody());
         }
         _simulationMediator.EditSelectedBody = false;
     }
