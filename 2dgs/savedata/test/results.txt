@@ -1,4 +1,4 @@
-=== TESTING RESULTS for 24/02/2025 15:31:01 ===
+=== TESTING RESULTS for 24/02/2025 15:38:48 ===
 TEST #1: Application name is as expected (PASS).
 TEST #2: Application resolution is as expected (PASS).
 TEST #3: Application display mode is as expected (PASS).
@@ -6,5 +6,4 @@ TEST #4: Lesson files loaded (PASS).
 TEST #5: Sandbox files loaded (PASS).
 TEST #8: Bodies data integrity is as expected (PASS).
 TEST #9: Lesson data integrity is as expected (PASS).
-TEST #10: Body created as expected (PASS).
-TEST #11: Body edited as expected (PASS).
+TEST #12: Body deleted as expected (PASS).

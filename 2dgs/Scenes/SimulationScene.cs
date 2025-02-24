@@ -188,12 +188,16 @@ public class SimulationScene : Scene
             }
         }
 
-        foreach (var body in bodiesToRemove)
+        if (bodiesToRemove.Count > 0)
         {
-            _bodies.Remove(body);
-            _soundEffectPlayer.PlayCollisionSfx();
+            foreach (var body in bodiesToRemove)
+            {
+                _bodies.Remove(body);
+                _soundEffectPlayer.PlayCollisionSfx();
+                TestRunner.AssertBodyDeleted(_bodies, body);
+            }
         }
-        
+
         _simulationMediator.DeleteSelectedBody = false;
     }
     
