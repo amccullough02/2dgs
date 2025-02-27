@@ -16,7 +16,7 @@ public static class RemapShortcutsDialog
         Grid.SetColumn(pauseKeyBindLabel, 0);
 
         var pauseKeyBindPreview =
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.PauseShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.PauseShortcut));
         Grid.SetColumn(pauseKeyBindPreview, 1);
         
         var changePauseKeyBind = UiComponents.Button("Start", width: 100, height: 30);
@@ -31,7 +31,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(speedUpKeyBindLabel, 1);
         
         var speedUpKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.SpeedUpShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.SpeedUpShortcut));
         Grid.SetColumn(speedUpKeyBindPreview, 1);
         Grid.SetRow(speedUpKeyBindPreview, 1);
         
@@ -48,7 +48,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(slowDownKeyBindLabel, 2);
         
         var slowDownKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.SpeedDownShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.SpeedDownShortcut));
         Grid.SetColumn(slowDownKeyBindPreview, 1);
         Grid.SetRow(slowDownKeyBindPreview, 2);
         
@@ -65,7 +65,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(toggleTrailsKeyBindLabel, 3);
 
         var toggleTrailsKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.TrailsShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.TrailsShortcut));
         Grid.SetColumn(toggleTrailsKeyBindPreview, 1);
         Grid.SetRow(toggleTrailsKeyBindPreview, 3);
         
@@ -82,7 +82,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(toggleOrbitsKeyBindLabel, 4);
         
         var toggleOrbitsKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.OrbitsShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.OrbitsShortcut));
         Grid.SetColumn(toggleOrbitsKeyBindPreview, 1);
         Grid.SetRow(toggleOrbitsKeyBindPreview, 4);
         
@@ -99,7 +99,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(toggleVectorsKeyBindLabel, 5);
         
         var toggleVectorsKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.VectorsShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.VectorsShortcut));
         Grid.SetColumn(toggleVectorsKeyBindPreview, 1);
         Grid.SetRow(toggleVectorsKeyBindPreview, 5);
         
@@ -116,7 +116,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(toggleNamesKeyBindLabel, 6);
         
         var toggleNamesKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.NamesShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.NamesShortcut));
         Grid.SetColumn(toggleNamesKeyBindPreview, 1);
         Grid.SetRow(toggleNamesKeyBindPreview, 6);
         
@@ -133,7 +133,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(toggleGlowKeyBindLabel, 7);
         
         var toggleGlowKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.GlowShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.GlowShortcut));
         Grid.SetColumn(toggleGlowKeyBindPreview, 1);
         Grid.SetRow(toggleGlowKeyBindPreview, 7);
         
@@ -150,7 +150,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(toggleEditModeKeyBindLabel, 8);
         
         var toggleEditModeKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.EditShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.EditShortcut));
         Grid.SetColumn(toggleEditModeKeyBindPreview, 1);
         Grid.SetRow(toggleEditModeKeyBindPreview, 8);
         
@@ -167,7 +167,7 @@ public static class RemapShortcutsDialog
         Grid.SetRow(screenshotKeyBindLabel, 9);
         
         var screenshotKeyBindPreview = 
-            UiComponents.KeyBindLabel(StringTransformer.KeybindString(settingsSaveData.ScreenshotShortcut));
+            UiComponents.KeyBindLabel(StringTransformer.KeyBindString(settingsSaveData.ScreenshotShortcut));
         Grid.SetColumn(screenshotKeyBindPreview, 1);
         Grid.SetRow(screenshotKeyBindPreview, 9);
         
@@ -223,7 +223,7 @@ public static class RemapShortcutsDialog
         var resetButton = UiComponents.Button("Reset", width: 100, height: 30);
         resetButton.Click += (_, _) =>
         {
-            string GetPreview(string preview) => StringTransformer.KeybindString(settingsMediator.DefaultShortcuts[preview]);
+            string GetPreview(string preview) => StringTransformer.KeyBindString(settingsMediator.DefaultShortcuts[preview]);
 
             pauseKeyBindPreview.Text = GetPreview("PauseShortcut");
             speedUpKeyBindPreview.Text = GetPreview("SpeedUpShortcut");

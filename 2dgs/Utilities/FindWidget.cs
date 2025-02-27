@@ -5,8 +5,18 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to more easily access Myra widgets.
+/// </summary>
 public static class FindWidget
 {
+    /// <summary>
+    /// A method to return a widget given an ID. This method will recursively search through the widget tree until either a widget is found or a null is
+    /// returned indicating that no such widget exists.
+    /// </summary>
+    /// <param name="parent">The root widget, typically from an Ui class.</param>
+    /// <param name="widgetId">The ID used to search for the widget.</param>
+    /// <returns></returns>
     public static Widget GetWidgetById(Widget parent, string widgetId)
     {
         if (parent.Id == widgetId)
@@ -29,6 +39,11 @@ public static class FindWidget
         return null;
     }
 
+    /// <summary>
+    /// A method that highlights a widget given an ID.
+    /// </summary>
+    /// <param name="parent">The root widget, typically from an Ui class.</param>
+    /// <param name="widgetId">The ID used to search for the widget.</param>
     public static void HighlightWidget(Widget parent, string widgetId)
     {
         var widget = GetWidgetById(parent, widgetId);
@@ -39,6 +54,11 @@ public static class FindWidget
         }
     }
 
+    /// <summary>
+    /// A method that removes a highlight from a widget given an ID.
+    /// </summary>
+    /// <param name="parent">The root widget, typically from an Ui class.</param>
+    /// <param name="widgetId">The ID used to search for the widget.</param>
     public static void UnhighlightWidget(Widget parent, string widgetId)
     {
         var widget = GetWidgetById(parent, widgetId);
@@ -50,6 +70,11 @@ public static class FindWidget
         }
     }
 
+    /// <summary>
+    /// A method to disable a widget or widgets.
+    /// </summary>
+    /// <param name="parent">The root widget, typically from an Ui class.</param>
+    /// <param name="widgetIds">An array of widget IDs.</param>
     public static void DisableWidgets(Widget parent, string[] widgetIds)
     {
         foreach (var widgetId in widgetIds)
@@ -63,6 +88,11 @@ public static class FindWidget
         }
     }
     
+    /// <summary>
+    /// A method to enable a widget or widgets.
+    /// </summary>
+    /// <param name="parent">The root widget, typically from an Ui class.</param>
+    /// <param name="widgetIds">An array of widget IDs.</param>
     public static void EnableWidgets(Widget parent, string[] widgetIds)
     {
         foreach (var widgetId in widgetIds)

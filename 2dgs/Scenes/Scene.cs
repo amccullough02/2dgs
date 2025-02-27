@@ -11,12 +11,12 @@ public abstract class Scene
     /// <summary>
     /// An abstract method for updating the contents of a scene.
     /// </summary>
-    /// <param name="gameTime">Access for MonoGame's GameTime class.</param>
+    /// <param name="gameTime">A reference to MonoGame's GameTime class.</param>
     public abstract void Update(GameTime gameTime);
     /// <summary>
     /// An abstract method for drawing the contents of a scene.
     /// </summary>
-    /// <param name="gameTime">Access for MonoGame's GameTime class.</param>
-    /// <param name="spriteBatch">Access for MonoGame's SpriteBatch class.</param>
+    /// <param name="gameTime">A reference to MonoGame's GameTime class.</param>
+    /// <param name="spriteBatch">A reference MonoGame's SpriteBatch class.</param>
     public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 }

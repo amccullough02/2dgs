@@ -64,7 +64,7 @@ public class SettingsScene : Scene
             
             _previousKeyboardState = _keyboardState;
 
-            _settingsMediator.ShortcutPreview  = StringTransformer.KeybindString(_settingsMediator.NewShortcuts[_settingsMediator.WhichShortcut]);
+            _settingsMediator.ShortcutPreview  = StringTransformer.KeyBindString(_settingsMediator.NewShortcuts[_settingsMediator.WhichShortcut]);
         }
 
         if (_settingsMediator.ClearShortcut)
