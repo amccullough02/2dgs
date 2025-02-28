@@ -3,8 +3,16 @@ using System.IO;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to perform rename and delete operations on files, making use of C#'s standard library.
+/// </summary>
 public class FileManager
 {
+    /// <summary>
+    /// Renames a file.
+    /// </summary>
+    /// <param name="oldPath">The current path of the file to be renamed.</param>
+    /// <param name="newPath">The new path of the file to be renamed.</param>
     public void RenameFile(string oldPath, string newPath)
     {
         try
@@ -32,18 +40,22 @@ public class FileManager
         }
     }
 
-    public void DeleteFile(string file)
+    /// <summary>
+    /// Deletes a file.
+    /// </summary>
+    /// <param name="filePath">The path of the file to be deleted.</param>
+    public void DeleteFile(string filePath)
     {
         try
         {
-            if (File.Exists(file))
+            if (File.Exists(filePath))
             {
-                File.Delete(file);
-                Console.WriteLine($"DEBUG: File {file} deleted successfully");
+                File.Delete(filePath);
+                Console.WriteLine($"DEBUG: File {filePath} deleted successfully");
             }
             else
             {
-                Console.WriteLine($"DEBUG: File {file} not found");
+                Console.WriteLine($"DEBUG: File {filePath} not found");
             }
         }
         catch(Exception ex)
