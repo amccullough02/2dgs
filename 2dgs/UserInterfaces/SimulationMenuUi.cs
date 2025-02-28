@@ -17,7 +17,6 @@ namespace _2dgs;
 public class SimulationMenuUi
 {
     private readonly Desktop _desktop;
-    private readonly FileManager _fileManager;
 
     public SimulationMenuUi(Game game)
     {
@@ -29,7 +28,6 @@ public class SimulationMenuUi
         rootContainer.Widgets.Add(simMenuTitle);
         rootContainer.Widgets.Add(CreateSimulationMenu(game));
         
-        _fileManager = new FileManager();
         _desktop = new Desktop();
         _desktop.Root = rootContainer;
     }
@@ -186,7 +184,7 @@ public class SimulationMenuUi
         {
             Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
             var newPath = path + "/" + textbox.Text + ".json";
-            _fileManager.RenameFile(file, newPath);
+            FileManager.RenameFile(file, newPath);
             TestRunner.AssertFileRename(file, newPath);
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
@@ -207,7 +205,7 @@ public class SimulationMenuUi
         deleteButtonDialog.ButtonOk.Click += (_, _) =>
         {
             Console.WriteLine($"DEBUG: {fileName} deleted");
-            _fileManager.DeleteFile(path + "/" + fileName + ".json");
+            FileManager.DeleteFile(path + "/" + fileName + ".json");
             TestRunner.AssertFileDeletion(path + "/" + fileName + ".json");
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };

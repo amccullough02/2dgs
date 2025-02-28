@@ -6,14 +6,14 @@ namespace _2dgs;
 /// <summary>
 /// A class used to perform rename and delete operations on files, making use of C#'s standard library.
 /// </summary>
-public class FileManager
+public static class FileManager
 {
     /// <summary>
     /// Renames a file.
     /// </summary>
     /// <param name="oldPath">The current path of the file to be renamed.</param>
     /// <param name="newPath">The new path of the file to be renamed.</param>
-    public void RenameFile(string oldPath, string newPath)
+    public static void RenameFile(string oldPath, string newPath)
     {
         try
         {
@@ -44,7 +44,7 @@ public class FileManager
     /// Deletes a file.
     /// </summary>
     /// <param name="filePath">The path of the file to be deleted.</param>
-    public void DeleteFile(string filePath)
+    public static void DeleteFile(string filePath)
     {
         try
         {
