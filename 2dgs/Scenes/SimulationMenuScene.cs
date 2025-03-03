@@ -15,10 +15,10 @@ public class SimulationMenuScene(Game game) : Scene
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
-        spriteBatch.Draw(_textureManager.SimulationMenuBackground, _textureManager.PositionAtCenter(ScreenWidth, 
+        spriteBatch.Draw(_textureManager.SimulationMenuBackground, TextureManager.PositionAtCenter(ScreenWidth, 
             ScreenHeight, _textureManager.SimulationMenuBackground), Color.White);
         spriteBatch.Draw(_textureManager.Gradient,
-            _textureManager.PositionAtCenter(ScreenWidth, ScreenHeight, _textureManager.Gradient), Color.White);
+            TextureManager.PositionAtCenter(ScreenWidth, ScreenHeight, _textureManager.Gradient), Color.White);
         spriteBatch.End();
         _simulationMenuUi.Draw();
     }

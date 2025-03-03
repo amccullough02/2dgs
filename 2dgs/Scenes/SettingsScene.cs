@@ -80,10 +80,10 @@ public class SettingsScene : Scene
         var screenHeight = _settingsMediator.CurrentResolution.Y;
         
         spriteBatch.Begin();
-        spriteBatch.Draw(_textureManager.SettingsBackground, _textureManager.PositionAtCenter(screenWidth, screenHeight, 
+        spriteBatch.Draw(_textureManager.SettingsBackground, TextureManager.PositionAtCenter(screenWidth, screenHeight, 
             _textureManager.SettingsBackground), Color.White);
         spriteBatch.Draw(_textureManager.Gradient,
-            _textureManager.PositionAtCenter(screenWidth, screenHeight, _textureManager.Gradient), Color.White);
+            TextureManager.PositionAtCenter(screenWidth, screenHeight, _textureManager.Gradient), Color.White);
         spriteBatch.End();
         _settingsMenuUi.Draw();
     }

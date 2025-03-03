@@ -16,7 +16,7 @@ public class MainMenuScene(Game game) : Scene
     {
         var scaleFactor = ScreenHeight / 2160.0f;
         spriteBatch.Draw(_textureManager.AppTitle,
-            _textureManager.PositionAtTop(ScreenWidth, _textureManager.AppTitle, scaleFactor: scaleFactor),
+            TextureManager.PositionAtTop(ScreenWidth, _textureManager.AppTitle, scaleFactor: scaleFactor),
             null,
             Color.White,
             0f,
@@ -29,10 +29,10 @@ public class MainMenuScene(Game game) : Scene
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
-        spriteBatch.Draw(_textureManager.MainMenuBackground, _textureManager.PositionAtCenter(ScreenWidth, ScreenHeight, 
+        spriteBatch.Draw(_textureManager.MainMenuBackground, TextureManager.PositionAtCenter(ScreenWidth, ScreenHeight, 
                 _textureManager.MainMenuBackground), Color.White);
         spriteBatch.Draw(_textureManager.Gradient,
-            _textureManager.PositionAtCenter(ScreenWidth, ScreenHeight, _textureManager.Gradient), Color.White);
+            TextureManager.PositionAtCenter(ScreenWidth, ScreenHeight, _textureManager.Gradient), Color.White);
         DrawTitle(spriteBatch);
         spriteBatch.End();
         _mainMenuUi.Draw();

@@ -377,10 +377,10 @@ public class SimulationScene : Scene
         
         spriteBatch.Begin();
         
-        spriteBatch.Draw(_textureManager.SimulationBackground, _textureManager.PositionAtCenter(screenWidth, 
+        spriteBatch.Draw(_textureManager.SimulationBackground, TextureManager.PositionAtCenter(screenWidth, 
             screenHeight, _textureManager.SimulationBackground), Color.White);
         spriteBatch.Draw(_textureManager.Gradient,
-            _textureManager.PositionAtCenter(screenWidth, screenHeight, _textureManager.Gradient), Color.White);
+            TextureManager.PositionAtCenter(screenWidth, screenHeight, _textureManager.Gradient), Color.White);
         
         spriteBatch.End();
     }

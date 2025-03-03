@@ -18,10 +18,10 @@ public class AttributionsScene(Game game) : Scene
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
-        spriteBatch.Draw(_textureManager.AttributionsBackground, _textureManager.PositionAtCenter(ScreenWidth, ScreenHeight, 
+        spriteBatch.Draw(_textureManager.AttributionsBackground, TextureManager.PositionAtCenter(ScreenWidth, ScreenHeight, 
             _textureManager.MainMenuBackground), Color.White);
         spriteBatch.Draw(_textureManager.Gradient,
-            _textureManager.PositionAtCenter(ScreenWidth, ScreenHeight, _textureManager.Gradient), Color.White);
+            TextureManager.PositionAtCenter(ScreenWidth, ScreenHeight, _textureManager.Gradient), Color.White);
         spriteBatch.End();
         _attributionsUi.Draw();
     }

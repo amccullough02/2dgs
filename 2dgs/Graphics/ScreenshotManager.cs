@@ -5,8 +5,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
 
+/// <summary>
+/// A static class used to provide a facade for capturing in-game screenshots.
+/// </summary>
 public static class ScreenshotManager
 {
+    /// <summary>
+    /// A method that captures an in-game screenshot which is then saved to the user's My Pictures folder (Windows is assumed).
+    /// </summary>
+    /// <param name="graphicsDevice">A reference to MonoGame's GraphicsDevice class.</param>
     public static void Capture(GraphicsDevice graphicsDevice)
     {
         var width = graphicsDevice.PresentationParameters.BackBufferWidth;
