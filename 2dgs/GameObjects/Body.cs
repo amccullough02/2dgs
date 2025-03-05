@@ -13,6 +13,16 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to represent bodies in the 2DGS application.
+/// </summary>
+/// <param name="name">The name displayed next to the body.</param>
+/// <param name="position">The position of the body.</param>
+/// <param name="velocity">The velocity of the body.</param>
+/// <param name="mass">The mass of the body.</param>
+/// <param name="displaySize">The size of the body as displayed on-screen.</param>
+/// <param name="color">The color of the body.</param>
+/// <param name="textureManager">An instance of the TextureManager, used to obtain a Body texture.</param>
 public class Body(
     string name,
     Vector2 position,
@@ -39,11 +49,20 @@ public class Body(
     private const int MaximumTrailLength = 2000;
     private const int FontSize = 24;
 
+    /// <summary>
+    /// Offsets the position of bodies such that they appear in the relative center of the screen.
+    /// </summary>
+    /// <param name="simulationMediator">A reference to the SimulationMediator.</param>
     public void OffsetPosition(SimulationMediator simulationMediator)
     {
         _position += simulationMediator.ScreenDimensions / 2;
     }
 
+    /// <summary>
+    /// A helper method to convert an instance of a body to a BodyData object for serialization.
+    /// </summary>
+    /// <param name="simulationMediator">A reference to the SimulationMediator.</param>
+    /// <returns></returns>
     public BodyData ConvertToBodyData(SimulationMediator simulationMediator)
     {
         return new BodyData
@@ -57,6 +76,11 @@ public class Body(
         };
     }
 
+    /// <summary>
+    /// Returns the bounding box of the body (useful for handling selection and collision).
+    /// </summary>
+    /// <param name="marginOfError">A user defined margin of error, used to ensure collision bounds aren't too generous.</param>
+    /// <returns></returns>
     private RectangleF GetBoundingBox(float marginOfError = 1.0f)
     {
         var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
@@ -70,6 +94,15 @@ public class Body(
         };
     }
 
+    /// <summary>
+    /// A method used when editing a body instance.
+    /// </summary>
+    /// <param name="name">The new name of the body.</param>
+    /// <param name="position">The new position of the body.</param>
+    /// <param name="velocity">The new velocity of the body.</param>
+    /// <param name="mass">The new mass of the body.</param>
+    /// <param name="displaySize">The new display size of the body.</param>
+    /// <param name="bodies">A reference to the bodies data structure, used for updating the projected orbits of bodies post-edit.</param>
     public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize, List<Body> bodies)
     {
         _name = name;
@@ -82,23 +115,42 @@ public class Body(
         PruneOrbits();
     }
 
+    /// <summary>
+    /// A method used to update a body's color.
+    /// </summary>
+    /// <param name="color">The new color of the body.</param>
     public void SetColor(Color color)
     {
         _color = color;
     }
 
+    /// <summary>
+    /// A method used to check if a body is selected (the mouse is within the bounds of the body).
+    /// </summary>
+    /// <param name="mousePosition">The current position of the mouse.</param>
+    /// <param name="mouseState">The state of the mouse (which buttons are being clicked).</param>
     public void CheckIfSelected(Point mousePosition, MouseState mouseState)
     {
         var mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         if (mouseState.LeftButton == ButtonState.Pressed && GetBoundingBox().Contains(mousePositionF)) Selected = true;
     }
 
+    /// <summary>
+    /// A method used to check if a body is de-selected (the mouse is within the bounds of the body).
+    /// </summary>
+    /// <param name="mousePosition">The current position of the mouse.</param>
+    /// <param name="mouseState">The state of the mouse (which buttons are being clicked).</param>
     public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
     {
         var mousePositionF = new PointF(mousePosition.X, mousePosition.Y);
         if (mouseState.RightButton == ButtonState.Pressed && !GetBoundingBox().Contains(mousePositionF)) Selected = false;
     }
 
+    /// <summary>
+    /// A method used to check if two bodies have collided.
+    /// </summary>
+    /// <param name="thisBody">The current body instance.</param>
+    /// <param name="otherBody">Another body in the bodies data structure.</param>
     private void CheckForCollisions(Body thisBody, Body otherBody)
     {
         if (thisBody.Destroyed || otherBody.Destroyed) return;
@@ -115,6 +167,11 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// A method used to handle the aftermath of a collision, namely marking the less massive body for deletion.
+    /// </summary>
+    /// <param name="thisBody">The current body instance.</param>
+    /// <param name="otherBody">Another body in the bodies data structure.</param>
     private void HandleCollision(Body thisBody, Body otherBody)
     {
         if (thisBody._mass >= otherBody._mass)
@@ -131,6 +188,11 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// A method used to calculate the gravitational interactions.
+    /// </summary>
+    /// <param name="otherBody">Another body in the bodies data structure.</param>
+    /// <returns>A force vector representing the gravitational forces affecting the body.</returns>
     private Vector2 CalculateGravity(Body otherBody)
     {
         var componentDistance = otherBody._position - _position;
@@ -142,6 +204,11 @@ public class Body(
         return forceVector;
     }
 
+    /// <summary>
+    /// A method used to update the positions and velocities of the bodies.
+    /// </summary>
+    /// <param name="bodies">A reference to the bodies data structure.</param>
+    /// <param name="timeStep">The current simulation timestep.</param>
     private void UpdateOrbits(List<Body> bodies, float timeStep)
     {
         var totalForce = Vector2.Zero;
@@ -163,6 +230,9 @@ public class Body(
         _orbitTrail.Add(_position);
     }
 
+    /// <summary>
+    /// Removes old trail positions.
+    /// </summary>
     private void PruneTrails()
     {
         if (_orbitTrail.Count >= MaximumTrailLength)
@@ -171,6 +241,10 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// A method used to calculate the future positions of bodies. A list of virtual bodies is used to simplify the process.
+    /// </summary>
+    /// <param name="bodies">A reference to the bodies data structure.</param>
     private void CalculateFutureOrbits(List<Body> bodies)
     {
         var virtualBodies = bodies.Select(b => new
@@ -206,6 +280,9 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// Removes old orbit positions.
+    /// </summary>
     private void PruneOrbits()
     {
         if (_futureOrbit.Count > OrbitCalculations)
@@ -214,6 +291,12 @@ public class Body(
         }
     }
     
+    /// <summary>
+    /// The update method for the Body class, called in the SimulationScene.
+    /// </summary>
+    /// <param name="bodies">A reference to the bodies data structure.</param>
+    /// <param name="userTimeStep">The current simulation timestep.</param>
+    /// <param name="gameTime">A reference to the MonoGame GameTime class.</param>
     public void Update(List<Body> bodies, int userTimeStep, GameTime gameTime)
     {
         var timeStep = userTimeStep * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -224,6 +307,12 @@ public class Body(
         PruneOrbits();
     }
 
+    /// <summary>
+    /// A method used to draw the trails of bodies.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <param name="simulationMediator">A reference to a SimulationMediator class.</param>
+    /// <param name="thickness">The desired thickness of the orbit trail.</param>
     private void DrawTrail(SpriteBatch spriteBatch, SimulationMediator simulationMediator, float thickness)
     {
         if (_orbitTrail.Count <= 1 || !simulationMediator.ToggleTrails) return;
@@ -253,6 +342,12 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// A method used to draw the future positions of bodies.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <param name="simulationMediator">A reference to a SimulationMediator class.</param>
+    /// <param name="thickness">The desired thickness of the orbit trail.</param>
     private void DrawOrbit(SpriteBatch spriteBatch, SimulationMediator simulationMediator, float thickness)
     {
         if (_futureOrbit.Count <= 1 || !simulationMediator.ToggleOrbits) return;
@@ -278,6 +373,14 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// A method used to draw a velocity vector arrow.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <param name="color">The color of the arrow.</param>
+    /// <param name="length">The length of the arrow stem.</param>
+    /// <param name="width">The width of the arrow stem.</param>
+    /// <param name="rotation">The rotation of the arrow.</param>
     private void DrawArrow(SpriteBatch spriteBatch, Color color, float length, int width, float rotation)
     {
         Vector2 RotateVector(Vector2 vector, float angle)
@@ -312,6 +415,11 @@ public class Body(
             new Vector2(0.3f), SpriteEffects.None, 0f);
     }
 
+    /// <summary>
+    /// A method used to draw the velocity vectors for the tangent component velocity, x component, and y component.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     private void DrawVelocityVectors(SpriteBatch spriteBatch, SimulationMediator simulationMediator)
     {
         if (!simulationMediator.ToggleVectors) return;
@@ -328,6 +436,11 @@ public class Body(
         DrawArrow(spriteBatch, Color.Green, yComponentArrowLength, 2, yComponentVelocityAngle);
     }
 
+    /// <summary>
+    /// A method used to draw a ring around a body to indicate to the user it is selected.
+    /// </summary>
+    /// <param name="shapeBatch">A reference to the Apos.Shapes ShapeBatch class.</param>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     private void DrawSelector(ShapeBatch shapeBatch, SimulationMediator simulationMediator)
     {
         if (!Selected || !simulationMediator.EditMode) return;
@@ -345,6 +458,11 @@ public class Body(
         shapeBatch.End();
     }
 
+    /// <summary>
+    /// A method used to draw a glow visual effect around the body.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     private void DrawGlow(SpriteBatch spriteBatch, SimulationMediator simulationMediator)
     {
         if (!simulationMediator.ToggleGlow) return;
@@ -366,6 +484,11 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// A method used to draw the body proper.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <exception cref="InvalidOperationException">Return if a BodyTexture cannot be found.</exception>
     private void DrawBody(SpriteBatch spriteBatch)
     {
         
@@ -385,6 +508,11 @@ public class Body(
             0f);
     }
 
+    /// <summary>
+    /// A method used to draw the names of bodies.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     private void DrawNames(SpriteBatch spriteBatch, SimulationMediator simulationMediator)
     {
         if (!simulationMediator.ToggleNames) return;
@@ -429,6 +557,12 @@ public class Body(
         }
     }
 
+    /// <summary>
+    /// The draw method for the Body class, called in the SimulationScene class.
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
+    /// <param name="shapeBatch">A reference to the Apos.Shapes ShapeBatch class.</param>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     public void Draw(SpriteBatch spriteBatch, ShapeBatch shapeBatch, SimulationMediator simulationMediator)
     {
         DrawTrail(spriteBatch, simulationMediator, TrailThickness);
