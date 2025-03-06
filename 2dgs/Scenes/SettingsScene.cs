@@ -4,23 +4,49 @@ using Microsoft.Xna.Framework.Input;
 
 namespace _2dgs;
 
+/// <summary>
+/// A scene for configuring the application's settings.
+/// </summary>
 public class SettingsScene : Scene
 {
+    /// <summary>
+    /// An instance of the Settings Mediator class.
+    /// </summary>
     private readonly SettingsMediator _settingsMediator;
+    /// <summary>
+    /// An instance of the Texture Manager class.
+    /// </summary>
     private readonly TextureManager _textureManager;
+    /// <summary>
+    /// The first keyboard state instance.
+    /// </summary>
     private KeyboardState _keyboardState;
+    /// <summary>
+    /// The second keyboard state, necessary to prevent repeated presses.
+    /// </summary>
     private KeyboardState _previousKeyboardState;
+    /// <summary>
+    /// The user interface of the Settings Menu.
+    /// </summary>
     private readonly SettingsMenuUi _settingsMenuUi;
     
+    /// <summary>
+    /// The constructor for the Settings Scene.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
     public SettingsScene(Game game)
     {
-        _settingsMediator = new SettingsMediator();
-        _settingsMediator.CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, game.Graphics.PreferredBackBufferHeight);
+        _settingsMediator = new SettingsMediator { CurrentResolution = new Vector2(game.Graphics.PreferredBackBufferWidth, 
+            game.Graphics.PreferredBackBufferHeight) };
         SetupDictionaries(_settingsMediator);
         _textureManager = new TextureManager(game.Content, game.GraphicsDevice);
         _settingsMenuUi = new SettingsMenuUi(game, _settingsMediator);
     }
     
+    /// <summary>
+    /// Initialises the NewShortcuts and DefaultShortcuts dictionaries.
+    /// </summary>
+    /// <param name="settingsMediator"></param>
     private static void SetupDictionaries(SettingsMediator settingsMediator)
     {
         settingsMediator.NewShortcuts.Add("PauseShortcut", []);
@@ -46,6 +72,10 @@ public class SettingsScene : Scene
         settingsMediator.DefaultShortcuts.Add("ScreenshotShortcut", [Keys.F11]);
     }
 
+    /// <summary>
+    /// The update method for the settings menu, listens for keystrokes to set new shortcuts.
+    /// </summary>
+    /// <param name="gameTime"></param>
     public override void Update(GameTime gameTime)
     {
         if (_settingsMediator.Remapping)
@@ -74,6 +104,11 @@ public class SettingsScene : Scene
         }
     }
 
+    /// <summary>
+    /// The draw method for the Settings Scene.
+    /// </summary>
+    /// <param name="gameTime">A reference to the MonoGame GameTime class.</param>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         var screenWidth = _settingsMediator.CurrentResolution.X;
