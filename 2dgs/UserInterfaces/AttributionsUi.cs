@@ -6,10 +6,20 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to contain UI boilerplate for the Attributions Scene.
+/// </summary>
 public class AttributionsUi
 {
+    /// <summary>
+    /// An instance of a Myra Desktop, the highest unit of organisation in Myra's UI system.
+    /// </summary>
     private readonly Desktop _desktop;
 
+    /// <summary>
+    /// The constructor for the AttributionsUi class.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
     public AttributionsUi(Game game)
     {
         MyraEnvironment.Game = game;
@@ -26,6 +36,10 @@ public class AttributionsUi
         _desktop.Root = rootContainer;
     }
 
+    /// <summary>
+    /// A helper method to create the attributions panel.
+    /// </summary>
+    /// <returns>A centred vertical stack panel containing attributions.</returns>
     private VerticalStackPanel CreateAttributions()
     {
         var musicSection = UiComponents.MediumLabel("Music:", 24);
@@ -58,6 +72,11 @@ public class AttributionsUi
         return panel;
     }
     
+    /// <summary>
+    /// A method to create a panel that contains the 'exit' button that returns to the main menu.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <returns>A vertical stack panel containing the exit button.</returns>
     private VerticalStackPanel ExitPanel(Game game)
     {
         var button = UiComponents.Button("Return to Main Menu");
@@ -79,6 +98,9 @@ public class AttributionsUi
         return verticalStackPanel;
     }
 
+    /// <summary>
+    /// Draws the Myra desktop.
+    /// </summary>
     public void Draw()
     {
         _desktop.Render();

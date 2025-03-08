@@ -6,8 +6,19 @@ using Myra.Graphics2D.UI.ColorPicker;
 
 namespace _2dgs;
 
+/// <summary>
+/// A basic UiComponents factory class. These are Myra components with additional defaults that are specific to 2DGS.
+/// </summary>
 public static class UiComponents
 {
+     /// <summary>
+     /// A method to create a standard 2DGS button.
+     /// </summary>
+     /// <param name="text">The text of the button.</param>
+     /// <param name="visible">The button's visibility.</param>
+     /// <param name="width">The pixel width of the button.</param>
+     /// <param name="height">The pixel height of the button.</param>
+     /// <returns>A 2DGS button instance.</returns>
      public static Button Button(string text,
           bool visible = true,
           int width = UiConstants.DefaultButtonWidth,
@@ -28,6 +39,14 @@ public static class UiComponents
           };
      }
      
+     /// <summary>
+     /// A method to create a 2DGS (main) menu button.
+     /// </summary>
+     /// <param name="text">The text of the button.</param>
+     /// <param name="visible">The button's visibility.</param>
+     /// <param name="width">The pixel width of the button.</param>
+     /// <param name="height">The pixel height of the button.</param>
+     /// <returns>A 2DGS (main) menu button instance.</returns>
      public static Button MenuButton(string text,
           bool visible = true,
           int width = UiConstants.DefaultButtonWidth,
@@ -53,6 +72,13 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS horizontal separator.
+     /// </summary>
+     /// <param name="width">The pixel width of the button.</param>
+     /// <param name="height">The pixel height of the button.</param>
+     /// <param name="margin">The margin for the separator.</param>
+     /// <returns>A 2DGS horizontal separator instance.</returns>
      public static HorizontalSeparator HorizontalSeparator(int width=UiConstants.DefaultElementWidth, int height=UiConstants.DefaultSeparatorHeight, int margin=10)
      {
           return new HorizontalSeparator
@@ -66,6 +92,13 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS horizontal slider.
+     /// </summary>
+     /// <param name="value">The default value for the slider.</param>
+     /// <param name="min">The minimum value for the slider.</param>
+     /// <param name="max">The maximum value for the slider.</param>
+     /// <returns>A 2DGS horizontal slider instance.</returns>
      public static HorizontalSlider HorizontalSlider(int value, int min, int max)
      {
           return new HorizontalSlider
@@ -77,6 +110,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS combo view.
+     /// </summary>
+     /// <param name="width">The width of the combo view.</param>
+     /// <returns>A 2DGS combo view instance.</returns>
      public static ComboView ComboView(int width = UiConstants.DefaultElementWidth)
      {
           return new ComboView()
@@ -85,6 +123,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS dropdown label.
+     /// </summary>
+     /// <param name="text">The label's text.</param>
+     /// <returns>A 2DGS dropdown label instance.</returns>
      public static Label DropdownLabel(string text)
      {
           return new Label
@@ -96,6 +139,13 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS widget grid.
+     /// </summary>
+     /// <param name="spacing">The spacing between grid elements.</param>
+     /// <param name="columns">The number of columns the grid will have.</param>
+     /// <param name="rows">The number of rows the grid will have.</param>
+     /// <returns></returns>
      public static Grid Grid(int spacing, int columns, int rows)
      {
           var grid = new Grid
@@ -119,6 +169,11 @@ public static class UiComponents
           return grid;
      }
 
+     /// <summary>
+     /// A method to create a 2DGS key bind preview label.
+     /// </summary>
+     /// <param name="text">The text of the label.</param>
+     /// <returns>A 2DGS key bind preview lable instance.</returns>
      public static Label KeyBindLabel(string text)
      {
           return new Label
@@ -132,6 +187,12 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS light label.
+     /// </summary>
+     /// <param name="text">The text of the label.</param>
+     /// <param name="fontSize">The font size of the label.</param>
+     /// <returns>A 2DGS light label.</returns>
      public static Label LightLabel(string text, int fontSize = UiConstants.DefaultFontSize)
      {
           return new Label
@@ -142,6 +203,12 @@ public static class UiComponents
           };
      }
      
+     /// <summary>
+     /// A method to create a 2DGS medium label.
+     /// </summary>
+     /// <param name="text">The text of the label.</param>
+     /// <param name="fontSize">The font size of the label.</param>
+     /// <returns>A 2DGS medium label.</returns>
      public static Label MediumLabel(string text, int fontSize = UiConstants.DefaultFontSize)
      {
           return new Label
@@ -152,6 +219,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS title label.
+     /// </summary>
+     /// <param name="text">The text of the label.</param>
+     /// <returns>A 2DGS title label.</returns>
      public static Label TitleLabel(string text)
      {
           return new Label
@@ -163,6 +235,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS text box.
+     /// </summary>
+     /// <param name="text">The text box's text.</param>
+     /// <returns>A 2DGS text box.</returns>
      public static TextBox TextBox(string text)
      {
           return new TextBox
@@ -176,6 +253,12 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS toggle button.
+     /// </summary>
+     /// <param name="text">The text of the toggle button.</param>
+     /// <param name="toggled">Is the toggle button enabled or not.</param>
+     /// <returns>A 2DGS toggle button.</returns>
      public static ToggleButton ToggleButton(string text, bool toggled)
      {
           return new ToggleButton
@@ -194,6 +277,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS validation error window.
+     /// </summary>
+     /// <param name="label">The label the window will contain.</param>
+     /// <returns>A 2DGS validation error window.</returns>
      public static Window ValidationWindow(Label label)
      {
           return new Window
@@ -204,6 +292,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS dialog.
+     /// </summary>
+     /// <param name="title">The title of the dialog.</param>
+     /// <returns>A 2DGS dialog.</returns>
      public static Dialog StyledDialog(string title)
      {
           return new Dialog
@@ -240,6 +333,10 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS color picker dialog.
+     /// </summary>
+     /// <returns>A 2DGS color picker dialog.</returns>
      public static ColorPickerDialog CustomColorPicker()
      {
           return new ColorPickerDialog
@@ -276,6 +373,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS (read-only) text box.
+     /// </summary>
+     /// <param name="text">The text box's text.</param>
+     /// <returns>A 2DGS (read-only) text box.</returns>
      public static TextBox ReadOnlyTextBox(string text)
      {
           return new TextBox
@@ -295,6 +397,12 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS tab control.
+     /// </summary>
+     /// <param name="width">The pixel width of the widget.</param>
+     /// <param name="height">The pixel height of the widget.</param>
+     /// <returns>A 2DGS tab control widget.</returns>
      public static TabControl TabControl(int width, int height)
      {
           return new TabControl
@@ -305,6 +413,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS tab item.
+     /// </summary>
+     /// <param name="title">The title of the tab item.</param>
+     /// <returns>A 2DGS tab item.</returns>
      public static TabItem TabItem(string title)
      {
           return new TabItem
@@ -313,6 +426,11 @@ public static class UiComponents
           };
      }
 
+     /// <summary>
+     /// A method to create a 2DGS list view.
+     /// </summary>
+     /// <param name="width">The pixel width of the list view.</param>
+     /// <returns>A 2DGS list view.</returns>
      public static ListView ListView(int width)
      {
           return new ListView

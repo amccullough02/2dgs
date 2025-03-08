@@ -14,10 +14,20 @@ using Myra.Graphics2D.UI.File;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to contain UI boilerplate for the SimulationMenuUi Scene.
+/// </summary>
 public class SimulationMenuUi
 {
+    /// <summary>
+    /// An instance of a Myra Desktop, the highest unit of organisation in Myra's UI system.
+    /// </summary>
     private readonly Desktop _desktop;
 
+    /// <summary>
+    /// The constructor for the SimulationMenuUi class.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
     public SimulationMenuUi(Game game)
     {
         MyraEnvironment.Game = game;
@@ -32,6 +42,11 @@ public class SimulationMenuUi
         _desktop.Root = rootContainer;
     }
 
+    /// <summary>
+    /// Returns a vertical stack panel that organises the simulation menu UI components.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <returns>A vertical stack panel with the organised UI components.</returns>
     private VerticalStackPanel CreateSimulationMenu(Game game)
     {
         var verticalStackPanel = new VerticalStackPanel
@@ -165,6 +180,14 @@ public class SimulationMenuUi
         return verticalStackPanel;
     }
     
+    /// <summary>
+    /// A method used to create a dialog that allows simulations to be renamed.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="fileName">The original simulation file name.</param>
+    /// <param name="path">The folder path in which the simulation file is stored.</param>
+    /// <param name="file">The original simulation file path.</param>
+    /// <returns>A Myra Dialog class with simulation renaming logic.</returns>
     private Dialog RenameButtonDialog(Game game, string fileName, string path, string file)
     {
         var renameButtonDialog = UiComponents.StyledDialog("Rename");
@@ -197,6 +220,13 @@ public class SimulationMenuUi
         return renameButtonDialog;
     }
     
+    /// <summary>
+    /// A method used to create a dialog that allows simulations to be deleted.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="fileName">The original simulation file name.</param>
+    /// <param name="path">The folder path in which the simulation file is stored.</param>
+    /// <returns>A Myra Dialog class with simulation deletion logic.</returns>
     private Dialog DeleteButtonDialog(Game game, string fileName, string path)
     {
         var deleteButtonDialog = UiComponents.StyledDialog("Delete");
@@ -218,6 +248,15 @@ public class SimulationMenuUi
         return deleteButtonDialog;
     }
     
+    /// <summary>
+    /// A method used to create a 'file panel' a list element that contains simulation metadata and rename/delete options.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="file">The direct path to the simulation file.</param>
+    /// <param name="path">The path to the simulation folder the file is within.</param>
+    /// <param name="description">The description of the simulation.</param>
+    /// <param name="thumbnail">The thumbnail path for the simulation.</param>
+    /// <returns>A horizontal stack panel containing simulation metadata and options, which is to be added to a listview.</returns>
     private HorizontalStackPanel CreateFilePanel(Game game, string file, string path, string description, string thumbnail)
     {
         var fileName = Path.GetFileNameWithoutExtension(file);
@@ -233,7 +272,7 @@ public class SimulationMenuUi
             Color = Color.White,
             Width = 128
         };
-
+        
         Image LoadThumbnailImage(GraphicsDevice graphicsDevice, string thumbnailPath)
         {
             using var stream = File.OpenRead(thumbnailPath);
@@ -322,12 +361,24 @@ public class SimulationMenuUi
         return fileStackPanel;
     }
 
+    /// <summary>
+    /// A method used to obtain the text description of a simulation.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="path">The folder path in which the simulation file is stored.</param>
+    /// <returns>A string with the simulation's description.</returns>
     private string GetSimulationDescription(Game game, string path)
     {
         var data = game.SaveSystem.LoadSimulation(path);
         return string.IsNullOrEmpty(data.Description) ? "No description found." : data.Description;
     }
 
+    /// <summary>
+    /// A method used to obtain the thumbnail path of a simulation.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="path">The folder path in which the thumbnail is stored.</param>
+    /// <returns>A string containing the thumbnail path for the simulation.</returns>
     private string GetSimulationThumbnailPath(Game game, string path)
     {
         const string defaultPath = "../../../savedata/thumbnails/default.png";
@@ -335,6 +386,12 @@ public class SimulationMenuUi
         return string.IsNullOrEmpty(data.ThumbnailPath) ? defaultPath : data.ThumbnailPath;
     }
     
+    /// <summary>
+    /// Populates a Myra ListView with list elements that contain the simulation name, thumbnail, description, and file manipulation options.
+    /// </summary>
+    /// <param name="listView">The ListView widget to append the list elements to.</param>
+    /// <param name="path">The simulation folder path.</param>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
     private void PopulateList(ListView listView, string path, Game game)
     {
         if (Directory.Exists(path) && Directory.EnumerateFileSystemEntries(path).Any())
@@ -354,6 +411,9 @@ public class SimulationMenuUi
         }
     }
 
+    /// <summary>
+    /// Draws the Myra desktop.
+    /// </summary>
     public void Draw()
     {
         _desktop.Render();

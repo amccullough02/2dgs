@@ -5,10 +5,20 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to contain UI boilerplate for the Main Menu Scene.
+/// </summary>
 public class MainMenuUi
 {
+    /// <summary>
+    /// An instance of a Myra Desktop, the highest unit of organisation in Myra's UI system.
+    /// </summary>
     private readonly Desktop _desktop;
 
+    /// <summary>
+    /// The constructor for the MainMenuUi class.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
     public MainMenuUi(Game game)
     {
         MyraEnvironment.Game = game;
@@ -21,6 +31,11 @@ public class MainMenuUi
         _desktop.Root = rootContainer;
     }
 
+    /// <summary>
+    /// A method to create a vertical stack panel containing the main menu buttons.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <returns>A vertical stack panel with the main menu buttons.</returns>
     private VerticalStackPanel CreateMainMenu(Game game)
     {
         var mainMenuStackPanel = new VerticalStackPanel
@@ -74,6 +89,9 @@ public class MainMenuUi
         return mainMenuStackPanel;
     }
 
+    /// <summary>
+    /// Draws the Myra desktop.
+    /// </summary>
     public void Draw()
     {
         _desktop.Render();
