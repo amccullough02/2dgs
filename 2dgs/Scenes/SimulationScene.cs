@@ -10,22 +10,69 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A scene for simulating bodies.
+/// </summary>
 public class SimulationScene : Scene
 {
+    /// <summary>
+    /// The bodies being simulated.
+    /// </summary>
     private List<Body> _bodies;
+    /// <summary>
+    /// Used to save/load the simulation.
+    /// </summary>
     private SaveSystem _saveSystem;
+    /// <summary>
+    /// Used to store data loaded from the simulation file.
+    /// </summary>
     private SimulationSaveData _simulationSaveData;
+    /// <summary>
+    /// Used to obtain the keyboard shortcuts for certain actions. 
+    /// </summary>
     private SettingsSaveData _settingsSaveData;
+    /// <summary>
+    /// An instance of the SimulationMediator.
+    /// </summary>
     private SimulationMediator _simulationMediator;
+    /// <summary>
+    /// The user interface for the Simulation scene.
+    /// </summary>
     private SimulationUi _simulationUi;
+    /// <summary>
+    /// An instance of the 2DGS Texture Manager.
+    /// </summary>
     private TextureManager _textureManager;
+    /// <summary>
+    /// Used to play the collision sound effects.
+    /// </summary>
     private SoundEffectPlayer _soundEffectPlayer;
+    /// <summary>
+    /// Used to get the keyboard state.
+    /// </summary>
     private KeyboardState _keyboardState;
+    /// <summary>
+    /// A second instance of the KeyboardState to prevent repeated actions.
+    /// </summary>
     private KeyboardState _previousKeyboardState;
+    /// <summary>
+    /// An instance of the 'ghost body' used for adding bodies.
+    /// </summary>
     private GhostBody _ghostBody;
+    /// <summary>
+    /// An Apos.Shapes ShapeBatch class, passed into the Body draw method.
+    /// </summary>
     private ShapeBatch _shapeBatch;
+    /// <summary>
+    /// A reference to the MonoGame Game instance.
+    /// </summary>
     private readonly Game _game;
     
+    /// <summary>
+    /// A constructor for the SimulationScene.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="filePath">The path of the simulation to be loaded and saved to.</param>
     public SimulationScene(Game game, string filePath)
     {
         _game = game;
@@ -35,6 +82,11 @@ public class SimulationScene : Scene
         RunTests();
     }
 
+    /// <summary>
+    /// A helper method to initialize the components and systems used within the simulation.
+    /// </summary>
+    /// <param name="game"></param>
+    /// <param name="filePath"></param>
     private void InitializeComponents(Game game, string filePath)
     {
         #region Loading Data
@@ -63,6 +115,10 @@ public class SimulationScene : Scene
         _ghostBody = new GhostBody();
     }
 
+    /// <summary>
+    /// A method to set up the simulation by populating the _bodies list.
+    /// </summary>
+    /// <exception cref="FileLoadException">An exception returned when the simulation cannot be loaded.</exception>
     private void SetupSimulation()
     {
         if (_simulationSaveData == null)
@@ -87,6 +143,9 @@ public class SimulationScene : Scene
         }
     }
 
+    /// <summary>
+    /// Sets up the lesson part of the simulation.
+    /// </summary>
     private void SetupLesson()
     {
         if (!_simulationMediator.Lesson) return;
@@ -95,12 +154,18 @@ public class SimulationScene : Scene
         FindWidget.DisableWidgets(_simulationUi.GetRoot(), restrictedWidgets);
     }
 
+    /// <summary>
+    /// Runs generic simulation-specific tests.
+    /// </summary>
     private void RunTests()
     {
         TestRunner.AssertBodiesDataIntegrity(_bodies, _simulationSaveData.Bodies);
         TestRunner.AssertLessonDataIntegrity(_simulationMediator.LessonPages, _simulationSaveData.LessonPages);
     }
 
+    /// <summary>
+    /// Saves the simulation.
+    /// </summary>
     private void SaveSimulation()
     {
         if (!_simulationMediator.AttemptToSaveFile) return;
@@ -127,13 +192,25 @@ public class SimulationScene : Scene
         _simulationMediator.AttemptToSaveFile = false;
     }
 
+    /// <summary>
+    /// A method to check if a body is selected.
+    /// </summary>
+    /// <returns></returns>
     private bool IsBodySelected()
     {
         return _bodies.Any(body => body.Selected);
     }
     
+    /// <summary>
+    /// A method to obtain the selected body.
+    /// </summary>
+    /// <returns></returns>
     private Body SelectedBody() { return _bodies.FirstOrDefault(body => body.Selected); }
 
+    /// <summary>
+    /// A method used to create a new body.
+    /// </summary>
+    /// <param name="mouseState"></param>
     private void CreateBody(MouseState mouseState)
     {
         if (!_simulationMediator.ToggleBodyGhost) return;
@@ -152,6 +229,9 @@ public class SimulationScene : Scene
         _simulationMediator.ToggleBodyGhost = !_simulationMediator.ToggleBodyGhost;
     }
 
+    /// <summary>
+    /// A method used to edit a body.
+    /// </summary>
     private void EditBody()
     {
         if (_simulationMediator.EditSelectedBody)
@@ -168,6 +248,9 @@ public class SimulationScene : Scene
         _simulationMediator.EditSelectedBody = false;
     }
 
+    /// <summary>
+    /// A method used to set a new color for a body.
+    /// </summary>
     private void ColorBody()
     {
         if (_simulationMediator.ColorSelectedBody)
@@ -177,6 +260,9 @@ public class SimulationScene : Scene
         _simulationMediator.ColorSelectedBody = false;
     }
 
+    /// <summary>
+    /// A method used to delete an existing body.
+    /// </summary>
     private void DeleteBody()
     {
         var bodiesToRemove = new List<Body>();
@@ -202,11 +288,18 @@ public class SimulationScene : Scene
         _simulationMediator.DeleteSelectedBody = false;
     }
     
+    /// <summary>
+    /// Ensures all bodies are no longer selected (used when leaving edit mode).
+    /// </summary>
     private void ForgetSelections()
     {
         foreach (var body in _bodies) { body.Selected = false; }
     }
     
+    /// <summary>
+    /// A method that iterates through the body list to check if they've been de-selected.
+    /// </summary>
+    /// <param name="mouseState"></param>
     private void CheckIfBodiesDeselected(MouseState mouseState)
     {
         foreach (var body in _bodies)
@@ -215,11 +308,18 @@ public class SimulationScene : Scene
         }
     }
 
+    /// <summary>
+    /// Stores a copy of the select bodies' data in the SimulationMediator.
+    /// </summary>
     private void StoreSelectedBodyData()
     {
         _simulationMediator.SelectedBodyData = SelectedBody().ConvertToBodyData(_simulationMediator);
     }
 
+    /// <summary>
+    /// A method used to reset the simulation.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
     private void ResetSimulation(Game game)
     {
         if (_simulationMediator.ResetSimulation)
@@ -229,6 +329,9 @@ public class SimulationScene : Scene
         }
     }
 
+    /// <summary>
+    /// Removes all destroyed (collided) bodies in the simulation.
+    /// </summary>
     private void RemoveDestroyedBodies()
     {
         var destroyedBodies = new List<Body>();
@@ -245,6 +348,9 @@ public class SimulationScene : Scene
         }
     }
     
+    /// <summary>
+    /// A method that listens for keyboard shortcuts.
+    /// </summary>
     private void KeyboardShortcuts()
     {
         _keyboardState = Keyboard.GetState();
@@ -310,6 +416,11 @@ public class SimulationScene : Scene
         _previousKeyboardState = _keyboardState;
     }
 
+    /// <summary>
+    /// A method that updates bodies within the simulation.
+    /// </summary>
+    /// <param name="gameTime">A reference to the MonoGame GameTime class.</param>
+    /// <param name="mouseState">A reference to a MonoGame MouseState instance.</param>
     private void Simulate(GameTime gameTime, MouseState mouseState)
     {
         #region Should function regardless of pause state.
@@ -329,6 +440,10 @@ public class SimulationScene : Scene
         RemoveDestroyedBodies();
     }
 
+    /// <summary>
+    /// A method used to handle 'edit mode' operations.
+    /// </summary>
+    /// <param name="mouseState">A reference to a MonoGame MouseState instance.</param>
     private void EditMode(MouseState mouseState)
     {
         _simulationMediator.ABodySelected = IsBodySelected();
@@ -362,6 +477,10 @@ public class SimulationScene : Scene
         }
     }
     
+    /// <summary>
+    /// The SimulationScene update method.
+    /// </summary>
+    /// <param name="gameTime">A reference to the MonoGame GameTime class.</param>
     public override void Update(GameTime gameTime)
     {
         var mouseState = Mouse.GetState();
@@ -370,6 +489,10 @@ public class SimulationScene : Scene
         EditMode(mouseState);
     }
 
+    /// <summary>
+    /// A method that draws the simulation background (its background texture and a gradient).
+    /// </summary>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
     private void DrawBackground(SpriteBatch spriteBatch)
     {
         var screenWidth = _simulationMediator.ScreenDimensions.X;
@@ -385,6 +508,11 @@ public class SimulationScene : Scene
         spriteBatch.End();
     }
 
+    /// <summary>
+    /// The SimulationScene draw method.
+    /// </summary>
+    /// <param name="gameTime">A reference to the MonoGame GameTime class.</param>
+    /// <param name="spriteBatch">A reference to the MonoGame SpriteBatch class.</param>
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         DrawBackground(spriteBatch);
