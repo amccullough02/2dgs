@@ -3,15 +3,33 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2dgs;
 
+/// <summary>
+/// The 2DGS game class, inherits from the MonoGame Game class.
+/// </summary>
 public class Game : Microsoft.Xna.Framework.Game
 {
+    /// <summary>
+    /// An instance of the MonoGame GraphicsDeviceManager class.
+    /// </summary>
     public GraphicsDeviceManager Graphics { get; }
+    /// <summary>
+    /// An instance of the 2DGS FpsCounter class.
+    /// </summary>
     public FpsCounter FpsCounter { get; private set; }
+    /// <summary>
+    /// An instance of the 2DGS SceneManager class.
+    /// </summary>
     public SceneManager SceneManager { get; private set; }
+    /// <summary>
+    /// An instance of the 2DGS SaveSystem class.
+    /// </summary>
     public readonly SaveSystem SaveSystem;
     private MusicPlayer _musicPlayer;
     private SpriteBatch _spriteBatch;
 
+    /// <summary>
+    /// The constructor for the 2DGS game class.
+    /// </summary>
     public Game()
     {
         IsMouseVisible = true;
@@ -24,6 +42,11 @@ public class Game : Microsoft.Xna.Framework.Game
         SetupGlobalComponents();
     }
 
+    /// <summary>
+    /// A helper method to encapsulate graphics initialisation.
+    /// </summary>
+    /// <param name="graphics">A reference to the MonoGame GraphicsDeviceManager class.</param>
+    /// <param name="settingsSaveData">A reference to the SettingsSaveData class.</param>
     private void SetupGraphics(GraphicsDeviceManager graphics, SettingsSaveData settingsSaveData)
     {
         graphics.PreferredBackBufferHeight = settingsSaveData.VerticalResolution;
@@ -34,6 +57,9 @@ public class Game : Microsoft.Xna.Framework.Game
         graphics.ApplyChanges();
     }
 
+    /// <summary>
+    /// A helper method to initialise 'global' components, such as the music player.
+    /// </summary>
     private void SetupGlobalComponents()
     {
         _musicPlayer = new MusicPlayer(Content);
@@ -50,6 +76,9 @@ public class Game : Microsoft.Xna.Framework.Game
         base.Initialize();
     }
 
+    /// <summary>
+    /// Runs the high-level 2DGS tests associated with application setup and initialisation.
+    /// </summary>
     private void RunTests()
     {
         TestRunner.AssertApplicationName(Window.Title, "2DGS - Alpha");

@@ -6,16 +6,45 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to represent a 2DGS 'Lesson Prompt' window, which is used to discuss various physics concepts.
+/// </summary>
 public class LessonPrompt
 {
+    /// <summary>
+    /// An instance of the Myra Desktop which is deliberately not initialised, so it can be used as a reference later on.
+    /// </summary>
     private Desktop _desktop;
+    /// <summary>
+    /// An instance of the SimulationMediator class.
+    /// </summary>
     private SimulationMediator _simulationMediator;
+    /// <summary>
+    /// The Window from which the lesson prompt will be based on.
+    /// </summary>
     private readonly Window _window;
+    /// <summary>
+    /// The lesson content.
+    /// </summary>
     private readonly List<LessonPage> _lessonPages;
+    /// <summary>
+    /// The title of the lesson.
+    /// </summary>
     private readonly string _title;
+    /// <summary>
+    /// The current page index.
+    /// </summary>
     private int _index;
+    /// <summary>
+    /// The number of pages.
+    /// </summary>
     private readonly int _numPages;
     
+    /// <summary>
+    /// The LessonPrompt constructor.
+    /// </summary>
+    /// <param name="simulationMediator">A reference to the SimulationMediator.</param>
+    /// <param name="showButton">A reference to the button that shows the Lesson Prompt, required to disable that button if the prompt is active.</param>
     public LessonPrompt(SimulationMediator simulationMediator, Button showButton)
     {
         _title = simulationMediator.SimulationTitle;
@@ -23,9 +52,12 @@ public class LessonPrompt
         _numPages = simulationMediator.LessonPages.Count;
         _window = LessonWindow(showButton);
     }
-    
-    public List<LessonPage> GetLessons => _lessonPages;
 
+    /// <summary>
+    /// A method to construct the lesson window proper.
+    /// </summary>
+    /// <param name="showButton">A reference to the button that shows the Lesson Prompt, required to disable that button if the prompt is active.</param>
+    /// <returns></returns>
     private Window LessonWindow(Button showButton)
     {
         var window = new Window
@@ -55,6 +87,10 @@ public class LessonPrompt
         return window;
     }
 
+    /// <summary>
+    /// A method that constructs the contents of the lesson window.
+    /// </summary>
+    /// <returns>A vertical stack panel that contains the lesson prompt content.</returns>
     private VerticalStackPanel LessonLayout()
     {
         var verticalStackPanel = new VerticalStackPanel
@@ -72,6 +108,10 @@ public class LessonPrompt
         return verticalStackPanel;
     }
 
+    /// <summary>
+    /// A method that creates a read-only textbox containing the written material on the lesson.
+    /// </summary>
+    /// <returns>A read-only textbox containing the written material on the lesson.</returns>
     private TextBox LessonContent()
     {
         
@@ -81,6 +121,11 @@ public class LessonPrompt
         return textbox;
     }
 
+    /// <summary>
+    /// A method that creates the pagination controls for the lesson prompt.
+    /// </summary>
+    /// <param name="textBox">A reference to the read-only textbox so its contents can be altered.</param>
+    /// <returns>A grid containing the pagination controls for the lesson prompt.</returns>
     private Grid PaginationControls(TextBox textBox)
     {
         var grid = UiComponents.Grid(0, 4, 1);
@@ -159,6 +204,11 @@ public class LessonPrompt
         return grid;
     }
 
+    /// <summary>
+    /// A method to display the lesson prompt.
+    /// </summary>
+    /// <param name="desktop">A reference to the SimulationUi desktop, this is set as the value of the desktop instance within this class.</param>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     public void Show(Desktop desktop, SimulationMediator simulationMediator)
     {
         _simulationMediator = simulationMediator;

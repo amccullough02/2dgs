@@ -1,12 +1,20 @@
 ﻿using System.Globalization;
 using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
-using Myra.Graphics2D.UI.ColorPicker;
 
 namespace _2dgs;
 
+/// <summary>
+/// A simple UI class containing 'edit mode' widgets.
+/// </summary>
 public static class EditModePanel
 {
+    /// <summary>
+    /// A method to create the 'edit mode' panel.
+    /// </summary>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
+    /// <param name="desktop">A reference to the desktop used in the SimulationUi class, for which this class is instantiated within.</param>
+    /// <returns>The edit mode panel.</returns>
     public static VerticalStackPanel Create(SimulationMediator simulationMediator, Desktop desktop)
     {
         var deleteBodyButton = UiComponents.Button("Delete Body", false);
@@ -85,6 +93,11 @@ public static class EditModePanel
         return editPanel;
     }
     
+    /// <summary>
+    /// A method used to populate the edit body dialog with the current values of the body.
+    /// </summary>
+    /// <param name="dialog">The dialog to insert data into.</param>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     private static void PopulateFormData(Dialog dialog, SimulationMediator simulationMediator)
     {
         ((TextBox)dialog.FindChildById("bodyNameTextbox")).Text = simulationMediator.SelectedBodyData.Name;

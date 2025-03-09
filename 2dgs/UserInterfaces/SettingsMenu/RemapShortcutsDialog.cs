@@ -4,8 +4,18 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to organise UI boilerplate for the dialog enabling shortcut remapping.
+/// </summary>
 public static class RemapShortcutsDialog
 {
+    /// <summary>
+    /// A method that creates a 2DGS dialog with shortcut remapping functionality.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="settingsMediator">A reference to the SettingsMediator class.</param>
+    /// <param name="settingsSaveData">A reference to the SettingsSaveData class.</param>
+    /// <returns></returns>
     public static Dialog Create(Game game, SettingsMediator settingsMediator, SettingsSaveData settingsSaveData)
     {
         var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");
@@ -268,6 +278,14 @@ public static class RemapShortcutsDialog
         return dialog;
     }
     
+    /// <summary>
+    /// A method called when a shortcut is being remapped, responsible for visual changes.
+    /// </summary>
+    /// <param name="settingsMediator">A reference to the SettingsMediator class.</param>
+    /// <param name="button">The button clicked to start the remapping process, its text will change appropriately depending on the state of the remapping
+    /// (start or finish).</param>
+    /// <param name="label">The label that provides a preview of what the new shortcut will consist of.</param>
+    /// <param name="whichShortcut">A text ID of the shortcut that is being remapped.</param>
     private static void RemapShortcut(SettingsMediator settingsMediator, Button button, Label label, string whichShortcut)
     {
         settingsMediator.Remapping = !settingsMediator.Remapping;
@@ -284,6 +302,11 @@ public static class RemapShortcutsDialog
         }
     }
 
+    /// <summary>
+    /// A method that updates the saved shortcuts via reflection.
+    /// </summary>
+    /// <param name="dictionary">The dictionary containing the new set of shortcuts.</param>
+    /// <param name="settingsSaveData">A reference to the SettingsSaveData class.</param>
     private static void UpdateShortcuts(Dictionary<string, List<Keys>> dictionary, SettingsSaveData settingsSaveData)
     {
         var type = settingsSaveData.GetType();

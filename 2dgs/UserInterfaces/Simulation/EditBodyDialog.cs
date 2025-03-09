@@ -3,8 +3,17 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A simple UI class containing widgets for the edit body dialog.
+/// </summary>
 public static class EditBodyDialog
 {
+    /// <summary>
+    /// A method to create the edit body dialog.
+    /// </summary>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
+    /// <param name="desktop">A reference to the desktop used in the SimulationUi class, for which this class is instantiated within.</param>
+    /// <returns>The edit body dialog.</returns>
     public static Dialog Create(SimulationMediator simulationMediator, Desktop desktop)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 7);

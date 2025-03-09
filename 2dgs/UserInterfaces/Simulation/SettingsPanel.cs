@@ -3,11 +3,19 @@ using Myra.Graphics2D.UI;
 
 namespace _2dgs;
 
+/// <summary>
+/// A simple UI class containing widgets for the simulation settings panel.
+/// </summary>
 public static class SettingsPanel
 {
     private const int MinTimeStep = 1;
     private const int MaxTimeStep = 500;
 
+    /// <summary>
+    /// A method that creates the settings panel.
+    /// </summary>
+    /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
+    /// <returns>A settings panel.</returns>
     public static VerticalStackPanel Create(SimulationMediator simulationMediator)
     {
         var settingsPanel = new VerticalStackPanel

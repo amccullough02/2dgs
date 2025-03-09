@@ -9,11 +9,25 @@ using Point = Microsoft.Xna.Framework.Point;
 
 namespace _2dgs;
 
+/// <summary>
+/// A class used to represent 
+/// </summary>
 public class SettingsMenuUi
 {
+    /// <summary>
+    /// An instance of a Myra Desktop, the highest unit of organisation in Myra's UI system.
+    /// </summary>
     private readonly Desktop _desktop;
+    /// <summary>
+    /// An instance of the SettingsSaveData class.
+    /// </summary>
     private readonly SettingsSaveData _settingsSaveData;
 
+    /// <summary>
+    /// The constructor for the SettingsMenuUi class.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="settingsMediator">A reference to the SettingsMediator.</param>
     public SettingsMenuUi(Game game, SettingsMediator settingsMediator)
     {
         _settingsSaveData = new SettingsSaveData();
@@ -31,6 +45,12 @@ public class SettingsMenuUi
         _desktop.Root = rootContainer;
     }
 
+    /// <summary>
+    /// A method to create a vertical stack panel that organises the other widgets within the settings menu.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="settingsMediator">A reference to the SettingsMediator class.</param>
+    /// <returns>A vertical stack panel that contains the other settings menu widgets.</returns>
     private VerticalStackPanel Settings(Game game, SettingsMediator settingsMediator)
     {
         
@@ -53,6 +73,12 @@ public class SettingsMenuUi
         return settingsPanel;
     }
 
+    /// <summary>
+    /// A method to create a vertical stack containing the display settings.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="settingsMediator">A reference to the SettingsMediator class.</param>
+    /// <returns>A vertical stack containing the display settings.</returns>
     private VerticalStackPanel DisplaySettings(Game game, SettingsMediator settingsMediator)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 4);
@@ -202,6 +228,12 @@ public class SettingsMenuUi
         return panel;
     }
 
+    /// <summary>
+    /// A method to create a vertical stack containing the misc settings.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <param name="settingsMediator">A reference to the SettingsMediator class.</param>
+    /// <returns>A vertical stack containing the misc settings.</returns>
     private VerticalStackPanel MiscSettings(Game game, SettingsMediator settingsMediator)
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 2);
@@ -250,6 +282,10 @@ public class SettingsMenuUi
         return panel;
     }
 
+    /// <summary>
+    /// A method to create a vertical stack containing the audio settings.
+    /// </summary>
+    /// <returns>A vertical stack containing the audio settings.</returns>
     private VerticalStackPanel AudioPanel()
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 2);
@@ -304,6 +340,11 @@ public class SettingsMenuUi
         return panel;
     }
     
+    /// <summary>
+    /// A method to create a panel that contains the 'exit' button that returns to the main menu.
+    /// </summary>
+    /// <param name="game">A reference to the MonoGame Game instance.</param>
+    /// <returns>A panel that contains the 'exit' button that returns to the main menu.</returns>
     private VerticalStackPanel ExitPanel(Game game)
     {
         var button = UiComponents.Button("Return to Main Menu");
@@ -325,6 +366,9 @@ public class SettingsMenuUi
         return verticalStackPanel;
     }
     
+    /// <summary>
+    /// Draws the Myra desktop.
+    /// </summary>
     public void Draw()
     {
         _desktop.Render();
