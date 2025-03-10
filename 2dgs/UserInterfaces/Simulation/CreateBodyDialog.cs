@@ -62,7 +62,7 @@ public static class CreateBodyDialog
         
         var validationErrorMessage = UiComponents.MediumLabel("Validation Error: ");
         var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
-        validationErrorDialogue.CloseButton.Click += (s, e) => { createBodyDialog.Show(desktop); };
+        validationErrorDialogue.CloseButton.Click += (_, _) => { createBodyDialog.Show(desktop); };
     
         createBodyDialog.ButtonOk.Click += (sender, e) =>
         {
