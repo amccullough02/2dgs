@@ -256,7 +256,7 @@ public static class UiComponents
      /// <summary>
      /// A method to create a 2DGS text box supporting hints.
      /// </summary>
-     /// <param name="hintText">The text box's text.</param>
+     /// <param name="hintText">The text box's hint text.</param>
      /// <returns>A 2DGS text box with hint support.</returns>
      public static TextBox HintTextBox(string hintText)
      {
