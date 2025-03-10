@@ -18,17 +18,17 @@ public static class CreateBodyDialog
     {
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 5);
         
-        var bodyNameLabel = UiComponents.MediumLabel("Name: ");
+        var bodyNameLabel = UiComponents.MediumLabel("Body Name: ");
         grid.Widgets.Add(bodyNameLabel);
         Grid.SetRow(bodyNameLabel, 0);
-        var bodyNameTextbox = UiComponents.TextBox("Default name");
+        var bodyNameTextbox = UiComponents.HintTextBox("e.g. Arrakis");
         grid.Widgets.Add(bodyNameTextbox);
         Grid.SetColumn(bodyNameTextbox, 1);
         
         var bodyVelXLabel = UiComponents.MediumLabel("Vel X: ");
         grid.Widgets.Add(bodyVelXLabel);
         Grid.SetRow(bodyVelXLabel, 1);
-        var bodyVelXTextbox = UiComponents.TextBox("0.0");
+        var bodyVelXTextbox = UiComponents.HintTextBox("e.g. 3.1, -2.52");
         grid.Widgets.Add(bodyVelXTextbox);
         Grid.SetColumn(bodyVelXTextbox, 1);
         Grid.SetRow(bodyVelXTextbox, 1);
@@ -36,7 +36,7 @@ public static class CreateBodyDialog
         var bodyVelYLabel = UiComponents.MediumLabel("Vel Y: ");
         grid.Widgets.Add(bodyVelYLabel);
         Grid.SetRow(bodyVelYLabel, 2);
-        var bodyVelYTextbox = UiComponents.TextBox("0.0");
+        var bodyVelYTextbox = UiComponents.HintTextBox("e.g. 3.1, -2.52");
         grid.Widgets.Add(bodyVelYTextbox);
         Grid.SetColumn(bodyVelYTextbox, 1);
         Grid.SetRow(bodyVelYTextbox, 2);
@@ -44,7 +44,7 @@ public static class CreateBodyDialog
         var bodyMassLabel = UiComponents.MediumLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 3);
-        var bodyMassTextbox = UiComponents.TextBox("1e6");
+        var bodyMassTextbox = UiComponents.HintTextBox("e.g. 1e6, 1000000");
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 3);
@@ -52,7 +52,7 @@ public static class CreateBodyDialog
         var bodyDisplaySizeLabel = UiComponents.MediumLabel("Display Size: ");
         grid.Widgets.Add(bodyDisplaySizeLabel);
         Grid.SetRow(bodyDisplaySizeLabel, 4);
-        var bodyDisplaySizeTextbox = UiComponents.TextBox("0.05");
+        var bodyDisplaySizeTextbox = UiComponents.HintTextBox("e.g. 0.02, 0.08");
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 4);
@@ -69,10 +69,10 @@ public static class CreateBodyDialog
             var valid = true;
             var errorMessage = "";
     
-            if (bodyNameTextbox.Text.Length < 2)
+            if (bodyNameTextbox.Text == null)
             {
                 valid = false;
-                errorMessage = "Name must be at least 2 characters.";
+                errorMessage = "Name must be at least 1 character.";
             }
     
             else if (!float.TryParse(bodyVelXTextbox.Text, out _))

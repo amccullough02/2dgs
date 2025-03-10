@@ -252,6 +252,25 @@ public static class UiComponents
                Border = new SolidBrush(Color.Gray)
           };
      }
+     
+     /// <summary>
+     /// A method to create a 2DGS text box supporting hints.
+     /// </summary>
+     /// <param name="hintText">The text box's text.</param>
+     /// <returns>A 2DGS text box with hint support.</returns>
+     public static TextBox HintTextBox(string hintText)
+     {
+          return new TextBox
+          {
+               MinWidth = UiConstants.DefaultTextboxWidth,
+               HintTextEnabled = true,
+               HintText = hintText,
+               Font = FontManager.LightText(UiConstants.DefaultDialogFontSize),
+               Padding = new Thickness(4),
+               BorderThickness = new Thickness(1),
+               Border = new SolidBrush(Color.Gray)
+          };
+     }
 
      /// <summary>
      /// A method to create a 2DGS toggle button.
