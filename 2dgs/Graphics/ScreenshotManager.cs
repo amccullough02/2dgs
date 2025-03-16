@@ -24,8 +24,13 @@ public static class ScreenshotManager
         graphicsDevice.GetBackBufferData(data);
         screenshot.SetData(data);
         
+        if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "2D Gravity Simulator")))
+        {
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "2D Gravity Simulator"));
+        }
+        
         var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), 
-            $"screenshot_{DateTime.Now:yyyyMmdd_HHmmss}.png");
+            $"2D Gravity Simulator\\screenshot_{DateTime.Now:yyyyMMdd_HHmmss}.png");
 
         var stream = new FileStream(path, FileMode.Create);
         screenshot.SaveAsPng(stream, width, height);
