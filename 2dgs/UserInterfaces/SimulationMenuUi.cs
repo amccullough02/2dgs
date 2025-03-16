@@ -184,11 +184,11 @@ public class SimulationMenuUi
     /// A method used to create a dialog that allows simulations to be renamed.
     /// </summary>
     /// <param name="game">A reference to the MonoGame Game instance.</param>
-    /// <param name="fileName">The original simulation file name.</param>
-    /// <param name="path">The folder path in which the simulation file is stored.</param>
-    /// <param name="file">The original simulation file path.</param>
+    /// <param name="fileName">The original simulation file name which is used as the text content of the dialog's textbox.</param>
+    /// <param name="folderPath">The folder path in which the simulation file is stored.</param>
+    /// <param name="originalFilePath">The original simulation file path in its entirety.</param>
     /// <returns>A Myra Dialog class with simulation renaming logic.</returns>
-    private Dialog RenameButtonDialog(Game game, string fileName, string path, string file)
+    private Dialog RenameButtonDialog(Game game, string fileName, string folderPath, string originalFilePath)
     {
         var renameButtonDialog = UiComponents.StyledDialog("Rename");
         var grid = UiComponents.Grid(UiConstants.DefaultGridSpacing, 2, 1);
@@ -206,9 +206,9 @@ public class SimulationMenuUi
         renameButtonDialog.ButtonOk.Click += (_, _) =>
         {
             Console.WriteLine($"DEBUG: {fileName} renamed to {textbox.Text}");
-            var newPath = path + "/" + textbox.Text + ".json";
-            FileManager.RenameFile(file, newPath);
-            TestRunner.AssertFileRename(file, newPath);
+            var newPath = folderPath + "/" + textbox.Text + ".json";
+            FileManager.RenameFile(originalFilePath, newPath);
+            TestRunner.AssertFileRename(originalFilePath, newPath);
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
 
@@ -225,9 +225,9 @@ public class SimulationMenuUi
     /// </summary>
     /// <param name="game">A reference to the MonoGame Game instance.</param>
     /// <param name="fileName">The original simulation file name.</param>
-    /// <param name="path">The folder path in which the simulation file is stored.</param>
+    /// <param name="folderPath">The folder path in which the simulation file is stored.</param>
     /// <returns>A Myra Dialog class with simulation deletion logic.</returns>
-    private Dialog DeleteButtonDialog(Game game, string fileName, string path)
+    private Dialog DeleteButtonDialog(Game game, string fileName, string folderPath)
     {
         var deleteButtonDialog = UiComponents.StyledDialog("Delete");
         deleteButtonDialog.Content = UiComponents.LightLabel("Are you sure you want to delete this simulation?");
@@ -235,8 +235,8 @@ public class SimulationMenuUi
         deleteButtonDialog.ButtonOk.Click += (_, _) =>
         {
             Console.WriteLine($"DEBUG: {fileName} deleted");
-            FileManager.DeleteFile(path + "/" + fileName + ".json");
-            TestRunner.AssertFileDeletion(path + "/" + fileName + ".json");
+            FileManager.DeleteFile(folderPath + "/" + fileName + ".json");
+            TestRunner.AssertFileDeletion(folderPath + "/" + fileName + ".json");
             game.SceneManager.ChangeScene(new SimulationMenuScene(game));
         };
 
@@ -252,14 +252,14 @@ public class SimulationMenuUi
     /// A method used to create a 'file panel' a list element that contains simulation metadata and rename/delete options.
     /// </summary>
     /// <param name="game">A reference to the MonoGame Game instance.</param>
-    /// <param name="file">The direct path to the simulation file.</param>
-    /// <param name="path">The path to the simulation folder the file is within.</param>
+    /// <param name="filePath">The direct path to the simulation file.</param>
+    /// <param name="folderPath">The path to the simulation folder the file is within.</param>
     /// <param name="description">The description of the simulation.</param>
     /// <param name="thumbnail">The thumbnail path for the simulation.</param>
     /// <returns>A horizontal stack panel containing simulation metadata and options, which is to be added to a listview.</returns>
-    private HorizontalStackPanel CreateFilePanel(Game game, string file, string path, string description, string thumbnail)
+    private HorizontalStackPanel CreateFilePanel(Game game, string filePath, string folderPath, string description, string thumbnail)
     {
-        var fileName = Path.GetFileNameWithoutExtension(file);
+        var fileName = Path.GetFileNameWithoutExtension(filePath);
         
         var simulationLabel = UiComponents.MediumLabel(StringTransformer.FileNamePrettier(fileName));
         simulationLabel.HorizontalAlignment = HorizontalAlignment.Center;
@@ -314,14 +314,14 @@ public class SimulationMenuUi
         
         var loadButton = UiComponents.Button("Load", true, 200, 50);
         var renameButton = UiComponents.Button("Rename", true, 200, 50);
-        var renameDialog = RenameButtonDialog(game, fileName, path, file);
+        var renameDialog = RenameButtonDialog(game, fileName, folderPath, filePath);
         var deleteButton = UiComponents.Button("Delete", true, 200, 50);
-        var deleteDialog = DeleteButtonDialog(game, fileName, path);
+        var deleteDialog = DeleteButtonDialog(game, fileName, folderPath);
 
         loadButton.Click += (_, _) =>
         {
             Console.WriteLine("DEBUG: Navigating to simulation...");
-            game.SceneManager.PushScene(new FadeInScene(game, new SimulationScene(game, file)));
+            game.SceneManager.PushScene(new FadeInScene(game, new SimulationScene(game, filePath)));
         };
 
         renameButton.Click += (_, _) =>
@@ -365,11 +365,11 @@ public class SimulationMenuUi
     /// A method used to obtain the text description of a simulation.
     /// </summary>
     /// <param name="game">A reference to the MonoGame Game instance.</param>
-    /// <param name="path">The folder path in which the simulation file is stored.</param>
+    /// <param name="filePath">The direct path to the simulation file.</param>
     /// <returns>A string with the simulation's description.</returns>
-    private string GetSimulationDescription(Game game, string path)
+    private string GetSimulationDescription(Game game, string filePath)
     {
-        var data = game.SaveSystem.LoadSimulation(path);
+        var data = game.SaveSystem.LoadSimulation(filePath);
         return string.IsNullOrEmpty(data.Description) ? "No description found." : data.Description;
     }
 
@@ -377,12 +377,12 @@ public class SimulationMenuUi
     /// A method used to obtain the thumbnail path of a simulation.
     /// </summary>
     /// <param name="game">A reference to the MonoGame Game instance.</param>
-    /// <param name="path">The folder path in which the thumbnail is stored.</param>
+    /// <param name="filePath">The direct path to the simulation file.</param>
     /// <returns>A string containing the thumbnail path for the simulation.</returns>
-    private string GetSimulationThumbnailPath(Game game, string path)
+    private string GetSimulationThumbnailPath(Game game, string filePath)
     {
         const string defaultPath = "../../../savedata/thumbnails/default.png";
-        var data = game.SaveSystem.LoadSimulation(path);
+        var data = game.SaveSystem.LoadSimulation(filePath);
         return string.IsNullOrEmpty(data.ThumbnailPath) ? defaultPath : data.ThumbnailPath;
     }
     
@@ -390,16 +390,16 @@ public class SimulationMenuUi
     /// Populates a Myra ListView with list elements that contain the simulation name, thumbnail, description, and file manipulation options.
     /// </summary>
     /// <param name="listView">The ListView widget to append the list elements to.</param>
-    /// <param name="path">The simulation folder path.</param>
+    /// <param name="folderPath">The simulation folder path.</param>
     /// <param name="game">A reference to the MonoGame Game instance.</param>
-    private void PopulateList(ListView listView, string path, Game game)
+    private void PopulateList(ListView listView, string folderPath, Game game)
     {
-        if (Directory.Exists(path) && Directory.EnumerateFileSystemEntries(path).Any())
+        if (Directory.Exists(folderPath) && Directory.EnumerateFileSystemEntries(folderPath).Any())
         {
-            var files = Directory.GetFiles(path, "*.json");
+            var files = Directory.GetFiles(folderPath, "*.json");
             foreach (var file in files)
             {
-                listView.Widgets.Add(CreateFilePanel(game, file, path, GetSimulationDescription(game, file),
+                listView.Widgets.Add(CreateFilePanel(game, file, folderPath, GetSimulationDescription(game, file),
                     GetSimulationThumbnailPath(game, file)));
             }
         }
