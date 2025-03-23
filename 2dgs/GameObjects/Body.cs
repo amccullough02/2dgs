@@ -13,6 +13,9 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2dgs;
 
+// The logic for calculating and applying the force of gravity was inspired by A.M. Kuchling's Python-based example.
+// Link to source: https://fiftyexamples.readthedocs.io/en/latest/gravity.html
+
 /// <summary>
 /// A class used to represent bodies in the 2DGS application.
 /// </summary>
@@ -187,7 +190,7 @@ public class Body(
             thisBody.Destroyed = true;
         }
     }
-
+    
     /// <summary>
     /// A method used to calculate the gravitational interactions.
     /// </summary>
