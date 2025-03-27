@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -82,80 +83,79 @@ public static class EditBodyDialog
 
         var editBodyDialog = UiComponents.StyledDialog("Edit Body");
         editBodyDialog.Content = grid;
-        var validationErrorMessage = UiComponents.MediumLabel("Validation Error: ");
-        // var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
-        // validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(desktop); };
+        
+        var validationErrorDialog = UiComponents.StyledDialog("Validation Error");
+        var validationErrorPanel = new VerticalStackPanel();
+        var validationErrorHeader = UiComponents.MediumLabel("Your input was invalid, fix the following:\n");
+        var validationErrorMessage = UiComponents.LightLabel("");
+        validationErrorPanel.Widgets.Add(validationErrorHeader);
+        validationErrorPanel.Widgets.Add(validationErrorMessage);
+        validationErrorDialog.Content = validationErrorPanel;
 
-        editBodyDialog.ButtonOk.Click += (sender, e) =>
+        validationErrorDialog.ButtonOk.Click += (_, _) => { editBodyDialog.Show(desktop); };
+
+        editBodyDialog.ButtonOk.Click += (_, _) =>
         {
-            var valid = true;
-            var errorMessage = "";
+            var errors = new List<string>();
 
-            if (bodyNameTextbox.Text.Length < 2)
+            if (string.IsNullOrEmpty(bodyNameTextbox.Text))
             {
-                valid = false;
-                errorMessage = "Name must be at least 2 characters.";
+                errors.Add("Body name must not be null or empty.");
             }
             
-            else if (!float.TryParse(bodyPosXTextbox.Text, out _))
+            if (!float.TryParse(bodyPosXTextbox.Text, out _))
             {
-                valid = false;
-                errorMessage = "Pos X must be a number.";
+                errors.Add("Body position X must be a floating point number.");
             }
             
-            else if (!float.TryParse(bodyPosYTextbox.Text, out _))
+            if (!float.TryParse(bodyPosYTextbox.Text, out _))
             {
-                valid = false;
-                errorMessage = "Pos Y must be a number.";
+                errors.Add("Body position Y must be a floating point number.");
             }
 
-            else if (!float.TryParse(bodyVelXTextbox.Text, out _))
+            if (!float.TryParse(bodyVelXTextbox.Text, out _))
             {
-                valid = false;
-                errorMessage = "Vel X must be a number.";
+                errors.Add("Body velocity X must be a floating point number.");
+            }
+        
+            if (!float.TryParse(bodyVelYTextbox.Text, out _))
+            {
+                errors.Add("Body velocity Y must be a floating point number.");
+            }
+            
+            if (!float.TryParse(bodyMassTextbox.Text, out _))
+            {
+                errors.Add("Body mass must be a floating point number.");
+            }
+    
+            if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
+            {
+                errors.Add("Body display size must be a floating point number.");
             }
 
-            else if (!float.TryParse(bodyVelYTextbox.Text, out _))
+            if (errors.Count != 0)
             {
-                valid = false;
-                errorMessage = "Vel Y must be a number.";
-            }
-
-            else if (!float.TryParse(bodyMassTextbox.Text, out _))
-            {
-                valid = false;
-                errorMessage = "Mass must be a number.";
-            }
-
-            else if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
-            {
-                valid = false;
-                errorMessage = "Display Size must be a number.";
-            }
-
-            if (valid)
-            {
-
-                var name = bodyNameTextbox.Text;
-                var position = new Vector2(float.Parse(bodyPosXTextbox.Text), float.Parse(bodyPosYTextbox.Text));
-                var velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
-                var mass = float.Parse(bodyMassTextbox.Text);
-                var size = float.Parse(bodyDisplaySizeTextbox.Text);
-
-                simulationMediator.EditBodyData.Name = name;
-                simulationMediator.EditBodyData.Position = position;
-                simulationMediator.EditBodyData.Velocity = velocity;
-                simulationMediator.EditBodyData.Mass = mass;
-                simulationMediator.EditBodyData.DisplaySize = size;
-                simulationMediator.EditSelectedBody = true;
+                var errorMessage = "";
                 
-                editBodyDialog.Close();
-            }
-            else
-            {
+                for (var i = 0; i < errors.Count; i++)
+                {
+                    errorMessage += (i + 1) + ". " + errors[i] + "\n";
+                }
+                
                 validationErrorMessage.Text = errorMessage;
-                // validationErrorDialogue.Show(desktop);
+                validationErrorDialog.Show(desktop);
+
+                return;
             }
+
+            simulationMediator.EditBodyData.Name = bodyNameTextbox.Text;
+            simulationMediator.EditBodyData.Position = new Vector2 { X = float.Parse(bodyPosXTextbox.Text), Y = float.Parse(bodyPosYTextbox.Text) };
+            simulationMediator.EditBodyData.Velocity = new Vector2 { X = float.Parse(bodyVelXTextbox.Text), Y = float.Parse(bodyVelYTextbox.Text) };
+            simulationMediator.EditBodyData.Mass = float.Parse(bodyMassTextbox.Text);
+            simulationMediator.EditBodyData.DisplaySize = float.Parse(bodyDisplaySizeTextbox.Text);
+            simulationMediator.EditSelectedBody = true;
+            
+            editBodyDialog.Close();
         };
 
         return editBodyDialog;
