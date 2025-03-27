@@ -5,6 +5,8 @@ classical mechanics through the lens of orbital mechanics and was envisioned as 
 
 This project was built for my final year in Ulster University, so bear in mind that this is still the code of an 
 intermediate programmer at best.
+
+![image-alt](https://github.com/amccullough02/2dgs/blob/main/docs/readme_image.png)
 ## Credits
 1. MonoGame: https://github.com/MonoGame/MonoGame (Game Framework)
 2. Myra: https://github.com/rds1983/Myra (UI Library)
