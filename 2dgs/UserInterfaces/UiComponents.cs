@@ -297,21 +297,6 @@ public static class UiComponents
      }
 
      /// <summary>
-     /// A method to create a 2DGS validation error window.
-     /// </summary>
-     /// <param name="label">The label the window will contain.</param>
-     /// <returns>A 2DGS validation error window.</returns>
-     public static Window ValidationWindow(Label label)
-     {
-          return new Window
-          {
-               Title = "Validation Error",
-               TitleFont = FontManager.MediumText(UiConstants.DefaultFontSize),
-               Content = label
-          };
-     }
-
-     /// <summary>
      /// A method to create a 2DGS dialog.
      /// </summary>
      /// <param name="title">The title of the dialog.</param>

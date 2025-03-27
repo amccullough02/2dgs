@@ -83,8 +83,8 @@ public static class EditBodyDialog
         var editBodyDialog = UiComponents.StyledDialog("Edit Body");
         editBodyDialog.Content = grid;
         var validationErrorMessage = UiComponents.MediumLabel("Validation Error: ");
-        var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
-        validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(desktop); };
+        // var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
+        // validationErrorDialogue.CloseButton.Click += (s, e) => { editBodyDialog.Show(desktop); };
 
         editBodyDialog.ButtonOk.Click += (sender, e) =>
         {
@@ -154,7 +154,7 @@ public static class EditBodyDialog
             else
             {
                 validationErrorMessage.Text = errorMessage;
-                validationErrorDialogue.Show(desktop);
+                // validationErrorDialogue.Show(desktop);
             }
         };
 

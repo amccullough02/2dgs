@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
 namespace _2dgs;
@@ -56,69 +57,71 @@ public static class CreateBodyDialog
         grid.Widgets.Add(bodyDisplaySizeTextbox);
         Grid.SetColumn(bodyDisplaySizeTextbox, 1);
         Grid.SetRow(bodyDisplaySizeTextbox, 4);
-    
+        
         var createBodyDialog = UiComponents.StyledDialog("Create New Body");
         createBodyDialog.Content = grid;
         
-        var validationErrorMessage = UiComponents.MediumLabel("Validation Error: ");
-        var validationErrorDialogue = UiComponents.ValidationWindow(validationErrorMessage);
-        validationErrorDialogue.CloseButton.Click += (_, _) => { createBodyDialog.Show(desktop); };
+        var validationErrorDialog = UiComponents.StyledDialog("Validation Error");
+        var validationErrorPanel = new VerticalStackPanel();
+        var validationErrorHeader = UiComponents.MediumLabel("Your input was invalid, fix the following:\n");
+        var validationErrorMessage = UiComponents.LightLabel("");
+        validationErrorPanel.Widgets.Add(validationErrorHeader);
+        validationErrorPanel.Widgets.Add(validationErrorMessage);
+        validationErrorDialog.Content = validationErrorPanel;
+
+        validationErrorDialog.ButtonOk.Click += (_, _) => { createBodyDialog.Show(desktop); };
     
-        createBodyDialog.ButtonOk.Click += (sender, e) =>
+        createBodyDialog.ButtonOk.Click += (_, _) =>
         {
-            var valid = true;
-            var errorMessage = "";
-    
-            if (bodyNameTextbox.Text == null)
+            var errors = new List<string>();
+
+            if (string.IsNullOrEmpty(bodyNameTextbox.Text))
             {
-                valid = false;
-                errorMessage = "Name must be at least 1 character.";
+                errors.Add("Body name must not be null or empty.");
+            }
+
+            if (!float.TryParse(bodyVelXTextbox.Text, out _))
+            {
+                errors.Add("Body velocity X must be a floating point number.");
+            }
+        
+            if (!float.TryParse(bodyVelYTextbox.Text, out _))
+            {
+                errors.Add("Body velocity Y must be a floating point number.");
+            }
+            
+            if (!float.TryParse(bodyMassTextbox.Text, out _))
+            {
+                errors.Add("Body mass must be a floating point number.");
             }
     
-            else if (!float.TryParse(bodyVelXTextbox.Text, out _))
+            if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
             {
-                valid = false;
-                errorMessage = "Vel X must be a number.";
+                errors.Add("Body display size must be a floating point number.");
             }
-    
-            else if (!float.TryParse(bodyVelYTextbox.Text, out _))
+
+            if (errors.Count != 0)
             {
-                valid = false;
-                errorMessage = "Vel Y must be a number.";
-            }
-    
-            else if (!float.TryParse(bodyMassTextbox.Text, out _))
-            {
-                valid = false;
-                errorMessage = "Mass must be a number.";
-            }
-    
-            else if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
-            {
-                valid = false;
-                errorMessage = "Display Size must be a number.";
-            }
-    
-            if (valid)
-            {
-                var name = bodyNameTextbox.Text;
-                var velocity = new Vector2(float.Parse(bodyVelXTextbox.Text), float.Parse(bodyVelYTextbox.Text));
-                var mass = float.Parse(bodyMassTextbox.Text);
-                var size = float.Parse(bodyDisplaySizeTextbox.Text);
-    
-                simulationMediator.CreateBodyData.Name = name;
-                simulationMediator.CreateBodyData.Velocity = velocity;
-                simulationMediator.CreateBodyData.Mass = mass;
-                simulationMediator.CreateBodyData.DisplaySize = size;
-                simulationMediator.ToggleBodyGhost = true;
+                var errorMessage = "";
                 
-                createBodyDialog.Close();
-            }
-            else
-            {
+                for (var i = 0; i < errors.Count; i++)
+                {
+                    errorMessage += (i + 1) + ". " + errors[i] + "\n";
+                }
+                
                 validationErrorMessage.Text = errorMessage;
-                validationErrorDialogue.Show(desktop);
+                validationErrorDialog.Show(desktop);
+
+                return;
             }
+
+            simulationMediator.CreateBodyData.Name = bodyNameTextbox.Text;
+            simulationMediator.CreateBodyData.Velocity = new Vector2 { X = float.Parse(bodyVelXTextbox.Text), Y = float.Parse(bodyVelYTextbox.Text) };
+            simulationMediator.CreateBodyData.Mass = float.Parse(bodyMassTextbox.Text);
+            simulationMediator.CreateBodyData.DisplaySize = float.Parse(bodyDisplaySizeTextbox.Text);
+            simulationMediator.ToggleBodyGhost = true;
+            
+            createBodyDialog.Close();
         };
     
         return createBodyDialog;
