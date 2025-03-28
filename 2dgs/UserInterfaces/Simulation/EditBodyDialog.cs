@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
@@ -152,7 +153,7 @@ public static class EditBodyDialog
             simulationMediator.EditBodyData.Position = new Vector2 { X = float.Parse(bodyPosXTextbox.Text), Y = float.Parse(bodyPosYTextbox.Text) };
             simulationMediator.EditBodyData.Velocity = new Vector2 { X = float.Parse(bodyVelXTextbox.Text), Y = float.Parse(bodyVelYTextbox.Text) };
             simulationMediator.EditBodyData.Mass = float.Parse(bodyMassTextbox.Text);
-            simulationMediator.EditBodyData.DisplaySize = float.Parse(bodyDisplaySizeTextbox.Text);
+            simulationMediator.EditBodyData.Diameter = Convert.ToInt32(bodyDisplaySizeTextbox.Text);
             simulationMediator.EditSelectedBody = true;
             
             editBodyDialog.Close();

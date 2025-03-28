@@ -16,7 +16,7 @@
         "Y": 0
       },
       "Mass": 1E+09,
-      "DisplaySize": 0.15,
+      "Diameter": 150,
       "Color": "#a69565"
     },
     {
@@ -30,7 +30,7 @@
         "Y": 0
       },
       "Mass": 25.0,
-      "DisplaySize": 0.005,
+      "Diameter": 5,
       "Color": "#a432a8"
     }
   ],

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
@@ -118,7 +119,7 @@ public static class CreateBodyDialog
             simulationMediator.CreateBodyData.Name = bodyNameTextbox.Text;
             simulationMediator.CreateBodyData.Velocity = new Vector2 { X = float.Parse(bodyVelXTextbox.Text), Y = float.Parse(bodyVelYTextbox.Text) };
             simulationMediator.CreateBodyData.Mass = float.Parse(bodyMassTextbox.Text);
-            simulationMediator.CreateBodyData.DisplaySize = float.Parse(bodyDisplaySizeTextbox.Text);
+            simulationMediator.CreateBodyData.Diameter = Convert.ToInt32(bodyDisplaySizeTextbox.Text);
             simulationMediator.ToggleBodyGhost = true;
             
             createBodyDialog.Close();

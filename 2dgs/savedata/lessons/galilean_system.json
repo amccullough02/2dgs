@@ -16,7 +16,7 @@
         "Y": 0
       },
       "Mass": 1E+09,
-      "DisplaySize": 0.06,
+      "Diameter": 60,
       "Color": "#e0ae6f"
     },
     {
@@ -30,7 +30,7 @@
         "Y": 6.10
       },
       "Mass": 250000.0,
-      "DisplaySize": 0.008,
+      "Diameter": 8,
       "Color": "#fff761"
     },
     {
@@ -44,7 +44,7 @@
         "Y": -4.81
       },
       "Mass": 200000.0,
-      "DisplaySize": 0.006,
+      "Diameter": 6,
       "Color": "#c4a27c"
     },
     {
@@ -58,7 +58,7 @@
         "Y": 3.81
       },
       "Mass": 350000.0,
-      "DisplaySize": 0.015,
+      "Diameter": 15,
       "Color": "#8b7355"
     },
     {
@@ -72,7 +72,7 @@
         "Y": -2.87
       },
       "Mass": 300000.0,
-      "DisplaySize": 0.013,
+      "Diameter": 13,
       "Color": "#4a4033"
     }
   ],

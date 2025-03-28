@@ -29,7 +29,7 @@ public class GhostBody
 
         if (simulationMediator.ToggleBodyGhost)
         {
-            DisplaySize = simulationMediator.CreateBodyData.DisplaySize;
+            DisplaySize = simulationMediator.CreateBodyData.Diameter;
         }
     }
 
