@@ -71,7 +71,7 @@ public class TextureManager
     /// <param name="screenWidth">The current width of the screen.</param>
     /// <param name="screenHeight">The current height of the screen.</param>
     /// <param name="texture">The texture to position.</param>
-    /// <returns></returns>
+    /// <returns>A Vector2 that will allow a texture to be positioned at the center of the screen.</returns>
     public static Vector2 PositionAtCenter(float screenWidth, float screenHeight, Texture2D texture)
     {
         return new Vector2(screenWidth / 2.0f - texture.Width / 2.0f, screenHeight / 2.0f - texture.Height / 2.0f);
@@ -84,7 +84,7 @@ public class TextureManager
     /// <param name="texture">The texture to position.</param>
     /// <param name="padding">The amount of padding to add between the top of the screen and the top of the texture rectangle.</param>
     /// <param name="scaleFactor">The scale of the texture (used if the texture is to change size based on vertical resolution).</param>
-    /// <returns></returns>
+    /// <returns>A Vector2 that will allow a texture to be positioned at the top of the screen, centered on the X axis.</returns>
     public static Vector2 PositionAtTop(float screenWidth, Texture2D texture, float padding = 0.0f, float scaleFactor = 1.0f)
     {
         screenWidth += padding;

@@ -15,7 +15,7 @@ public static class RemapShortcutsDialog
     /// <param name="game">A reference to the MonoGame Game instance.</param>
     /// <param name="settingsMediator">A reference to the SettingsMediator class.</param>
     /// <param name="settingsSaveData">A reference to the SettingsSaveData class.</param>
-    /// <returns></returns>
+    /// <returns>The Shortcut Remapping dialog.</returns>
     public static Dialog Create(Game game, SettingsMediator settingsMediator, SettingsSaveData settingsSaveData)
     {
         var dialog = UiComponents.StyledDialog("Remap Keyboard Shortcuts");

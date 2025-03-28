@@ -195,7 +195,7 @@ public class SimulationScene : Scene
     /// <summary>
     /// A method to check if a body is selected.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A Boolean value representing if a body is currently selected.</returns>
     private bool IsBodySelected()
     {
         return _bodies.Any(body => body.Selected);
@@ -204,7 +204,7 @@ public class SimulationScene : Scene
     /// <summary>
     /// A method to obtain the selected body.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The body that is selected.</returns>
     private Body SelectedBody() { return _bodies.FirstOrDefault(body => body.Selected); }
 
     /// <summary>

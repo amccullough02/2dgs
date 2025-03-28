@@ -145,7 +145,7 @@ public static class UiComponents
      /// <param name="spacing">The spacing between grid elements.</param>
      /// <param name="columns">The number of columns the grid will have.</param>
      /// <param name="rows">The number of rows the grid will have.</param>
-     /// <returns></returns>
+     /// <returns>A Myra Grid with user defined spacing as well the specified number of columns and rows.</returns>
      public static Grid Grid(int spacing, int columns, int rows)
      {
           var grid = new Grid
@@ -173,7 +173,7 @@ public static class UiComponents
      /// A method to create a 2DGS key bind preview label.
      /// </summary>
      /// <param name="text">The text of the label.</param>
-     /// <returns>A 2DGS key bind preview lable instance.</returns>
+     /// <returns>A 2DGS key bind preview label instance.</returns>
      public static Label KeyBindLabel(string text)
      {
           return new Label

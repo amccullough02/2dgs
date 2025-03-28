@@ -56,8 +56,8 @@ public class LessonPrompt
     /// <summary>
     /// A method to construct the lesson window proper.
     /// </summary>
-    /// <param name="showButton">A reference to the button that shows the Lesson Prompt, required to disable that button if the prompt is active.</param>
-    /// <returns></returns>
+    /// <param name="showButton">A reference to the button that shows the Lesson Prompt, required to disable said button if the prompt is active.</param>
+    /// <returns>A Myra Window used as a container for the lesson prompt's contents.</returns>
     private Window LessonWindow(Button showButton)
     {
         var window = new Window

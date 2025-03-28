@@ -14,7 +14,7 @@ public static class StringTransformer
     /// Extracts and transforms a filename to Pascal Case, with underscores replaced by spaces.
     /// </summary>
     /// <param name="filename">The filename to transform.</param>
-    /// <returns></returns>
+    /// <returns>The transformed file name e.g. my_file_name -> My File Name</returns>
     public static string FileNamePrettier(string filename)
     {
         var textInfo = CultureInfo.InvariantCulture.TextInfo;
@@ -29,7 +29,7 @@ public static class StringTransformer
     /// Returns a human-readable representation of a keyboard shortcut.
     /// </summary>
     /// <param name="keys">The keyboard shortcut.</param>
-    /// <returns></returns>
+    /// <returns>A human-readable representation of a keyboard shortcut.</returns>
     public static string KeyBindString(List<Keys> keys)
     {
         var keyBindString = "";

@@ -65,7 +65,7 @@ public class Body(
     /// A helper method to convert an instance of a body to a BodyData object for serialization.
     /// </summary>
     /// <param name="simulationMediator">A reference to the SimulationMediator.</param>
-    /// <returns></returns>
+    /// <returns>A BodyData object that is used to serialize the save-persistent data of a 2DGS Body.</returns>
     public BodyData ConvertToBodyData(SimulationMediator simulationMediator)
     {
         return new BodyData
@@ -83,7 +83,7 @@ public class Body(
     /// Returns the bounding box of the body (useful for handling selection and collision).
     /// </summary>
     /// <param name="marginOfError">A user defined margin of error, used to ensure collision bounds aren't too generous.</param>
-    /// <returns></returns>
+    /// <returns>A RectangleF object used to represent a body's bounding box.</returns>
     private RectangleF GetBoundingBox(float marginOfError = 1.0f)
     {
         var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;

@@ -16,7 +16,7 @@ public static class FindWidget
     /// </summary>
     /// <param name="parent">The root widget, typically from an Ui class.</param>
     /// <param name="widgetId">The ID used to search for the widget.</param>
-    /// <returns></returns>
+    /// <returns>The Widget with the specified ID or null if a widget with the requested ID does not exist.</returns>
     public static Widget GetWidgetById(Widget parent, string widgetId)
     {
         if (parent.Id == widgetId)

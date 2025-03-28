@@ -327,7 +327,7 @@ public static class TestRunner
     /// </summary>
     /// <param name="instanceData">The instantiated SimulationSaveData object.</param>
     /// <param name="saveData">The data as read directly from the save file.</param>
-    /// <returns></returns>
+    /// <returns>A Boolean value based on if the instance data and save data are identical.</returns>
     private static bool CompareSaveData(SimulationSaveData instanceData, SimulationSaveData saveData)
     {
         var bodies = instanceData.Bodies.Count == saveData.Bodies.Count;

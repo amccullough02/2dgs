@@ -49,7 +49,7 @@ public class BodyData
     /// Converts a hexadecimal color string to an XNA RGB Color object.
     /// </summary>
     /// <param name="hex">The hexadecimal representation of the body's color.</param>
-    /// <returns></returns>
+    /// <returns>An XNA RGB Color object.</returns>
     private static Color ParseHexColor(string hex)
     {
         var r = Convert.ToInt32(hex.Substring(1, 2), 16);
