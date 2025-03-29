@@ -402,7 +402,7 @@ public class Body(
             return new Vector2(vector.X * cos - vector.Y * sin, vector.X * sin + vector.Y * cos);
         }
         
-        var bodyCenter = new Vector2(_position.X - _diameter / 2f, _position.Y - _diameter / 2f);
+        var bodyCenter = new Vector2(_position.X, _position.Y);
         
         var arrowStemLength = (Math.Abs(length) + _diameter / 2f);
         var arrowStem = new Rectangle((int)bodyCenter.X, (int)bodyCenter.Y, width, (int)arrowStemLength);
@@ -455,16 +455,16 @@ public class Body(
     {
         if (!Selected || !simulationMediator.EditMode) return;
         
-        var displayRadius = _diameter * textureManager.BodyTexture.Width / 2;
-        var selectorOffset = displayRadius / 5;
+        var bodyRadius = _diameter / 2;
+        var selectorOffset = bodyRadius / 5;
         const int miniMumOffset = 8;
             
         if (selectorOffset < miniMumOffset) selectorOffset = miniMumOffset;
             
-        var radius = displayRadius + selectorOffset;
+        var selectorRadius = bodyRadius + selectorOffset;
             
         shapeBatch.Begin();
-        shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 2f);
+        shapeBatch.DrawCircle(_position, selectorRadius, Color.Transparent, Color.White, 2f);
         shapeBatch.End();
     }
 
@@ -488,7 +488,7 @@ public class Body(
                 _color * glowOpacity,
                 0f,
                 new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-                new Vector2(_diameter * glowSize, _diameter * glowSize),
+                new Vector2(BodyScaleFactor() * glowSize, BodyScaleFactor() * glowSize),
                 SpriteEffects.None,
                 0f);
         }
