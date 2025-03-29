@@ -111,7 +111,7 @@ public static class EditModePanel
             simulationMediator.SelectedBodyData.Velocity.Y.ToString(CultureInfo.CurrentCulture);
         ((TextBox)dialog.FindChildById("bodyMassTextbox")).Text =
             simulationMediator.SelectedBodyData.Mass.ToString(CultureInfo.CurrentCulture);
-        ((TextBox)dialog.FindChildById("bodyDisplaySizeTextbox")).Text =
-            simulationMediator.SelectedBodyData.DisplaySize.ToString(CultureInfo.CurrentCulture);
+        ((TextBox)dialog.FindChildById("bodyDiameterTextbox")).Text =
+            simulationMediator.SelectedBodyData.Diameter.ToString(CultureInfo.CurrentCulture);
     }
 }

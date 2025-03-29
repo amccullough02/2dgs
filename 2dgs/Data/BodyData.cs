@@ -26,9 +26,9 @@ public class BodyData
     /// </summary>
     public float Mass { get; set; }
     /// <summary>
-    /// The body's display size.
+    /// The body's diameter.
     /// </summary>
-    public float DisplaySize { get; set; }
+    public int Diameter { get; set; }
     /// <summary>
     /// The body's color.
     /// </summary>

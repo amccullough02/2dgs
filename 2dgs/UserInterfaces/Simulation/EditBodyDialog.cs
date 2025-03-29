@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
@@ -72,14 +73,14 @@ public static class EditBodyDialog
         Grid.SetRow(bodyMassTextbox, 5);
         bodyMassTextbox.Id = "bodyMassTextbox";
 
-        var bodyDisplaySizeLabel = UiComponents.MediumLabel("Display Size: ");
-        grid.Widgets.Add(bodyDisplaySizeLabel);
-        Grid.SetRow(bodyDisplaySizeLabel, 6);
-        var bodyDisplaySizeTextbox = UiComponents.TextBox("0.05");
-        grid.Widgets.Add(bodyDisplaySizeTextbox);
-        Grid.SetColumn(bodyDisplaySizeTextbox, 1);
-        Grid.SetRow(bodyDisplaySizeTextbox, 6);
-        bodyDisplaySizeTextbox.Id = "bodyDisplaySizeTextbox";
+        var bodyDiameterLabel = UiComponents.MediumLabel("Diameter: ");
+        grid.Widgets.Add(bodyDiameterLabel);
+        Grid.SetRow(bodyDiameterLabel, 6);
+        var bodyDiameterTextbox = UiComponents.TextBox("0.05");
+        grid.Widgets.Add(bodyDiameterTextbox);
+        Grid.SetColumn(bodyDiameterTextbox, 1);
+        Grid.SetRow(bodyDiameterTextbox, 6);
+        bodyDiameterTextbox.Id = "bodyDiameterTextbox";
 
         var editBodyDialog = UiComponents.StyledDialog("Edit Body");
         editBodyDialog.Content = grid;
@@ -128,9 +129,9 @@ public static class EditBodyDialog
                 errors.Add("Body mass must be a floating point number.");
             }
     
-            if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
+            if (!float.TryParse(bodyDiameterTextbox.Text, out _))
             {
-                errors.Add("Body display size must be a floating point number.");
+                errors.Add("Body diameter must be an integer.");
             }
 
             if (errors.Count != 0)
@@ -152,7 +153,7 @@ public static class EditBodyDialog
             simulationMediator.EditBodyData.Position = new Vector2 { X = float.Parse(bodyPosXTextbox.Text), Y = float.Parse(bodyPosYTextbox.Text) };
             simulationMediator.EditBodyData.Velocity = new Vector2 { X = float.Parse(bodyVelXTextbox.Text), Y = float.Parse(bodyVelYTextbox.Text) };
             simulationMediator.EditBodyData.Mass = float.Parse(bodyMassTextbox.Text);
-            simulationMediator.EditBodyData.DisplaySize = float.Parse(bodyDisplaySizeTextbox.Text);
+            simulationMediator.EditBodyData.Diameter = Convert.ToInt32(bodyDiameterTextbox.Text);
             simulationMediator.EditSelectedBody = true;
             
             editBodyDialog.Close();
