@@ -13,7 +13,7 @@
         "Y": 0.0044254144
       },
       "Mass": 1E+09,
-      "DisplaySize": 0.2,
+      "Diameter": 200,
       "Color": "#FFCC01"
     },
     {
@@ -27,7 +27,7 @@
         "Y": 0.57491386
       },
       "Mass": 1000000.0,
-      "DisplaySize": 0.05,
+      "Diameter": 50,
       "Color": "#2A81FA"
     }
   ],

@@ -23,7 +23,7 @@ namespace _2dgs;
 /// <param name="position">The position of the body.</param>
 /// <param name="velocity">The velocity of the body.</param>
 /// <param name="mass">The mass of the body.</param>
-/// <param name="displaySize">The size of the body as displayed on-screen.</param>
+/// <param name="diameter">The diameter of the body as displayed on the screen (measured in pixels).</param>
 /// <param name="color">The color of the body.</param>
 /// <param name="textureManager">An instance of the TextureManager, used to obtain a Body texture.</param>
 public class Body(
@@ -31,14 +31,14 @@ public class Body(
     Vector2 position,
     Vector2 velocity,
     float mass,
-    float displaySize,
+    int diameter,
     Color color,
     TextureManager textureManager)
 {
     public bool Selected;
     public bool Destroyed;
     private string _name = name;
-    private float _displaySize = displaySize;
+    private int _diameter = diameter;
     private float _mass = mass;
     private Color _color = color;
     private readonly List<Vector2> _orbitTrail = [];
@@ -51,7 +51,7 @@ public class Body(
     private const int OrbitCalculations = 1000;
     private const int MaximumTrailLength = 2000;
     private const int FontSize = 24;
-
+    
     /// <summary>
     /// Offsets the position of bodies such that they appear in the relative center of the screen.
     /// </summary>
@@ -74,9 +74,19 @@ public class Body(
             Position = _position - simulationMediator.ScreenDimensions / 2,
             Velocity = _velocity,
             Mass = _mass,
-            DisplaySize = _displaySize,
+            Diameter = _diameter,
             Color = _color,
         };
+    }
+
+    /// <summary>
+    /// Used to obtain the 'scale factor' of the body which is used for rendering the body sprite.
+    /// </summary>
+    /// <returns>A floating point value that represents the relative scale factor between the intended diameter of the body and the default size of the body sprite
+    /// (1,000 pixels).</returns>
+    private float BodyScaleFactor()
+    {
+        return (float)_diameter / textureManager.BodyTexture.Width;
     }
 
     /// <summary>
@@ -86,14 +96,12 @@ public class Body(
     /// <returns>A RectangleF object used to represent a body's bounding box.</returns>
     private RectangleF GetBoundingBox(float marginOfError = 1.0f)
     {
-        var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
-
         return new RectangleF
         {
-            X = _position.X - trueDisplaySize * marginOfError / 2,
-            Y = _position.Y - trueDisplaySize * marginOfError / 2,
-            Width = trueDisplaySize * marginOfError,
-            Height = trueDisplaySize * marginOfError,
+            X = _position.X - _diameter * marginOfError / 2,
+            Y = _position.Y - _diameter * marginOfError / 2,
+            Width = _diameter * marginOfError,
+            Height = _diameter * marginOfError,
         };
     }
 
@@ -104,15 +112,15 @@ public class Body(
     /// <param name="position">The new position of the body.</param>
     /// <param name="velocity">The new velocity of the body.</param>
     /// <param name="mass">The new mass of the body.</param>
-    /// <param name="displaySize">The new display size of the body.</param>
+    /// <param name="diameter">The new diameter of the body.</param>
     /// <param name="bodies">A reference to the bodies data structure, used for updating the projected orbits of bodies post-edit.</param>
-    public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize, List<Body> bodies)
+    public void Edit(string name, Vector2 position, Vector2 velocity, float mass, int diameter, List<Body> bodies)
     {
         _name = name;
         _position = position;
         _velocity = velocity;
         _mass = mass;
-        _displaySize = displaySize;
+        _diameter = diameter;
         
         CalculateFutureOrbits(bodies);
         PruneOrbits();
@@ -180,13 +188,13 @@ public class Body(
         if (thisBody._mass >= otherBody._mass)
         {
             thisBody._mass += otherBody._mass;
-            thisBody._displaySize += otherBody._displaySize / 10.0f;
+            thisBody._diameter += otherBody._diameter / 10;
             otherBody.Destroyed = true;
         }
         else
         {
             otherBody._mass += thisBody._mass;
-            otherBody._displaySize += thisBody._displaySize / 10.0f;
+            otherBody._diameter += thisBody._diameter / 10;
             thisBody.Destroyed = true;
         }
     }
@@ -394,10 +402,9 @@ public class Body(
             return new Vector2(vector.X * cos - vector.Y * sin, vector.X * sin + vector.Y * cos);
         }
         
-        var trueDisplaySize = _displaySize * textureManager.BodyTexture.Width;
-        var bodyCenter = new Vector2(_position.X - _displaySize / 2, _position.Y - _displaySize / 2);
+        var bodyCenter = new Vector2(_position.X, _position.Y);
         
-        var arrowStemLength = (Math.Abs(length) + trueDisplaySize / 2);
+        var arrowStemLength = (Math.Abs(length) + _diameter / 2f);
         var arrowStem = new Rectangle((int)bodyCenter.X, (int)bodyCenter.Y, width, (int)arrowStemLength);
         var arrowStemRotation = rotation;
         
@@ -448,16 +455,16 @@ public class Body(
     {
         if (!Selected || !simulationMediator.EditMode) return;
         
-        var displayRadius = _displaySize * textureManager.BodyTexture.Width / 2;
-        var selectorOffset = displayRadius / 5;
-        const float miniMumOffset = 8.0f;
+        var bodyRadius = _diameter / 2;
+        var selectorOffset = bodyRadius / 5;
+        const int miniMumOffset = 8;
             
         if (selectorOffset < miniMumOffset) selectorOffset = miniMumOffset;
             
-        var radius = displayRadius + selectorOffset;
+        var selectorRadius = bodyRadius + selectorOffset;
             
         shapeBatch.Begin();
-        shapeBatch.DrawCircle(_position, radius, Color.Transparent, Color.White, 2f);
+        shapeBatch.DrawCircle(_position, selectorRadius, Color.Transparent, Color.White, 2f);
         shapeBatch.End();
     }
 
@@ -481,7 +488,7 @@ public class Body(
                 _color * glowOpacity,
                 0f,
                 new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-                new Vector2(_displaySize * glowSize, _displaySize * glowSize),
+                new Vector2(BodyScaleFactor() * glowSize, BodyScaleFactor() * glowSize),
                 SpriteEffects.None,
                 0f);
         }
@@ -506,7 +513,7 @@ public class Body(
             _color,
             0f,
             new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-            new Vector2(_displaySize, _displaySize),
+            new Vector2(BodyScaleFactor(), BodyScaleFactor()),
             SpriteEffects.None,
             0f);
     }
@@ -530,7 +537,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2((_displaySize * 600) + padding, -textSize.Y / 2),
+                        new Vector2((_diameter / 2f) + padding, -textSize.Y / 2),
                         _color);
                 break;
             case Position.Left:
@@ -538,7 +545,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2((-_displaySize * 600) - padding - textSize.X, -textSize.Y / 2),
+                        new Vector2((-_diameter / 2f) - padding - textSize.X, -textSize.Y / 2),
                         _color);
                 break;
             case Position.Bottom:
@@ -546,7 +553,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2(-textSize.X / 2, (_displaySize * 600) + padding),
+                        new Vector2(-textSize.X / 2, (_diameter / 2f) + padding),
                         _color);
                 break;
             case Position.Top:
@@ -554,7 +561,7 @@ public class Body(
                     .DrawText(spriteBatch,
                         _name,
                         _position +
-                        new Vector2(-textSize.X / 2, -(_displaySize * 600) - padding - textSize.Y),
+                        new Vector2(-textSize.X / 2, -(_diameter / 2f) - padding - textSize.Y),
                         _color);
                 break;
         }

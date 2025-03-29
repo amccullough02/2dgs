@@ -132,7 +132,7 @@ public class SimulationScene : Scene
                 bodyData.Position,
                 bodyData.Velocity,
                 bodyData.Mass,
-                bodyData.DisplaySize,
+                bodyData.Diameter,
                 bodyData.Color,
                 _textureManager));
         }
@@ -220,7 +220,7 @@ public class SimulationScene : Scene
             _ghostBody.Position, 
             _simulationMediator.CreateBodyData.Velocity, 
             _simulationMediator.CreateBodyData.Mass, 
-            _simulationMediator.CreateBodyData.DisplaySize,
+            _simulationMediator.CreateBodyData.Diameter,
             Color.White,
             _textureManager);
                 
@@ -241,7 +241,7 @@ public class SimulationScene : Scene
                     _simulationMediator.EditBodyData.Position + _simulationMediator.ScreenDimensions / 2,
                     _simulationMediator.EditBodyData.Velocity,
                     _simulationMediator.EditBodyData.Mass,
-                    _simulationMediator.EditBodyData.DisplaySize,
+                    _simulationMediator.EditBodyData.Diameter,
                     _bodies);
             TestRunner.AssertBodyEdited(_bodies, SelectedBody());
         }

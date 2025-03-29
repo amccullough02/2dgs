@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Myra.Graphics2D.UI;
 
@@ -45,18 +46,18 @@ public static class CreateBodyDialog
         var bodyMassLabel = UiComponents.MediumLabel("Mass: ");
         grid.Widgets.Add(bodyMassLabel);
         Grid.SetRow(bodyMassLabel, 3);
-        var bodyMassTextbox = UiComponents.HintTextBox("e.g. 1e6, 1000000");
+        var bodyMassTextbox = UiComponents.HintTextBox("e.g. 1e4, 10000");
         grid.Widgets.Add(bodyMassTextbox);
         Grid.SetColumn(bodyMassTextbox, 1);
         Grid.SetRow(bodyMassTextbox, 3);
     
-        var bodyDisplaySizeLabel = UiComponents.MediumLabel("Display Size: ");
-        grid.Widgets.Add(bodyDisplaySizeLabel);
-        Grid.SetRow(bodyDisplaySizeLabel, 4);
-        var bodyDisplaySizeTextbox = UiComponents.HintTextBox("e.g. 0.02, 0.08");
-        grid.Widgets.Add(bodyDisplaySizeTextbox);
-        Grid.SetColumn(bodyDisplaySizeTextbox, 1);
-        Grid.SetRow(bodyDisplaySizeTextbox, 4);
+        var bodyDiameterLabel = UiComponents.MediumLabel("Diameter: ");
+        grid.Widgets.Add(bodyDiameterLabel);
+        Grid.SetRow(bodyDiameterLabel, 4);
+        var bodyDiameterTextbox = UiComponents.HintTextBox("e.g. 20, 100");
+        grid.Widgets.Add(bodyDiameterTextbox);
+        Grid.SetColumn(bodyDiameterTextbox, 1);
+        Grid.SetRow(bodyDiameterTextbox, 4);
         
         var createBodyDialog = UiComponents.StyledDialog("Create New Body");
         createBodyDialog.Content = grid;
@@ -95,9 +96,9 @@ public static class CreateBodyDialog
                 errors.Add("Body mass must be a floating point number.");
             }
     
-            if (!float.TryParse(bodyDisplaySizeTextbox.Text, out _))
+            if (!int.TryParse(bodyDiameterTextbox.Text, out _))
             {
-                errors.Add("Body display size must be a floating point number.");
+                errors.Add("Body diameter must be an integer.");
             }
 
             if (errors.Count != 0)
@@ -118,7 +119,7 @@ public static class CreateBodyDialog
             simulationMediator.CreateBodyData.Name = bodyNameTextbox.Text;
             simulationMediator.CreateBodyData.Velocity = new Vector2 { X = float.Parse(bodyVelXTextbox.Text), Y = float.Parse(bodyVelYTextbox.Text) };
             simulationMediator.CreateBodyData.Mass = float.Parse(bodyMassTextbox.Text);
-            simulationMediator.CreateBodyData.DisplaySize = float.Parse(bodyDisplaySizeTextbox.Text);
+            simulationMediator.CreateBodyData.Diameter = Convert.ToInt32(bodyDiameterTextbox.Text);
             simulationMediator.ToggleBodyGhost = true;
             
             createBodyDialog.Close();

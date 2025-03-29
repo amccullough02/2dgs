@@ -10,7 +10,7 @@
       "Position": { "X": 436.5, "Y": -109.39 },
       "Velocity": { "X": 0.466203685, "Y": 0.43236573 },
       "Mass": 60000000.0,
-      "DisplaySize": 0.025,
+      "Diameter": 25,
       "Color": "#ff6666"
     },
     {
@@ -18,7 +18,7 @@
       "Position": { "X": -436.5, "Y": 109.39 },
       "Velocity": { "X": 0.466203685, "Y": 0.43236573 },
       "Mass": 60000000.0,
-      "DisplaySize": 0.025,
+      "Diameter": 25,
       "Color": "#66ff66"
     },
     {
@@ -26,7 +26,7 @@
       "Position": { "X": 0, "Y": 0 },
       "Velocity": { "X": -0.93240737, "Y": -0.86473146 },
       "Mass": 60000000.0,
-      "DisplaySize": 0.025,
+      "Diameter": 25,
       "Color": "#6666ff"
     }
   ],
