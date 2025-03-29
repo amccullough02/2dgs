@@ -16,7 +16,7 @@ public class GhostBody
     /// <summary>
     /// The display size of the ghost body.
     /// </summary>
-    private float DisplaySize { get; set; } = 0.1f;
+    private int Diameter { get; set; } = 10;
 
     /// <summary>
     /// The update method for the GhostBody, the position will update with the position of the mouse cursor.
@@ -29,7 +29,7 @@ public class GhostBody
 
         if (simulationMediator.ToggleBodyGhost)
         {
-            DisplaySize = simulationMediator.CreateBodyData.Diameter;
+            Diameter = simulationMediator.CreateBodyData.Diameter;
         }
     }
 
@@ -41,7 +41,13 @@ public class GhostBody
     /// <param name="simulationMediator">A reference to the SimulationMediator class.</param>
     public void Draw(SpriteBatch spriteBatch, TextureManager textureManager, SimulationMediator simulationMediator)
     {
+        float BodyScaleFactor()
+        {
+            return (float)Diameter / textureManager.BodyTexture.Width;
+        }
+        
         if (!simulationMediator.ToggleBodyGhost) return;
+        
         if (simulationMediator.ToggleGlow)
         {
             for (var i = 0; i < 100; i++)
@@ -55,7 +61,7 @@ public class GhostBody
                     Color.White * glowOpacity,
                     0f,
                     new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-                    new Vector2(DisplaySize * glowRadius, DisplaySize * glowRadius),
+                    new Vector2(BodyScaleFactor() * glowRadius, BodyScaleFactor() * glowRadius),
                     SpriteEffects.None,
                     0f);
             } 
@@ -67,7 +73,7 @@ public class GhostBody
             Color.White * 0.5f,
             0f,
             new Vector2(textureManager.BodyTexture.Width / 2.0f, textureManager.BodyTexture.Height / 2.0f),
-            new Vector2(DisplaySize, DisplaySize),
+            new Vector2(BodyScaleFactor(), BodyScaleFactor()),
             SpriteEffects.None,
             0f);
     }
