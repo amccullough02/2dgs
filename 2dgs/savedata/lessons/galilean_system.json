@@ -98,7 +98,7 @@
       "RestrictWidgets":["edit_mode", "create_body"]
     },
     {
-      "Text": "Click on 'Create Body' and enter the following values.\n\nName: Rogue Moon\nVelocity X: 0\nVelocity Y: -2\nMass: 1e7\nDisplay Size: 0.02\n\nThen place the body somewhere between Ganymede and Callisto!",
+      "Text": "Click on 'Create Body' and enter the following values.\n\nName: Rogue Moon\nVelocity X: 0\nVelocity Y: -2\nMass: 1e7\nDiameter: 20\n\nThen place the body somewhere between Ganymede and Callisto!",
       "HighlightWidget": "",
       "RestrictWidgets": ["edit_mode"]
     },

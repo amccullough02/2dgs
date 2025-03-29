@@ -56,7 +56,7 @@
       "RestrictWidgets": ["edit_mode"]
     },
     {
-      "Text": "Mass: 25\nDisplay Size: 0.005\n\nThe rest of the values are up to you, just bear in mind that negative velocities will head 'away' from the top left corner of the screen. ",
+      "Text": "Mass: 25\nDiameter: 5\n\nThe rest of the values are up to you, just bear in mind that negative velocities will head 'away' from the top left corner of the screen. ",
       "HighlightWidget": "",
       "RestrictWidgets": ["edit_mode"]
     },

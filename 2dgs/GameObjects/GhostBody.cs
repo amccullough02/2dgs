@@ -14,7 +14,7 @@ public class GhostBody
     /// </summary>
     public Vector2 Position { get; set; } = Vector2.Zero;
     /// <summary>
-    /// The display size of the ghost body.
+    /// The diameter of the ghost body.
     /// </summary>
     private int Diameter { get; set; } = 10;
 
