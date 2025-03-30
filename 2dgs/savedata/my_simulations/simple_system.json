@@ -1,16 +1,20 @@
 {
   "Title": "default",
+  "Description": "A user generated simulation.",
+  "ThumbnailPath": "../../../savedata/thumbnails/default.png",
   "IsLesson": false,
+  "DefaultTimestep": 50,
+  "VectorMultiplier": 15,
   "Bodies": [
     {
       "Name": "Sol",
       "Position": {
-        "X": 18.30304,
-        "Y": -13.548584
+        "X": 17.866577,
+        "Y": -13.245422
       },
       "Velocity": {
-        "X": -0.004934885,
-        "Y": 0.0044254144
+        "X": -0.0007843366,
+        "Y": 0.001255923
       },
       "Mass": 1E+09,
       "Diameter": 200,
@@ -19,12 +23,12 @@
     {
       "Name": "Terra",
       "Position": {
-        "X": 71.28357,
-        "Y": -368.73395
+        "X": 507.27844,
+        "Y": 46.795044
       },
       "Velocity": {
-        "X": 4.9349155,
-        "Y": 0.57491386
+        "X": 0.7843832,
+        "Y": 3.7443805
       },
       "Mass": 1000000.0,
       "Diameter": 50,

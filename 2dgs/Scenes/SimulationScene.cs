@@ -97,6 +97,7 @@ public class SimulationScene : Scene
         {
             FilePath = filePath,
             TimeStep = _simulationSaveData.DefaultTimestep,
+            VectorMultiplier = _simulationSaveData.VectorMultiplier,
             Lesson = _simulationSaveData.IsLesson,
             SimulationTitle = _simulationSaveData.Title,
             ScreenDimensions = new Vector2(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height),
@@ -178,6 +179,7 @@ public class SimulationScene : Scene
             Description = _simulationSaveData.Description,
             ThumbnailPath = _simulationSaveData.ThumbnailPath,
             DefaultTimestep = _simulationSaveData.DefaultTimestep,
+            VectorMultiplier = _simulationSaveData.VectorMultiplier,
             IsLesson = _simulationSaveData.IsLesson,
             LessonPages = _simulationSaveData.LessonPages
         };

@@ -4,6 +4,7 @@
   "ThumbnailPath": "../../../savedata/thumbnails/galilean_system.png",
   "IsLesson": true,
   "DefaultTimestep": 100,
+  "VectorMultiplier": 15,
   "Bodies": [
     {
       "Name": "Jupiter",

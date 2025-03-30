@@ -30,6 +30,10 @@ public class SimulationSaveData
     /// </summary>
     public int DefaultTimestep = 50;
     /// <summary>
+    /// Used to ensure the length of vector arrows isn't too small or too large given the typical motion conditions of the lesson.
+    /// </summary>
+    public int VectorMultiplier = 15;
+    /// <summary>
     /// The bodies to be simulated.
     /// </summary>
     public List<BodyData> Bodies = [];

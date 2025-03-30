@@ -4,6 +4,7 @@
   "ThumbnailPath": "../../../savedata/thumbnails/gravity_assist.png",
   "IsLesson": true,
   "DefaultTimestep": 4,
+  "VectorMultiplier": 10,
   "Bodies": [
     {
       "Name": "Venus",

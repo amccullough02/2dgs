@@ -4,6 +4,7 @@
   "ThumbnailPath": "../../../savedata/thumbnails/three_body_problem.png",
   "IsLesson": true,
   "DefaultTimestep": 200,
+  "VectorMultiplier": 75,
   "Bodies": [
     {
       "Name": "Body 1",

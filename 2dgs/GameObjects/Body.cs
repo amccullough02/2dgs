@@ -440,11 +440,11 @@ public class Body(
         DrawArrow(spriteBatch, Color.White, 100, 2, tangentVelocityAngle);
         
         var xComponentVelocityAngle = MathF.PI * 1.5f;
-        var xComponentArrowLength = _velocity.X * 15;
+        var xComponentArrowLength = _velocity.X * simulationMediator.VectorMultiplier;
         DrawArrow(spriteBatch, Color.Red, xComponentArrowLength, 2, xComponentVelocityAngle);
 
         var yComponentVelocityAngle = 0f;
-        var yComponentArrowLength = _velocity.Y * 15;
+        var yComponentArrowLength = _velocity.Y * simulationMediator.VectorMultiplier;
         DrawArrow(spriteBatch, Color.Green, yComponentArrowLength, 2, yComponentVelocityAngle);
     }
 

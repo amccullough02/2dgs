@@ -81,6 +81,10 @@ public class SimulationMediator
     /// </summary>
     public int TimeStep { get; set; } = 50;
     /// <summary>
+    /// A value used to aid in drawing vector arrows of a reasonable length per lesson.
+    /// </summary>
+    public int VectorMultiplier { get; set; } = 15;
+    /// <summary>
     /// The current length of body trails.
     /// </summary>
     public int TrailLength { get; set; } = 250;
