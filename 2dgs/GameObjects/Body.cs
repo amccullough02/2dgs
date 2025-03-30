@@ -434,6 +434,8 @@ public class Body(
     {
         if (!simulationMediator.ToggleVectors) return;
         
+        if (Math.Abs(_velocity.X) < 0.01f && Math.Abs(_velocity.Y) < 0.01f) return;
+        
         var tangentVelocityAngle = MathF.Atan2(_velocity.Y, _velocity.X) - MathF.PI / 2;
         DrawArrow(spriteBatch, Color.White, 100, 2, tangentVelocityAngle);
         
