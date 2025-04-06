@@ -1,0 +1,1097 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.Body
+  commentId: T:_2dgs.Body
+  id: Body
+  parent: _2dgs
+  children:
+  - _2dgs.Body.#ctor(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Color,_2dgs.TextureManager)
+  - _2dgs.Body.CheckIfDeselected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  - _2dgs.Body.CheckIfSelected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  - _2dgs.Body.ConvertToBodyData(_2dgs.SimulationMediator)
+  - _2dgs.Body.Destroyed
+  - _2dgs.Body.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Apos.Shapes.ShapeBatch,_2dgs.SimulationMediator)
+  - _2dgs.Body.Edit(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,System.Collections.Generic.List{_2dgs.Body})
+  - _2dgs.Body.OffsetPosition(_2dgs.SimulationMediator)
+  - _2dgs.Body.Selected
+  - _2dgs.Body.SetColor(Microsoft.Xna.Framework.Color)
+  - _2dgs.Body.Update(System.Collections.Generic.List{_2dgs.Body},System.Int32,Microsoft.Xna.Framework.GameTime)
+  langs:
+  - csharp
+  - vb
+  name: Body
+  nameWithType: Body
+  fullName: _2dgs.Body
+  type: Class
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Body
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 25
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A class used to represent bodies in the 2DGS application.
+  example: []
+  syntax:
+    content: public class Body
+    content.vb: Public Class Body
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: _2dgs.Body.#ctor(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Color,_2dgs.TextureManager)
+  commentId: M:_2dgs.Body.#ctor(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Color,_2dgs.TextureManager)
+  id: '#ctor(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Color,_2dgs.TextureManager)'
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: Body(string, Vector2, Vector2, float, float, Color, TextureManager)
+  nameWithType: Body.Body(string, Vector2, Vector2, float, float, Color, TextureManager)
+  fullName: _2dgs.Body.Body(string, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, float, float, Microsoft.Xna.Framework.Color, _2dgs.TextureManager)
+  type: Constructor
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: .ctor
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 25
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A class used to represent bodies in the 2DGS application.
+  example: []
+  syntax:
+    content: public Body(string name, Vector2 position, Vector2 velocity, float mass, float displaySize, Color color, TextureManager textureManager)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name displayed next to the body.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The position of the body.
+    - id: velocity
+      type: Microsoft.Xna.Framework.Vector2
+      description: The velocity of the body.
+    - id: mass
+      type: System.Single
+      description: The mass of the body.
+    - id: displaySize
+      type: System.Single
+      description: The size of the body as displayed on-screen.
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The color of the body.
+    - id: textureManager
+      type: _2dgs.TextureManager
+      description: An instance of the TextureManager, used to obtain a Body texture.
+    content.vb: Public Sub New(name As String, position As Vector2, velocity As Vector2, mass As Single, displaySize As Single, color As Color, textureManager As TextureManager)
+  overload: _2dgs.Body.#ctor*
+  nameWithType.vb: Body.New(String, Vector2, Vector2, Single, Single, Color, TextureManager)
+  fullName.vb: _2dgs.Body.New(String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Single, Single, Microsoft.Xna.Framework.Color, _2dgs.TextureManager)
+  name.vb: New(String, Vector2, Vector2, Single, Single, Color, TextureManager)
+- uid: _2dgs.Body.Selected
+  commentId: F:_2dgs.Body.Selected
+  id: Selected
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: Selected
+  nameWithType: Body.Selected
+  fullName: _2dgs.Body.Selected
+  type: Field
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Selected
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 34
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  syntax:
+    content: public bool Selected
+    return:
+      type: System.Boolean
+    content.vb: Public Selected As Boolean
+- uid: _2dgs.Body.Destroyed
+  commentId: F:_2dgs.Body.Destroyed
+  id: Destroyed
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: Destroyed
+  nameWithType: Body.Destroyed
+  fullName: _2dgs.Body.Destroyed
+  type: Field
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Destroyed
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 35
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  syntax:
+    content: public bool Destroyed
+    return:
+      type: System.Boolean
+    content.vb: Public Destroyed As Boolean
+- uid: _2dgs.Body.OffsetPosition(_2dgs.SimulationMediator)
+  commentId: M:_2dgs.Body.OffsetPosition(_2dgs.SimulationMediator)
+  id: OffsetPosition(_2dgs.SimulationMediator)
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: OffsetPosition(SimulationMediator)
+  nameWithType: Body.OffsetPosition(SimulationMediator)
+  fullName: _2dgs.Body.OffsetPosition(_2dgs.SimulationMediator)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: OffsetPosition
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 55
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Offsets the position of bodies such that they appear in the relative center of the screen.
+  example: []
+  syntax:
+    content: public void OffsetPosition(SimulationMediator simulationMediator)
+    parameters:
+    - id: simulationMediator
+      type: _2dgs.SimulationMediator
+      description: A reference to the SimulationMediator.
+    content.vb: Public Sub OffsetPosition(simulationMediator As SimulationMediator)
+  overload: _2dgs.Body.OffsetPosition*
+- uid: _2dgs.Body.ConvertToBodyData(_2dgs.SimulationMediator)
+  commentId: M:_2dgs.Body.ConvertToBodyData(_2dgs.SimulationMediator)
+  id: ConvertToBodyData(_2dgs.SimulationMediator)
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: ConvertToBodyData(SimulationMediator)
+  nameWithType: Body.ConvertToBodyData(SimulationMediator)
+  fullName: _2dgs.Body.ConvertToBodyData(_2dgs.SimulationMediator)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ConvertToBodyData
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 65
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A helper method to convert an instance of a body to a BodyData object for serialization.
+  example: []
+  syntax:
+    content: public BodyData ConvertToBodyData(SimulationMediator simulationMediator)
+    parameters:
+    - id: simulationMediator
+      type: _2dgs.SimulationMediator
+      description: A reference to the SimulationMediator.
+    return:
+      type: _2dgs.BodyData
+      description: ''
+    content.vb: Public Function ConvertToBodyData(simulationMediator As SimulationMediator) As BodyData
+  overload: _2dgs.Body.ConvertToBodyData*
+- uid: _2dgs.Body.Edit(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,System.Collections.Generic.List{_2dgs.Body})
+  commentId: M:_2dgs.Body.Edit(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,System.Collections.Generic.List{_2dgs.Body})
+  id: Edit(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,System.Collections.Generic.List{_2dgs.Body})
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: Edit(string, Vector2, Vector2, float, float, List<Body>)
+  nameWithType: Body.Edit(string, Vector2, Vector2, float, float, List<Body>)
+  fullName: _2dgs.Body.Edit(string, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, float, float, System.Collections.Generic.List<_2dgs.Body>)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Edit
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 105
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method used when editing a body instance.
+  example: []
+  syntax:
+    content: public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize, List<Body> bodies)
+    parameters:
+    - id: name
+      type: System.String
+      description: The new name of the body.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The new position of the body.
+    - id: velocity
+      type: Microsoft.Xna.Framework.Vector2
+      description: The new velocity of the body.
+    - id: mass
+      type: System.Single
+      description: The new mass of the body.
+    - id: displaySize
+      type: System.Single
+      description: The new display size of the body.
+    - id: bodies
+      type: System.Collections.Generic.List{_2dgs.Body}
+      description: A reference to the bodies data structure, used for updating the projected orbits of bodies post-edit.
+    content.vb: Public Sub Edit(name As String, position As Vector2, velocity As Vector2, mass As Single, displaySize As Single, bodies As List(Of Body))
+  overload: _2dgs.Body.Edit*
+  nameWithType.vb: Body.Edit(String, Vector2, Vector2, Single, Single, List(Of Body))
+  fullName.vb: _2dgs.Body.Edit(String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Single, Single, System.Collections.Generic.List(Of _2dgs.Body))
+  name.vb: Edit(String, Vector2, Vector2, Single, Single, List(Of Body))
+- uid: _2dgs.Body.SetColor(Microsoft.Xna.Framework.Color)
+  commentId: M:_2dgs.Body.SetColor(Microsoft.Xna.Framework.Color)
+  id: SetColor(Microsoft.Xna.Framework.Color)
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: SetColor(Color)
+  nameWithType: Body.SetColor(Color)
+  fullName: _2dgs.Body.SetColor(Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: SetColor
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 121
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method used to update a body's color.
+  example: []
+  syntax:
+    content: public void SetColor(Color color)
+    parameters:
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The new color of the body.
+    content.vb: Public Sub SetColor(color As Color)
+  overload: _2dgs.Body.SetColor*
+- uid: _2dgs.Body.CheckIfSelected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  commentId: M:_2dgs.Body.CheckIfSelected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  id: CheckIfSelected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: CheckIfSelected(Point, MouseState)
+  nameWithType: Body.CheckIfSelected(Point, MouseState)
+  fullName: _2dgs.Body.CheckIfSelected(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Input.MouseState)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: CheckIfSelected
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 131
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method used to check if a body is selected (the mouse is within the bounds of the body).
+  example: []
+  syntax:
+    content: public void CheckIfSelected(Point mousePosition, MouseState mouseState)
+    parameters:
+    - id: mousePosition
+      type: Microsoft.Xna.Framework.Point
+      description: The current position of the mouse.
+    - id: mouseState
+      type: Microsoft.Xna.Framework.Input.MouseState
+      description: The state of the mouse (which buttons are being clicked).
+    content.vb: Public Sub CheckIfSelected(mousePosition As Point, mouseState As MouseState)
+  overload: _2dgs.Body.CheckIfSelected*
+- uid: _2dgs.Body.CheckIfDeselected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  commentId: M:_2dgs.Body.CheckIfDeselected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  id: CheckIfDeselected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: CheckIfDeselected(Point, MouseState)
+  nameWithType: Body.CheckIfDeselected(Point, MouseState)
+  fullName: _2dgs.Body.CheckIfDeselected(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Input.MouseState)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: CheckIfDeselected
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 142
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method used to check if a body is de-selected (the mouse is within the bounds of the body).
+  example: []
+  syntax:
+    content: public void CheckIfDeselected(Point mousePosition, MouseState mouseState)
+    parameters:
+    - id: mousePosition
+      type: Microsoft.Xna.Framework.Point
+      description: The current position of the mouse.
+    - id: mouseState
+      type: Microsoft.Xna.Framework.Input.MouseState
+      description: The state of the mouse (which buttons are being clicked).
+    content.vb: Public Sub CheckIfDeselected(mousePosition As Point, mouseState As MouseState)
+  overload: _2dgs.Body.CheckIfDeselected*
+- uid: _2dgs.Body.Update(System.Collections.Generic.List{_2dgs.Body},System.Int32,Microsoft.Xna.Framework.GameTime)
+  commentId: M:_2dgs.Body.Update(System.Collections.Generic.List{_2dgs.Body},System.Int32,Microsoft.Xna.Framework.GameTime)
+  id: Update(System.Collections.Generic.List{_2dgs.Body},System.Int32,Microsoft.Xna.Framework.GameTime)
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: Update(List<Body>, int, GameTime)
+  nameWithType: Body.Update(List<Body>, int, GameTime)
+  fullName: _2dgs.Body.Update(System.Collections.Generic.List<_2dgs.Body>, int, Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Update
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 299
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The update method for the Body class, called in the SimulationScene.
+  example: []
+  syntax:
+    content: public void Update(List<Body> bodies, int userTimeStep, GameTime gameTime)
+    parameters:
+    - id: bodies
+      type: System.Collections.Generic.List{_2dgs.Body}
+      description: A reference to the bodies data structure.
+    - id: userTimeStep
+      type: System.Int32
+      description: The current simulation timestep.
+    - id: gameTime
+      type: Microsoft.Xna.Framework.GameTime
+      description: A reference to the MonoGame GameTime class.
+    content.vb: Public Sub Update(bodies As List(Of Body), userTimeStep As Integer, gameTime As GameTime)
+  overload: _2dgs.Body.Update*
+  nameWithType.vb: Body.Update(List(Of Body), Integer, GameTime)
+  fullName.vb: _2dgs.Body.Update(System.Collections.Generic.List(Of _2dgs.Body), Integer, Microsoft.Xna.Framework.GameTime)
+  name.vb: Update(List(Of Body), Integer, GameTime)
+- uid: _2dgs.Body.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Apos.Shapes.ShapeBatch,_2dgs.SimulationMediator)
+  commentId: M:_2dgs.Body.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Apos.Shapes.ShapeBatch,_2dgs.SimulationMediator)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Apos.Shapes.ShapeBatch,_2dgs.SimulationMediator)
+  parent: _2dgs.Body
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, ShapeBatch, SimulationMediator)
+  nameWithType: Body.Draw(SpriteBatch, ShapeBatch, SimulationMediator)
+  fullName: _2dgs.Body.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, Apos.Shapes.ShapeBatch, _2dgs.SimulationMediator)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/GameObjects/Body.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Draw
+    path: 2dgs/GameObjects/Body.cs
+    startLine: 565
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The draw method for the Body class, called in the SimulationScene class.
+  example: []
+  syntax:
+    content: public void Draw(SpriteBatch spriteBatch, ShapeBatch shapeBatch, SimulationMediator simulationMediator)
+    parameters:
+    - id: spriteBatch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: A reference to the MonoGame SpriteBatch class.
+    - id: shapeBatch
+      type: Apos.Shapes.ShapeBatch
+      description: A reference to the Apos.Shapes ShapeBatch class.
+    - id: simulationMediator
+      type: _2dgs.SimulationMediator
+      description: A reference to the SimulationMediator class.
+    content.vb: Public Sub Draw(spriteBatch As SpriteBatch, shapeBatch As ShapeBatch, simulationMediator As SimulationMediator)
+  overload: _2dgs.Body.Draw*
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: _2dgs.Body.#ctor*
+  commentId: Overload:_2dgs.Body.#ctor
+  href: _2dgs.Body.html#_2dgs_Body__ctor_System_String_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_System_Single_System_Single_Microsoft_Xna_Framework_Color__2dgs_TextureManager_
+  name: Body
+  nameWithType: Body.Body
+  fullName: _2dgs.Body.Body
+  nameWithType.vb: Body.New
+  fullName.vb: _2dgs.Body.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: _2dgs.TextureManager
+  commentId: T:_2dgs.TextureManager
+  parent: _2dgs
+  href: _2dgs.TextureManager.html
+  name: TextureManager
+  nameWithType: TextureManager
+  fullName: _2dgs.TextureManager
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: _2dgs.Body.OffsetPosition*
+  commentId: Overload:_2dgs.Body.OffsetPosition
+  href: _2dgs.Body.html#_2dgs_Body_OffsetPosition__2dgs_SimulationMediator_
+  name: OffsetPosition
+  nameWithType: Body.OffsetPosition
+  fullName: _2dgs.Body.OffsetPosition
+- uid: _2dgs.SimulationMediator
+  commentId: T:_2dgs.SimulationMediator
+  parent: _2dgs
+  href: _2dgs.SimulationMediator.html
+  name: SimulationMediator
+  nameWithType: SimulationMediator
+  fullName: _2dgs.SimulationMediator
+- uid: _2dgs.Body.ConvertToBodyData*
+  commentId: Overload:_2dgs.Body.ConvertToBodyData
+  href: _2dgs.Body.html#_2dgs_Body_ConvertToBodyData__2dgs_SimulationMediator_
+  name: ConvertToBodyData
+  nameWithType: Body.ConvertToBodyData
+  fullName: _2dgs.Body.ConvertToBodyData
+- uid: _2dgs.BodyData
+  commentId: T:_2dgs.BodyData
+  parent: _2dgs
+  href: _2dgs.BodyData.html
+  name: BodyData
+  nameWithType: BodyData
+  fullName: _2dgs.BodyData
+- uid: _2dgs.Body.Edit*
+  commentId: Overload:_2dgs.Body.Edit
+  href: _2dgs.Body.html#_2dgs_Body_Edit_System_String_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_System_Single_System_Single_System_Collections_Generic_List__2dgs_Body__
+  name: Edit
+  nameWithType: Body.Edit
+  fullName: _2dgs.Body.Edit
+- uid: System.Collections.Generic.List{_2dgs.Body}
+  commentId: T:System.Collections.Generic.List{_2dgs.Body}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Body>
+  nameWithType: List<Body>
+  fullName: System.Collections.Generic.List<_2dgs.Body>
+  nameWithType.vb: List(Of Body)
+  fullName.vb: System.Collections.Generic.List(Of _2dgs.Body)
+  name.vb: List(Of Body)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: _2dgs.Body
+    name: Body
+    href: _2dgs.Body.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: _2dgs.Body
+    name: Body
+    href: _2dgs.Body.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: _2dgs.Body.SetColor*
+  commentId: Overload:_2dgs.Body.SetColor
+  href: _2dgs.Body.html#_2dgs_Body_SetColor_Microsoft_Xna_Framework_Color_
+  name: SetColor
+  nameWithType: Body.SetColor
+  fullName: _2dgs.Body.SetColor
+- uid: _2dgs.Body.CheckIfSelected*
+  commentId: Overload:_2dgs.Body.CheckIfSelected
+  href: _2dgs.Body.html#_2dgs_Body_CheckIfSelected_Microsoft_Xna_Framework_Point_Microsoft_Xna_Framework_Input_MouseState_
+  name: CheckIfSelected
+  nameWithType: Body.CheckIfSelected
+  fullName: _2dgs.Body.CheckIfSelected
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
+- uid: Microsoft.Xna.Framework.Input.MouseState
+  commentId: T:Microsoft.Xna.Framework.Input.MouseState
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: MouseState
+  nameWithType: MouseState
+  fullName: Microsoft.Xna.Framework.Input.MouseState
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+- uid: _2dgs.Body.CheckIfDeselected*
+  commentId: Overload:_2dgs.Body.CheckIfDeselected
+  href: _2dgs.Body.html#_2dgs_Body_CheckIfDeselected_Microsoft_Xna_Framework_Point_Microsoft_Xna_Framework_Input_MouseState_
+  name: CheckIfDeselected
+  nameWithType: Body.CheckIfDeselected
+  fullName: _2dgs.Body.CheckIfDeselected
+- uid: _2dgs.Body.Update*
+  commentId: Overload:_2dgs.Body.Update
+  href: _2dgs.Body.html#_2dgs_Body_Update_System_Collections_Generic_List__2dgs_Body__System_Int32_Microsoft_Xna_Framework_GameTime_
+  name: Update
+  nameWithType: Body.Update
+  fullName: _2dgs.Body.Update
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: _2dgs.Body.Draw*
+  commentId: Overload:_2dgs.Body.Draw
+  href: _2dgs.Body.html#_2dgs_Body_Draw_Microsoft_Xna_Framework_Graphics_SpriteBatch_Apos_Shapes_ShapeBatch__2dgs_SimulationMediator_
+  name: Draw
+  nameWithType: Body.Draw
+  fullName: _2dgs.Body.Draw
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: Apos.Shapes.ShapeBatch
+  commentId: T:Apos.Shapes.ShapeBatch
+  parent: Apos.Shapes
+  isExternal: true
+  name: ShapeBatch
+  nameWithType: ShapeBatch
+  fullName: Apos.Shapes.ShapeBatch
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: Apos.Shapes
+  commentId: N:Apos.Shapes
+  isExternal: true
+  name: Apos.Shapes
+  nameWithType: Apos.Shapes
+  fullName: Apos.Shapes
+  spec.csharp:
+  - uid: Apos
+    name: Apos
+    isExternal: true
+  - name: .
+  - uid: Apos.Shapes
+    name: Shapes
+    isExternal: true
+  spec.vb:
+  - uid: Apos
+    name: Apos
+    isExternal: true
+  - name: .
+  - uid: Apos.Shapes
+    name: Shapes
+    isExternal: true

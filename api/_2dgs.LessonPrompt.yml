@@ -1,0 +1,425 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.LessonPrompt
+  commentId: T:_2dgs.LessonPrompt
+  id: LessonPrompt
+  parent: _2dgs
+  children:
+  - _2dgs.LessonPrompt.#ctor(_2dgs.SimulationMediator,Myra.Graphics2D.UI.Button)
+  - _2dgs.LessonPrompt.Show(Myra.Graphics2D.UI.Desktop,_2dgs.SimulationMediator)
+  langs:
+  - csharp
+  - vb
+  name: LessonPrompt
+  nameWithType: LessonPrompt
+  fullName: _2dgs.LessonPrompt
+  type: Class
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/Simulation/LessonPrompt.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: LessonPrompt
+    path: 2dgs/UserInterfaces/Simulation/LessonPrompt.cs
+    startLine: 11
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A class used to represent a 2DGS 'Lesson Prompt' window, which is used to discuss various physics concepts.
+  example: []
+  syntax:
+    content: public class LessonPrompt
+    content.vb: Public Class LessonPrompt
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: _2dgs.LessonPrompt.#ctor(_2dgs.SimulationMediator,Myra.Graphics2D.UI.Button)
+  commentId: M:_2dgs.LessonPrompt.#ctor(_2dgs.SimulationMediator,Myra.Graphics2D.UI.Button)
+  id: '#ctor(_2dgs.SimulationMediator,Myra.Graphics2D.UI.Button)'
+  parent: _2dgs.LessonPrompt
+  langs:
+  - csharp
+  - vb
+  name: LessonPrompt(SimulationMediator, Button)
+  nameWithType: LessonPrompt.LessonPrompt(SimulationMediator, Button)
+  fullName: _2dgs.LessonPrompt.LessonPrompt(_2dgs.SimulationMediator, Myra.Graphics2D.UI.Button)
+  type: Constructor
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/Simulation/LessonPrompt.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: .ctor
+    path: 2dgs/UserInterfaces/Simulation/LessonPrompt.cs
+    startLine: 47
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The LessonPrompt constructor.
+  example: []
+  syntax:
+    content: public LessonPrompt(SimulationMediator simulationMediator, Button showButton)
+    parameters:
+    - id: simulationMediator
+      type: _2dgs.SimulationMediator
+      description: A reference to the SimulationMediator.
+    - id: showButton
+      type: Myra.Graphics2D.UI.Button
+      description: A reference to the button that shows the Lesson Prompt, required to disable that button if the prompt is active.
+    content.vb: Public Sub New(simulationMediator As SimulationMediator, showButton As Button)
+  overload: _2dgs.LessonPrompt.#ctor*
+  nameWithType.vb: LessonPrompt.New(SimulationMediator, Button)
+  fullName.vb: _2dgs.LessonPrompt.New(_2dgs.SimulationMediator, Myra.Graphics2D.UI.Button)
+  name.vb: New(SimulationMediator, Button)
+- uid: _2dgs.LessonPrompt.Show(Myra.Graphics2D.UI.Desktop,_2dgs.SimulationMediator)
+  commentId: M:_2dgs.LessonPrompt.Show(Myra.Graphics2D.UI.Desktop,_2dgs.SimulationMediator)
+  id: Show(Myra.Graphics2D.UI.Desktop,_2dgs.SimulationMediator)
+  parent: _2dgs.LessonPrompt
+  langs:
+  - csharp
+  - vb
+  name: Show(Desktop, SimulationMediator)
+  nameWithType: LessonPrompt.Show(Desktop, SimulationMediator)
+  fullName: _2dgs.LessonPrompt.Show(Myra.Graphics2D.UI.Desktop, _2dgs.SimulationMediator)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/Simulation/LessonPrompt.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Show
+    path: 2dgs/UserInterfaces/Simulation/LessonPrompt.cs
+    startLine: 211
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to display the lesson prompt.
+  example: []
+  syntax:
+    content: public void Show(Desktop desktop, SimulationMediator simulationMediator)
+    parameters:
+    - id: desktop
+      type: Myra.Graphics2D.UI.Desktop
+      description: A reference to the SimulationUi desktop, this is set as the value of the desktop instance within this class.
+    - id: simulationMediator
+      type: _2dgs.SimulationMediator
+      description: A reference to the SimulationMediator class.
+    content.vb: Public Sub Show(desktop As Desktop, simulationMediator As SimulationMediator)
+  overload: _2dgs.LessonPrompt.Show*
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: _2dgs.LessonPrompt.#ctor*
+  commentId: Overload:_2dgs.LessonPrompt.#ctor
+  href: _2dgs.LessonPrompt.html#_2dgs_LessonPrompt__ctor__2dgs_SimulationMediator_Myra_Graphics2D_UI_Button_
+  name: LessonPrompt
+  nameWithType: LessonPrompt.LessonPrompt
+  fullName: _2dgs.LessonPrompt.LessonPrompt
+  nameWithType.vb: LessonPrompt.New
+  fullName.vb: _2dgs.LessonPrompt.New
+  name.vb: New
+- uid: _2dgs.SimulationMediator
+  commentId: T:_2dgs.SimulationMediator
+  parent: _2dgs
+  href: _2dgs.SimulationMediator.html
+  name: SimulationMediator
+  nameWithType: SimulationMediator
+  fullName: _2dgs.SimulationMediator
+- uid: Myra.Graphics2D.UI.Button
+  commentId: T:Myra.Graphics2D.UI.Button
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: Button
+  nameWithType: Button
+  fullName: Myra.Graphics2D.UI.Button
+- uid: Myra.Graphics2D.UI
+  commentId: N:Myra.Graphics2D.UI
+  isExternal: true
+  name: Myra.Graphics2D.UI
+  nameWithType: Myra.Graphics2D.UI
+  fullName: Myra.Graphics2D.UI
+  spec.csharp:
+  - uid: Myra
+    name: Myra
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D
+    name: Graphics2D
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI
+    name: UI
+    isExternal: true
+  spec.vb:
+  - uid: Myra
+    name: Myra
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D
+    name: Graphics2D
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI
+    name: UI
+    isExternal: true
+- uid: _2dgs.LessonPrompt.Show*
+  commentId: Overload:_2dgs.LessonPrompt.Show
+  href: _2dgs.LessonPrompt.html#_2dgs_LessonPrompt_Show_Myra_Graphics2D_UI_Desktop__2dgs_SimulationMediator_
+  name: Show
+  nameWithType: LessonPrompt.Show
+  fullName: _2dgs.LessonPrompt.Show
+- uid: Myra.Graphics2D.UI.Desktop
+  commentId: T:Myra.Graphics2D.UI.Desktop
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: Desktop
+  nameWithType: Desktop
+  fullName: Myra.Graphics2D.UI.Desktop

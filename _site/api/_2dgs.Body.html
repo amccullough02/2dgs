@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Body | 2D Gravity Simulator (2DGS) </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Body | 2D Gravity Simulator (2DGS) ">
+      
+      <meta name="description" content="A class used to represent bodies in the 2DGS application.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amccullough02/2dgs/new/main/apiSpec/new?filename=_2dgs_Body.md&amp;value=---%0Auid%3A%20_2dgs.Body%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="2D Gravity Simulator (2DGS)">
+            2D Gravity Simulator (2DGS)
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="_2dgs.Body">
+
+
+
+  <h1 id="_2dgs_Body" data-uid="_2dgs.Body" class="text-break">
+Class Body  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="_2dgs.html">_2dgs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>2dgs.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A class used to represent bodies in the 2DGS application.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Body</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Body</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="_2dgs_Body__ctor_" data-uid="_2dgs.Body.#ctor*"></a>
+
+  <h3 id="_2dgs_Body__ctor_System_String_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_System_Single_System_Single_Microsoft_Xna_Framework_Color__2dgs_TextureManager_" data-uid="_2dgs.Body.#ctor(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Color,_2dgs.TextureManager)">
+  Body(string, Vector2, Vector2, float, float, Color, TextureManager)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A class used to represent bodies in the 2DGS application.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body(string name, Vector2 position, Vector2 velocity, float mass, float displaySize, Color color, TextureManager textureManager)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name displayed next to the body.</p>
+</dd>
+    <dt><code>position</code> <span class="xref">Vector2</span></dt>
+    <dd><p>The position of the body.</p>
+</dd>
+    <dt><code>velocity</code> <span class="xref">Vector2</span></dt>
+    <dd><p>The velocity of the body.</p>
+</dd>
+    <dt><code>mass</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The mass of the body.</p>
+</dd>
+    <dt><code>displaySize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The size of the body as displayed on-screen.</p>
+</dd>
+    <dt><code>color</code> <span class="xref">Color</span></dt>
+    <dd><p>The color of the body.</p>
+</dd>
+    <dt><code>textureManager</code> <a class="xref" href="_2dgs.TextureManager.html">TextureManager</a></dt>
+    <dd><p>An instance of the TextureManager, used to obtain a Body texture.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="_2dgs_Body_Destroyed" data-uid="_2dgs.Body.Destroyed">
+  Destroyed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Destroyed</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="_2dgs_Body_Selected" data-uid="_2dgs.Body.Selected">
+  Selected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Selected</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="_2dgs_Body_CheckIfDeselected_" data-uid="_2dgs.Body.CheckIfDeselected*"></a>
+
+  <h3 id="_2dgs_Body_CheckIfDeselected_Microsoft_Xna_Framework_Point_Microsoft_Xna_Framework_Input_MouseState_" data-uid="_2dgs.Body.CheckIfDeselected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)">
+  CheckIfDeselected(Point, MouseState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method used to check if a body is de-selected (the mouse is within the bounds of the body).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckIfDeselected(Point mousePosition, MouseState mouseState)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mousePosition</code> <span class="xref">Point</span></dt>
+    <dd><p>The current position of the mouse.</p>
+</dd>
+    <dt><code>mouseState</code> <span class="xref">MouseState</span></dt>
+    <dd><p>The state of the mouse (which buttons are being clicked).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_Body_CheckIfSelected_" data-uid="_2dgs.Body.CheckIfSelected*"></a>
+
+  <h3 id="_2dgs_Body_CheckIfSelected_Microsoft_Xna_Framework_Point_Microsoft_Xna_Framework_Input_MouseState_" data-uid="_2dgs.Body.CheckIfSelected(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Input.MouseState)">
+  CheckIfSelected(Point, MouseState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method used to check if a body is selected (the mouse is within the bounds of the body).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckIfSelected(Point mousePosition, MouseState mouseState)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mousePosition</code> <span class="xref">Point</span></dt>
+    <dd><p>The current position of the mouse.</p>
+</dd>
+    <dt><code>mouseState</code> <span class="xref">MouseState</span></dt>
+    <dd><p>The state of the mouse (which buttons are being clicked).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_Body_ConvertToBodyData_" data-uid="_2dgs.Body.ConvertToBodyData*"></a>
+
+  <h3 id="_2dgs_Body_ConvertToBodyData__2dgs_SimulationMediator_" data-uid="_2dgs.Body.ConvertToBodyData(_2dgs.SimulationMediator)">
+  ConvertToBodyData(SimulationMediator)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A helper method to convert an instance of a body to a BodyData object for serialization.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BodyData ConvertToBodyData(SimulationMediator simulationMediator)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>simulationMediator</code> <a class="xref" href="_2dgs.SimulationMediator.html">SimulationMediator</a></dt>
+    <dd><p>A reference to the SimulationMediator.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="_2dgs.BodyData.html">BodyData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_Body_Draw_" data-uid="_2dgs.Body.Draw*"></a>
+
+  <h3 id="_2dgs_Body_Draw_Microsoft_Xna_Framework_Graphics_SpriteBatch_Apos_Shapes_ShapeBatch__2dgs_SimulationMediator_" data-uid="_2dgs.Body.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Apos.Shapes.ShapeBatch,_2dgs.SimulationMediator)">
+  Draw(SpriteBatch, ShapeBatch, SimulationMediator)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L566"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The draw method for the Body class, called in the SimulationScene class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Draw(SpriteBatch spriteBatch, ShapeBatch shapeBatch, SimulationMediator simulationMediator)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spriteBatch</code> <span class="xref">SpriteBatch</span></dt>
+    <dd><p>A reference to the MonoGame SpriteBatch class.</p>
+</dd>
+    <dt><code>shapeBatch</code> <span class="xref">ShapeBatch</span></dt>
+    <dd><p>A reference to the Apos.Shapes ShapeBatch class.</p>
+</dd>
+    <dt><code>simulationMediator</code> <a class="xref" href="_2dgs.SimulationMediator.html">SimulationMediator</a></dt>
+    <dd><p>A reference to the SimulationMediator class.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_Body_Edit_" data-uid="_2dgs.Body.Edit*"></a>
+
+  <h3 id="_2dgs_Body_Edit_System_String_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_System_Single_System_Single_System_Collections_Generic_List__2dgs_Body__" data-uid="_2dgs.Body.Edit(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,System.Collections.Generic.List{_2dgs.Body})">
+  Edit(string, Vector2, Vector2, float, float, List&lt;Body&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method used when editing a body instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Edit(string name, Vector2 position, Vector2 velocity, float mass, float displaySize, List&lt;Body&gt; bodies)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The new name of the body.</p>
+</dd>
+    <dt><code>position</code> <span class="xref">Vector2</span></dt>
+    <dd><p>The new position of the body.</p>
+</dd>
+    <dt><code>velocity</code> <span class="xref">Vector2</span></dt>
+    <dd><p>The new velocity of the body.</p>
+</dd>
+    <dt><code>mass</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The new mass of the body.</p>
+</dd>
+    <dt><code>displaySize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The new display size of the body.</p>
+</dd>
+    <dt><code>bodies</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="_2dgs.Body.html">Body</a>&gt;</dt>
+    <dd><p>A reference to the bodies data structure, used for updating the projected orbits of bodies post-edit.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_Body_OffsetPosition_" data-uid="_2dgs.Body.OffsetPosition*"></a>
+
+  <h3 id="_2dgs_Body_OffsetPosition__2dgs_SimulationMediator_" data-uid="_2dgs.Body.OffsetPosition(_2dgs.SimulationMediator)">
+  OffsetPosition(SimulationMediator)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Offsets the position of bodies such that they appear in the relative center of the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OffsetPosition(SimulationMediator simulationMediator)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>simulationMediator</code> <a class="xref" href="_2dgs.SimulationMediator.html">SimulationMediator</a></dt>
+    <dd><p>A reference to the SimulationMediator.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_Body_SetColor_" data-uid="_2dgs.Body.SetColor*"></a>
+
+  <h3 id="_2dgs_Body_SetColor_Microsoft_Xna_Framework_Color_" data-uid="_2dgs.Body.SetColor(Microsoft.Xna.Framework.Color)">
+  SetColor(Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method used to update a body's color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetColor(Color color)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>color</code> <span class="xref">Color</span></dt>
+    <dd><p>The new color of the body.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_Body_Update_" data-uid="_2dgs.Body.Update*"></a>
+
+  <h3 id="_2dgs_Body_Update_System_Collections_Generic_List__2dgs_Body__System_Int32_Microsoft_Xna_Framework_GameTime_" data-uid="_2dgs.Body.Update(System.Collections.Generic.List{_2dgs.Body},System.Int32,Microsoft.Xna.Framework.GameTime)">
+  Update(List&lt;Body&gt;, int, GameTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The update method for the Body class, called in the SimulationScene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update(List&lt;Body&gt; bodies, int userTimeStep, GameTime gameTime)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bodies</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="_2dgs.Body.html">Body</a>&gt;</dt>
+    <dd><p>A reference to the bodies data structure.</p>
+</dd>
+    <dt><code>userTimeStep</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The current simulation timestep.</p>
+</dd>
+    <dt><code>gameTime</code> <span class="xref">GameTime</span></dt>
+    <dd><p>A reference to the MonoGame GameTime class.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amccullough02/2dgs/blob/main/2dgs/GameObjects/Body.cs/#L26" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

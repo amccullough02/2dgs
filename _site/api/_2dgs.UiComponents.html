@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class UiComponents | 2D Gravity Simulator (2DGS) </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class UiComponents | 2D Gravity Simulator (2DGS) ">
+      
+      <meta name="description" content="A basic UiComponents factory class. These are Myra components with additional defaults that are specific to 2DGS.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amccullough02/2dgs/new/main/apiSpec/new?filename=_2dgs_UiComponents.md&amp;value=---%0Auid%3A%20_2dgs.UiComponents%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="2D Gravity Simulator (2DGS)">
+            2D Gravity Simulator (2DGS)
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="_2dgs.UiComponents">
+
+
+
+  <h1 id="_2dgs_UiComponents" data-uid="_2dgs.UiComponents" class="text-break">
+Class UiComponents  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="_2dgs.html">_2dgs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>2dgs.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A basic UiComponents factory class. These are Myra components with additional defaults that are specific to 2DGS.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class UiComponents</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">UiComponents</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="_2dgs_UiComponents_Button_" data-uid="_2dgs.UiComponents.Button*"></a>
+
+  <h3 id="_2dgs_UiComponents_Button_System_String_System_Boolean_System_Int32_System_Int32_" data-uid="_2dgs.UiComponents.Button(System.String,System.Boolean,System.Int32,System.Int32)">
+  Button(string, bool, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a standard 2DGS button.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Button Button(string text, bool visible = true, int width = 250, int height = 60)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text of the button.</p>
+</dd>
+    <dt><code>visible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The button's visibility.</p>
+</dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel width of the button.</p>
+</dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel height of the button.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Button</span></dt>
+    <dd><p>A 2DGS button instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_ComboView_" data-uid="_2dgs.UiComponents.ComboView*"></a>
+
+  <h3 id="_2dgs_UiComponents_ComboView_System_Int32_" data-uid="_2dgs.UiComponents.ComboView(System.Int32)">
+  ComboView(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS combo view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ComboView ComboView(int width = 250)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The width of the combo view.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ComboView</span></dt>
+    <dd><p>A 2DGS combo view instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_CustomColorPicker_" data-uid="_2dgs.UiComponents.CustomColorPicker*"></a>
+
+  <h3 id="_2dgs_UiComponents_CustomColorPicker" data-uid="_2dgs.UiComponents.CustomColorPicker">
+  CustomColorPicker()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS color picker dialog.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ColorPickerDialog CustomColorPicker()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ColorPickerDialog</span></dt>
+    <dd><p>A 2DGS color picker dialog.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_DropdownLabel_" data-uid="_2dgs.UiComponents.DropdownLabel*"></a>
+
+  <h3 id="_2dgs_UiComponents_DropdownLabel_System_String_" data-uid="_2dgs.UiComponents.DropdownLabel(System.String)">
+  DropdownLabel(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS dropdown label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Label DropdownLabel(string text)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The label's text.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Label</span></dt>
+    <dd><p>A 2DGS dropdown label instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_Grid_" data-uid="_2dgs.UiComponents.Grid*"></a>
+
+  <h3 id="_2dgs_UiComponents_Grid_System_Int32_System_Int32_System_Int32_" data-uid="_2dgs.UiComponents.Grid(System.Int32,System.Int32,System.Int32)">
+  Grid(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS widget grid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Grid Grid(int spacing, int columns, int rows)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The spacing between grid elements.</p>
+</dd>
+    <dt><code>columns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of columns the grid will have.</p>
+</dd>
+    <dt><code>rows</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of rows the grid will have.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Grid</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_HorizontalSeparator_" data-uid="_2dgs.UiComponents.HorizontalSeparator*"></a>
+
+  <h3 id="_2dgs_UiComponents_HorizontalSeparator_System_Int32_System_Int32_System_Int32_" data-uid="_2dgs.UiComponents.HorizontalSeparator(System.Int32,System.Int32,System.Int32)">
+  HorizontalSeparator(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS horizontal separator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static HorizontalSeparator HorizontalSeparator(int width = 250, int height = 5, int margin = 10)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel width of the button.</p>
+</dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel height of the button.</p>
+</dd>
+    <dt><code>margin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The margin for the separator.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">HorizontalSeparator</span></dt>
+    <dd><p>A 2DGS horizontal separator instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_HorizontalSlider_" data-uid="_2dgs.UiComponents.HorizontalSlider*"></a>
+
+  <h3 id="_2dgs_UiComponents_HorizontalSlider_System_Int32_System_Int32_System_Int32_" data-uid="_2dgs.UiComponents.HorizontalSlider(System.Int32,System.Int32,System.Int32)">
+  HorizontalSlider(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS horizontal slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static HorizontalSlider HorizontalSlider(int value, int min, int max)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The default value for the slider.</p>
+</dd>
+    <dt><code>min</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The minimum value for the slider.</p>
+</dd>
+    <dt><code>max</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum value for the slider.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">HorizontalSlider</span></dt>
+    <dd><p>A 2DGS horizontal slider instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_KeyBindLabel_" data-uid="_2dgs.UiComponents.KeyBindLabel*"></a>
+
+  <h3 id="_2dgs_UiComponents_KeyBindLabel_System_String_" data-uid="_2dgs.UiComponents.KeyBindLabel(System.String)">
+  KeyBindLabel(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS key bind preview label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Label KeyBindLabel(string text)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text of the label.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Label</span></dt>
+    <dd><p>A 2DGS key bind preview lable instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_LightLabel_" data-uid="_2dgs.UiComponents.LightLabel*"></a>
+
+  <h3 id="_2dgs_UiComponents_LightLabel_System_String_System_Int32_" data-uid="_2dgs.UiComponents.LightLabel(System.String,System.Int32)">
+  LightLabel(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L196"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS light label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Label LightLabel(string text, int fontSize = 20)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text of the label.</p>
+</dd>
+    <dt><code>fontSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The font size of the label.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Label</span></dt>
+    <dd><p>A 2DGS light label.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_ListView_" data-uid="_2dgs.UiComponents.ListView*"></a>
+
+  <h3 id="_2dgs_UiComponents_ListView_System_Int32_" data-uid="_2dgs.UiComponents.ListView(System.Int32)">
+  ListView(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L434"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS list view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ListView ListView(int width)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel width of the list view.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ListView</span></dt>
+    <dd><p>A 2DGS list view.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_MediumLabel_" data-uid="_2dgs.UiComponents.MediumLabel*"></a>
+
+  <h3 id="_2dgs_UiComponents_MediumLabel_System_String_System_Int32_" data-uid="_2dgs.UiComponents.MediumLabel(System.String,System.Int32)">
+  MediumLabel(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS medium label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Label MediumLabel(string text, int fontSize = 20)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text of the label.</p>
+</dd>
+    <dt><code>fontSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The font size of the label.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Label</span></dt>
+    <dd><p>A 2DGS medium label.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_MenuButton_" data-uid="_2dgs.UiComponents.MenuButton*"></a>
+
+  <h3 id="_2dgs_UiComponents_MenuButton_System_String_System_Boolean_System_Int32_System_Int32_" data-uid="_2dgs.UiComponents.MenuButton(System.String,System.Boolean,System.Int32,System.Int32)">
+  MenuButton(string, bool, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS (main) menu button.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Button MenuButton(string text, bool visible = true, int width = 250, int height = 60)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text of the button.</p>
+</dd>
+    <dt><code>visible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The button's visibility.</p>
+</dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel width of the button.</p>
+</dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel height of the button.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Button</span></dt>
+    <dd><p>A 2DGS (main) menu button instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_ReadOnlyTextBox_" data-uid="_2dgs.UiComponents.ReadOnlyTextBox*"></a>
+
+  <h3 id="_2dgs_UiComponents_ReadOnlyTextBox_System_String_" data-uid="_2dgs.UiComponents.ReadOnlyTextBox(System.String)">
+  ReadOnlyTextBox(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L381"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS (read-only) text box.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TextBox ReadOnlyTextBox(string text)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text box's text.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TextBox</span></dt>
+    <dd><p>A 2DGS (read-only) text box.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_StyledDialog_" data-uid="_2dgs.UiComponents.StyledDialog*"></a>
+
+  <h3 id="_2dgs_UiComponents_StyledDialog_System_String_" data-uid="_2dgs.UiComponents.StyledDialog(System.String)">
+  StyledDialog(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS dialog.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Dialog StyledDialog(string title)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>title</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The title of the dialog.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Dialog</span></dt>
+    <dd><p>A 2DGS dialog.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_TabControl_" data-uid="_2dgs.UiComponents.TabControl*"></a>
+
+  <h3 id="_2dgs_UiComponents_TabControl_System_Int32_System_Int32_" data-uid="_2dgs.UiComponents.TabControl(System.Int32,System.Int32)">
+  TabControl(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L406"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS tab control.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TabControl TabControl(int width, int height)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel width of the widget.</p>
+</dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pixel height of the widget.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TabControl</span></dt>
+    <dd><p>A 2DGS tab control widget.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_TabItem_" data-uid="_2dgs.UiComponents.TabItem*"></a>
+
+  <h3 id="_2dgs_UiComponents_TabItem_System_String_" data-uid="_2dgs.UiComponents.TabItem(System.String)">
+  TabItem(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L421"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS tab item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TabItem TabItem(string title)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>title</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The title of the tab item.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TabItem</span></dt>
+    <dd><p>A 2DGS tab item.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_TextBox_" data-uid="_2dgs.UiComponents.TextBox*"></a>
+
+  <h3 id="_2dgs_UiComponents_TextBox_System_String_" data-uid="_2dgs.UiComponents.TextBox(System.String)">
+  TextBox(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L243"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS text box.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TextBox TextBox(string text)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text box's text.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TextBox</span></dt>
+    <dd><p>A 2DGS text box.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_TitleLabel_" data-uid="_2dgs.UiComponents.TitleLabel*"></a>
+
+  <h3 id="_2dgs_UiComponents_TitleLabel_System_String_" data-uid="_2dgs.UiComponents.TitleLabel(System.String)">
+  TitleLabel(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS title label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Label TitleLabel(string text)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text of the label.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Label</span></dt>
+    <dd><p>A 2DGS title label.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_ToggleButton_" data-uid="_2dgs.UiComponents.ToggleButton*"></a>
+
+  <h3 id="_2dgs_UiComponents_ToggleButton_System_String_System_Boolean_" data-uid="_2dgs.UiComponents.ToggleButton(System.String,System.Boolean)">
+  ToggleButton(string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS toggle button.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ToggleButton ToggleButton(string text, bool toggled)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text of the toggle button.</p>
+</dd>
+    <dt><code>toggled</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Is the toggle button enabled or not.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ToggleButton</span></dt>
+    <dd><p>A 2DGS toggle button.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="_2dgs_UiComponents_ValidationWindow_" data-uid="_2dgs.UiComponents.ValidationWindow*"></a>
+
+  <h3 id="_2dgs_UiComponents_ValidationWindow_Myra_Graphics2D_UI_Label_" data-uid="_2dgs.UiComponents.ValidationWindow(Myra.Graphics2D.UI.Label)">
+  ValidationWindow(Label)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L285"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method to create a 2DGS validation error window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Window ValidationWindow(Label label)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>label</code> <span class="xref">Label</span></dt>
+    <dd><p>The label the window will contain.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Window</span></dt>
+    <dd><p>A 2DGS validation error window.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amccullough02/2dgs/blob/main/2dgs/UserInterfaces/UiComponents.cs/#L12" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

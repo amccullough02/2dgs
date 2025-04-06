@@ -1,0 +1,1461 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.SimulationMediator
+  commentId: T:_2dgs.SimulationMediator
+  id: SimulationMediator
+  parent: _2dgs
+  children:
+  - _2dgs.SimulationMediator.ABodySelected
+  - _2dgs.SimulationMediator.AttemptToSaveFile
+  - _2dgs.SimulationMediator.ColorSelectedBody
+  - _2dgs.SimulationMediator.CreateBodyData
+  - _2dgs.SimulationMediator.DeleteSelectedBody
+  - _2dgs.SimulationMediator.EditBodyData
+  - _2dgs.SimulationMediator.EditMode
+  - _2dgs.SimulationMediator.EditSelectedBody
+  - _2dgs.SimulationMediator.FilePath
+  - _2dgs.SimulationMediator.Lesson
+  - _2dgs.SimulationMediator.LessonPages
+  - _2dgs.SimulationMediator.NewBodyColor
+  - _2dgs.SimulationMediator.Paused
+  - _2dgs.SimulationMediator.Position
+  - _2dgs.SimulationMediator.ResetSimulation
+  - _2dgs.SimulationMediator.ScreenDimensions
+  - _2dgs.SimulationMediator.SelectedBodyData
+  - _2dgs.SimulationMediator.SimulationTitle
+  - _2dgs.SimulationMediator.TimeStep
+  - _2dgs.SimulationMediator.ToggleBodyGhost
+  - _2dgs.SimulationMediator.ToggleGlow
+  - _2dgs.SimulationMediator.ToggleNames
+  - _2dgs.SimulationMediator.ToggleOrbits
+  - _2dgs.SimulationMediator.ToggleTrails
+  - _2dgs.SimulationMediator.ToggleVectors
+  - _2dgs.SimulationMediator.TrailLength
+  langs:
+  - csharp
+  - vb
+  name: SimulationMediator
+  nameWithType: SimulationMediator
+  fullName: _2dgs.SimulationMediator
+  type: Class
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: SimulationMediator
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 8
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A mediator class that manages communication between the simulation scene, simulation user interface, and simulation file.
+  example: []
+  syntax:
+    content: public class SimulationMediator
+    content.vb: Public Class SimulationMediator
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: _2dgs.SimulationMediator.Paused
+  commentId: P:_2dgs.SimulationMediator.Paused
+  id: Paused
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: Paused
+  nameWithType: SimulationMediator.Paused
+  fullName: _2dgs.SimulationMediator.Paused
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Paused
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 13
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the simulation is paused.
+  example: []
+  syntax:
+    content: public bool Paused { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Paused As Boolean
+  overload: _2dgs.SimulationMediator.Paused*
+- uid: _2dgs.SimulationMediator.ToggleTrails
+  commentId: P:_2dgs.SimulationMediator.ToggleTrails
+  id: ToggleTrails
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ToggleTrails
+  nameWithType: SimulationMediator.ToggleTrails
+  fullName: _2dgs.SimulationMediator.ToggleTrails
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ToggleTrails
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 17
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if body trails are showing.
+  example: []
+  syntax:
+    content: public bool ToggleTrails { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ToggleTrails As Boolean
+  overload: _2dgs.SimulationMediator.ToggleTrails*
+- uid: _2dgs.SimulationMediator.ToggleOrbits
+  commentId: P:_2dgs.SimulationMediator.ToggleOrbits
+  id: ToggleOrbits
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ToggleOrbits
+  nameWithType: SimulationMediator.ToggleOrbits
+  fullName: _2dgs.SimulationMediator.ToggleOrbits
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ToggleOrbits
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 21
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if body orbits are showing.
+  example: []
+  syntax:
+    content: public bool ToggleOrbits { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ToggleOrbits As Boolean
+  overload: _2dgs.SimulationMediator.ToggleOrbits*
+- uid: _2dgs.SimulationMediator.ToggleVectors
+  commentId: P:_2dgs.SimulationMediator.ToggleVectors
+  id: ToggleVectors
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ToggleVectors
+  nameWithType: SimulationMediator.ToggleVectors
+  fullName: _2dgs.SimulationMediator.ToggleVectors
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ToggleVectors
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 25
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if body vectors are showing.
+  example: []
+  syntax:
+    content: public bool ToggleVectors { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ToggleVectors As Boolean
+  overload: _2dgs.SimulationMediator.ToggleVectors*
+- uid: _2dgs.SimulationMediator.ToggleNames
+  commentId: P:_2dgs.SimulationMediator.ToggleNames
+  id: ToggleNames
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ToggleNames
+  nameWithType: SimulationMediator.ToggleNames
+  fullName: _2dgs.SimulationMediator.ToggleNames
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ToggleNames
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 29
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if body names are showing.
+  example: []
+  syntax:
+    content: public bool ToggleNames { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ToggleNames As Boolean
+  overload: _2dgs.SimulationMediator.ToggleNames*
+- uid: _2dgs.SimulationMediator.ToggleGlow
+  commentId: P:_2dgs.SimulationMediator.ToggleGlow
+  id: ToggleGlow
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ToggleGlow
+  nameWithType: SimulationMediator.ToggleGlow
+  fullName: _2dgs.SimulationMediator.ToggleGlow
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ToggleGlow
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 33
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the bodies are glowing.
+  example: []
+  syntax:
+    content: public bool ToggleGlow { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ToggleGlow As Boolean
+  overload: _2dgs.SimulationMediator.ToggleGlow*
+- uid: _2dgs.SimulationMediator.ToggleBodyGhost
+  commentId: P:_2dgs.SimulationMediator.ToggleBodyGhost
+  id: ToggleBodyGhost
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ToggleBodyGhost
+  nameWithType: SimulationMediator.ToggleBodyGhost
+  fullName: _2dgs.SimulationMediator.ToggleBodyGhost
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ToggleBodyGhost
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 37
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if a ghost body is to be rendered (set to true when a new body is created but not placed yet).
+  example: []
+  syntax:
+    content: public bool ToggleBodyGhost { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ToggleBodyGhost As Boolean
+  overload: _2dgs.SimulationMediator.ToggleBodyGhost*
+- uid: _2dgs.SimulationMediator.ABodySelected
+  commentId: P:_2dgs.SimulationMediator.ABodySelected
+  id: ABodySelected
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ABodySelected
+  nameWithType: SimulationMediator.ABodySelected
+  fullName: _2dgs.SimulationMediator.ABodySelected
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ABodySelected
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 41
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if a body is selected (useful to preventing multiple selections which are not yet supported).
+  example: []
+  syntax:
+    content: public bool ABodySelected { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ABodySelected As Boolean
+  overload: _2dgs.SimulationMediator.ABodySelected*
+- uid: _2dgs.SimulationMediator.ColorSelectedBody
+  commentId: P:_2dgs.SimulationMediator.ColorSelectedBody
+  id: ColorSelectedBody
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ColorSelectedBody
+  nameWithType: SimulationMediator.ColorSelectedBody
+  fullName: _2dgs.SimulationMediator.ColorSelectedBody
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ColorSelectedBody
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 45
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the selected body is to have its color updated.
+  example: []
+  syntax:
+    content: public bool ColorSelectedBody { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ColorSelectedBody As Boolean
+  overload: _2dgs.SimulationMediator.ColorSelectedBody*
+- uid: _2dgs.SimulationMediator.EditSelectedBody
+  commentId: P:_2dgs.SimulationMediator.EditSelectedBody
+  id: EditSelectedBody
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: EditSelectedBody
+  nameWithType: SimulationMediator.EditSelectedBody
+  fullName: _2dgs.SimulationMediator.EditSelectedBody
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: EditSelectedBody
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 49
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the selected body is to be edited.
+  example: []
+  syntax:
+    content: public bool EditSelectedBody { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property EditSelectedBody As Boolean
+  overload: _2dgs.SimulationMediator.EditSelectedBody*
+- uid: _2dgs.SimulationMediator.DeleteSelectedBody
+  commentId: P:_2dgs.SimulationMediator.DeleteSelectedBody
+  id: DeleteSelectedBody
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: DeleteSelectedBody
+  nameWithType: SimulationMediator.DeleteSelectedBody
+  fullName: _2dgs.SimulationMediator.DeleteSelectedBody
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: DeleteSelectedBody
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 53
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the selected body is to be deleted.
+  example: []
+  syntax:
+    content: public bool DeleteSelectedBody { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property DeleteSelectedBody As Boolean
+  overload: _2dgs.SimulationMediator.DeleteSelectedBody*
+- uid: _2dgs.SimulationMediator.AttemptToSaveFile
+  commentId: P:_2dgs.SimulationMediator.AttemptToSaveFile
+  id: AttemptToSaveFile
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: AttemptToSaveFile
+  nameWithType: SimulationMediator.AttemptToSaveFile
+  fullName: _2dgs.SimulationMediator.AttemptToSaveFile
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: AttemptToSaveFile
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 57
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the simulation should be saved to a file.
+  example: []
+  syntax:
+    content: public bool AttemptToSaveFile { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AttemptToSaveFile As Boolean
+  overload: _2dgs.SimulationMediator.AttemptToSaveFile*
+- uid: _2dgs.SimulationMediator.EditMode
+  commentId: P:_2dgs.SimulationMediator.EditMode
+  id: EditMode
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: EditMode
+  nameWithType: SimulationMediator.EditMode
+  fullName: _2dgs.SimulationMediator.EditMode
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: EditMode
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 61
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if edit mode is enabled or not.
+  example: []
+  syntax:
+    content: public bool EditMode { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property EditMode As Boolean
+  overload: _2dgs.SimulationMediator.EditMode*
+- uid: _2dgs.SimulationMediator.Lesson
+  commentId: P:_2dgs.SimulationMediator.Lesson
+  id: Lesson
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: Lesson
+  nameWithType: SimulationMediator.Lesson
+  fullName: _2dgs.SimulationMediator.Lesson
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Lesson
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 65
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the simulation is a lesson simulation (otherwise the lesson features are disabled and saving is allowed).
+  example: []
+  syntax:
+    content: public bool Lesson { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Lesson As Boolean
+  overload: _2dgs.SimulationMediator.Lesson*
+- uid: _2dgs.SimulationMediator.ResetSimulation
+  commentId: P:_2dgs.SimulationMediator.ResetSimulation
+  id: ResetSimulation
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ResetSimulation
+  nameWithType: SimulationMediator.ResetSimulation
+  fullName: _2dgs.SimulationMediator.ResetSimulation
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ResetSimulation
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 69
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Signifies if the simulation should be reset to its initial state.
+  example: []
+  syntax:
+    content: public bool ResetSimulation { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ResetSimulation As Boolean
+  overload: _2dgs.SimulationMediator.ResetSimulation*
+- uid: _2dgs.SimulationMediator.FilePath
+  commentId: P:_2dgs.SimulationMediator.FilePath
+  id: FilePath
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: FilePath
+  nameWithType: SimulationMediator.FilePath
+  fullName: _2dgs.SimulationMediator.FilePath
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: FilePath
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 73
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The file path of the simulation file the simulation has been loaded from (blank if the simulation is newly created).
+  example: []
+  syntax:
+    content: public string FilePath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property FilePath As String
+  overload: _2dgs.SimulationMediator.FilePath*
+- uid: _2dgs.SimulationMediator.SimulationTitle
+  commentId: P:_2dgs.SimulationMediator.SimulationTitle
+  id: SimulationTitle
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: SimulationTitle
+  nameWithType: SimulationMediator.SimulationTitle
+  fullName: _2dgs.SimulationMediator.SimulationTitle
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: SimulationTitle
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 77
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The 'title' of the simulation (this is what displays in the lesson prompt window).
+  example: []
+  syntax:
+    content: public string SimulationTitle { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SimulationTitle As String
+  overload: _2dgs.SimulationMediator.SimulationTitle*
+- uid: _2dgs.SimulationMediator.TimeStep
+  commentId: P:_2dgs.SimulationMediator.TimeStep
+  id: TimeStep
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: TimeStep
+  nameWithType: SimulationMediator.TimeStep
+  fullName: _2dgs.SimulationMediator.TimeStep
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: TimeStep
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 81
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The current time step of the simulation which controls how the rate at which orbits progress.
+  example: []
+  syntax:
+    content: public int TimeStep { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TimeStep As Integer
+  overload: _2dgs.SimulationMediator.TimeStep*
+- uid: _2dgs.SimulationMediator.TrailLength
+  commentId: P:_2dgs.SimulationMediator.TrailLength
+  id: TrailLength
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: TrailLength
+  nameWithType: SimulationMediator.TrailLength
+  fullName: _2dgs.SimulationMediator.TrailLength
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: TrailLength
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 85
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The current length of body trails.
+  example: []
+  syntax:
+    content: public int TrailLength { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TrailLength As Integer
+  overload: _2dgs.SimulationMediator.TrailLength*
+- uid: _2dgs.SimulationMediator.ScreenDimensions
+  commentId: P:_2dgs.SimulationMediator.ScreenDimensions
+  id: ScreenDimensions
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: ScreenDimensions
+  nameWithType: SimulationMediator.ScreenDimensions
+  fullName: _2dgs.SimulationMediator.ScreenDimensions
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ScreenDimensions
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 89
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The current screen dimensions (used to offset bodies from relative to (0,0) to the centre of the screen.
+  example: []
+  syntax:
+    content: public Vector2 ScreenDimensions { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property ScreenDimensions As Vector2
+  overload: _2dgs.SimulationMediator.ScreenDimensions*
+- uid: _2dgs.SimulationMediator.NewBodyColor
+  commentId: P:_2dgs.SimulationMediator.NewBodyColor
+  id: NewBodyColor
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: NewBodyColor
+  nameWithType: SimulationMediator.NewBodyColor
+  fullName: _2dgs.SimulationMediator.NewBodyColor
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: NewBodyColor
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 93
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The colour the user to apply to a new body.
+  example: []
+  syntax:
+    content: public Color NewBodyColor { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Color
+    content.vb: Public Property NewBodyColor As Color
+  overload: _2dgs.SimulationMediator.NewBodyColor*
+- uid: _2dgs.SimulationMediator.Position
+  commentId: P:_2dgs.SimulationMediator.Position
+  id: Position
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: SimulationMediator.Position
+  fullName: _2dgs.SimulationMediator.Position
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Position
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 97
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The position of body names relative to the bodies proper.
+  example: []
+  syntax:
+    content: public Position Position { get; set; }
+    parameters: []
+    return:
+      type: _2dgs.Position
+    content.vb: Public Property Position As Position
+  overload: _2dgs.SimulationMediator.Position*
+- uid: _2dgs.SimulationMediator.LessonPages
+  commentId: P:_2dgs.SimulationMediator.LessonPages
+  id: LessonPages
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: LessonPages
+  nameWithType: SimulationMediator.LessonPages
+  fullName: _2dgs.SimulationMediator.LessonPages
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: LessonPages
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 101
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A list of lesson pages (used in lesson simulations).
+  example: []
+  syntax:
+    content: public List<LessonPage> LessonPages { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{_2dgs.LessonPage}
+    content.vb: Public Property LessonPages As List(Of LessonPage)
+  overload: _2dgs.SimulationMediator.LessonPages*
+- uid: _2dgs.SimulationMediator.SelectedBodyData
+  commentId: P:_2dgs.SimulationMediator.SelectedBodyData
+  id: SelectedBodyData
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: SelectedBodyData
+  nameWithType: SimulationMediator.SelectedBodyData
+  fullName: _2dgs.SimulationMediator.SelectedBodyData
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: SelectedBodyData
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 105
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A reference to the data on the currently selected body (used to provide a starting point for edits).
+  example: []
+  syntax:
+    content: public BodyData SelectedBodyData { get; set; }
+    parameters: []
+    return:
+      type: _2dgs.BodyData
+    content.vb: Public Property SelectedBodyData As BodyData
+  overload: _2dgs.SimulationMediator.SelectedBodyData*
+- uid: _2dgs.SimulationMediator.CreateBodyData
+  commentId: P:_2dgs.SimulationMediator.CreateBodyData
+  id: CreateBodyData
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: CreateBodyData
+  nameWithType: SimulationMediator.CreateBodyData
+  fullName: _2dgs.SimulationMediator.CreateBodyData
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: CreateBodyData
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 109
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Contains the data the user has provided to create a new body.
+  example: []
+  syntax:
+    content: public BodyData CreateBodyData { get; set; }
+    parameters: []
+    return:
+      type: _2dgs.BodyData
+    content.vb: Public Property CreateBodyData As BodyData
+  overload: _2dgs.SimulationMediator.CreateBodyData*
+- uid: _2dgs.SimulationMediator.EditBodyData
+  commentId: P:_2dgs.SimulationMediator.EditBodyData
+  id: EditBodyData
+  parent: _2dgs.SimulationMediator
+  langs:
+  - csharp
+  - vb
+  name: EditBodyData
+  nameWithType: SimulationMediator.EditBodyData
+  fullName: _2dgs.SimulationMediator.EditBodyData
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Mediator/SimulationMediator.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: EditBodyData
+    path: 2dgs/Mediator/SimulationMediator.cs
+    startLine: 113
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Contains the data the user has provided to edit a body.
+  example: []
+  syntax:
+    content: public BodyData EditBodyData { get; set; }
+    parameters: []
+    return:
+      type: _2dgs.BodyData
+    content.vb: Public Property EditBodyData As BodyData
+  overload: _2dgs.SimulationMediator.EditBodyData*
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: _2dgs.SimulationMediator.Paused*
+  commentId: Overload:_2dgs.SimulationMediator.Paused
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_Paused
+  name: Paused
+  nameWithType: SimulationMediator.Paused
+  fullName: _2dgs.SimulationMediator.Paused
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: _2dgs.SimulationMediator.ToggleTrails*
+  commentId: Overload:_2dgs.SimulationMediator.ToggleTrails
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ToggleTrails
+  name: ToggleTrails
+  nameWithType: SimulationMediator.ToggleTrails
+  fullName: _2dgs.SimulationMediator.ToggleTrails
+- uid: _2dgs.SimulationMediator.ToggleOrbits*
+  commentId: Overload:_2dgs.SimulationMediator.ToggleOrbits
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ToggleOrbits
+  name: ToggleOrbits
+  nameWithType: SimulationMediator.ToggleOrbits
+  fullName: _2dgs.SimulationMediator.ToggleOrbits
+- uid: _2dgs.SimulationMediator.ToggleVectors*
+  commentId: Overload:_2dgs.SimulationMediator.ToggleVectors
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ToggleVectors
+  name: ToggleVectors
+  nameWithType: SimulationMediator.ToggleVectors
+  fullName: _2dgs.SimulationMediator.ToggleVectors
+- uid: _2dgs.SimulationMediator.ToggleNames*
+  commentId: Overload:_2dgs.SimulationMediator.ToggleNames
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ToggleNames
+  name: ToggleNames
+  nameWithType: SimulationMediator.ToggleNames
+  fullName: _2dgs.SimulationMediator.ToggleNames
+- uid: _2dgs.SimulationMediator.ToggleGlow*
+  commentId: Overload:_2dgs.SimulationMediator.ToggleGlow
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ToggleGlow
+  name: ToggleGlow
+  nameWithType: SimulationMediator.ToggleGlow
+  fullName: _2dgs.SimulationMediator.ToggleGlow
+- uid: _2dgs.SimulationMediator.ToggleBodyGhost*
+  commentId: Overload:_2dgs.SimulationMediator.ToggleBodyGhost
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ToggleBodyGhost
+  name: ToggleBodyGhost
+  nameWithType: SimulationMediator.ToggleBodyGhost
+  fullName: _2dgs.SimulationMediator.ToggleBodyGhost
+- uid: _2dgs.SimulationMediator.ABodySelected*
+  commentId: Overload:_2dgs.SimulationMediator.ABodySelected
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ABodySelected
+  name: ABodySelected
+  nameWithType: SimulationMediator.ABodySelected
+  fullName: _2dgs.SimulationMediator.ABodySelected
+- uid: _2dgs.SimulationMediator.ColorSelectedBody*
+  commentId: Overload:_2dgs.SimulationMediator.ColorSelectedBody
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ColorSelectedBody
+  name: ColorSelectedBody
+  nameWithType: SimulationMediator.ColorSelectedBody
+  fullName: _2dgs.SimulationMediator.ColorSelectedBody
+- uid: _2dgs.SimulationMediator.EditSelectedBody*
+  commentId: Overload:_2dgs.SimulationMediator.EditSelectedBody
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_EditSelectedBody
+  name: EditSelectedBody
+  nameWithType: SimulationMediator.EditSelectedBody
+  fullName: _2dgs.SimulationMediator.EditSelectedBody
+- uid: _2dgs.SimulationMediator.DeleteSelectedBody*
+  commentId: Overload:_2dgs.SimulationMediator.DeleteSelectedBody
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_DeleteSelectedBody
+  name: DeleteSelectedBody
+  nameWithType: SimulationMediator.DeleteSelectedBody
+  fullName: _2dgs.SimulationMediator.DeleteSelectedBody
+- uid: _2dgs.SimulationMediator.AttemptToSaveFile*
+  commentId: Overload:_2dgs.SimulationMediator.AttemptToSaveFile
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_AttemptToSaveFile
+  name: AttemptToSaveFile
+  nameWithType: SimulationMediator.AttemptToSaveFile
+  fullName: _2dgs.SimulationMediator.AttemptToSaveFile
+- uid: _2dgs.SimulationMediator.EditMode*
+  commentId: Overload:_2dgs.SimulationMediator.EditMode
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_EditMode
+  name: EditMode
+  nameWithType: SimulationMediator.EditMode
+  fullName: _2dgs.SimulationMediator.EditMode
+- uid: _2dgs.SimulationMediator.Lesson*
+  commentId: Overload:_2dgs.SimulationMediator.Lesson
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_Lesson
+  name: Lesson
+  nameWithType: SimulationMediator.Lesson
+  fullName: _2dgs.SimulationMediator.Lesson
+- uid: _2dgs.SimulationMediator.ResetSimulation*
+  commentId: Overload:_2dgs.SimulationMediator.ResetSimulation
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ResetSimulation
+  name: ResetSimulation
+  nameWithType: SimulationMediator.ResetSimulation
+  fullName: _2dgs.SimulationMediator.ResetSimulation
+- uid: _2dgs.SimulationMediator.FilePath*
+  commentId: Overload:_2dgs.SimulationMediator.FilePath
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_FilePath
+  name: FilePath
+  nameWithType: SimulationMediator.FilePath
+  fullName: _2dgs.SimulationMediator.FilePath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: _2dgs.SimulationMediator.SimulationTitle*
+  commentId: Overload:_2dgs.SimulationMediator.SimulationTitle
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_SimulationTitle
+  name: SimulationTitle
+  nameWithType: SimulationMediator.SimulationTitle
+  fullName: _2dgs.SimulationMediator.SimulationTitle
+- uid: _2dgs.SimulationMediator.TimeStep*
+  commentId: Overload:_2dgs.SimulationMediator.TimeStep
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_TimeStep
+  name: TimeStep
+  nameWithType: SimulationMediator.TimeStep
+  fullName: _2dgs.SimulationMediator.TimeStep
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: _2dgs.SimulationMediator.TrailLength*
+  commentId: Overload:_2dgs.SimulationMediator.TrailLength
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_TrailLength
+  name: TrailLength
+  nameWithType: SimulationMediator.TrailLength
+  fullName: _2dgs.SimulationMediator.TrailLength
+- uid: _2dgs.SimulationMediator.ScreenDimensions*
+  commentId: Overload:_2dgs.SimulationMediator.ScreenDimensions
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_ScreenDimensions
+  name: ScreenDimensions
+  nameWithType: SimulationMediator.ScreenDimensions
+  fullName: _2dgs.SimulationMediator.ScreenDimensions
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: _2dgs.SimulationMediator.NewBodyColor*
+  commentId: Overload:_2dgs.SimulationMediator.NewBodyColor
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_NewBodyColor
+  name: NewBodyColor
+  nameWithType: SimulationMediator.NewBodyColor
+  fullName: _2dgs.SimulationMediator.NewBodyColor
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: _2dgs.SimulationMediator.Position*
+  commentId: Overload:_2dgs.SimulationMediator.Position
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_Position
+  name: Position
+  nameWithType: SimulationMediator.Position
+  fullName: _2dgs.SimulationMediator.Position
+- uid: _2dgs.Position
+  commentId: T:_2dgs.Position
+  parent: _2dgs
+  href: _2dgs.Position.html
+  name: Position
+  nameWithType: Position
+  fullName: _2dgs.Position
+- uid: _2dgs.SimulationMediator.LessonPages*
+  commentId: Overload:_2dgs.SimulationMediator.LessonPages
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_LessonPages
+  name: LessonPages
+  nameWithType: SimulationMediator.LessonPages
+  fullName: _2dgs.SimulationMediator.LessonPages
+- uid: System.Collections.Generic.List{_2dgs.LessonPage}
+  commentId: T:System.Collections.Generic.List{_2dgs.LessonPage}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<LessonPage>
+  nameWithType: List<LessonPage>
+  fullName: System.Collections.Generic.List<_2dgs.LessonPage>
+  nameWithType.vb: List(Of LessonPage)
+  fullName.vb: System.Collections.Generic.List(Of _2dgs.LessonPage)
+  name.vb: List(Of LessonPage)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: _2dgs.LessonPage
+    name: LessonPage
+    href: _2dgs.LessonPage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: _2dgs.LessonPage
+    name: LessonPage
+    href: _2dgs.LessonPage.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: _2dgs.SimulationMediator.SelectedBodyData*
+  commentId: Overload:_2dgs.SimulationMediator.SelectedBodyData
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_SelectedBodyData
+  name: SelectedBodyData
+  nameWithType: SimulationMediator.SelectedBodyData
+  fullName: _2dgs.SimulationMediator.SelectedBodyData
+- uid: _2dgs.BodyData
+  commentId: T:_2dgs.BodyData
+  parent: _2dgs
+  href: _2dgs.BodyData.html
+  name: BodyData
+  nameWithType: BodyData
+  fullName: _2dgs.BodyData
+- uid: _2dgs.SimulationMediator.CreateBodyData*
+  commentId: Overload:_2dgs.SimulationMediator.CreateBodyData
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_CreateBodyData
+  name: CreateBodyData
+  nameWithType: SimulationMediator.CreateBodyData
+  fullName: _2dgs.SimulationMediator.CreateBodyData
+- uid: _2dgs.SimulationMediator.EditBodyData*
+  commentId: Overload:_2dgs.SimulationMediator.EditBodyData
+  href: _2dgs.SimulationMediator.html#_2dgs_SimulationMediator_EditBodyData
+  name: EditBodyData
+  nameWithType: SimulationMediator.EditBodyData
+  fullName: _2dgs.SimulationMediator.EditBodyData

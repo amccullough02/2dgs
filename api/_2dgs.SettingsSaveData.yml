@@ -1,0 +1,944 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.SettingsSaveData
+  commentId: T:_2dgs.SettingsSaveData
+  id: SettingsSaveData
+  parent: _2dgs
+  children:
+  - _2dgs.SettingsSaveData.EditShortcut
+  - _2dgs.SettingsSaveData.Fullscreen
+  - _2dgs.SettingsSaveData.GlowShortcut
+  - _2dgs.SettingsSaveData.HorizontalResolution
+  - _2dgs.SettingsSaveData.NamesShortcut
+  - _2dgs.SettingsSaveData.OrbitsShortcut
+  - _2dgs.SettingsSaveData.PauseShortcut
+  - _2dgs.SettingsSaveData.Refresh(_2dgs.SaveSystem)
+  - _2dgs.SettingsSaveData.ScreenshotShortcut
+  - _2dgs.SettingsSaveData.SpeedDownShortcut
+  - _2dgs.SettingsSaveData.SpeedUpShortcut
+  - _2dgs.SettingsSaveData.TrailsShortcut
+  - _2dgs.SettingsSaveData.VectorsShortcut
+  - _2dgs.SettingsSaveData.VerticalResolution
+  langs:
+  - csharp
+  - vb
+  name: SettingsSaveData
+  nameWithType: SettingsSaveData
+  fullName: _2dgs.SettingsSaveData
+  type: Class
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: SettingsSaveData
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 8
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A data class used to store data loaded from a user settings file.
+  example: []
+  syntax:
+    content: public class SettingsSaveData
+    content.vb: Public Class SettingsSaveData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: _2dgs.SettingsSaveData.VerticalResolution
+  commentId: P:_2dgs.SettingsSaveData.VerticalResolution
+  id: VerticalResolution
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: VerticalResolution
+  nameWithType: SettingsSaveData.VerticalResolution
+  fullName: _2dgs.SettingsSaveData.VerticalResolution
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: VerticalResolution
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 13
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The vertical resolution of the application.
+  example: []
+  syntax:
+    content: public int VerticalResolution { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property VerticalResolution As Integer
+  overload: _2dgs.SettingsSaveData.VerticalResolution*
+- uid: _2dgs.SettingsSaveData.HorizontalResolution
+  commentId: P:_2dgs.SettingsSaveData.HorizontalResolution
+  id: HorizontalResolution
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: HorizontalResolution
+  nameWithType: SettingsSaveData.HorizontalResolution
+  fullName: _2dgs.SettingsSaveData.HorizontalResolution
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: HorizontalResolution
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 17
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The horizontal resolution of the application.
+  example: []
+  syntax:
+    content: public int HorizontalResolution { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property HorizontalResolution As Integer
+  overload: _2dgs.SettingsSaveData.HorizontalResolution*
+- uid: _2dgs.SettingsSaveData.Fullscreen
+  commentId: P:_2dgs.SettingsSaveData.Fullscreen
+  id: Fullscreen
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: Fullscreen
+  nameWithType: SettingsSaveData.Fullscreen
+  fullName: _2dgs.SettingsSaveData.Fullscreen
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Fullscreen
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 21
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The application's display mode.
+  example: []
+  syntax:
+    content: public bool Fullscreen { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Fullscreen As Boolean
+  overload: _2dgs.SettingsSaveData.Fullscreen*
+- uid: _2dgs.SettingsSaveData.PauseShortcut
+  commentId: P:_2dgs.SettingsSaveData.PauseShortcut
+  id: PauseShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: PauseShortcut
+  nameWithType: SettingsSaveData.PauseShortcut
+  fullName: _2dgs.SettingsSaveData.PauseShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: PauseShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 25
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used for pausing a simulation.
+  example: []
+  syntax:
+    content: public List<Keys> PauseShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property PauseShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.PauseShortcut*
+- uid: _2dgs.SettingsSaveData.SpeedUpShortcut
+  commentId: P:_2dgs.SettingsSaveData.SpeedUpShortcut
+  id: SpeedUpShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: SpeedUpShortcut
+  nameWithType: SettingsSaveData.SpeedUpShortcut
+  fullName: _2dgs.SettingsSaveData.SpeedUpShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: SpeedUpShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 29
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used to increase the timestep of a simulation.
+  example: []
+  syntax:
+    content: public List<Keys> SpeedUpShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property SpeedUpShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.SpeedUpShortcut*
+- uid: _2dgs.SettingsSaveData.SpeedDownShortcut
+  commentId: P:_2dgs.SettingsSaveData.SpeedDownShortcut
+  id: SpeedDownShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: SpeedDownShortcut
+  nameWithType: SettingsSaveData.SpeedDownShortcut
+  fullName: _2dgs.SettingsSaveData.SpeedDownShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: SpeedDownShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 33
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: THe shortcut used to decrease the timestep of a simulation.
+  example: []
+  syntax:
+    content: public List<Keys> SpeedDownShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property SpeedDownShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.SpeedDownShortcut*
+- uid: _2dgs.SettingsSaveData.TrailsShortcut
+  commentId: P:_2dgs.SettingsSaveData.TrailsShortcut
+  id: TrailsShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: TrailsShortcut
+  nameWithType: SettingsSaveData.TrailsShortcut
+  fullName: _2dgs.SettingsSaveData.TrailsShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: TrailsShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 37
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used to toggle body trails.
+  example: []
+  syntax:
+    content: public List<Keys> TrailsShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property TrailsShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.TrailsShortcut*
+- uid: _2dgs.SettingsSaveData.OrbitsShortcut
+  commentId: P:_2dgs.SettingsSaveData.OrbitsShortcut
+  id: OrbitsShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: OrbitsShortcut
+  nameWithType: SettingsSaveData.OrbitsShortcut
+  fullName: _2dgs.SettingsSaveData.OrbitsShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: OrbitsShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 41
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used to toggle body orbits.
+  example: []
+  syntax:
+    content: public List<Keys> OrbitsShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property OrbitsShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.OrbitsShortcut*
+- uid: _2dgs.SettingsSaveData.VectorsShortcut
+  commentId: P:_2dgs.SettingsSaveData.VectorsShortcut
+  id: VectorsShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: VectorsShortcut
+  nameWithType: SettingsSaveData.VectorsShortcut
+  fullName: _2dgs.SettingsSaveData.VectorsShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: VectorsShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 45
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used to toggle body vectors.
+  example: []
+  syntax:
+    content: public List<Keys> VectorsShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property VectorsShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.VectorsShortcut*
+- uid: _2dgs.SettingsSaveData.NamesShortcut
+  commentId: P:_2dgs.SettingsSaveData.NamesShortcut
+  id: NamesShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: NamesShortcut
+  nameWithType: SettingsSaveData.NamesShortcut
+  fullName: _2dgs.SettingsSaveData.NamesShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: NamesShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 49
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used to toggle body names.
+  example: []
+  syntax:
+    content: public List<Keys> NamesShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property NamesShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.NamesShortcut*
+- uid: _2dgs.SettingsSaveData.GlowShortcut
+  commentId: P:_2dgs.SettingsSaveData.GlowShortcut
+  id: GlowShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: GlowShortcut
+  nameWithType: SettingsSaveData.GlowShortcut
+  fullName: _2dgs.SettingsSaveData.GlowShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: GlowShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 53
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used to toggle the body glow effect.
+  example: []
+  syntax:
+    content: public List<Keys> GlowShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property GlowShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.GlowShortcut*
+- uid: _2dgs.SettingsSaveData.EditShortcut
+  commentId: P:_2dgs.SettingsSaveData.EditShortcut
+  id: EditShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: EditShortcut
+  nameWithType: SettingsSaveData.EditShortcut
+  fullName: _2dgs.SettingsSaveData.EditShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: EditShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 57
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: AThe shortcut used to toggle edit mode on or off.
+  example: []
+  syntax:
+    content: public List<Keys> EditShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property EditShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.EditShortcut*
+- uid: _2dgs.SettingsSaveData.ScreenshotShortcut
+  commentId: P:_2dgs.SettingsSaveData.ScreenshotShortcut
+  id: ScreenshotShortcut
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: ScreenshotShortcut
+  nameWithType: SettingsSaveData.ScreenshotShortcut
+  fullName: _2dgs.SettingsSaveData.ScreenshotShortcut
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ScreenshotShortcut
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 61
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The shortcut used to take an in-game screenshot.
+  example: []
+  syntax:
+    content: public List<Keys> ScreenshotShortcut { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+    content.vb: Public Property ScreenshotShortcut As List(Of Keys)
+  overload: _2dgs.SettingsSaveData.ScreenshotShortcut*
+- uid: _2dgs.SettingsSaveData.Refresh(_2dgs.SaveSystem)
+  commentId: M:_2dgs.SettingsSaveData.Refresh(_2dgs.SaveSystem)
+  id: Refresh(_2dgs.SaveSystem)
+  parent: _2dgs.SettingsSaveData
+  langs:
+  - csharp
+  - vb
+  name: Refresh(SaveSystem)
+  nameWithType: SettingsSaveData.Refresh(SaveSystem)
+  fullName: _2dgs.SettingsSaveData.Refresh(_2dgs.SaveSystem)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/Data/SettingsSaveData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Refresh
+    path: 2dgs/Data/SettingsSaveData.cs
+    startLine: 67
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Refreshes the contents of the data class. This is required to prevent stale references when the user configures new keyboard shortcuts.
+  example: []
+  syntax:
+    content: public void Refresh(SaveSystem saveSystem)
+    parameters:
+    - id: saveSystem
+      type: _2dgs.SaveSystem
+      description: A reference to a 2DGS SaveSystem object.
+    content.vb: Public Sub Refresh(saveSystem As SaveSystem)
+  overload: _2dgs.SettingsSaveData.Refresh*
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: _2dgs.SettingsSaveData.VerticalResolution*
+  commentId: Overload:_2dgs.SettingsSaveData.VerticalResolution
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_VerticalResolution
+  name: VerticalResolution
+  nameWithType: SettingsSaveData.VerticalResolution
+  fullName: _2dgs.SettingsSaveData.VerticalResolution
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: _2dgs.SettingsSaveData.HorizontalResolution*
+  commentId: Overload:_2dgs.SettingsSaveData.HorizontalResolution
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_HorizontalResolution
+  name: HorizontalResolution
+  nameWithType: SettingsSaveData.HorizontalResolution
+  fullName: _2dgs.SettingsSaveData.HorizontalResolution
+- uid: _2dgs.SettingsSaveData.Fullscreen*
+  commentId: Overload:_2dgs.SettingsSaveData.Fullscreen
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_Fullscreen
+  name: Fullscreen
+  nameWithType: SettingsSaveData.Fullscreen
+  fullName: _2dgs.SettingsSaveData.Fullscreen
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: _2dgs.SettingsSaveData.PauseShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.PauseShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_PauseShortcut
+  name: PauseShortcut
+  nameWithType: SettingsSaveData.PauseShortcut
+  fullName: _2dgs.SettingsSaveData.PauseShortcut
+- uid: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+  commentId: T:System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Keys>
+  nameWithType: List<Keys>
+  fullName: System.Collections.Generic.List<Microsoft.Xna.Framework.Input.Keys>
+  nameWithType.vb: List(Of Keys)
+  fullName.vb: System.Collections.Generic.List(Of Microsoft.Xna.Framework.Input.Keys)
+  name.vb: List(Of Keys)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Microsoft.Xna.Framework.Input.Keys
+    name: Keys
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Input.Keys
+    name: Keys
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: _2dgs.SettingsSaveData.SpeedUpShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.SpeedUpShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_SpeedUpShortcut
+  name: SpeedUpShortcut
+  nameWithType: SettingsSaveData.SpeedUpShortcut
+  fullName: _2dgs.SettingsSaveData.SpeedUpShortcut
+- uid: _2dgs.SettingsSaveData.SpeedDownShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.SpeedDownShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_SpeedDownShortcut
+  name: SpeedDownShortcut
+  nameWithType: SettingsSaveData.SpeedDownShortcut
+  fullName: _2dgs.SettingsSaveData.SpeedDownShortcut
+- uid: _2dgs.SettingsSaveData.TrailsShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.TrailsShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_TrailsShortcut
+  name: TrailsShortcut
+  nameWithType: SettingsSaveData.TrailsShortcut
+  fullName: _2dgs.SettingsSaveData.TrailsShortcut
+- uid: _2dgs.SettingsSaveData.OrbitsShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.OrbitsShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_OrbitsShortcut
+  name: OrbitsShortcut
+  nameWithType: SettingsSaveData.OrbitsShortcut
+  fullName: _2dgs.SettingsSaveData.OrbitsShortcut
+- uid: _2dgs.SettingsSaveData.VectorsShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.VectorsShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_VectorsShortcut
+  name: VectorsShortcut
+  nameWithType: SettingsSaveData.VectorsShortcut
+  fullName: _2dgs.SettingsSaveData.VectorsShortcut
+- uid: _2dgs.SettingsSaveData.NamesShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.NamesShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_NamesShortcut
+  name: NamesShortcut
+  nameWithType: SettingsSaveData.NamesShortcut
+  fullName: _2dgs.SettingsSaveData.NamesShortcut
+- uid: _2dgs.SettingsSaveData.GlowShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.GlowShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_GlowShortcut
+  name: GlowShortcut
+  nameWithType: SettingsSaveData.GlowShortcut
+  fullName: _2dgs.SettingsSaveData.GlowShortcut
+- uid: _2dgs.SettingsSaveData.EditShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.EditShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_EditShortcut
+  name: EditShortcut
+  nameWithType: SettingsSaveData.EditShortcut
+  fullName: _2dgs.SettingsSaveData.EditShortcut
+- uid: _2dgs.SettingsSaveData.ScreenshotShortcut*
+  commentId: Overload:_2dgs.SettingsSaveData.ScreenshotShortcut
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_ScreenshotShortcut
+  name: ScreenshotShortcut
+  nameWithType: SettingsSaveData.ScreenshotShortcut
+  fullName: _2dgs.SettingsSaveData.ScreenshotShortcut
+- uid: _2dgs.SettingsSaveData.Refresh*
+  commentId: Overload:_2dgs.SettingsSaveData.Refresh
+  href: _2dgs.SettingsSaveData.html#_2dgs_SettingsSaveData_Refresh__2dgs_SaveSystem_
+  name: Refresh
+  nameWithType: SettingsSaveData.Refresh
+  fullName: _2dgs.SettingsSaveData.Refresh
+- uid: _2dgs.SaveSystem
+  commentId: T:_2dgs.SaveSystem
+  parent: _2dgs
+  href: _2dgs.SaveSystem.html
+  name: SaveSystem
+  nameWithType: SaveSystem
+  fullName: _2dgs.SaveSystem

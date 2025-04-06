@@ -1,0 +1,489 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.KeyManager
+  commentId: T:_2dgs.KeyManager
+  id: KeyManager
+  parent: _2dgs
+  children:
+  - _2dgs.KeyManager.Shortcut(System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys},Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState,System.Action)
+  langs:
+  - csharp
+  - vb
+  name: KeyManager
+  nameWithType: KeyManager
+  fullName: _2dgs.KeyManager
+  type: Class
+  source:
+    remote:
+      path: 2dgs/Utilities/KeyManager.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: KeyManager
+    path: 2dgs/Utilities/KeyManager.cs
+    startLine: 9
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A class used to aid in the execution of keyboard shortcuts.
+  example: []
+  syntax:
+    content: public static class KeyManager
+    content.vb: Public Module KeyManager
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: _2dgs.KeyManager.Shortcut(System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys},Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState,System.Action)
+  commentId: M:_2dgs.KeyManager.Shortcut(System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys},Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState,System.Action)
+  id: Shortcut(System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys},Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState,System.Action)
+  parent: _2dgs.KeyManager
+  langs:
+  - csharp
+  - vb
+  name: Shortcut(List<Keys>, KeyboardState, KeyboardState, Action)
+  nameWithType: KeyManager.Shortcut(List<Keys>, KeyboardState, KeyboardState, Action)
+  fullName: _2dgs.KeyManager.Shortcut(System.Collections.Generic.List<Microsoft.Xna.Framework.Input.Keys>, Microsoft.Xna.Framework.Input.KeyboardState, Microsoft.Xna.Framework.Input.KeyboardState, System.Action)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/Utilities/KeyManager.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Shortcut
+    path: 2dgs/Utilities/KeyManager.cs
+    startLine: 19
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: >-
+    A method used to encapsulate the conditions for a keyboard shortcut. Two separate keyboard states are required to prevent 'repeated' actions if the keys
+
+    are held down for more than a single frame. Instead, a key (or keys) will need to be released before the shortcut can be used again.
+  example: []
+  syntax:
+    content: public static void Shortcut(List<Keys> keys, KeyboardState current, KeyboardState previous, Action action)
+    parameters:
+    - id: keys
+      type: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+      description: The keys required to activate the shortcut.
+    - id: current
+      type: Microsoft.Xna.Framework.Input.KeyboardState
+      description: The keys that are currently being held down.
+    - id: previous
+      type: Microsoft.Xna.Framework.Input.KeyboardState
+      description: The keys that were just held down a previous frame.
+    - id: action
+      type: System.Action
+      description: The action to execute upon satisfying the conditions of the shortcut.
+    content.vb: Public Shared Sub Shortcut(keys As List(Of Keys), current As KeyboardState, previous As KeyboardState, action As Action)
+  overload: _2dgs.KeyManager.Shortcut*
+  nameWithType.vb: KeyManager.Shortcut(List(Of Keys), KeyboardState, KeyboardState, Action)
+  fullName.vb: _2dgs.KeyManager.Shortcut(System.Collections.Generic.List(Of Microsoft.Xna.Framework.Input.Keys), Microsoft.Xna.Framework.Input.KeyboardState, Microsoft.Xna.Framework.Input.KeyboardState, System.Action)
+  name.vb: Shortcut(List(Of Keys), KeyboardState, KeyboardState, Action)
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: _2dgs.KeyManager.Shortcut*
+  commentId: Overload:_2dgs.KeyManager.Shortcut
+  href: _2dgs.KeyManager.html#_2dgs_KeyManager_Shortcut_System_Collections_Generic_List_Microsoft_Xna_Framework_Input_Keys__Microsoft_Xna_Framework_Input_KeyboardState_Microsoft_Xna_Framework_Input_KeyboardState_System_Action_
+  name: Shortcut
+  nameWithType: KeyManager.Shortcut
+  fullName: _2dgs.KeyManager.Shortcut
+- uid: System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+  commentId: T:System.Collections.Generic.List{Microsoft.Xna.Framework.Input.Keys}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Keys>
+  nameWithType: List<Keys>
+  fullName: System.Collections.Generic.List<Microsoft.Xna.Framework.Input.Keys>
+  nameWithType.vb: List(Of Keys)
+  fullName.vb: System.Collections.Generic.List(Of Microsoft.Xna.Framework.Input.Keys)
+  name.vb: List(Of Keys)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Microsoft.Xna.Framework.Input.Keys
+    name: Keys
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Input.Keys
+    name: Keys
+    isExternal: true
+  - name: )
+- uid: Microsoft.Xna.Framework.Input.KeyboardState
+  commentId: T:Microsoft.Xna.Framework.Input.KeyboardState
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: KeyboardState
+  nameWithType: KeyboardState
+  fullName: Microsoft.Xna.Framework.Input.KeyboardState
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true

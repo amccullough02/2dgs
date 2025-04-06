@@ -1,0 +1,1421 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.UiComponents
+  commentId: T:_2dgs.UiComponents
+  id: UiComponents
+  parent: _2dgs
+  children:
+  - _2dgs.UiComponents.Button(System.String,System.Boolean,System.Int32,System.Int32)
+  - _2dgs.UiComponents.ComboView(System.Int32)
+  - _2dgs.UiComponents.CustomColorPicker
+  - _2dgs.UiComponents.DropdownLabel(System.String)
+  - _2dgs.UiComponents.Grid(System.Int32,System.Int32,System.Int32)
+  - _2dgs.UiComponents.HorizontalSeparator(System.Int32,System.Int32,System.Int32)
+  - _2dgs.UiComponents.HorizontalSlider(System.Int32,System.Int32,System.Int32)
+  - _2dgs.UiComponents.KeyBindLabel(System.String)
+  - _2dgs.UiComponents.LightLabel(System.String,System.Int32)
+  - _2dgs.UiComponents.ListView(System.Int32)
+  - _2dgs.UiComponents.MediumLabel(System.String,System.Int32)
+  - _2dgs.UiComponents.MenuButton(System.String,System.Boolean,System.Int32,System.Int32)
+  - _2dgs.UiComponents.ReadOnlyTextBox(System.String)
+  - _2dgs.UiComponents.StyledDialog(System.String)
+  - _2dgs.UiComponents.TabControl(System.Int32,System.Int32)
+  - _2dgs.UiComponents.TabItem(System.String)
+  - _2dgs.UiComponents.TextBox(System.String)
+  - _2dgs.UiComponents.TitleLabel(System.String)
+  - _2dgs.UiComponents.ToggleButton(System.String,System.Boolean)
+  - _2dgs.UiComponents.ValidationWindow(Myra.Graphics2D.UI.Label)
+  langs:
+  - csharp
+  - vb
+  name: UiComponents
+  nameWithType: UiComponents
+  fullName: _2dgs.UiComponents
+  type: Class
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: UiComponents
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 11
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A basic UiComponents factory class. These are Myra components with additional defaults that are specific to 2DGS.
+  example: []
+  syntax:
+    content: public static class UiComponents
+    content.vb: Public Module UiComponents
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: _2dgs.UiComponents.Button(System.String,System.Boolean,System.Int32,System.Int32)
+  commentId: M:_2dgs.UiComponents.Button(System.String,System.Boolean,System.Int32,System.Int32)
+  id: Button(System.String,System.Boolean,System.Int32,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: Button(string, bool, int, int)
+  nameWithType: UiComponents.Button(string, bool, int, int)
+  fullName: _2dgs.UiComponents.Button(string, bool, int, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Button
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 21
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a standard 2DGS button.
+  example: []
+  syntax:
+    content: public static Button Button(string text, bool visible = true, int width = 250, int height = 60)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the button.
+    - id: visible
+      type: System.Boolean
+      description: The button's visibility.
+    - id: width
+      type: System.Int32
+      description: The pixel width of the button.
+    - id: height
+      type: System.Int32
+      description: The pixel height of the button.
+    return:
+      type: Myra.Graphics2D.UI.Button
+      description: A 2DGS button instance.
+    content.vb: Public Shared Function Button(text As String, visible As Boolean = True, width As Integer = 250, height As Integer = 60) As Button
+  overload: _2dgs.UiComponents.Button*
+  nameWithType.vb: UiComponents.Button(String, Boolean, Integer, Integer)
+  fullName.vb: _2dgs.UiComponents.Button(String, Boolean, Integer, Integer)
+  name.vb: Button(String, Boolean, Integer, Integer)
+- uid: _2dgs.UiComponents.MenuButton(System.String,System.Boolean,System.Int32,System.Int32)
+  commentId: M:_2dgs.UiComponents.MenuButton(System.String,System.Boolean,System.Int32,System.Int32)
+  id: MenuButton(System.String,System.Boolean,System.Int32,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: MenuButton(string, bool, int, int)
+  nameWithType: UiComponents.MenuButton(string, bool, int, int)
+  fullName: _2dgs.UiComponents.MenuButton(string, bool, int, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: MenuButton
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 49
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS (main) menu button.
+  example: []
+  syntax:
+    content: public static Button MenuButton(string text, bool visible = true, int width = 250, int height = 60)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the button.
+    - id: visible
+      type: System.Boolean
+      description: The button's visibility.
+    - id: width
+      type: System.Int32
+      description: The pixel width of the button.
+    - id: height
+      type: System.Int32
+      description: The pixel height of the button.
+    return:
+      type: Myra.Graphics2D.UI.Button
+      description: A 2DGS (main) menu button instance.
+    content.vb: Public Shared Function MenuButton(text As String, visible As Boolean = True, width As Integer = 250, height As Integer = 60) As Button
+  overload: _2dgs.UiComponents.MenuButton*
+  nameWithType.vb: UiComponents.MenuButton(String, Boolean, Integer, Integer)
+  fullName.vb: _2dgs.UiComponents.MenuButton(String, Boolean, Integer, Integer)
+  name.vb: MenuButton(String, Boolean, Integer, Integer)
+- uid: _2dgs.UiComponents.HorizontalSeparator(System.Int32,System.Int32,System.Int32)
+  commentId: M:_2dgs.UiComponents.HorizontalSeparator(System.Int32,System.Int32,System.Int32)
+  id: HorizontalSeparator(System.Int32,System.Int32,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: HorizontalSeparator(int, int, int)
+  nameWithType: UiComponents.HorizontalSeparator(int, int, int)
+  fullName: _2dgs.UiComponents.HorizontalSeparator(int, int, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: HorizontalSeparator
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 81
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS horizontal separator.
+  example: []
+  syntax:
+    content: public static HorizontalSeparator HorizontalSeparator(int width = 250, int height = 5, int margin = 10)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: The pixel width of the button.
+    - id: height
+      type: System.Int32
+      description: The pixel height of the button.
+    - id: margin
+      type: System.Int32
+      description: The margin for the separator.
+    return:
+      type: Myra.Graphics2D.UI.HorizontalSeparator
+      description: A 2DGS horizontal separator instance.
+    content.vb: Public Shared Function HorizontalSeparator(width As Integer = 250, height As Integer = 5, margin As Integer = 10) As HorizontalSeparator
+  overload: _2dgs.UiComponents.HorizontalSeparator*
+  nameWithType.vb: UiComponents.HorizontalSeparator(Integer, Integer, Integer)
+  fullName.vb: _2dgs.UiComponents.HorizontalSeparator(Integer, Integer, Integer)
+  name.vb: HorizontalSeparator(Integer, Integer, Integer)
+- uid: _2dgs.UiComponents.HorizontalSlider(System.Int32,System.Int32,System.Int32)
+  commentId: M:_2dgs.UiComponents.HorizontalSlider(System.Int32,System.Int32,System.Int32)
+  id: HorizontalSlider(System.Int32,System.Int32,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: HorizontalSlider(int, int, int)
+  nameWithType: UiComponents.HorizontalSlider(int, int, int)
+  fullName: _2dgs.UiComponents.HorizontalSlider(int, int, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: HorizontalSlider
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 101
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS horizontal slider.
+  example: []
+  syntax:
+    content: public static HorizontalSlider HorizontalSlider(int value, int min, int max)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: The default value for the slider.
+    - id: min
+      type: System.Int32
+      description: The minimum value for the slider.
+    - id: max
+      type: System.Int32
+      description: The maximum value for the slider.
+    return:
+      type: Myra.Graphics2D.UI.HorizontalSlider
+      description: A 2DGS horizontal slider instance.
+    content.vb: Public Shared Function HorizontalSlider(value As Integer, min As Integer, max As Integer) As HorizontalSlider
+  overload: _2dgs.UiComponents.HorizontalSlider*
+  nameWithType.vb: UiComponents.HorizontalSlider(Integer, Integer, Integer)
+  fullName.vb: _2dgs.UiComponents.HorizontalSlider(Integer, Integer, Integer)
+  name.vb: HorizontalSlider(Integer, Integer, Integer)
+- uid: _2dgs.UiComponents.ComboView(System.Int32)
+  commentId: M:_2dgs.UiComponents.ComboView(System.Int32)
+  id: ComboView(System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: ComboView(int)
+  nameWithType: UiComponents.ComboView(int)
+  fullName: _2dgs.UiComponents.ComboView(int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ComboView
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 117
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS combo view.
+  example: []
+  syntax:
+    content: public static ComboView ComboView(int width = 250)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: The width of the combo view.
+    return:
+      type: Myra.Graphics2D.UI.ComboView
+      description: A 2DGS combo view instance.
+    content.vb: Public Shared Function ComboView(width As Integer = 250) As ComboView
+  overload: _2dgs.UiComponents.ComboView*
+  nameWithType.vb: UiComponents.ComboView(Integer)
+  fullName.vb: _2dgs.UiComponents.ComboView(Integer)
+  name.vb: ComboView(Integer)
+- uid: _2dgs.UiComponents.DropdownLabel(System.String)
+  commentId: M:_2dgs.UiComponents.DropdownLabel(System.String)
+  id: DropdownLabel(System.String)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: DropdownLabel(string)
+  nameWithType: UiComponents.DropdownLabel(string)
+  fullName: _2dgs.UiComponents.DropdownLabel(string)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: DropdownLabel
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 130
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS dropdown label.
+  example: []
+  syntax:
+    content: public static Label DropdownLabel(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The label's text.
+    return:
+      type: Myra.Graphics2D.UI.Label
+      description: A 2DGS dropdown label instance.
+    content.vb: Public Shared Function DropdownLabel(text As String) As Label
+  overload: _2dgs.UiComponents.DropdownLabel*
+  nameWithType.vb: UiComponents.DropdownLabel(String)
+  fullName.vb: _2dgs.UiComponents.DropdownLabel(String)
+  name.vb: DropdownLabel(String)
+- uid: _2dgs.UiComponents.Grid(System.Int32,System.Int32,System.Int32)
+  commentId: M:_2dgs.UiComponents.Grid(System.Int32,System.Int32,System.Int32)
+  id: Grid(System.Int32,System.Int32,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: Grid(int, int, int)
+  nameWithType: UiComponents.Grid(int, int, int)
+  fullName: _2dgs.UiComponents.Grid(int, int, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Grid
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 148
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS widget grid.
+  example: []
+  syntax:
+    content: public static Grid Grid(int spacing, int columns, int rows)
+    parameters:
+    - id: spacing
+      type: System.Int32
+      description: The spacing between grid elements.
+    - id: columns
+      type: System.Int32
+      description: The number of columns the grid will have.
+    - id: rows
+      type: System.Int32
+      description: The number of rows the grid will have.
+    return:
+      type: Myra.Graphics2D.UI.Grid
+      description: ''
+    content.vb: Public Shared Function Grid(spacing As Integer, columns As Integer, rows As Integer) As Grid
+  overload: _2dgs.UiComponents.Grid*
+  nameWithType.vb: UiComponents.Grid(Integer, Integer, Integer)
+  fullName.vb: _2dgs.UiComponents.Grid(Integer, Integer, Integer)
+  name.vb: Grid(Integer, Integer, Integer)
+- uid: _2dgs.UiComponents.KeyBindLabel(System.String)
+  commentId: M:_2dgs.UiComponents.KeyBindLabel(System.String)
+  id: KeyBindLabel(System.String)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: KeyBindLabel(string)
+  nameWithType: UiComponents.KeyBindLabel(string)
+  fullName: _2dgs.UiComponents.KeyBindLabel(string)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: KeyBindLabel
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 176
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS key bind preview label.
+  example: []
+  syntax:
+    content: public static Label KeyBindLabel(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the label.
+    return:
+      type: Myra.Graphics2D.UI.Label
+      description: A 2DGS key bind preview lable instance.
+    content.vb: Public Shared Function KeyBindLabel(text As String) As Label
+  overload: _2dgs.UiComponents.KeyBindLabel*
+  nameWithType.vb: UiComponents.KeyBindLabel(String)
+  fullName.vb: _2dgs.UiComponents.KeyBindLabel(String)
+  name.vb: KeyBindLabel(String)
+- uid: _2dgs.UiComponents.LightLabel(System.String,System.Int32)
+  commentId: M:_2dgs.UiComponents.LightLabel(System.String,System.Int32)
+  id: LightLabel(System.String,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: LightLabel(string, int)
+  nameWithType: UiComponents.LightLabel(string, int)
+  fullName: _2dgs.UiComponents.LightLabel(string, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: LightLabel
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 195
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS light label.
+  example: []
+  syntax:
+    content: public static Label LightLabel(string text, int fontSize = 20)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the label.
+    - id: fontSize
+      type: System.Int32
+      description: The font size of the label.
+    return:
+      type: Myra.Graphics2D.UI.Label
+      description: A 2DGS light label.
+    content.vb: Public Shared Function LightLabel(text As String, fontSize As Integer = 20) As Label
+  overload: _2dgs.UiComponents.LightLabel*
+  nameWithType.vb: UiComponents.LightLabel(String, Integer)
+  fullName.vb: _2dgs.UiComponents.LightLabel(String, Integer)
+  name.vb: LightLabel(String, Integer)
+- uid: _2dgs.UiComponents.MediumLabel(System.String,System.Int32)
+  commentId: M:_2dgs.UiComponents.MediumLabel(System.String,System.Int32)
+  id: MediumLabel(System.String,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: MediumLabel(string, int)
+  nameWithType: UiComponents.MediumLabel(string, int)
+  fullName: _2dgs.UiComponents.MediumLabel(string, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: MediumLabel
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 211
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS medium label.
+  example: []
+  syntax:
+    content: public static Label MediumLabel(string text, int fontSize = 20)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the label.
+    - id: fontSize
+      type: System.Int32
+      description: The font size of the label.
+    return:
+      type: Myra.Graphics2D.UI.Label
+      description: A 2DGS medium label.
+    content.vb: Public Shared Function MediumLabel(text As String, fontSize As Integer = 20) As Label
+  overload: _2dgs.UiComponents.MediumLabel*
+  nameWithType.vb: UiComponents.MediumLabel(String, Integer)
+  fullName.vb: _2dgs.UiComponents.MediumLabel(String, Integer)
+  name.vb: MediumLabel(String, Integer)
+- uid: _2dgs.UiComponents.TitleLabel(System.String)
+  commentId: M:_2dgs.UiComponents.TitleLabel(System.String)
+  id: TitleLabel(System.String)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: TitleLabel(string)
+  nameWithType: UiComponents.TitleLabel(string)
+  fullName: _2dgs.UiComponents.TitleLabel(string)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: TitleLabel
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 226
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS title label.
+  example: []
+  syntax:
+    content: public static Label TitleLabel(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the label.
+    return:
+      type: Myra.Graphics2D.UI.Label
+      description: A 2DGS title label.
+    content.vb: Public Shared Function TitleLabel(text As String) As Label
+  overload: _2dgs.UiComponents.TitleLabel*
+  nameWithType.vb: UiComponents.TitleLabel(String)
+  fullName.vb: _2dgs.UiComponents.TitleLabel(String)
+  name.vb: TitleLabel(String)
+- uid: _2dgs.UiComponents.TextBox(System.String)
+  commentId: M:_2dgs.UiComponents.TextBox(System.String)
+  id: TextBox(System.String)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: TextBox(string)
+  nameWithType: UiComponents.TextBox(string)
+  fullName: _2dgs.UiComponents.TextBox(string)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: TextBox
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 242
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS text box.
+  example: []
+  syntax:
+    content: public static TextBox TextBox(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text box's text.
+    return:
+      type: Myra.Graphics2D.UI.TextBox
+      description: A 2DGS text box.
+    content.vb: Public Shared Function TextBox(text As String) As TextBox
+  overload: _2dgs.UiComponents.TextBox*
+  nameWithType.vb: UiComponents.TextBox(String)
+  fullName.vb: _2dgs.UiComponents.TextBox(String)
+  name.vb: TextBox(String)
+- uid: _2dgs.UiComponents.ToggleButton(System.String,System.Boolean)
+  commentId: M:_2dgs.UiComponents.ToggleButton(System.String,System.Boolean)
+  id: ToggleButton(System.String,System.Boolean)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: ToggleButton(string, bool)
+  nameWithType: UiComponents.ToggleButton(string, bool)
+  fullName: _2dgs.UiComponents.ToggleButton(string, bool)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ToggleButton
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 261
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS toggle button.
+  example: []
+  syntax:
+    content: public static ToggleButton ToggleButton(string text, bool toggled)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text of the toggle button.
+    - id: toggled
+      type: System.Boolean
+      description: Is the toggle button enabled or not.
+    return:
+      type: Myra.Graphics2D.UI.ToggleButton
+      description: A 2DGS toggle button.
+    content.vb: Public Shared Function ToggleButton(text As String, toggled As Boolean) As ToggleButton
+  overload: _2dgs.UiComponents.ToggleButton*
+  nameWithType.vb: UiComponents.ToggleButton(String, Boolean)
+  fullName.vb: _2dgs.UiComponents.ToggleButton(String, Boolean)
+  name.vb: ToggleButton(String, Boolean)
+- uid: _2dgs.UiComponents.ValidationWindow(Myra.Graphics2D.UI.Label)
+  commentId: M:_2dgs.UiComponents.ValidationWindow(Myra.Graphics2D.UI.Label)
+  id: ValidationWindow(Myra.Graphics2D.UI.Label)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: ValidationWindow(Label)
+  nameWithType: UiComponents.ValidationWindow(Label)
+  fullName: _2dgs.UiComponents.ValidationWindow(Myra.Graphics2D.UI.Label)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ValidationWindow
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 284
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS validation error window.
+  example: []
+  syntax:
+    content: public static Window ValidationWindow(Label label)
+    parameters:
+    - id: label
+      type: Myra.Graphics2D.UI.Label
+      description: The label the window will contain.
+    return:
+      type: Myra.Graphics2D.UI.Window
+      description: A 2DGS validation error window.
+    content.vb: Public Shared Function ValidationWindow(label As Label) As Window
+  overload: _2dgs.UiComponents.ValidationWindow*
+- uid: _2dgs.UiComponents.StyledDialog(System.String)
+  commentId: M:_2dgs.UiComponents.StyledDialog(System.String)
+  id: StyledDialog(System.String)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: StyledDialog(string)
+  nameWithType: UiComponents.StyledDialog(string)
+  fullName: _2dgs.UiComponents.StyledDialog(string)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: StyledDialog
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 299
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS dialog.
+  example: []
+  syntax:
+    content: public static Dialog StyledDialog(string title)
+    parameters:
+    - id: title
+      type: System.String
+      description: The title of the dialog.
+    return:
+      type: Myra.Graphics2D.UI.Dialog
+      description: A 2DGS dialog.
+    content.vb: Public Shared Function StyledDialog(title As String) As Dialog
+  overload: _2dgs.UiComponents.StyledDialog*
+  nameWithType.vb: UiComponents.StyledDialog(String)
+  fullName.vb: _2dgs.UiComponents.StyledDialog(String)
+  name.vb: StyledDialog(String)
+- uid: _2dgs.UiComponents.CustomColorPicker
+  commentId: M:_2dgs.UiComponents.CustomColorPicker
+  id: CustomColorPicker
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: CustomColorPicker()
+  nameWithType: UiComponents.CustomColorPicker()
+  fullName: _2dgs.UiComponents.CustomColorPicker()
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: CustomColorPicker
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 339
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS color picker dialog.
+  example: []
+  syntax:
+    content: public static ColorPickerDialog CustomColorPicker()
+    return:
+      type: Myra.Graphics2D.UI.ColorPicker.ColorPickerDialog
+      description: A 2DGS color picker dialog.
+    content.vb: Public Shared Function CustomColorPicker() As ColorPickerDialog
+  overload: _2dgs.UiComponents.CustomColorPicker*
+- uid: _2dgs.UiComponents.ReadOnlyTextBox(System.String)
+  commentId: M:_2dgs.UiComponents.ReadOnlyTextBox(System.String)
+  id: ReadOnlyTextBox(System.String)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: ReadOnlyTextBox(string)
+  nameWithType: UiComponents.ReadOnlyTextBox(string)
+  fullName: _2dgs.UiComponents.ReadOnlyTextBox(string)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ReadOnlyTextBox
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 380
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS (read-only) text box.
+  example: []
+  syntax:
+    content: public static TextBox ReadOnlyTextBox(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text box's text.
+    return:
+      type: Myra.Graphics2D.UI.TextBox
+      description: A 2DGS (read-only) text box.
+    content.vb: Public Shared Function ReadOnlyTextBox(text As String) As TextBox
+  overload: _2dgs.UiComponents.ReadOnlyTextBox*
+  nameWithType.vb: UiComponents.ReadOnlyTextBox(String)
+  fullName.vb: _2dgs.UiComponents.ReadOnlyTextBox(String)
+  name.vb: ReadOnlyTextBox(String)
+- uid: _2dgs.UiComponents.TabControl(System.Int32,System.Int32)
+  commentId: M:_2dgs.UiComponents.TabControl(System.Int32,System.Int32)
+  id: TabControl(System.Int32,System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: TabControl(int, int)
+  nameWithType: UiComponents.TabControl(int, int)
+  fullName: _2dgs.UiComponents.TabControl(int, int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: TabControl
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 405
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS tab control.
+  example: []
+  syntax:
+    content: public static TabControl TabControl(int width, int height)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: The pixel width of the widget.
+    - id: height
+      type: System.Int32
+      description: The pixel height of the widget.
+    return:
+      type: Myra.Graphics2D.UI.TabControl
+      description: A 2DGS tab control widget.
+    content.vb: Public Shared Function TabControl(width As Integer, height As Integer) As TabControl
+  overload: _2dgs.UiComponents.TabControl*
+  nameWithType.vb: UiComponents.TabControl(Integer, Integer)
+  fullName.vb: _2dgs.UiComponents.TabControl(Integer, Integer)
+  name.vb: TabControl(Integer, Integer)
+- uid: _2dgs.UiComponents.TabItem(System.String)
+  commentId: M:_2dgs.UiComponents.TabItem(System.String)
+  id: TabItem(System.String)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: TabItem(string)
+  nameWithType: UiComponents.TabItem(string)
+  fullName: _2dgs.UiComponents.TabItem(string)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: TabItem
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 420
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS tab item.
+  example: []
+  syntax:
+    content: public static TabItem TabItem(string title)
+    parameters:
+    - id: title
+      type: System.String
+      description: The title of the tab item.
+    return:
+      type: Myra.Graphics2D.UI.TabItem
+      description: A 2DGS tab item.
+    content.vb: Public Shared Function TabItem(title As String) As TabItem
+  overload: _2dgs.UiComponents.TabItem*
+  nameWithType.vb: UiComponents.TabItem(String)
+  fullName.vb: _2dgs.UiComponents.TabItem(String)
+  name.vb: TabItem(String)
+- uid: _2dgs.UiComponents.ListView(System.Int32)
+  commentId: M:_2dgs.UiComponents.ListView(System.Int32)
+  id: ListView(System.Int32)
+  parent: _2dgs.UiComponents
+  langs:
+  - csharp
+  - vb
+  name: ListView(int)
+  nameWithType: UiComponents.ListView(int)
+  fullName: _2dgs.UiComponents.ListView(int)
+  type: Method
+  source:
+    remote:
+      path: 2dgs/UserInterfaces/UiComponents.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ListView
+    path: 2dgs/UserInterfaces/UiComponents.cs
+    startLine: 433
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A method to create a 2DGS list view.
+  example: []
+  syntax:
+    content: public static ListView ListView(int width)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: The pixel width of the list view.
+    return:
+      type: Myra.Graphics2D.UI.ListView
+      description: A 2DGS list view.
+    content.vb: Public Shared Function ListView(width As Integer) As ListView
+  overload: _2dgs.UiComponents.ListView*
+  nameWithType.vb: UiComponents.ListView(Integer)
+  fullName.vb: _2dgs.UiComponents.ListView(Integer)
+  name.vb: ListView(Integer)
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: _2dgs.UiComponents.Button*
+  commentId: Overload:_2dgs.UiComponents.Button
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_Button_System_String_System_Boolean_System_Int32_System_Int32_
+  name: Button
+  nameWithType: UiComponents.Button
+  fullName: _2dgs.UiComponents.Button
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Myra.Graphics2D.UI.Button
+  commentId: T:Myra.Graphics2D.UI.Button
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: Button
+  nameWithType: Button
+  fullName: Myra.Graphics2D.UI.Button
+- uid: Myra.Graphics2D.UI
+  commentId: N:Myra.Graphics2D.UI
+  isExternal: true
+  name: Myra.Graphics2D.UI
+  nameWithType: Myra.Graphics2D.UI
+  fullName: Myra.Graphics2D.UI
+  spec.csharp:
+  - uid: Myra
+    name: Myra
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D
+    name: Graphics2D
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI
+    name: UI
+    isExternal: true
+  spec.vb:
+  - uid: Myra
+    name: Myra
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D
+    name: Graphics2D
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI
+    name: UI
+    isExternal: true
+- uid: _2dgs.UiComponents.MenuButton*
+  commentId: Overload:_2dgs.UiComponents.MenuButton
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_MenuButton_System_String_System_Boolean_System_Int32_System_Int32_
+  name: MenuButton
+  nameWithType: UiComponents.MenuButton
+  fullName: _2dgs.UiComponents.MenuButton
+- uid: _2dgs.UiComponents.HorizontalSeparator*
+  commentId: Overload:_2dgs.UiComponents.HorizontalSeparator
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_HorizontalSeparator_System_Int32_System_Int32_System_Int32_
+  name: HorizontalSeparator
+  nameWithType: UiComponents.HorizontalSeparator
+  fullName: _2dgs.UiComponents.HorizontalSeparator
+- uid: Myra.Graphics2D.UI.HorizontalSeparator
+  commentId: T:Myra.Graphics2D.UI.HorizontalSeparator
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: HorizontalSeparator
+  nameWithType: HorizontalSeparator
+  fullName: Myra.Graphics2D.UI.HorizontalSeparator
+- uid: _2dgs.UiComponents.HorizontalSlider*
+  commentId: Overload:_2dgs.UiComponents.HorizontalSlider
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_HorizontalSlider_System_Int32_System_Int32_System_Int32_
+  name: HorizontalSlider
+  nameWithType: UiComponents.HorizontalSlider
+  fullName: _2dgs.UiComponents.HorizontalSlider
+- uid: Myra.Graphics2D.UI.HorizontalSlider
+  commentId: T:Myra.Graphics2D.UI.HorizontalSlider
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: HorizontalSlider
+  nameWithType: HorizontalSlider
+  fullName: Myra.Graphics2D.UI.HorizontalSlider
+- uid: _2dgs.UiComponents.ComboView*
+  commentId: Overload:_2dgs.UiComponents.ComboView
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_ComboView_System_Int32_
+  name: ComboView
+  nameWithType: UiComponents.ComboView
+  fullName: _2dgs.UiComponents.ComboView
+- uid: Myra.Graphics2D.UI.ComboView
+  commentId: T:Myra.Graphics2D.UI.ComboView
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: ComboView
+  nameWithType: ComboView
+  fullName: Myra.Graphics2D.UI.ComboView
+- uid: _2dgs.UiComponents.DropdownLabel*
+  commentId: Overload:_2dgs.UiComponents.DropdownLabel
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_DropdownLabel_System_String_
+  name: DropdownLabel
+  nameWithType: UiComponents.DropdownLabel
+  fullName: _2dgs.UiComponents.DropdownLabel
+- uid: Myra.Graphics2D.UI.Label
+  commentId: T:Myra.Graphics2D.UI.Label
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: Label
+  nameWithType: Label
+  fullName: Myra.Graphics2D.UI.Label
+- uid: _2dgs.UiComponents.Grid*
+  commentId: Overload:_2dgs.UiComponents.Grid
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_Grid_System_Int32_System_Int32_System_Int32_
+  name: Grid
+  nameWithType: UiComponents.Grid
+  fullName: _2dgs.UiComponents.Grid
+- uid: Myra.Graphics2D.UI.Grid
+  commentId: T:Myra.Graphics2D.UI.Grid
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: Grid
+  nameWithType: Grid
+  fullName: Myra.Graphics2D.UI.Grid
+- uid: _2dgs.UiComponents.KeyBindLabel*
+  commentId: Overload:_2dgs.UiComponents.KeyBindLabel
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_KeyBindLabel_System_String_
+  name: KeyBindLabel
+  nameWithType: UiComponents.KeyBindLabel
+  fullName: _2dgs.UiComponents.KeyBindLabel
+- uid: _2dgs.UiComponents.LightLabel*
+  commentId: Overload:_2dgs.UiComponents.LightLabel
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_LightLabel_System_String_System_Int32_
+  name: LightLabel
+  nameWithType: UiComponents.LightLabel
+  fullName: _2dgs.UiComponents.LightLabel
+- uid: _2dgs.UiComponents.MediumLabel*
+  commentId: Overload:_2dgs.UiComponents.MediumLabel
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_MediumLabel_System_String_System_Int32_
+  name: MediumLabel
+  nameWithType: UiComponents.MediumLabel
+  fullName: _2dgs.UiComponents.MediumLabel
+- uid: _2dgs.UiComponents.TitleLabel*
+  commentId: Overload:_2dgs.UiComponents.TitleLabel
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_TitleLabel_System_String_
+  name: TitleLabel
+  nameWithType: UiComponents.TitleLabel
+  fullName: _2dgs.UiComponents.TitleLabel
+- uid: _2dgs.UiComponents.TextBox*
+  commentId: Overload:_2dgs.UiComponents.TextBox
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_TextBox_System_String_
+  name: TextBox
+  nameWithType: UiComponents.TextBox
+  fullName: _2dgs.UiComponents.TextBox
+- uid: Myra.Graphics2D.UI.TextBox
+  commentId: T:Myra.Graphics2D.UI.TextBox
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: TextBox
+  nameWithType: TextBox
+  fullName: Myra.Graphics2D.UI.TextBox
+- uid: _2dgs.UiComponents.ToggleButton*
+  commentId: Overload:_2dgs.UiComponents.ToggleButton
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_ToggleButton_System_String_System_Boolean_
+  name: ToggleButton
+  nameWithType: UiComponents.ToggleButton
+  fullName: _2dgs.UiComponents.ToggleButton
+- uid: Myra.Graphics2D.UI.ToggleButton
+  commentId: T:Myra.Graphics2D.UI.ToggleButton
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: ToggleButton
+  nameWithType: ToggleButton
+  fullName: Myra.Graphics2D.UI.ToggleButton
+- uid: _2dgs.UiComponents.ValidationWindow*
+  commentId: Overload:_2dgs.UiComponents.ValidationWindow
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_ValidationWindow_Myra_Graphics2D_UI_Label_
+  name: ValidationWindow
+  nameWithType: UiComponents.ValidationWindow
+  fullName: _2dgs.UiComponents.ValidationWindow
+- uid: Myra.Graphics2D.UI.Window
+  commentId: T:Myra.Graphics2D.UI.Window
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: Window
+  nameWithType: Window
+  fullName: Myra.Graphics2D.UI.Window
+- uid: _2dgs.UiComponents.StyledDialog*
+  commentId: Overload:_2dgs.UiComponents.StyledDialog
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_StyledDialog_System_String_
+  name: StyledDialog
+  nameWithType: UiComponents.StyledDialog
+  fullName: _2dgs.UiComponents.StyledDialog
+- uid: Myra.Graphics2D.UI.Dialog
+  commentId: T:Myra.Graphics2D.UI.Dialog
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: Dialog
+  nameWithType: Dialog
+  fullName: Myra.Graphics2D.UI.Dialog
+- uid: _2dgs.UiComponents.CustomColorPicker*
+  commentId: Overload:_2dgs.UiComponents.CustomColorPicker
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_CustomColorPicker
+  name: CustomColorPicker
+  nameWithType: UiComponents.CustomColorPicker
+  fullName: _2dgs.UiComponents.CustomColorPicker
+- uid: Myra.Graphics2D.UI.ColorPicker.ColorPickerDialog
+  commentId: T:Myra.Graphics2D.UI.ColorPicker.ColorPickerDialog
+  parent: Myra.Graphics2D.UI.ColorPicker
+  isExternal: true
+  name: ColorPickerDialog
+  nameWithType: ColorPickerDialog
+  fullName: Myra.Graphics2D.UI.ColorPicker.ColorPickerDialog
+- uid: Myra.Graphics2D.UI.ColorPicker
+  commentId: N:Myra.Graphics2D.UI.ColorPicker
+  isExternal: true
+  name: Myra.Graphics2D.UI.ColorPicker
+  nameWithType: Myra.Graphics2D.UI.ColorPicker
+  fullName: Myra.Graphics2D.UI.ColorPicker
+  spec.csharp:
+  - uid: Myra
+    name: Myra
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D
+    name: Graphics2D
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI
+    name: UI
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI.ColorPicker
+    name: ColorPicker
+    isExternal: true
+  spec.vb:
+  - uid: Myra
+    name: Myra
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D
+    name: Graphics2D
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI
+    name: UI
+    isExternal: true
+  - name: .
+  - uid: Myra.Graphics2D.UI.ColorPicker
+    name: ColorPicker
+    isExternal: true
+- uid: _2dgs.UiComponents.ReadOnlyTextBox*
+  commentId: Overload:_2dgs.UiComponents.ReadOnlyTextBox
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_ReadOnlyTextBox_System_String_
+  name: ReadOnlyTextBox
+  nameWithType: UiComponents.ReadOnlyTextBox
+  fullName: _2dgs.UiComponents.ReadOnlyTextBox
+- uid: _2dgs.UiComponents.TabControl*
+  commentId: Overload:_2dgs.UiComponents.TabControl
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_TabControl_System_Int32_System_Int32_
+  name: TabControl
+  nameWithType: UiComponents.TabControl
+  fullName: _2dgs.UiComponents.TabControl
+- uid: Myra.Graphics2D.UI.TabControl
+  commentId: T:Myra.Graphics2D.UI.TabControl
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: TabControl
+  nameWithType: TabControl
+  fullName: Myra.Graphics2D.UI.TabControl
+- uid: _2dgs.UiComponents.TabItem*
+  commentId: Overload:_2dgs.UiComponents.TabItem
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_TabItem_System_String_
+  name: TabItem
+  nameWithType: UiComponents.TabItem
+  fullName: _2dgs.UiComponents.TabItem
+- uid: Myra.Graphics2D.UI.TabItem
+  commentId: T:Myra.Graphics2D.UI.TabItem
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: TabItem
+  nameWithType: TabItem
+  fullName: Myra.Graphics2D.UI.TabItem
+- uid: _2dgs.UiComponents.ListView*
+  commentId: Overload:_2dgs.UiComponents.ListView
+  href: _2dgs.UiComponents.html#_2dgs_UiComponents_ListView_System_Int32_
+  name: ListView
+  nameWithType: UiComponents.ListView
+  fullName: _2dgs.UiComponents.ListView
+- uid: Myra.Graphics2D.UI.ListView
+  commentId: T:Myra.Graphics2D.UI.ListView
+  parent: Myra.Graphics2D.UI
+  isExternal: true
+  name: ListView
+  nameWithType: ListView
+  fullName: Myra.Graphics2D.UI.ListView

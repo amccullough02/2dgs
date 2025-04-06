@@ -1,0 +1,152 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.Position
+  commentId: T:_2dgs.Position
+  id: Position
+  parent: _2dgs
+  children:
+  - _2dgs.Position.Bottom
+  - _2dgs.Position.Left
+  - _2dgs.Position.Right
+  - _2dgs.Position.Top
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: Position
+  fullName: _2dgs.Position
+  type: Enum
+  source:
+    remote:
+      path: 2dgs/Utilities/Position.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Position
+    path: 2dgs/Utilities/Position.cs
+    startLine: 5
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: An enum used to represent the position of a Body's nameplate.
+  example: []
+  syntax:
+    content: public enum Position
+    content.vb: Public Enum Position
+- uid: _2dgs.Position.Left
+  commentId: F:_2dgs.Position.Left
+  id: Left
+  parent: _2dgs.Position
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: Position.Left
+  fullName: _2dgs.Position.Left
+  type: Field
+  source:
+    remote:
+      path: 2dgs/Utilities/Position.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Left
+    path: 2dgs/Utilities/Position.cs
+    startLine: 7
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  syntax:
+    content: Left = 0
+    return:
+      type: _2dgs.Position
+- uid: _2dgs.Position.Right
+  commentId: F:_2dgs.Position.Right
+  id: Right
+  parent: _2dgs.Position
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: Position.Right
+  fullName: _2dgs.Position.Right
+  type: Field
+  source:
+    remote:
+      path: 2dgs/Utilities/Position.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Right
+    path: 2dgs/Utilities/Position.cs
+    startLine: 8
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  syntax:
+    content: Right = 1
+    return:
+      type: _2dgs.Position
+- uid: _2dgs.Position.Top
+  commentId: F:_2dgs.Position.Top
+  id: Top
+  parent: _2dgs.Position
+  langs:
+  - csharp
+  - vb
+  name: Top
+  nameWithType: Position.Top
+  fullName: _2dgs.Position.Top
+  type: Field
+  source:
+    remote:
+      path: 2dgs/Utilities/Position.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Top
+    path: 2dgs/Utilities/Position.cs
+    startLine: 9
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  syntax:
+    content: Top = 2
+    return:
+      type: _2dgs.Position
+- uid: _2dgs.Position.Bottom
+  commentId: F:_2dgs.Position.Bottom
+  id: Bottom
+  parent: _2dgs.Position
+  langs:
+  - csharp
+  - vb
+  name: Bottom
+  nameWithType: Position.Bottom
+  fullName: _2dgs.Position.Bottom
+  type: Field
+  source:
+    remote:
+      path: 2dgs/Utilities/Position.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Bottom
+    path: 2dgs/Utilities/Position.cs
+    startLine: 10
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  syntax:
+    content: Bottom = 3
+    return:
+      type: _2dgs.Position
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: _2dgs.Position
+  commentId: T:_2dgs.Position
+  parent: _2dgs
+  href: _2dgs.Position.html
+  name: Position
+  nameWithType: Position
+  fullName: _2dgs.Position

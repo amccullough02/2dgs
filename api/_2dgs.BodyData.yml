@@ -1,0 +1,630 @@
+### YamlMime:ManagedReference
+items:
+- uid: _2dgs.BodyData
+  commentId: T:_2dgs.BodyData
+  id: BodyData
+  parent: _2dgs
+  children:
+  - _2dgs.BodyData.Color
+  - _2dgs.BodyData.ColorString
+  - _2dgs.BodyData.DisplaySize
+  - _2dgs.BodyData.Mass
+  - _2dgs.BodyData.Name
+  - _2dgs.BodyData.Position
+  - _2dgs.BodyData.Velocity
+  langs:
+  - csharp
+  - vb
+  name: BodyData
+  nameWithType: BodyData
+  fullName: _2dgs.BodyData
+  type: Class
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: BodyData
+    path: 2dgs/Data/BodyData.cs
+    startLine: 9
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: A data class used for interop between JSON.NET and a 2DGS Body object.
+  example: []
+  syntax:
+    content: public class BodyData
+    content.vb: Public Class BodyData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: _2dgs.BodyData.Name
+  commentId: F:_2dgs.BodyData.Name
+  id: Name
+  parent: _2dgs.BodyData
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: BodyData.Name
+  fullName: _2dgs.BodyData.Name
+  type: Field
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Name
+    path: 2dgs/Data/BodyData.cs
+    startLine: 14
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The body's name.
+  example: []
+  syntax:
+    content: public string Name
+    return:
+      type: System.String
+    content.vb: Public Name As String
+- uid: _2dgs.BodyData.Position
+  commentId: P:_2dgs.BodyData.Position
+  id: Position
+  parent: _2dgs.BodyData
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: BodyData.Position
+  fullName: _2dgs.BodyData.Position
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Position
+    path: 2dgs/Data/BodyData.cs
+    startLine: 18
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The body's position.
+  example: []
+  syntax:
+    content: public Vector2 Position { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Position As Vector2
+  overload: _2dgs.BodyData.Position*
+- uid: _2dgs.BodyData.Velocity
+  commentId: P:_2dgs.BodyData.Velocity
+  id: Velocity
+  parent: _2dgs.BodyData
+  langs:
+  - csharp
+  - vb
+  name: Velocity
+  nameWithType: BodyData.Velocity
+  fullName: _2dgs.BodyData.Velocity
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Velocity
+    path: 2dgs/Data/BodyData.cs
+    startLine: 22
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The body's velocity.
+  example: []
+  syntax:
+    content: public Vector2 Velocity { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Velocity As Vector2
+  overload: _2dgs.BodyData.Velocity*
+- uid: _2dgs.BodyData.Mass
+  commentId: P:_2dgs.BodyData.Mass
+  id: Mass
+  parent: _2dgs.BodyData
+  langs:
+  - csharp
+  - vb
+  name: Mass
+  nameWithType: BodyData.Mass
+  fullName: _2dgs.BodyData.Mass
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Mass
+    path: 2dgs/Data/BodyData.cs
+    startLine: 26
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The body's mass.
+  example: []
+  syntax:
+    content: public float Mass { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Mass As Single
+  overload: _2dgs.BodyData.Mass*
+- uid: _2dgs.BodyData.DisplaySize
+  commentId: P:_2dgs.BodyData.DisplaySize
+  id: DisplaySize
+  parent: _2dgs.BodyData
+  langs:
+  - csharp
+  - vb
+  name: DisplaySize
+  nameWithType: BodyData.DisplaySize
+  fullName: _2dgs.BodyData.DisplaySize
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: DisplaySize
+    path: 2dgs/Data/BodyData.cs
+    startLine: 30
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The body's display size.
+  example: []
+  syntax:
+    content: public float DisplaySize { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property DisplaySize As Single
+  overload: _2dgs.BodyData.DisplaySize*
+- uid: _2dgs.BodyData.Color
+  commentId: P:_2dgs.BodyData.Color
+  id: Color
+  parent: _2dgs.BodyData
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: BodyData.Color
+  fullName: _2dgs.BodyData.Color
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: Color
+    path: 2dgs/Data/BodyData.cs
+    startLine: 34
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: The body's color.
+  example: []
+  syntax:
+    content: >-
+      [JsonIgnore]
+
+      public Color Color { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Color
+    content.vb: >-
+      <JsonIgnore>
+
+      Public Property Color As Color
+  overload: _2dgs.BodyData.Color*
+  attributes:
+  - type: Newtonsoft.Json.JsonIgnoreAttribute
+    ctor: Newtonsoft.Json.JsonIgnoreAttribute.#ctor
+    arguments: []
+- uid: _2dgs.BodyData.ColorString
+  commentId: P:_2dgs.BodyData.ColorString
+  id: ColorString
+  parent: _2dgs.BodyData
+  langs:
+  - csharp
+  - vb
+  name: ColorString
+  nameWithType: BodyData.ColorString
+  fullName: _2dgs.BodyData.ColorString
+  type: Property
+  source:
+    remote:
+      path: 2dgs/Data/BodyData.cs
+      branch: main
+      repo: https://github.com/amccullough02/2dgs.git
+    id: ColorString
+    path: 2dgs/Data/BodyData.cs
+    startLine: 40
+  assemblies:
+  - 2dgs
+  namespace: _2dgs
+  summary: Converts a body's color to/from RGB to/from hexadecimal.
+  example: []
+  syntax:
+    content: >-
+      [JsonProperty("Color")]
+
+      public string ColorString { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("Color")>
+
+      Public Property ColorString As String
+  overload: _2dgs.BodyData.ColorString*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Color
+references:
+- uid: _2dgs
+  commentId: N:_2dgs
+  href: _2dgs.html
+  name: _2dgs
+  nameWithType: _2dgs
+  fullName: _2dgs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: _2dgs.BodyData.Position*
+  commentId: Overload:_2dgs.BodyData.Position
+  href: _2dgs.BodyData.html#_2dgs_BodyData_Position
+  name: Position
+  nameWithType: BodyData.Position
+  fullName: _2dgs.BodyData.Position
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: _2dgs.BodyData.Velocity*
+  commentId: Overload:_2dgs.BodyData.Velocity
+  href: _2dgs.BodyData.html#_2dgs_BodyData_Velocity
+  name: Velocity
+  nameWithType: BodyData.Velocity
+  fullName: _2dgs.BodyData.Velocity
+- uid: _2dgs.BodyData.Mass*
+  commentId: Overload:_2dgs.BodyData.Mass
+  href: _2dgs.BodyData.html#_2dgs_BodyData_Mass
+  name: Mass
+  nameWithType: BodyData.Mass
+  fullName: _2dgs.BodyData.Mass
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: _2dgs.BodyData.DisplaySize*
+  commentId: Overload:_2dgs.BodyData.DisplaySize
+  href: _2dgs.BodyData.html#_2dgs_BodyData_DisplaySize
+  name: DisplaySize
+  nameWithType: BodyData.DisplaySize
+  fullName: _2dgs.BodyData.DisplaySize
+- uid: _2dgs.BodyData.Color*
+  commentId: Overload:_2dgs.BodyData.Color
+  href: _2dgs.BodyData.html#_2dgs_BodyData_Color
+  name: Color
+  nameWithType: BodyData.Color
+  fullName: _2dgs.BodyData.Color
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: _2dgs.BodyData.ColorString*
+  commentId: Overload:_2dgs.BodyData.ColorString
+  href: _2dgs.BodyData.html#_2dgs_BodyData_ColorString
+  name: ColorString
+  nameWithType: BodyData.ColorString
+  fullName: _2dgs.BodyData.ColorString

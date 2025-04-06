@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SimulationMediator | 2D Gravity Simulator (2DGS) </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SimulationMediator | 2D Gravity Simulator (2DGS) ">
+      
+      <meta name="description" content="A mediator class that manages communication between the simulation scene, simulation user interface, and simulation file.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amccullough02/2dgs/new/main/apiSpec/new?filename=_2dgs_SimulationMediator.md&amp;value=---%0Auid%3A%20_2dgs.SimulationMediator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="2D Gravity Simulator (2DGS)">
+            2D Gravity Simulator (2DGS)
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="_2dgs.SimulationMediator">
+
+
+
+  <h1 id="_2dgs_SimulationMediator" data-uid="_2dgs.SimulationMediator" class="text-break">
+Class SimulationMediator  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="_2dgs.html">_2dgs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>2dgs.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A mediator class that manages communication between the simulation scene, simulation user interface, and simulation file.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SimulationMediator</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SimulationMediator</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="_2dgs_SimulationMediator_ABodySelected_" data-uid="_2dgs.SimulationMediator.ABodySelected*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ABodySelected" data-uid="_2dgs.SimulationMediator.ABodySelected">
+  ABodySelected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if a body is selected (useful to preventing multiple selections which are not yet supported).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ABodySelected { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_AttemptToSaveFile_" data-uid="_2dgs.SimulationMediator.AttemptToSaveFile*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_AttemptToSaveFile" data-uid="_2dgs.SimulationMediator.AttemptToSaveFile">
+  AttemptToSaveFile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the simulation should be saved to a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AttemptToSaveFile { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ColorSelectedBody_" data-uid="_2dgs.SimulationMediator.ColorSelectedBody*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ColorSelectedBody" data-uid="_2dgs.SimulationMediator.ColorSelectedBody">
+  ColorSelectedBody
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the selected body is to have its color updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ColorSelectedBody { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_CreateBodyData_" data-uid="_2dgs.SimulationMediator.CreateBodyData*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_CreateBodyData" data-uid="_2dgs.SimulationMediator.CreateBodyData">
+  CreateBodyData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Contains the data the user has provided to create a new body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BodyData CreateBodyData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="_2dgs.BodyData.html">BodyData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_DeleteSelectedBody_" data-uid="_2dgs.SimulationMediator.DeleteSelectedBody*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_DeleteSelectedBody" data-uid="_2dgs.SimulationMediator.DeleteSelectedBody">
+  DeleteSelectedBody
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the selected body is to be deleted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DeleteSelectedBody { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_EditBodyData_" data-uid="_2dgs.SimulationMediator.EditBodyData*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_EditBodyData" data-uid="_2dgs.SimulationMediator.EditBodyData">
+  EditBodyData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Contains the data the user has provided to edit a body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BodyData EditBodyData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="_2dgs.BodyData.html">BodyData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_EditMode_" data-uid="_2dgs.SimulationMediator.EditMode*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_EditMode" data-uid="_2dgs.SimulationMediator.EditMode">
+  EditMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if edit mode is enabled or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EditMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_EditSelectedBody_" data-uid="_2dgs.SimulationMediator.EditSelectedBody*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_EditSelectedBody" data-uid="_2dgs.SimulationMediator.EditSelectedBody">
+  EditSelectedBody
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the selected body is to be edited.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EditSelectedBody { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_FilePath_" data-uid="_2dgs.SimulationMediator.FilePath*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_FilePath" data-uid="_2dgs.SimulationMediator.FilePath">
+  FilePath
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The file path of the simulation file the simulation has been loaded from (blank if the simulation is newly created).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FilePath { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_Lesson_" data-uid="_2dgs.SimulationMediator.Lesson*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_Lesson" data-uid="_2dgs.SimulationMediator.Lesson">
+  Lesson
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the simulation is a lesson simulation (otherwise the lesson features are disabled and saving is allowed).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Lesson { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_LessonPages_" data-uid="_2dgs.SimulationMediator.LessonPages*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_LessonPages" data-uid="_2dgs.SimulationMediator.LessonPages">
+  LessonPages
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A list of lesson pages (used in lesson simulations).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;LessonPage&gt; LessonPages { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="_2dgs.LessonPage.html">LessonPage</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_NewBodyColor_" data-uid="_2dgs.SimulationMediator.NewBodyColor*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_NewBodyColor" data-uid="_2dgs.SimulationMediator.NewBodyColor">
+  NewBodyColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The colour the user to apply to a new body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color NewBodyColor { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_Paused_" data-uid="_2dgs.SimulationMediator.Paused*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_Paused" data-uid="_2dgs.SimulationMediator.Paused">
+  Paused
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the simulation is paused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Paused { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_Position_" data-uid="_2dgs.SimulationMediator.Position*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_Position" data-uid="_2dgs.SimulationMediator.Position">
+  Position
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The position of body names relative to the bodies proper.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position Position { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="_2dgs.Position.html">Position</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ResetSimulation_" data-uid="_2dgs.SimulationMediator.ResetSimulation*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ResetSimulation" data-uid="_2dgs.SimulationMediator.ResetSimulation">
+  ResetSimulation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the simulation should be reset to its initial state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ResetSimulation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ScreenDimensions_" data-uid="_2dgs.SimulationMediator.ScreenDimensions*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ScreenDimensions" data-uid="_2dgs.SimulationMediator.ScreenDimensions">
+  ScreenDimensions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The current screen dimensions (used to offset bodies from relative to (0,0) to the centre of the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 ScreenDimensions { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_SelectedBodyData_" data-uid="_2dgs.SimulationMediator.SelectedBodyData*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_SelectedBodyData" data-uid="_2dgs.SimulationMediator.SelectedBodyData">
+  SelectedBodyData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A reference to the data on the currently selected body (used to provide a starting point for edits).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BodyData SelectedBodyData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="_2dgs.BodyData.html">BodyData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_SimulationTitle_" data-uid="_2dgs.SimulationMediator.SimulationTitle*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_SimulationTitle" data-uid="_2dgs.SimulationMediator.SimulationTitle">
+  SimulationTitle
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The 'title' of the simulation (this is what displays in the lesson prompt window).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SimulationTitle { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_TimeStep_" data-uid="_2dgs.SimulationMediator.TimeStep*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_TimeStep" data-uid="_2dgs.SimulationMediator.TimeStep">
+  TimeStep
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The current time step of the simulation which controls how the rate at which orbits progress.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TimeStep { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ToggleBodyGhost_" data-uid="_2dgs.SimulationMediator.ToggleBodyGhost*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ToggleBodyGhost" data-uid="_2dgs.SimulationMediator.ToggleBodyGhost">
+  ToggleBodyGhost
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if a ghost body is to be rendered (set to true when a new body is created but not placed yet).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ToggleBodyGhost { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ToggleGlow_" data-uid="_2dgs.SimulationMediator.ToggleGlow*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ToggleGlow" data-uid="_2dgs.SimulationMediator.ToggleGlow">
+  ToggleGlow
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if the bodies are glowing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ToggleGlow { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ToggleNames_" data-uid="_2dgs.SimulationMediator.ToggleNames*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ToggleNames" data-uid="_2dgs.SimulationMediator.ToggleNames">
+  ToggleNames
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if body names are showing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ToggleNames { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ToggleOrbits_" data-uid="_2dgs.SimulationMediator.ToggleOrbits*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ToggleOrbits" data-uid="_2dgs.SimulationMediator.ToggleOrbits">
+  ToggleOrbits
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if body orbits are showing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ToggleOrbits { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ToggleTrails_" data-uid="_2dgs.SimulationMediator.ToggleTrails*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ToggleTrails" data-uid="_2dgs.SimulationMediator.ToggleTrails">
+  ToggleTrails
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if body trails are showing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ToggleTrails { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_ToggleVectors_" data-uid="_2dgs.SimulationMediator.ToggleVectors*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_ToggleVectors" data-uid="_2dgs.SimulationMediator.ToggleVectors">
+  ToggleVectors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Signifies if body vectors are showing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ToggleVectors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="_2dgs_SimulationMediator_TrailLength_" data-uid="_2dgs.SimulationMediator.TrailLength*"></a>
+
+  <h3 id="_2dgs_SimulationMediator_TrailLength" data-uid="_2dgs.SimulationMediator.TrailLength">
+  TrailLength
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The current length of body trails.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TrailLength { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amccullough02/2dgs/blob/main/2dgs/Mediator/SimulationMediator.cs/#L9" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

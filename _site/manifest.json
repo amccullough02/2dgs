@@ -1,0 +1,784 @@
+{
+  "source_base_path": "C:/Users/alexm/dev/university/2dgs/2dgs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.AttributionsScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.AttributionsScene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.AttributionsScene",
+      "Summary": "<p sourcefile=\"api/_2dgs.AttributionsScene.yml\" sourcestartlinenumber=\"1\">A scene for giving credit and attribution.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.AttributionsUi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.AttributionsUi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.AttributionsUi",
+      "Summary": "<p sourcefile=\"api/_2dgs.AttributionsUi.yml\" sourcestartlinenumber=\"1\">A class used to contain UI boilerplate for the Attributions Scene.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.Body.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.Body.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.Body",
+      "Summary": "<p sourcefile=\"api/_2dgs.Body.yml\" sourcestartlinenumber=\"1\">A class used to represent bodies in the 2DGS application.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.BodyData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.BodyData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.BodyData",
+      "Summary": "<p sourcefile=\"api/_2dgs.BodyData.yml\" sourcestartlinenumber=\"1\">A data class used for interop between JSON.NET and a 2DGS Body object.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.CreateBodyDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.CreateBodyDialog.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.CreateBodyDialog",
+      "Summary": "<p sourcefile=\"api/_2dgs.CreateBodyDialog.yml\" sourcestartlinenumber=\"1\">A simple UI class containing widgets for the create body dialog.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.EditBodyDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.EditBodyDialog.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.EditBodyDialog",
+      "Summary": "<p sourcefile=\"api/_2dgs.EditBodyDialog.yml\" sourcestartlinenumber=\"1\">A simple UI class containing widgets for the edit body dialog.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.EditModePanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.EditModePanel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.EditModePanel",
+      "Summary": "<p sourcefile=\"api/_2dgs.EditModePanel.yml\" sourcestartlinenumber=\"1\">A simple UI class containing 'edit mode' widgets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.FadeInScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.FadeInScene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.FadeInScene",
+      "Summary": "<p sourcefile=\"api/_2dgs.FadeInScene.yml\" sourcestartlinenumber=\"1\">A scene used to create a 'fade from black' transition effect.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.FadeOutScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.FadeOutScene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.FadeOutScene",
+      "Summary": "<p sourcefile=\"api/_2dgs.FadeOutScene.yml\" sourcestartlinenumber=\"1\">A scene used to create a 'fade to black' transition effect.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.FileManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.FileManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.FileManager",
+      "Summary": "<p sourcefile=\"api/_2dgs.FileManager.yml\" sourcestartlinenumber=\"1\">A class used to perform rename and delete operations on files, making use of C#'s standard library.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.FindWidget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.FindWidget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.FindWidget",
+      "Summary": "<p sourcefile=\"api/_2dgs.FindWidget.yml\" sourcestartlinenumber=\"1\">A class used to more easily access Myra widgets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.FontManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.FontManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.FontManager",
+      "Summary": "<p sourcefile=\"api/_2dgs.FontManager.yml\" sourcestartlinenumber=\"1\">A class used to provide a facade for FontStashSharp FontSystems.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.FpsCounter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.FpsCounter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.FpsCounter",
+      "Summary": "<p sourcefile=\"api/_2dgs.FpsCounter.yml\" sourcestartlinenumber=\"1\">A class used to display an FPS counter for performance profiling.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.Game.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.Game.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.Game",
+      "Summary": "<p sourcefile=\"api/_2dgs.Game.yml\" sourcestartlinenumber=\"1\">The 2DGS game class, inherits from the MonoGame Game class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.GhostBody.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.GhostBody.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.GhostBody",
+      "Summary": "<p sourcefile=\"api/_2dgs.GhostBody.yml\" sourcestartlinenumber=\"1\">A class used to create a ghost body when positioning a newly created body.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.GlobalGameData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.GlobalGameData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.GlobalGameData",
+      "Summary": "<p sourcefile=\"api/_2dgs.GlobalGameData.yml\" sourcestartlinenumber=\"1\">Class used to store globally accessible values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.KeyEnumConvertor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.KeyEnumConvertor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.KeyEnumConvertor",
+      "Summary": "<p sourcefile=\"api/_2dgs.KeyEnumConvertor.yml\" sourcestartlinenumber=\"1\">A custom JSONConvertor designed to convert MonoGame Keys to a string format than be serialized.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.KeyManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.KeyManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.KeyManager",
+      "Summary": "<p sourcefile=\"api/_2dgs.KeyManager.yml\" sourcestartlinenumber=\"1\">A class used to aid in the execution of keyboard shortcuts.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.LessonPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.LessonPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.LessonPage",
+      "Summary": "<p sourcefile=\"api/_2dgs.LessonPage.yml\" sourcestartlinenumber=\"1\">A class used to represent a page of a lesson.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.LessonPrompt.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.LessonPrompt.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.LessonPrompt",
+      "Summary": "<p sourcefile=\"api/_2dgs.LessonPrompt.yml\" sourcestartlinenumber=\"1\">A class used to represent a 2DGS 'Lesson Prompt' window, which is used to discuss various physics concepts.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.MainMenuScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.MainMenuScene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.MainMenuScene",
+      "Summary": "<p sourcefile=\"api/_2dgs.MainMenuScene.yml\" sourcestartlinenumber=\"1\">A scene for the main menu of 2DGS.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.MainMenuUi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.MainMenuUi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.MainMenuUi",
+      "Summary": "<p sourcefile=\"api/_2dgs.MainMenuUi.yml\" sourcestartlinenumber=\"1\">A class used to contain UI boilerplate for the Main Menu Scene.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.MusicPlayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.MusicPlayer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.MusicPlayer",
+      "Summary": "<p sourcefile=\"api/_2dgs.MusicPlayer.yml\" sourcestartlinenumber=\"1\">Used to manage the background music in the 2DGS application.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.Position.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.Position.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.Position",
+      "Summary": "<p sourcefile=\"api/_2dgs.Position.yml\" sourcestartlinenumber=\"1\">An enum used to represent the position of a Body's nameplate.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.RemapShortcutsDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.RemapShortcutsDialog.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.RemapShortcutsDialog",
+      "Summary": "<p sourcefile=\"api/_2dgs.RemapShortcutsDialog.yml\" sourcestartlinenumber=\"1\">A class used to organise UI boilerplate for the dialog enabling shortcut remapping.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SaveQuitPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SaveQuitPanel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SaveQuitPanel",
+      "Summary": "<p sourcefile=\"api/_2dgs.SaveQuitPanel.yml\" sourcestartlinenumber=\"1\">A simple UI class containing the save, quit, and show lesson options for the simulation scene.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SaveSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SaveSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SaveSystem",
+      "Summary": "<p sourcefile=\"api/_2dgs.SaveSystem.yml\" sourcestartlinenumber=\"1\">A class to perform read and write operations to the simulation and user settings files.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.Scene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.Scene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.Scene",
+      "Summary": "<p sourcefile=\"api/_2dgs.Scene.yml\" sourcestartlinenumber=\"1\">An abstract class that provides a standardized implementation for 2DGS scenes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SceneManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SceneManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SceneManager",
+      "Summary": "<p sourcefile=\"api/_2dgs.SceneManager.yml\" sourcestartlinenumber=\"1\">A class that provides a means to manage multiple scenes. Usually implemented as a singleton.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.ScreenshotManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.ScreenshotManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.ScreenshotManager",
+      "Summary": "<p sourcefile=\"api/_2dgs.ScreenshotManager.yml\" sourcestartlinenumber=\"1\">A static class used to provide a facade for capturing in-game screenshots.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SettingsMediator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SettingsMediator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SettingsMediator",
+      "Summary": "<p sourcefile=\"api/_2dgs.SettingsMediator.yml\" sourcestartlinenumber=\"1\">A mediator class that manages communication between the settings scene, settings user interface, and settings save file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SettingsMenuUi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SettingsMenuUi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SettingsMenuUi",
+      "Summary": "<p sourcefile=\"api/_2dgs.SettingsMenuUi.yml\" sourcestartlinenumber=\"1\">A class used to represent</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SettingsPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SettingsPanel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SettingsPanel",
+      "Summary": "<p sourcefile=\"api/_2dgs.SettingsPanel.yml\" sourcestartlinenumber=\"1\">A simple UI class containing widgets for the simulation settings panel.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SettingsSaveData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SettingsSaveData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SettingsSaveData",
+      "Summary": "<p sourcefile=\"api/_2dgs.SettingsSaveData.yml\" sourcestartlinenumber=\"1\">A data class used to store data loaded from a user settings file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SettingsScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SettingsScene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SettingsScene",
+      "Summary": "<p sourcefile=\"api/_2dgs.SettingsScene.yml\" sourcestartlinenumber=\"1\">A scene for configuring the application's settings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SimulationMediator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SimulationMediator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SimulationMediator",
+      "Summary": "<p sourcefile=\"api/_2dgs.SimulationMediator.yml\" sourcestartlinenumber=\"1\">A mediator class that manages communication between the simulation scene, simulation user interface, and simulation file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SimulationMenuScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SimulationMenuScene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SimulationMenuScene",
+      "Summary": "<p sourcefile=\"api/_2dgs.SimulationMenuScene.yml\" sourcestartlinenumber=\"1\">A scene for providing a list of simulations available to the user.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SimulationMenuUi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SimulationMenuUi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SimulationMenuUi",
+      "Summary": "<p sourcefile=\"api/_2dgs.SimulationMenuUi.yml\" sourcestartlinenumber=\"1\">A class used to contain UI boilerplate for the SimulationMenuUi Scene.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SimulationSaveData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SimulationSaveData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SimulationSaveData",
+      "Summary": "<p sourcefile=\"api/_2dgs.SimulationSaveData.yml\" sourcestartlinenumber=\"1\">A class used to represent the loaded data from a simulation file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SimulationScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SimulationScene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SimulationScene",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SimulationUi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SimulationUi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SimulationUi",
+      "Summary": "<p sourcefile=\"api/_2dgs.SimulationUi.yml\" sourcestartlinenumber=\"1\">A class used to contain UI boilerplate for the Simulation Scene.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.SoundEffectPlayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.SoundEffectPlayer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.SoundEffectPlayer",
+      "Summary": "<p sourcefile=\"api/_2dgs.SoundEffectPlayer.yml\" sourcestartlinenumber=\"1\">Used to play sound effects in the 2DGS application.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.StringTransformer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.StringTransformer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.StringTransformer",
+      "Summary": "<p sourcefile=\"api/_2dgs.StringTransformer.yml\" sourcestartlinenumber=\"1\">A class used to associate various custom string operations that 2DGS requires.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.TestRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.TestRunner.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.TestRunner",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.TextureManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.TextureManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.TextureManager",
+      "Summary": "<p sourcefile=\"api/_2dgs.TextureManager.yml\" sourcestartlinenumber=\"1\">A data class used for handling the textures used in the 2DGS application.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.UiComponents.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.UiComponents.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.UiComponents",
+      "Summary": "<p sourcefile=\"api/_2dgs.UiComponents.yml\" sourcestartlinenumber=\"1\">A basic UiComponents factory class. These are Myra components with additional defaults that are specific to 2DGS.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.UiConstants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.UiConstants.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.UiConstants",
+      "Summary": "<p sourcefile=\"api/_2dgs.UiConstants.yml\" sourcestartlinenumber=\"1\">A class used to store UI constants, these are used in lieu of 'magic numbers' and hardcoded values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.Vector2Converter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.Vector2Converter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs.Vector2Converter",
+      "Summary": "<p sourcefile=\"api/_2dgs.Vector2Converter.yml\" sourcestartlinenumber=\"1\">A custom JsonConverter for converting a MonoGame Vector2 object to a JsonObject containing floating point values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/_2dgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/_2dgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "_2dgs",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
