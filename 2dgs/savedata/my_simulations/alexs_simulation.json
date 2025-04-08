@@ -1,0 +1,67 @@
+{
+  "Title": "default",
+  "Description": "A user generated simulation.",
+  "ThumbnailPath": "../../../savedata/thumbnails/default.png",
+  "IsLesson": false,
+  "DefaultTimestep": 50,
+  "VectorMultiplier": 15,
+  "Bodies": [
+    {
+      "Name": "Body 1",
+      "Position": {
+        "X": 51.52881,
+        "Y": -0.96118164
+      },
+      "Velocity": {
+        "X": 0.04384151,
+        "Y": 0.017096698
+      },
+      "Mass": 1.001E+10,
+      "Diameter": 123,
+      "Color": "#FFCC01"
+    },
+    {
+      "Name": "Body 2",
+      "Position": {
+        "X": -311.58826,
+        "Y": -48.99704
+      },
+      "Velocity": {
+        "X": 2.2227268,
+        "Y": -13.380804
+      },
+      "Mass": 10000000.0,
+      "Diameter": 30,
+      "Color": "#FFFFFF"
+    },
+    {
+      "Name": "Body 1",
+      "Position": {
+        "X": -157.5476,
+        "Y": 187.32697
+      },
+      "Velocity": {
+        "X": -9.130337,
+        "Y": -12.0170145
+      },
+      "Mass": 10000000.0,
+      "Diameter": 30,
+      "Color": "#FFFFFF"
+    },
+    {
+      "Name": "Body 3",
+      "Position": {
+        "X": 557.0327,
+        "Y": -256.3894
+      },
+      "Velocity": {
+        "X": 6.9946947,
+        "Y": 8.279012
+      },
+      "Mass": 10000000.0,
+      "Diameter": 30,
+      "Color": "#FFFFFF"
+    }
+  ],
+  "LessonPages": []
+}

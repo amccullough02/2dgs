@@ -17,6 +17,9 @@ N.B. A more detailed tutorial is planned in the future!
 6. Upon completing the lesson click 'Reset Simulation' if you want to give it another go.
 7. Otherwise, select 'Exit Simulation' to return to the Main Menu.
 
+## Docs
+https://amccullough02.github.io/2dgs/
+
 ## Credits
 1. MonoGame: https://github.com/MonoGame/MonoGame (Game Framework)
 2. Myra: https://github.com/rds1983/Myra (UI Library)
