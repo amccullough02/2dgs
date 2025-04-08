@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace _2dgs;
 
 /// <summary>
-/// A scene used to create a 'fade to black' transition effect.
+/// A scene used to create a 'fade from black' transition effect.
 /// </summary>
 /// <param name="game">A reference to the MonoGame Game instance.</param>
 public class FadeOutScene(Game game) : Scene

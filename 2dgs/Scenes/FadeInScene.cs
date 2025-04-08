@@ -5,7 +5,7 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 namespace _2dgs;
 
 /// <summary>
-/// A scene used to create a 'fade from black' transition effect.
+/// A scene used to create a 'fade to black' transition effect.
 /// </summary>
 /// <param name="game">A reference to the MonoGame Game instance.</param>
 /// <param name="destinationScene">A reference to the scene we want to transition to.</param>
@@ -16,7 +16,7 @@ public class FadeInScene(Game game, Scene destinationScene) : Scene
     /// </summary>
     private readonly TextureManager _textureManager = new(game.Content, game.GraphicsDevice);
     /// <summary>
-    /// Used to track if the transition is currently fading from black.
+    /// Used to track if the transition is currently fading to black.
     /// </summary>
     private bool _active = true;
     /// <summary>
