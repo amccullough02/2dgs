@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 namespace _2dgs;
 
 /// <summary>
-/// A custom JsonConverter for converting a MonoGame Vector2 object to a JsonObject containing floating point values.
+/// A custom JSON converter for converting a MonoGame Vector2 object to a JSON object containing floating point values.
 /// </summary>
 public class Vector2Converter : JsonConverter<Vector2>
 {

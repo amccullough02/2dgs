@@ -7,7 +7,7 @@ using Myra.Graphics2D.UI.ColorPicker;
 namespace _2dgs;
 
 /// <summary>
-/// A basic UiComponents factory class. These are Myra components with additional defaults that are specific to 2DGS.
+/// A basic factory class for user interface widgets. These are Myra widgets with additional defaults that are specific to 2DGS.
 /// </summary>
 public static class UiComponents
 {

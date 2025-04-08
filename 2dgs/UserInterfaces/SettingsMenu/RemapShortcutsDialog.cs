@@ -5,7 +5,7 @@ using Myra.Graphics2D.UI;
 namespace _2dgs;
 
 /// <summary>
-/// A class used to organise UI boilerplate for the dialog enabling shortcut remapping.
+/// A class used to organise UI boilerplate for the dialog enabling keyboard shortcut remapping.
 /// </summary>
 public static class RemapShortcutsDialog
 {

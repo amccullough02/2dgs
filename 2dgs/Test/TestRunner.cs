@@ -8,7 +8,7 @@ using Myra.Graphics2D.UI;
 namespace _2dgs;
 
 /// <summary>
-/// A class used for testing the 2DGS application.
+/// A class used for unit testing the 2DGS application.
 /// </summary>
 public static class TestRunner
 {

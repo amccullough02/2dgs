@@ -15,7 +15,7 @@ using Myra.Graphics2D.UI.File;
 namespace _2dgs;
 
 /// <summary>
-/// A class used to contain UI boilerplate for the SimulationMenuUi Scene.
+/// A class used to contain UI boilerplate for the Simulation Menu Scene.
 /// </summary>
 public class SimulationMenuUi
 {
