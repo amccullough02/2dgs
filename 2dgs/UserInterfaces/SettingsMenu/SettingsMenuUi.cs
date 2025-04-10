@@ -10,7 +10,7 @@ using Point = Microsoft.Xna.Framework.Point;
 namespace _2dgs;
 
 /// <summary>
-/// A class used to represent 
+/// A class used to contain UI boilerplate for the Settings Menu Scene.
 /// </summary>
 public class SettingsMenuUi
 {
