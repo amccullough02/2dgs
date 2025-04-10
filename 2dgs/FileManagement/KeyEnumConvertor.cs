@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 namespace _2dgs;
 
 /// <summary>
-/// A custom JSONConvertor designed to convert MonoGame Keys to a string format than be serialized.
+/// A custom JSON convertor designed to convert MonoGame Keys to a string format which can be serialized.
 /// </summary>
 public class KeyEnumConvertor : JsonConverter<List<Keys>>
 {

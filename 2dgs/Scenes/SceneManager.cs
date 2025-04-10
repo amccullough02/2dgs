@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace _2dgs;
 
 /// <summary>
-/// A class that provides a means to manage multiple scenes. Usually implemented as a singleton.
+/// A class that provides a means to manage multiple scenes.
 /// </summary>
 public class SceneManager
 {

@@ -5,7 +5,7 @@ using Myra.Graphics2D.UI;
 namespace _2dgs;
 
 /// <summary>
-/// A simple UI class containing 'edit mode' widgets.
+/// A simple UI class containing widgets related to the simulation ‘edit mode’.
 /// </summary>
 public static class EditModePanel
 {

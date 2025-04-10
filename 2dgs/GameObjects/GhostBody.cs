@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace _2dgs;
 
 /// <summary>
-/// A class used to create a ghost body when positioning a newly created body.
+/// A class used to draw a ‘ghost body’ to help the user position a newly created body.
 /// </summary>
 public class GhostBody
 {

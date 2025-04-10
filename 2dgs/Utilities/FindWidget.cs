@@ -6,7 +6,7 @@ using Myra.Graphics2D.UI;
 namespace _2dgs;
 
 /// <summary>
-/// A class used to more easily access Myra widgets.
+/// A class containing various methods for finding, enabling, disabling, and highlighting Myra widgets by their ID.
 /// </summary>
 public static class FindWidget
 {

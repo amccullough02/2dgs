@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 namespace _2dgs;
 
 /// <summary>
-/// A mediator class that manages communication between the simulation scene, simulation user interface, and simulation file.
+/// A mediator class that manages communication between the simulation scene, simulation user interface, body class, and simulation save file.
 /// </summary>
 public class SimulationMediator
 {
